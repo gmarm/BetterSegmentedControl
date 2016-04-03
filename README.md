@@ -7,6 +7,8 @@
 
 BetterSegmentedControl is an easy to use, customizable replacement for UISegmentedControl and UISwitch written in Swift.
 
+![Demo](http://postimg.org/image/8btavzynz/)
+
 ## Features
 
 - [x] Can be used as a segmented control or switch
