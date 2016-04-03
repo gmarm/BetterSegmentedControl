@@ -215,7 +215,7 @@ import UIKit
     }
     
     // MARK: - Animations
-    private func moveIndicatorViewToIndexAnimated(animated: Bool, shouldSendEvent shouldSendEvent: Bool) {
+    private func moveIndicatorViewToIndexAnimated(animated: Bool, shouldSendEvent: Bool) {
         if animated {
             UIView.animateWithDuration(bouncesOnChange ? animationWithBounceDuration : animationNoBounceDuration,
                                        delay: 0.0,
@@ -259,7 +259,7 @@ import UIKit
     // MARK: - Action handlers
     @objc private func tapped(gestureRecognizer: UITapGestureRecognizer!) {
         let location = gestureRecognizer.locationInView(self)
-        try? setIndex(nearestIndexToPoint(location))
+        try! setIndex(nearestIndexToPoint(location))
     }
     
     @objc private func pan(gestureRecognizer: UIPanGestureRecognizer!) {
@@ -276,7 +276,7 @@ import UIKit
             frame.origin.x = max(min(frame.origin.x, bounds.width - indicatorViewInset - frame.width), indicatorViewInset)
             indicatorView.frame = frame
         case .Ended, .Failed, .Cancelled:
-            try? setIndex(nearestIndexToPoint(indicatorView.center))
+            try! setIndex(nearestIndexToPoint(indicatorView.center))
         default: break
         }
     }
