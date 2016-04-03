@@ -39,7 +39,17 @@ class ViewController: UIViewController {
         // Many options
         control3.titles = ["One","Two","Three","Four","Five","Six"]
         control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)
-        control3.setIndex(2, animated: false)
+        // error handling
+        do {
+            try control3.setIndex(10, animated: false)
+        }
+        catch BetterSegmentedControl.Error.IndexBeyondBounds(let invalidIndex) {
+            print("Tried setting invalid index \(invalidIndex) to demonstrate error handling.")
+        }
+        catch {
+            print("An error occured")
+        }
+        try! control3.setIndex(2, animated: false)
         
         // Added as a subview
         let viewSegmentedControl = BetterSegmentedControl(titles: ["Artists", "Albums"])
@@ -53,7 +63,7 @@ class ViewController: UIViewController {
         viewSegmentedControl.indicatorViewBackgroundColor = UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)
         viewSegmentedControl.bouncesOnChange = false
         viewSegmentedControl.panningDisabled = true
-        control3.setIndex(2, animated: false)
+        try! viewSegmentedControl.setIndex(1, animated: false)
         
         view.addSubview(viewSegmentedControl)
     }

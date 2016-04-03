@@ -9,6 +9,10 @@ import UIKit
 
 // MARK: - BetterSegmentedControl
 @IBDesignable public class BetterSegmentedControl: UIControl {
+    // MARK: - Error handling
+    public enum Error: ErrorType {
+        case IndexBeyondBounds(UInt)
+    }
     
     // MARK: - Constants
     private let animationWithBounceDuration: NSTimeInterval = 0.3
@@ -16,7 +20,9 @@ import UIKit
     private let animationNoBounceDuration: NSTimeInterval = 0.2
     
     // MARK: - Public properties
+    /// The selected index
     public private(set) var index: UInt = 0
+    /// The titles / options available for selection
     public var titles: [String] {
         get {
             let titleLabels = titleLabelsView.subviews as! [UILabel]
@@ -24,7 +30,7 @@ import UIKit
         }
         set {
             guard newValue.count > 1 else {
-                return // throw error? is it possible?
+                return
             }
             let labels: [(UILabel, UILabel)] = newValue.map {
                 (string) -> (UILabel, UILabel) in
@@ -57,6 +63,7 @@ import UIKit
             setNeedsLayout()
         }
     }
+    /// The titles / options available for selection
     public var bouncesOnChange = true
     public var alwaysAnnouncesValue = false
     public var panningDisabled = false
@@ -166,7 +173,7 @@ import UIKit
         super.layoutSubviews()
         
         guard titleLabelsCount > 1 else {
-            return // throw error? is it possible?
+            return
         }
         
         titleLabelsView.frame = bounds
@@ -182,10 +189,9 @@ import UIKit
     }
     
     // MARK: - Index Setting
-    public func setIndex(index: UInt, animated: Bool = true) {
+    public func setIndex(index: UInt, animated: Bool = true) throws {
         guard titleLabels.indices.contains(Int(index)) else {
-            // throw error? is it possible?
-            return
+            throw Error.IndexBeyondBounds(index)
         }
         let oldIndex = self.index
         self.index = index
@@ -237,7 +243,7 @@ import UIKit
     // MARK: - Action handlers
     @objc private func tapped(gestureRecognizer: UITapGestureRecognizer!) {
         let location = gestureRecognizer.locationInView(self)
-        setIndex(nearestIndexToPoint(location))
+        try? setIndex(nearestIndexToPoint(location))
     }
     
     @objc private func pan(gestureRecognizer: UIPanGestureRecognizer!) {
@@ -254,7 +260,7 @@ import UIKit
             frame.origin.x = max(min(frame.origin.x, bounds.width - indicatorViewInset - frame.width), indicatorViewInset)
             indicatorView.frame = frame
         case .Ended, .Failed, .Cancelled:
-            setIndex(nearestIndexToPoint(indicatorView.center))
+            try? setIndex(nearestIndexToPoint(indicatorView.center))
         default: break
         }
     }
