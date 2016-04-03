@@ -2,7 +2,7 @@
 
 import Quick
 import Nimble
-import BetterSegmentedControl
+@testable import BetterSegmentedControl
 
 class TableOfContentsSpec: QuickSpec {
     override func spec() {

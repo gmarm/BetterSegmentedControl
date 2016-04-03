@@ -16,7 +16,7 @@ import UIKit
     private let animationNoBounceDuration: NSTimeInterval = 0.2
     
     // MARK: - Public properties
-    /* Basics */
+    public private(set) var index: UInt = 0
     public var titles: [String] {
         get {
             let titleLabels = titleLabelsView.subviews as! [UILabel]
@@ -57,17 +57,6 @@ import UIKit
             setNeedsLayout()
         }
     }
-    public var index: UInt = 0 {
-        didSet {
-            guard titleLabels.indices.contains(Int(index)) else {
-                index = oldValue
-                // throw error? is it possible?
-                return
-            }
-            moveIndicatorViewToIndexShouldSendEvent(index != oldValue)
-        }
-    }
-    /* Customization */
     public var bouncesOnChange = true
     public var alwaysAnnouncesValue = false
     public var panningDisabled = false
@@ -192,22 +181,38 @@ import UIKit
         }
     }
     
+    // MARK: - Index Setting
+    public func setIndex(index: UInt, animated: Bool = true) {
+        guard titleLabels.indices.contains(Int(index)) else {
+            // throw error? is it possible?
+            return
+        }
+        let oldIndex = self.index
+        self.index = index
+        moveIndicatorViewToIndexAnimated(animated, shouldSendEvent: (self.index != oldIndex || alwaysAnnouncesValue))
+    }
+    
     // MARK: - Animations
-    private func moveIndicatorViewToIndexShouldSendEvent(shouldSendEvent: Bool) {
-        UIView.animateWithDuration(bouncesOnChange ? animationWithBounceDuration : animationNoBounceDuration,
-                                   delay: 0.0,
-                                   usingSpringWithDamping: bouncesOnChange ? animationWithBounceSpringDamping : 1.0,
-                                   initialSpringVelocity: 0.0,
-                                   options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.CurveEaseOut],
-                                   animations: {
-                                    () -> Void in
-                                    self.indicatorView.frame = self.titleLabels[Int(self.index)].frame
-                                    self.layoutIfNeeded()
-            }, completion: { (finished) -> Void in
-                if finished && (shouldSendEvent || self.alwaysAnnouncesValue) {
-                    self.sendActionsForControlEvents(.ValueChanged)
-                }
-        })
+    private func moveIndicatorViewToIndexAnimated(animated: Bool, shouldSendEvent shouldSendEvent: Bool) {
+        if animated {
+            UIView.animateWithDuration(bouncesOnChange ? animationWithBounceDuration : animationNoBounceDuration,
+                                       delay: 0.0,
+                                       usingSpringWithDamping: bouncesOnChange ? animationWithBounceSpringDamping : 1.0,
+                                       initialSpringVelocity: 0.0,
+                                       options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.CurveEaseOut],
+                                       animations: {
+                                        () -> Void in
+                                        self.moveIndicatorView()
+                }, completion: { (finished) -> Void in
+                    if finished && shouldSendEvent {
+                        self.sendActionsForControlEvents(.ValueChanged)
+                    }
+            })
+        }
+        else {
+            moveIndicatorView()
+            self.sendActionsForControlEvents(.ValueChanged)
+        }
     }
     
     // MARK: - Helpers
@@ -224,10 +229,15 @@ import UIKit
         return UInt(distances.indexOf(distances.minElement()!)!)
     }
     
+    private func moveIndicatorView() {
+        self.indicatorView.frame = self.titleLabels[Int(self.index)].frame
+        self.layoutIfNeeded()
+    }
+    
     // MARK: - Action handlers
     @objc private func tapped(gestureRecognizer: UITapGestureRecognizer!) {
         let location = gestureRecognizer.locationInView(self)
-        index = nearestIndexToPoint(location)
+        setIndex(nearestIndexToPoint(location))
     }
     
     @objc private func pan(gestureRecognizer: UIPanGestureRecognizer!) {
@@ -244,7 +254,7 @@ import UIKit
             frame.origin.x = max(min(frame.origin.x, bounds.width - indicatorViewInset - frame.width), indicatorViewInset)
             indicatorView.frame = frame
         case .Ended, .Failed, .Cancelled:
-            index = nearestIndexToPoint(indicatorView.center)
+            setIndex(nearestIndexToPoint(indicatorView.center))
         default: break
         }
     }

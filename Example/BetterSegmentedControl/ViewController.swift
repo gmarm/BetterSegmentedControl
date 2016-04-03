@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         // Many options
         control3.titles = ["One","Two","Three","Four","Five","Six"]
         control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)
-        control3.index = 2
+        control3.setIndex(2, animated: false)
         
         // Added as a subview
         let viewSegmentedControl = BetterSegmentedControl(titles: ["Artists", "Albums"])
@@ -52,8 +52,9 @@ class ViewController: UIViewController {
         viewSegmentedControl.selectedTitleColor = UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00)
         viewSegmentedControl.indicatorViewBackgroundColor = UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)
         viewSegmentedControl.bouncesOnChange = false
-        viewSegmentedControl.index = 1
         viewSegmentedControl.panningDisabled = true
+        control3.setIndex(2, animated: false)
+        
         view.addSubview(viewSegmentedControl)
     }
     
