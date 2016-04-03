@@ -1,0 +1,6 @@
+framework module Pods_BetterSegmentedControl_Tests {
+  umbrella header "Pods-BetterSegmentedControl_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

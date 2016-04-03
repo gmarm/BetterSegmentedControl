@@ -1,0 +1,6 @@
+framework module Pods_BetterSegmentedControl_Example {
+  umbrella header "Pods-BetterSegmentedControl_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,22 @@
+PODS:
+  - BetterSegmentedControl (1.0)
+  - Nimble (3.2.0)
+  - Quick (0.9.1)
+
+DEPENDENCIES:
+  - BetterSegmentedControl (from `../`)
+  - Nimble (~> 3.0)
+  - Quick (~> 0.8)
+
+EXTERNAL SOURCES:
+  BetterSegmentedControl:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BetterSegmentedControl: b87e6b39e3f19a06ade773f4b6f3a908d55fa946
+  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
+  Quick: a5221fc21788b6aeda934805e68b061839bc3165
+
+PODFILE CHECKSUM: 8baa3b99ce3c2a0cbc13ecc878a73eeaa37f0951
+
+COCOAPODS: 1.0.0.beta.6
