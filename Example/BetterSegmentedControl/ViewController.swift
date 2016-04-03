@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         navigationItem.titleView = navigationSegmentedControl
         
         // Created and designed in IB
-        control1.titles = ["One","Two","Three"]
+        control1.titles = ["Recent","Nearby","All"]
         control1.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)
         control1.alwaysAnnouncesValue = true
         print(control1.titles)
@@ -40,6 +40,21 @@ class ViewController: UIViewController {
         control3.titles = ["One","Two","Three","Four","Five","Six"]
         control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)
         control3.index = 2
+        
+        // Added as a subview
+        let viewSegmentedControl = BetterSegmentedControl(titles: ["Artists", "Albums"])
+        viewSegmentedControl.frame = CGRect(x: 0.0, y: 302.0, width: view.bounds.width, height: 50.0)
+        viewSegmentedControl.autoresizingMask = [.FlexibleWidth]
+        viewSegmentedControl.cornerRadius = 0.0
+        viewSegmentedControl.titleFont = UIFont(name: "HelveticaNeue", size: 16.0)
+        viewSegmentedControl.backgroundColor = UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)
+        viewSegmentedControl.titleColor = .whiteColor()
+        viewSegmentedControl.selectedTitleColor = UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00)
+        viewSegmentedControl.indicatorViewBackgroundColor = UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)
+        viewSegmentedControl.bouncesOnChange = false
+        viewSegmentedControl.index = 1
+        viewSegmentedControl.panningDisabled = true
+        view.addSubview(viewSegmentedControl)
     }
     
     override func didReceiveMemoryWarning() {

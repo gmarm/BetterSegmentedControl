@@ -70,6 +70,7 @@ import UIKit
     /* Customization */
     public var bouncesOnChange = true
     public var alwaysAnnouncesValue = false
+    public var panningDisabled = false
     @IBInspectable public var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
@@ -230,7 +231,10 @@ import UIKit
     }
     
     @objc private func pan(gestureRecognizer: UIPanGestureRecognizer!) {
-
+        guard !panningDisabled else {
+            return
+        }
+    
         switch gestureRecognizer.state {
         case .Began:
             initialIndicatorViewFrame = indicatorView.frame
