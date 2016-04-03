@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "BetterSegmentedControl"
-  s.version          = "0.9"
+  s.version          = "0.1"
   s.summary          = "An easy to use, customizable replacement for UISegmentedControl & UISwitch."
 
 # This description is used to generate tags and improve search results.
