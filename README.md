@@ -40,14 +40,14 @@ If you prefer not to use CocoaPods, you can integrate BetterSegmentedControl int
 
 ```swift
 let control = BetterSegmentedControl(titles: ["One", "Two", "Three"])
-        control.frame = CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0)
-        control.titleFont = UIFont(name: "HelveticaNeue", size: 14.0)
-        control.backgroundColor = .darkGrayColor()
-        control.titleColor = .lightGrayColor()
-        control.selectedTitleColor = .whiteColor()
-        control.indicatorViewBackgroundColor = UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00)
-        control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), forControlEvents: .ValueChanged)
-        view.addSubview(control)
+control.frame = CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0)
+control.titleFont = UIFont(name: "HelveticaNeue", size: 14.0)
+control.backgroundColor = .darkGrayColor()
+control.titleColor = .lightGrayColor()
+control.selectedTitleColor = .whiteColor()
+control.indicatorViewBackgroundColor = UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00)
+control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), forControlEvents: .ValueChanged)
+view.addSubview(control)
 ```
 You can find different ways of using it (such as by designing it in a Storyboard file) in the example project. To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
