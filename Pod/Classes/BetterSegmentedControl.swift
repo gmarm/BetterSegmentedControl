@@ -63,10 +63,13 @@ import UIKit
             setNeedsLayout()
         }
     }
-    /// The titles / options available for selection
+    /// Whether the indicator should bounce when selecting a new index. Defaults to true.
     public var bouncesOnChange = true
+    /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining the same after interaction. Defaults to false.
     public var alwaysAnnouncesValue = false
+    /// Whether the the control should respond to pan gestures. Defaults to false.
     public var panningDisabled = false
+    /// The control's and indicator's corner radii
     @IBInspectable public var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
@@ -76,13 +79,16 @@ import UIKit
             indicatorView.cornerRadius = newValue - indicatorViewInset
         }
     }
+    /// The indicator view's background color
     @IBInspectable public var indicatorViewBackgroundColor: UIColor! {
         get { return indicatorView.backgroundColor }
         set { indicatorView.backgroundColor = newValue }
     }
+    /// The indicator view's inset
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
         didSet { setNeedsLayout() }
     }
+    /// The text color of the non-selected titles / options
     @IBInspectable public var titleColor: UIColor!  {
         didSet {
             if !titleLabels.isEmpty {
@@ -92,6 +98,7 @@ import UIKit
             }
         }
     }
+    /// The text color of the selected title / option
     @IBInspectable public var selectedTitleColor: UIColor! {
         didSet {
             if !selectedTitleLabels.isEmpty {
@@ -101,6 +108,7 @@ import UIKit
             }
         }
     }
+    /// The titles' font
     public var titleFont: UIFont! {
         didSet {
             if !allTitleLabels.isEmpty {
@@ -189,6 +197,14 @@ import UIKit
     }
     
     // MARK: - Index Setting
+    /*!
+     Sets the control's index.
+     
+     - parameter index:    The new index
+     - parameter animated: (Optional) Whether the change should be animated or not. Defaults to true.
+     
+     - throws: An error of type IndexBeyondBounds(UInt) is thrown if an index beyond the available indices is passed.
+     */
     public func setIndex(index: UInt, animated: Bool = true) throws {
         guard titleLabels.indices.contains(Int(index)) else {
             throw Error.IndexBeyondBounds(index)
