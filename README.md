@@ -52,6 +52,16 @@ let control = BetterSegmentedControl(titles: ["One", "Two", "Three"])
 ```
 You can find different ways of using it (such as by designing it in a Storyboard file) in the example project. To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+## Todos
+
+- [ ] Allow UIViews that implement a protocol to be used as options.
+- [ ] Test everything!
+- [ ] ~~Try to take over the world!~~ Uh, what?
+
+## Contribution
+
+Feel free fork, submit Pull Requests or send me your feedback and suggestions!
+
 ## Author
 
 George Marmaridis
