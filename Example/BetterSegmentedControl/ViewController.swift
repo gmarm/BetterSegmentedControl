@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Control as navigation item
+        // As a navigation item
         let navigationSegmentedControl = BetterSegmentedControl(titles: ["Lights On", "Lights Off"])
         navigationSegmentedControl.frame = CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0)
         navigationSegmentedControl.cornerRadius = 3.0
@@ -36,10 +36,11 @@ class ViewController: UIViewController {
         control1.alwaysAnnouncesValue = true
         print(control1.titles)
         
-        // Many options
+        // Control 2 is defined in IB
+        
+        // Many options & error handling
         control3.titles = ["One","Two","Three","Four","Five","Six"]
         control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)
-        // error handling
         do {
             try control3.setIndex(10, animated: false)
         }
