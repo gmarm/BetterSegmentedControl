@@ -7,6 +7,20 @@
 
 import UIKit
 
+// MARK: - Constants
+struct AnimationParameters {
+    private static let animationWithBounceDuration: NSTimeInterval = 0.3
+    private static let animationWithBounceSpringDamping: CGFloat = 0.75
+    private static let animationNoBounceDuration: NSTimeInterval = 0.2
+}
+
+struct DefaultColors {
+    private static let backgroundColor: UIColor = .whiteColor()
+    private static let titleColor: UIColor = .blackColor()
+    private static let indicatorViewBackgroundColor: UIColor = .blackColor()
+    private static let selectedTitleColor: UIColor = .whiteColor()
+}
+
 // MARK: - BetterSegmentedControl
 @IBDesignable public class BetterSegmentedControl: UIControl {
     // MARK: - Error handling
@@ -14,14 +28,9 @@ import UIKit
         case IndexBeyondBounds(UInt)
     }
     
-    // MARK: - Constants
-    private let animationWithBounceDuration: NSTimeInterval = 0.3
-    private let animationWithBounceSpringDamping: CGFloat = 0.75
-    private let animationNoBounceDuration: NSTimeInterval = 0.2
-    
     // MARK: - Public properties
     /// The selected index
-    public private(set) var index: UInt = 0
+    public private(set) var index: UInt
     /// The titles / options available for selection
     public var titles: [String] {
         get {
@@ -80,8 +89,13 @@ import UIKit
         }
     }
     /// The indicator view's background color
-    @IBInspectable public var indicatorViewBackgroundColor: UIColor! {
-        get { return indicatorView.backgroundColor }
+    @IBInspectable public var indicatorViewBackgroundColor: UIColor {
+        get {
+            guard let backgroundColor = indicatorView.backgroundColor else {
+                return DefaultColors.indicatorViewBackgroundColor
+            }
+            return backgroundColor
+        }
         set { indicatorView.backgroundColor = newValue }
     }
     /// The indicator view's inset
@@ -89,7 +103,7 @@ import UIKit
         didSet { setNeedsLayout() }
     }
     /// The text color of the non-selected titles / options
-    @IBInspectable public var titleColor: UIColor!  {
+    @IBInspectable public var titleColor: UIColor  {
         didSet {
             if !titleLabels.isEmpty {
                 for label in titleLabels {
@@ -99,7 +113,7 @@ import UIKit
         }
     }
     /// The text color of the selected title / option
-    @IBInspectable public var selectedTitleColor: UIColor! {
+    @IBInspectable public var selectedTitleColor: UIColor {
         didSet {
             if !selectedTitleLabels.isEmpty {
                 for label in selectedTitleLabels {
@@ -109,7 +123,7 @@ import UIKit
         }
     }
     /// The titles' font
-    public var titleFont: UIFont! {
+    public var titleFont: UIFont = UILabel().font {
         didSet {
             if !allTitleLabels.isEmpty {
                 for label in allTitleLabels {
@@ -138,22 +152,52 @@ import UIKit
     private lazy var defaultTitles: [String] = { return ["First", "Second"] }()
     
     // MARK: - Lifecycle
-    public init(titles: [String]) {
-        super.init(frame: CGRect.zero)
-        self.titles = titles
-        finishInit()
-    }
-    
     required public init?(coder aDecoder: NSCoder) {
+        self.index = 0
+        self.titleColor = DefaultColors.titleColor
+        self.selectedTitleColor = DefaultColors.selectedTitleColor
         super.init(coder: aDecoder)
         titles = defaultTitles
         finishInit()
     }
     
-    override public init(frame: CGRect) {
+    public init(frame: CGRect,
+                titles: [String],
+                index: UInt,
+                backgroundColor: UIColor,
+                titleColor: UIColor,
+                indicatorViewBackgroundColor: UIColor,
+                selectedTitleColor: UIColor) {
+        self.index = index
+        self.titleColor = titleColor
+        self.selectedTitleColor = selectedTitleColor
         super.init(frame: frame)
-        titles = defaultTitles
+        self.titles = titles
+        self.backgroundColor = backgroundColor
+        self.indicatorViewBackgroundColor = indicatorViewBackgroundColor
         finishInit()
+    }
+    
+    @available(*, deprecated, message="Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
+    convenience public init(titles: [String]) {
+        self.init(frame: CGRect.zero,
+                  titles: titles,
+                  index: 0,
+                  backgroundColor: DefaultColors.backgroundColor,
+                  titleColor: DefaultColors.titleColor,
+                  indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
+                  selectedTitleColor: DefaultColors.selectedTitleColor)
+    }
+    
+    @available(*, deprecated, message="Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
+    convenience override public init(frame: CGRect) {
+        self.init(frame: CGRect.zero,
+                  titles: ["First", "Second"],
+                  index: 0,
+                  backgroundColor: DefaultColors.backgroundColor,
+                  titleColor: DefaultColors.titleColor,
+                  indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
+                  selectedTitleColor: DefaultColors.selectedTitleColor)
     }
     
     private func finishInit() {
@@ -163,11 +207,6 @@ import UIKit
         addSubview(indicatorView)
         addSubview(selectedTitleLabelsView)
         selectedTitleLabelsView.layer.mask = indicatorView.titleMaskView.layer
-        
-        titleColor = .whiteColor()
-        indicatorViewBackgroundColor = .whiteColor()
-        selectedTitleColor = .blackColor()
-        titleFont = UILabel().font
         
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BetterSegmentedControl.tapped(_:)))
         addGestureRecognizer(tapGestureRecognizer)
@@ -217,9 +256,9 @@ import UIKit
     // MARK: - Animations
     private func moveIndicatorViewToIndexAnimated(animated: Bool, shouldSendEvent: Bool) {
         if animated {
-            UIView.animateWithDuration(bouncesOnChange ? animationWithBounceDuration : animationNoBounceDuration,
+            UIView.animateWithDuration(bouncesOnChange ? AnimationParameters.animationWithBounceDuration : AnimationParameters.animationNoBounceDuration,
                                        delay: 0.0,
-                                       usingSpringWithDamping: bouncesOnChange ? animationWithBounceSpringDamping : 1.0,
+                                       usingSpringWithDamping: bouncesOnChange ? AnimationParameters.animationWithBounceSpringDamping : 1.0,
                                        initialSpringVelocity: 0.0,
                                        options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.CurveEaseOut],
                                        animations: {
