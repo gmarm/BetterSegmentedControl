@@ -1,5 +1,3 @@
-# I HAVE AN ISSUE PUSHING TO TRUNK - PLEASE USE VERSION 0.1 UNTIL FIXED
-
 # BetterSegmentedControl
 
 [![Version](https://img.shields.io/cocoapods/v/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
@@ -41,15 +39,13 @@ If you prefer not to use CocoaPods, you can integrate BetterSegmentedControl int
 ## Usage
 
 ```swift
-let control = BetterSegmentedControl(
-    frame: CGRect(x: 0.0, y: 100.0, width: view.bounds.width, height: 44.0),
-    titles: ["One", "Two", "Three"],
-    index: 1,
-    backgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
-    titleColor: .whiteColor(),
-    indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
-    selectedTitleColor: .blackColor())
-control.titleFont = UIFont(name: "HelveticaNeue", size: 14.0)!
+let control = BetterSegmentedControl(titles: ["One", "Two", "Three"])
+control.frame = CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0)
+control.titleFont = UIFont(name: "HelveticaNeue", size: 14.0)
+control.backgroundColor = .darkGrayColor()
+control.titleColor = .lightGrayColor()
+control.selectedTitleColor = .whiteColor()
+control.indicatorViewBackgroundColor = UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00)
 control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), forControlEvents: .ValueChanged)
 view.addSubview(control)
 ```
@@ -57,8 +53,6 @@ You can find different ways of using it (such as by designing it in a Storyboard
 
 ## Todos
 
-- [ ] Make initializer failable if not enough titles are passed.
-- [ ] Set titles via method that throws.
 - [ ] Allow UIViews that implement a protocol to be used as options.
 - [ ] Test everything!
 - [ ] ~~Try to take over the world!~~ Uh, what?
