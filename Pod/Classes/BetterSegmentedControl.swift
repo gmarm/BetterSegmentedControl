@@ -169,10 +169,10 @@ import UIKit
         selectedTitleColor = .blackColor()
         titleFont = UILabel().font
         
-        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BetterSegmentedControl.tapped(_:)))
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("tapped:"))
         addGestureRecognizer(tapGestureRecognizer)
         
-        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(BetterSegmentedControl.pan(_:)))
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: Selector("pan:"))
         panGestureRecognizer.delegate = self
         addGestureRecognizer(panGestureRecognizer)
     }

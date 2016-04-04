@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         navigationSegmentedControl.selectedTitleColor = .whiteColor()
         navigationSegmentedControl.indicatorViewBackgroundColor = UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00)
         navigationSegmentedControl.bouncesOnChange = false
-        navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), forControlEvents: .ValueChanged)
+        navigationSegmentedControl.addTarget(self, action: Selector("navigationSegmentedControlValueChanged:"), forControlEvents: .ValueChanged)
         navigationItem.titleView = navigationSegmentedControl
         
         // Created and designed in IB
