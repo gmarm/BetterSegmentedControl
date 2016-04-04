@@ -1,3 +1,5 @@
+# I HAVE AN ISSUE PUSHING TO TRUNK - PLEASE USE VERSION 0.1 UNTIL FIXED
+
 # BetterSegmentedControl
 
 [![Version](https://img.shields.io/cocoapods/v/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
@@ -29,7 +31,7 @@ BetterSegmentedControl is available through [CocoaPods](http://cocoapods.org). T
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'BetterSegmentedControl', '~> 0.2'
+pod 'BetterSegmentedControl', '~> 0.1'
 ```
 
 ### Manually
