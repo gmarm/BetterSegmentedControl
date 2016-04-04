@@ -29,7 +29,7 @@ BetterSegmentedControl is available through [CocoaPods](http://cocoapods.org). T
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'BetterSegmentedControl', '~> 0.1'
+pod 'BetterSegmentedControl', '~> 0.2'
 ```
 
 ### Manually
