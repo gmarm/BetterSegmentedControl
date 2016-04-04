@@ -18,21 +18,23 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // As a navigation item
-        let navigationSegmentedControl = BetterSegmentedControl(titles: ["Lights On", "Lights Off"])
-        navigationSegmentedControl.frame = CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0)
+        let navigationSegmentedControl = BetterSegmentedControl(
+            frame: CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0),
+            titles: ["Lights On", "Lights Off"],
+            index: 0,
+            backgroundColor: .darkGrayColor(),
+            titleColor: .lightGrayColor(),
+            indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
+            selectedTitleColor: .whiteColor())
         navigationSegmentedControl.cornerRadius = 3.0
-        navigationSegmentedControl.titleFont = UIFont(name: "Avenir", size: 13.0)
-        navigationSegmentedControl.backgroundColor = .darkGrayColor()
-        navigationSegmentedControl.titleColor = .lightGrayColor()
-        navigationSegmentedControl.selectedTitleColor = .whiteColor()
-        navigationSegmentedControl.indicatorViewBackgroundColor = UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00)
+        navigationSegmentedControl.titleFont = UIFont(name: "Avenir", size: 13.0)!
         navigationSegmentedControl.bouncesOnChange = false
         navigationSegmentedControl.addTarget(self, action: Selector("navigationSegmentedControlValueChanged:"), forControlEvents: .ValueChanged)
         navigationItem.titleView = navigationSegmentedControl
         
         // Created and designed in IB
         control1.titles = ["Recent","Nearby","All"]
-        control1.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)
+        control1.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
         control1.alwaysAnnouncesValue = true
         print(control1.titles)
         
@@ -40,7 +42,7 @@ class ViewController: UIViewController {
         
         // Many options & error handling
         control3.titles = ["One","Two","Three","Four","Five","Six"]
-        control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)
+        control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
         do {
             try control3.setIndex(10, animated: false)
         }
@@ -53,19 +55,19 @@ class ViewController: UIViewController {
         try! control3.setIndex(2, animated: false)
         
         // Added as a subview
-        let viewSegmentedControl = BetterSegmentedControl(titles: ["Artists", "Albums"])
-        viewSegmentedControl.frame = CGRect(x: 0.0, y: 302.0, width: view.bounds.width, height: 50.0)
+        let viewSegmentedControl = BetterSegmentedControl(
+            frame: CGRect(x: 0.0, y: 302.0, width: view.bounds.width, height: 50.0),
+            titles: ["Artists", "Albums"],
+            index: 1,
+            backgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
+            titleColor: .whiteColor(),
+            indicatorViewBackgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
+            selectedTitleColor: UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00))
         viewSegmentedControl.autoresizingMask = [.FlexibleWidth]
         viewSegmentedControl.cornerRadius = 0.0
-        viewSegmentedControl.titleFont = UIFont(name: "HelveticaNeue", size: 16.0)
-        viewSegmentedControl.backgroundColor = UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)
-        viewSegmentedControl.titleColor = .whiteColor()
-        viewSegmentedControl.selectedTitleColor = UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00)
-        viewSegmentedControl.indicatorViewBackgroundColor = UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)
+        viewSegmentedControl.titleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
         viewSegmentedControl.bouncesOnChange = false
         viewSegmentedControl.panningDisabled = true
-        try! viewSegmentedControl.setIndex(1, animated: false)
-        
         view.addSubview(viewSegmentedControl)
     }
     
