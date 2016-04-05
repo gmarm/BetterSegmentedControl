@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         navigationSegmentedControl.cornerRadius = 3.0
         navigationSegmentedControl.titleFont = UIFont(name: "Avenir", size: 13.0)!
         navigationSegmentedControl.bouncesOnChange = false
-        navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), forControlEvents: .ValueChanged)
+        navigationSegmentedControl.addTarget(self, action: Selector("navigationSegmentedControlValueChanged:"), forControlEvents: .ValueChanged)
         navigationItem.titleView = navigationSegmentedControl
         
         // Created and designed in IB
