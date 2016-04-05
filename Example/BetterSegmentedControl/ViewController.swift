@@ -10,16 +10,6 @@ import UIKit
 import BetterSegmentedControl
 
 class ViewController: UIViewController {
-
-    enum LightMode: String {
-        //enum values are the same as what's expected in the request API
-        case Off = "Lights Off"
-        case On = "Lights On"
-        
-        static let allValues = [On, Off]
-        static let allValuesString = [On.rawValue, Off.rawValue]
-        
-    }
     
     @IBOutlet weak var control1: BetterSegmentedControl!
     @IBOutlet weak var control3: BetterSegmentedControl!
@@ -30,7 +20,7 @@ class ViewController: UIViewController {
         // As a navigation item
         let navigationSegmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0),
-            titles: LightMode.allValuesString,
+            titles: ["Lights On", "Lights Off"],
             index: 0,
             backgroundColor: .darkGrayColor(),
             titleColor: .lightGrayColor(),
@@ -87,20 +77,14 @@ class ViewController: UIViewController {
     }
     
     func navigationSegmentedControlValueChanged(sender: BetterSegmentedControl) {
-
-        let selectedMode = sender.titles[Int(sender.index)]
-        
-        if let lightMode = LightMode(rawValue: selectedMode) {
-            if lightMode == .On {
-                print("Turning lights on.")
-                view.backgroundColor = .whiteColor()
-            }
-            else {
-                print("Turning lights off.")
-                view.backgroundColor = .darkGrayColor()
-            }
+        if sender.index == 0 {
+            print("Turning lights on.")
+            view.backgroundColor = .whiteColor()
         }
-        
+        else {
+            print("Turning lights off.")
+            view.backgroundColor = .darkGrayColor()
+        }
     }
     
     @IBAction func segmentedControl1ValueChanged(sender: BetterSegmentedControl) {
