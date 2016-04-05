@@ -14,10 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var control1: BetterSegmentedControl!
     @IBOutlet weak var control3: BetterSegmentedControl!
     
+    // MARK: - Examples
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // As a navigation item
+        // BetterSegmentedControl as a navigation item
         let navigationSegmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0),
             titles: ["Lights On", "Lights Off"],
@@ -32,15 +33,15 @@ class ViewController: UIViewController {
         navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), forControlEvents: .ValueChanged)
         navigationItem.titleView = navigationSegmentedControl
         
-        // Created and designed in IB
+        // Control 1: Created and designed in IB that announces its value on interaction
         control1.titles = ["Recent","Nearby","All"]
         control1.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
         control1.alwaysAnnouncesValue = true
         print(control1.titles)
         
-        // Control 2 is defined in IB
+        // Control 2: Exclusively defined in IB
         
-        // Many options & error handling
+        // Control 3: Many options & error handling
         control3.titles = ["One","Two","Three","Four","Five","Six"]
         control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
         do {
@@ -54,7 +55,7 @@ class ViewController: UIViewController {
         }
         try! control3.setIndex(2, animated: false)
         
-        // Added as a subview
+        // Control 4: Added as a subview
         let viewSegmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 0.0, y: 302.0, width: view.bounds.width, height: 50.0),
             titles: ["Artists", "Albums"],
@@ -71,11 +72,7 @@ class ViewController: UIViewController {
         view.addSubview(viewSegmentedControl)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    // MARK: - Action handlers
     func navigationSegmentedControlValueChanged(sender: BetterSegmentedControl) {
         if sender.index == 0 {
             print("Turning lights on.")
@@ -90,6 +87,5 @@ class ViewController: UIViewController {
     @IBAction func segmentedControl1ValueChanged(sender: BetterSegmentedControl) {
         print("The selected index is \(sender.index) and the title is \(sender.titles[Int(sender.index)])")
     }
-    
 }
 
