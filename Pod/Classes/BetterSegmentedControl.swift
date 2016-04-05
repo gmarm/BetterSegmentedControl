@@ -13,7 +13,6 @@ struct AnimationParameters {
     private static let animationWithBounceSpringDamping: CGFloat = 0.75
     private static let animationNoBounceDuration: NSTimeInterval = 0.2
 }
-
 struct DefaultColors {
     private static let backgroundColor: UIColor = .whiteColor()
     private static let titleColor: UIColor = .blackColor()
@@ -35,7 +34,7 @@ struct DefaultColors {
     public var titles: [String] {
         get {
             let titleLabels = titleLabelsView.subviews as! [UILabel]
-            return titleLabels.map{ $0.text! }
+            return titleLabels.map { $0.text! }
         }
         set {
             guard newValue.count > 1 else {
