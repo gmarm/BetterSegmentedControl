@@ -77,3 +77,5 @@ George Marmaridis
 ## License
 
 BetterSegmentedControl is available under the MIT license. See the LICENSE file for more info.
+
+I'd greatly appreciate it if you drop me a line if you decide using it in one of your apps.
