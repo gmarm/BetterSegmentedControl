@@ -8,12 +8,12 @@
 import UIKit
 
 // MARK: - Constants
-struct AnimationParameters {
+private struct AnimationParameters {
     private static let animationWithBounceDuration: NSTimeInterval = 0.3
     private static let animationWithBounceSpringDamping: CGFloat = 0.75
     private static let animationNoBounceDuration: NSTimeInterval = 0.2
 }
-struct DefaultColors {
+private struct DefaultColors {
     private static let backgroundColor: UIColor = .whiteColor()
     private static let titleColor: UIColor = .blackColor()
     private static let indicatorViewBackgroundColor: UIColor = .blackColor()
@@ -88,12 +88,9 @@ struct DefaultColors {
         }
     }
     /// The indicator view's background color
-    @IBInspectable public var indicatorViewBackgroundColor: UIColor {
+    @IBInspectable public var indicatorViewBackgroundColor: UIColor? {
         get {
-            guard let backgroundColor = indicatorView.backgroundColor else {
-                return DefaultColors.indicatorViewBackgroundColor
-            }
-            return backgroundColor
+            return indicatorView.backgroundColor
         }
         set { indicatorView.backgroundColor = newValue }
     }
@@ -197,6 +194,11 @@ struct DefaultColors {
                   titleColor: DefaultColors.titleColor,
                   indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
                   selectedTitleColor: DefaultColors.selectedTitleColor)
+    }
+    
+    @available(*, unavailable, message="Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
+    convenience init() {
+        self.init(frame:CGRect.zero)
     }
     
     private func finishInit() {
