@@ -1,4 +1,10 @@
-// https://github.com/Quick/Quick
+//
+//  Tests.swift
+//  BetterSegmentedControl
+//
+//  Created by George Marmaridis on 23/04/16.
+//  Copyright © 2016 George Marmaridis. All rights reserved.
+//
 
 import Quick
 import Nimble
@@ -8,7 +14,6 @@ class BetterSegmentedControlSpec: QuickSpec {
     override func spec() {
         describe("a BetterSegmentedControl") {
             context("when it is initialized") {
-                
                 context("using the designated initializer") {
                     var control: BetterSegmentedControl!
                     beforeEach({
@@ -93,8 +98,6 @@ class BetterSegmentedControlSpec: QuickSpec {
                         let color = control.selectedTitleColor
                         expect(color).to(equal(UIColor(red: 0, green: 0, blue: 0, alpha: 1)))
                     })
-                    
-                    
                 }
             }
         }
