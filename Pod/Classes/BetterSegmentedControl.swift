@@ -220,7 +220,7 @@ import UIKit
     
     @available(*, deprecated, message="Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
     convenience override public init(frame: CGRect) {
-        self.init(frame: CGRect.zero,
+        self.init(frame: frame,
                   titles: ["First", "Second"],
                   index: 0,
                   backgroundColor: DefaultColors.backgroundColor,
@@ -230,7 +230,13 @@ import UIKit
     }
     @available(*, unavailable, message="Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
     convenience init() {
-        self.init(frame:CGRect.zero)
+        self.init(frame: CGRect.zero,
+                  titles: ["First", "Second"],
+                  index: 0,
+                  backgroundColor: DefaultColors.backgroundColor,
+                  titleColor: DefaultColors.titleColor,
+                  indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
+                  selectedTitleColor: DefaultColors.selectedTitleColor)
     }
     private func finishInit() {
         layer.masksToBounds = true
