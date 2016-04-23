@@ -1,6 +1,7 @@
 # BetterSegmentedControl
 
 [![Version](https://img.shields.io/cocoapods/v/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
 [![Platform](https://img.shields.io/cocoapods/p/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
 
@@ -29,12 +30,20 @@ BetterSegmentedControl is available through [CocoaPods](http://cocoapods.org). T
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'BetterSegmentedControl', '~> 0.2'
+pod 'BetterSegmentedControl', '~> 0.3'
+```
+
+### Carthage
+
+If you prefer using [Carthage](https://github.com/Carthage/Carthage), simply add BetterSegmentedControl to your `Cartfile`:
+
+```ruby
+github "gmarm/BetterSegmentedControl" ~> 0.3
 ```
 
 ### Manually
 
-If you prefer not to use CocoaPods, you can integrate BetterSegmentedControl into your project manually.
+If you prefer not to use CocoaPods or Carthage, you can integrate BetterSegmentedControl into your project manually.
 
 ## Usage
 
@@ -58,12 +67,12 @@ You can find different ways of using it (such as by designing it in a Storyboard
 - [ ] Make initializer failable if not enough titles are passed.
 - [ ] Set titles via method that throws.
 - [ ] Allow UIViews that implement a protocol to be used as options.
-- [ ] Test everything!
+- [ ] Add moar tests!
 - [ ] ~~Try to take over the world!~~ Uh, what?
 
 ## Contribution
 
-Feel free fork, submit Pull Requests or send me your feedback and suggestions!
+Feel free to fork, submit Pull Requests or send me your feedback and suggestions!
 
 ## Author
 
@@ -78,4 +87,4 @@ George Marmaridis
 
 BetterSegmentedControl is available under the MIT license. See the LICENSE file for more info.
 
-I'd greatly appreciate it if you drop me a line if you decide using it in one of your apps.
+I'd greatly appreciate it if you [drop me a line](https://twitter.com/gmarmas) if you decide using it in one of your apps.

@@ -7,21 +7,56 @@
 
 import UIKit
 
-// MARK: - Constants
-struct AnimationParameters {
-    private static let animationWithBounceDuration: NSTimeInterval = 0.3
-    private static let animationWithBounceSpringDamping: CGFloat = 0.75
-    private static let animationNoBounceDuration: NSTimeInterval = 0.2
-}
-struct DefaultColors {
-    private static let backgroundColor: UIColor = .whiteColor()
-    private static let titleColor: UIColor = .blackColor()
-    private static let indicatorViewBackgroundColor: UIColor = .blackColor()
-    private static let selectedTitleColor: UIColor = .whiteColor()
-}
-
 // MARK: - BetterSegmentedControl
 @IBDesignable public class BetterSegmentedControl: UIControl {
+    // MARK: - IndicatorView
+    private class IndicatorView: UIView {
+        // MARK: - Properties
+        private let titleMaskView = UIView()
+        
+        private var cornerRadius: CGFloat! {
+            didSet {
+                layer.cornerRadius = cornerRadius
+                titleMaskView.layer.cornerRadius = cornerRadius
+            }
+        }
+        
+        override var frame: CGRect {
+            didSet {
+                titleMaskView.frame = frame
+            }
+        }
+        
+        // MARK: - Lifecycle
+        init() {
+            super.init(frame: CGRect.zero)
+            finishInit()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+            finishInit()
+        }
+        
+        private func finishInit() {
+            layer.masksToBounds = true
+            titleMaskView.backgroundColor = .blackColor()
+        }
+    }
+    
+    // MARK: - Constants
+    private struct AnimationParameters {
+        private static let animationWithBounceDuration: NSTimeInterval = 0.3
+        private static let animationWithBounceSpringDamping: CGFloat = 0.75
+        private static let animationNoBounceDuration: NSTimeInterval = 0.2
+    }
+    private struct DefaultColors {
+        private static let backgroundColor: UIColor = .whiteColor()
+        private static let titleColor: UIColor = .blackColor()
+        private static let indicatorViewBackgroundColor: UIColor = .blackColor()
+        private static let selectedTitleColor: UIColor = .whiteColor()
+    }
+    
     // MARK: - Error handling
     public enum Error: ErrorType {
         case IndexBeyondBounds(UInt)
@@ -88,12 +123,9 @@ struct DefaultColors {
         }
     }
     /// The indicator view's background color
-    @IBInspectable public var indicatorViewBackgroundColor: UIColor {
+    @IBInspectable public var indicatorViewBackgroundColor: UIColor? {
         get {
-            guard let backgroundColor = indicatorView.backgroundColor else {
-                return DefaultColors.indicatorViewBackgroundColor
-            }
-            return backgroundColor
+            return indicatorView.backgroundColor
         }
         set { indicatorView.backgroundColor = newValue }
     }
@@ -149,7 +181,7 @@ struct DefaultColors {
     private var allTitleLabels: [UILabel] { return titleLabels + selectedTitleLabels }
     private var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
     private lazy var defaultTitles: [String] = { return ["First", "Second"] }()
-    
+
     // MARK: - Lifecycle
     required public init?(coder aDecoder: NSCoder) {
         self.index = 0
@@ -159,7 +191,6 @@ struct DefaultColors {
         titles = defaultTitles
         finishInit()
     }
-    
     public init(frame: CGRect,
                 titles: [String],
                 index: UInt,
@@ -176,7 +207,6 @@ struct DefaultColors {
         self.indicatorViewBackgroundColor = indicatorViewBackgroundColor
         finishInit()
     }
-    
     @available(*, deprecated, message="Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
     convenience public init(titles: [String]) {
         self.init(frame: CGRect.zero,
@@ -190,6 +220,16 @@ struct DefaultColors {
     
     @available(*, deprecated, message="Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
     convenience override public init(frame: CGRect) {
+        self.init(frame: frame,
+                  titles: ["First", "Second"],
+                  index: 0,
+                  backgroundColor: DefaultColors.backgroundColor,
+                  titleColor: DefaultColors.titleColor,
+                  indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
+                  selectedTitleColor: DefaultColors.selectedTitleColor)
+    }
+    @available(*, unavailable, message="Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
+    convenience init() {
         self.init(frame: CGRect.zero,
                   titles: ["First", "Second"],
                   index: 0,
@@ -198,7 +238,6 @@ struct DefaultColors {
                   indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
                   selectedTitleColor: DefaultColors.selectedTitleColor)
     }
-    
     private func finishInit() {
         layer.masksToBounds = true
         
@@ -214,7 +253,6 @@ struct DefaultColors {
         panGestureRecognizer.delegate = self
         addGestureRecognizer(panGestureRecognizer)
     }
-    
     override public func layoutSubviews() {
         super.layoutSubviews()
         
@@ -283,12 +321,10 @@ struct DefaultColors {
                       width: elementWidth,
                       height: height - totalInsetSize)
     }
-    
     private func nearestIndexToPoint(point: CGPoint) -> UInt {
         let distances = titleLabels.map { abs(point.x - $0.center.x) }
         return UInt(distances.indexOf(distances.minElement()!)!)
     }
-    
     private func moveIndicatorView() {
         self.indicatorView.frame = self.titleLabels[Int(self.index)].frame
         self.layoutIfNeeded()
@@ -299,7 +335,6 @@ struct DefaultColors {
         let location = gestureRecognizer.locationInView(self)
         try! setIndex(nearestIndexToPoint(location))
     }
-    
     @objc private func pan(gestureRecognizer: UIPanGestureRecognizer!) {
         guard !panningDisabled else {
             return
@@ -322,47 +357,10 @@ struct DefaultColors {
 
 // MARK: - UIGestureRecognizerDelegate
 extension BetterSegmentedControl: UIGestureRecognizerDelegate {
-    
     override public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer == panGestureRecognizer {
             return indicatorView.frame.contains(gestureRecognizer.locationInView(self))
         }
         return super.gestureRecognizerShouldBegin(gestureRecognizer)
-    }
-}
-
-// MARK: - IndicatorView
-private class IndicatorView: UIView {
-    
-    // MARK: - Properties
-    private let titleMaskView = UIView()
-    
-    private var cornerRadius: CGFloat! {
-        didSet {
-            layer.cornerRadius = cornerRadius
-            titleMaskView.layer.cornerRadius = cornerRadius
-        }
-    }
-    
-    override var frame: CGRect {
-        didSet {
-            titleMaskView.frame = frame
-        }
-    }
-    
-    // MARK: - Lifecycle
-    init() {
-        super.init(frame: CGRect.zero)
-        finishInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        finishInit()
-    }
-    
-    private func finishInit() {
-        layer.masksToBounds = true
-        titleMaskView.backgroundColor = .blackColor()
     }
 }
