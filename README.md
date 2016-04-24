@@ -72,7 +72,7 @@ You can find different ways of using it (such as by designing it in a Storyboard
 
 ## Contribution
 
-Feel free to fork, submit Pull Requests or send me your feedback and suggestions!
+Feel free to Fork, submit Pull Requests or send me your feedback and suggestions! However do make sure that tests are passing before submitting a new Pull Request.
 
 ## Author
 
