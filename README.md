@@ -66,6 +66,7 @@ You can find different ways of using it (such as by designing it in a Storyboard
 
 - [ ] Make initializer failable if not enough titles are passed.
 - [ ] Set titles via method that throws.
+- [ ] Allow the control to have no selected index.
 - [ ] Allow UIViews that implement a protocol to be used as options.
 - [ ] Add moar tests!
 - [ ] ~~Try to take over the world!~~ Uh, what?
