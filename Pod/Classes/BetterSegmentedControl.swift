@@ -90,7 +90,7 @@ import UIKit
                 selectedTitleLabel.text = string
                 selectedTitleLabel.lineBreakMode = .ByTruncatingTail
                 selectedTitleLabel.textAlignment = .Center
-                selectedTitleLabel.font = titleFont
+                selectedTitleLabel.font = selectedTitleFont
                 
                 return (titleLabel, selectedTitleLabel)
             }
@@ -108,9 +108,9 @@ import UIKit
     }
     /// Whether the indicator should bounce when selecting a new index. Defaults to true.
     public var bouncesOnChange = true
-    /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining the same after interaction. Defaults to false.
+    /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to false.
     public var alwaysAnnouncesValue = false
-    /// Whether the the control should respond to pan gestures. Defaults to false.
+    /// Whether the the control should ignore pan gestures. Defaults to false.
     public var panningDisabled = false
     /// The control's and indicator's corner radii
     @IBInspectable public var cornerRadius: CGFloat {
@@ -129,7 +129,7 @@ import UIKit
         }
         set { indicatorView.backgroundColor = newValue }
     }
-    /// The indicator view's inset
+    /// The indicator view's inset. Defaults to 2.0.
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
         didSet { setNeedsLayout() }
     }
@@ -156,9 +156,19 @@ import UIKit
     /// The titles' font
     public var titleFont: UIFont = UILabel().font {
         didSet {
-            if !allTitleLabels.isEmpty {
-                for label in allTitleLabels {
+            if !titleLabels.isEmpty {
+                for label in titleLabels {
                     label.font = titleFont
+                }
+            }
+        }
+    }
+    /// The selected title's font
+    public var selectedTitleFont: UIFont = UILabel().font {
+        didSet {
+            if !selectedTitleLabels.isEmpty {
+                for label in selectedTitleLabels {
+                    label.font = selectedTitleFont
                 }
             }
         }
@@ -178,7 +188,6 @@ import UIKit
     private var titleLabelsCount: Int { return titleLabelsView.subviews.count }
     private var titleLabels: [UILabel] { return titleLabelsView.subviews as! [UILabel] }
     private var selectedTitleLabels: [UILabel] { return selectedTitleLabelsView.subviews as! [UILabel] }
-    private var allTitleLabels: [UILabel] { return titleLabels + selectedTitleLabels }
     private var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
     private lazy var defaultTitles: [String] = { return ["First", "Second"] }()
 

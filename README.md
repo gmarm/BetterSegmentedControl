@@ -30,7 +30,7 @@ BetterSegmentedControl is available through [CocoaPods](http://cocoapods.org). T
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'BetterSegmentedControl', '~> 0.3'
+pod 'BetterSegmentedControl', '~> 0.4'
 ```
 
 ### Carthage
@@ -38,7 +38,7 @@ pod 'BetterSegmentedControl', '~> 0.3'
 If you prefer using [Carthage](https://github.com/Carthage/Carthage), simply add BetterSegmentedControl to your `Cartfile`:
 
 ```ruby
-github "gmarm/BetterSegmentedControl" ~> 0.3
+github "gmarm/BetterSegmentedControl" ~> 0.4
 ```
 
 ### Manually
@@ -57,6 +57,7 @@ let control = BetterSegmentedControl(
     indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
     selectedTitleColor: .blackColor())
 control.titleFont = UIFont(name: "HelveticaNeue", size: 14.0)!
+control.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
 control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), forControlEvents: .ValueChanged)
 view.addSubview(control)
 ```
@@ -66,7 +67,6 @@ You can find different ways of using it (such as by designing it in a Storyboard
 
 - [ ] Make initializer failable if not enough titles are passed.
 - [ ] Set titles via method that throws.
-- [ ] Add a `selectedTitleFont` property.
 - [ ] Allow the control to have no selected index.
 - [ ] Allow UIViews that implement a protocol to be used as options.
 - [ ] Add moar tests!
@@ -74,7 +74,7 @@ You can find different ways of using it (such as by designing it in a Storyboard
 
 ## Contribution
 
-Feel free to Fork, submit Pull Requests or send me your feedback and suggestions! However do make sure that tests are passing before submitting a new Pull Request.
+Feel free to Fork, submit Pull Requests or send me your feedback and suggestions! Please make sure that tests are passing before submitting a new Pull Request.
 
 ## Author
 

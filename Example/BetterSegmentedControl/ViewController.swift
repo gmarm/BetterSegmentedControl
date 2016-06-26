@@ -29,6 +29,7 @@ class ViewController: UIViewController {
             selectedTitleColor: .whiteColor())
         navigationSegmentedControl.cornerRadius = 3.0
         navigationSegmentedControl.titleFont = UIFont(name: "Avenir", size: 13.0)!
+        navigationSegmentedControl.selectedTitleFont = UIFont(name: "Avenir", size: 13.0)!
         navigationSegmentedControl.bouncesOnChange = false
         navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), forControlEvents: .ValueChanged)
         navigationItem.titleView = navigationSegmentedControl
@@ -36,6 +37,7 @@ class ViewController: UIViewController {
         // Control 1: Created and designed in IB that announces its value on interaction
         control1.titles = ["Recent","Nearby","All"]
         control1.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
+        control1.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
         control1.alwaysAnnouncesValue = true
         print(control1.titles)
         
@@ -44,6 +46,7 @@ class ViewController: UIViewController {
         // Control 3: Many options & error handling
         control3.titles = ["One","Two","Three","Four","Five","Six"]
         control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
+        control3.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
         do {
             try control3.setIndex(10, animated: false)
         }
@@ -67,6 +70,7 @@ class ViewController: UIViewController {
         viewSegmentedControl.autoresizingMask = [.FlexibleWidth]
         viewSegmentedControl.cornerRadius = 0.0
         viewSegmentedControl.titleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
+        viewSegmentedControl.selectedTitleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
         viewSegmentedControl.bouncesOnChange = false
         viewSegmentedControl.panningDisabled = true
         view.addSubview(viewSegmentedControl)
