@@ -57,7 +57,7 @@ let control = BetterSegmentedControl(
     indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
     selectedTitleColor: .blackColor())
 control.titleFont = UIFont(name: "HelveticaNeue", size: 14.0)!
-control.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+control.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
 control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), forControlEvents: .ValueChanged)
 view.addSubview(control)
 ```
