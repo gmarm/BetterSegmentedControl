@@ -208,7 +208,9 @@ import UIKit
                 indicatorViewBackgroundColor: UIColor,
                 selectedTitleColor: UIColor) {
         
-        guard titles.count > 1 else { return nil }
+        guard titles.count > 1 else {
+            assertionFailure("Need more than 1 title")
+            return nil }
         
         self.index = index
         self.titleColor = titleColor
