@@ -19,20 +19,23 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // BetterSegmentedControl as a navigation item
-        let navigationSegmentedControl = BetterSegmentedControl(
+        if let navigationSegmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0),
             titles: ["Lights On", "Lights Off"],
             index: 0,
             backgroundColor: .darkGrayColor(),
             titleColor: .lightGrayColor(),
             indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
-            selectedTitleColor: .whiteColor())
-        navigationSegmentedControl.cornerRadius = 3.0
-        navigationSegmentedControl.titleFont = UIFont(name: "Avenir", size: 13.0)!
-        navigationSegmentedControl.selectedTitleFont = UIFont(name: "Avenir", size: 13.0)!
-        navigationSegmentedControl.bouncesOnChange = false
-        navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), forControlEvents: .ValueChanged)
-        navigationItem.titleView = navigationSegmentedControl
+            selectedTitleColor: .whiteColor()) {
+            
+            navigationSegmentedControl.cornerRadius = 3.0
+            navigationSegmentedControl.titleFont = UIFont(name: "Avenir", size: 13.0)!
+            navigationSegmentedControl.selectedTitleFont = UIFont(name: "Avenir", size: 13.0)!
+            navigationSegmentedControl.bouncesOnChange = false
+            navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), forControlEvents: .ValueChanged)
+            navigationItem.titleView = navigationSegmentedControl
+        }
+        
         
         // Control 1: Created and designed in IB that announces its value on interaction
         control1.titles = ["Recent","Nearby","All"]
@@ -59,21 +62,23 @@ class ViewController: UIViewController {
         try! control3.setIndex(2, animated: false)
         
         // Control 4: Added as a subview
-        let viewSegmentedControl = BetterSegmentedControl(
+        if let viewSegmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 0.0, y: 302.0, width: view.bounds.width, height: 50.0),
             titles: ["Artists", "Albums"],
             index: 1,
             backgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
             titleColor: .whiteColor(),
             indicatorViewBackgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
-            selectedTitleColor: UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00))
-        viewSegmentedControl.autoresizingMask = [.FlexibleWidth]
-        viewSegmentedControl.cornerRadius = 0.0
-        viewSegmentedControl.titleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
-        viewSegmentedControl.selectedTitleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
-        viewSegmentedControl.bouncesOnChange = false
-        viewSegmentedControl.panningDisabled = true
-        view.addSubview(viewSegmentedControl)
+            selectedTitleColor: UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00)) {
+        
+            viewSegmentedControl.autoresizingMask = [.FlexibleWidth]
+            viewSegmentedControl.cornerRadius = 0.0
+            viewSegmentedControl.titleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
+            viewSegmentedControl.selectedTitleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
+            viewSegmentedControl.bouncesOnChange = false
+            viewSegmentedControl.panningDisabled = true
+            view.addSubview(viewSegmentedControl)
+        }        
     }
     
     // MARK: - Action handlers

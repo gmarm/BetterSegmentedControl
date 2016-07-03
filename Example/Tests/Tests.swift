@@ -213,6 +213,24 @@ class BetterSegmentedControlSpec: QuickSpec {
                             expect(control.selectedTitleFont).to(equal(newFont))
                         })
                     })
+                    
+                    context("Failing init with not enough titles", { 
+                        var failingControl: BetterSegmentedControl?
+                        beforeEach({
+                            failingControl = BetterSegmentedControl(
+                                frame: CGRectMake(0, 0, 300, 44),
+                                titles: ["One"],
+                                index: 1,
+                                backgroundColor: .redColor(),
+                                titleColor: .blueColor(),
+                                indicatorViewBackgroundColor: .greenColor(),
+                                selectedTitleColor: .purpleColor())
+                        })
+                        
+                        it("Should be nil, not enough titles", closure: { 
+                            expect(failingControl) == nil
+                        })
+                    })
                 }
             }
         }
