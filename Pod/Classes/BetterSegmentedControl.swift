@@ -200,13 +200,18 @@ import UIKit
         titles = defaultTitles
         finishInit()
     }
-    public init(frame: CGRect,
+    public init?(frame: CGRect,
                 titles: [String],
                 index: UInt,
                 backgroundColor: UIColor,
                 titleColor: UIColor,
                 indicatorViewBackgroundColor: UIColor,
                 selectedTitleColor: UIColor) {
+        
+        guard titles.count > 1 else {
+            assertionFailure("Need more than 1 title")
+            return nil }
+        
         self.index = index
         self.titleColor = titleColor
         self.selectedTitleColor = selectedTitleColor
@@ -217,7 +222,7 @@ import UIKit
         finishInit()
     }
     @available(*, deprecated, message="Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
-    convenience public init(titles: [String]) {
+    convenience public init?(titles: [String]) {
         self.init(frame: CGRect.zero,
                   titles: titles,
                   index: 0,
@@ -235,7 +240,7 @@ import UIKit
                   backgroundColor: DefaultColors.backgroundColor,
                   titleColor: DefaultColors.titleColor,
                   indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
-                  selectedTitleColor: DefaultColors.selectedTitleColor)
+                  selectedTitleColor: DefaultColors.selectedTitleColor)!
     }
     @available(*, unavailable, message="Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
     convenience init() {
@@ -245,7 +250,7 @@ import UIKit
                   backgroundColor: DefaultColors.backgroundColor,
                   titleColor: DefaultColors.titleColor,
                   indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
-                  selectedTitleColor: DefaultColors.selectedTitleColor)
+                  selectedTitleColor: DefaultColors.selectedTitleColor)!
     }
     private func finishInit() {
         layer.masksToBounds = true
