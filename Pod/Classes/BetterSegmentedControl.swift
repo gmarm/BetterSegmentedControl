@@ -174,6 +174,12 @@ import UIKit
         }
     }
     
+    public var indicatorContentView: UIView {
+        get {
+            return self.indicatorView
+        }
+    }
+    
     // MARK: - Private properties
     private let titleLabelsView = UIView()
     private let selectedTitleLabelsView = UIView()
