@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01D26AA8E38C2B82989BDE8683C07959 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA2BFD570CD736156D66A95A51655E2 /* Foundation.framework */; };
 		03A9FD93E86C0CD07A37D7BF34A02F09 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE9C10DA93BFE440F17876611232E1 /* Match.swift */; };
 		07917FBBFDE66E361C1E6D7113940697 /* String+FileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CBE690E9186E686698A8A8A71C5355 /* String+FileName.swift */; };
 		08E2E09A6DCB0FB18665498D6CF4D375 /* Callsite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07B6CC006238186A56EEC6E8D3CD88 /* Callsite.swift */; };
+		0AB79159F93EB9D390F47341F3A73820 /* BetterSegmentedControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C63728A7A2A33E27D3C3472A93ED225 /* BetterSegmentedControl-dummy.m */; };
 		112614F21939902B59102E6E876ADCBC /* RaisesException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A414C35360A25163AA8D7D17AB68C77 /* RaisesException.swift */; };
+		114BF6039D596D7EF0F0C2FEE9E98EF3 /* BetterSegmentedControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EC21AAAB6203AF5799D9A87FFAACCF /* BetterSegmentedControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		12D4E117447CD6E7853DA2DF4EFEB4D6 /* ExampleHooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3FFEFA87108503C1154659236D755 /* ExampleHooks.swift */; };
 		135B6326D35C977854AA0C12B3F6CB7D /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627E4E84747227302312F1E22D114789 /* DSL.swift */; };
 		13CC849FA70CADF802470B6A90DCDF79 /* AllPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD566EC508F35AEBD09410C38B0113 /* AllPass.swift */; };
 		1773063E53D2418F830DECD89D7C570B /* Pods-BetterSegmentedControl_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EE630C0A33058CFFC2FC568615B228CA /* Pods-BetterSegmentedControl_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1ED8C77E9422C66BBF56E6C10D5826F0 /* NMBExceptionCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D365431FBA3C40A9570E9266B44005D7 /* NMBExceptionCapture.m */; };
-		1EFCF898C9DE2949838F785B995569A8 /* BetterSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7970426D39748FFF3574F1BC6ACD685 /* BetterSegmentedControl.swift */; };
+		22C2CDE0300AF4C58BA67DBBDD1BAF4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71B6C19E4D0C8A4D14A6EF1AB8728EB /* Foundation.framework */; };
 		23626BC4DDA1A2E90A155728F57802FF /* DSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DC1174FD42CD6684C5DE79AC08B57C5 /* DSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		26FF959C34446D4634FB609DFCE35203 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA2BFD570CD736156D66A95A51655E2 /* Foundation.framework */; };
 		2E154035314F9EC67DE6C632905FF2F6 /* Quick-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 702D610886AA829A76EF79A25B88E1AC /* Quick-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30AACAA8D51DC8C429577D9B67BB016C /* BeginWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A5C5D36EAB5C74A7CA2C7F3E57854 /* BeginWith.swift */; };
 		31629295E87A24C98238C66D41983C49 /* BeVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB2D871B9C6D5C6EE2172BB9AFD2627 /* BeVoid.swift */; };
@@ -32,7 +32,9 @@
 		431F8809C1EDDE7F995DF77FC76B865F /* SuiteHooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D772AF03D0B82E63647D129AEA9CCF1B /* SuiteHooks.swift */; };
 		439307B2C5EBFE0907E6C64190DE6A7A /* ErrorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B7C1953D52C630B7CEA85DC7D30371 /* ErrorUtility.swift */; };
 		45E67F074FCC9108CE70D4D3705124C4 /* ExampleGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBACEB31F87FDB2A294186DEFA980590 /* ExampleGroup.swift */; };
+		47CBCE8837CE75AE1B7484A63CE387ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71B6C19E4D0C8A4D14A6EF1AB8728EB /* Foundation.framework */; };
 		486B74C8EFEB68AD25CE128F3051E432 /* ObjCExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129290F935182407C183EB04C0C2C90 /* ObjCExpectation.swift */; };
+		48F728806AC3C8D9D831F36CC8EBAAEB /* BetterSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7970426D39748FFF3574F1BC6ACD685 /* BetterSegmentedControl.swift */; };
 		4AF6C26A30D865059C24DC5317786B76 /* BeNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2748FABD1661E3A75F8B07E115CF96 /* BeNil.swift */; };
 		4E5A721963877AA3A6AA3D80DAA4E5E9 /* AssertionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA753452F6B96DE24D2CF7D396628 /* AssertionRecorder.swift */; };
 		4F76743AAE3AE15B6F76ACCB7D9EF210 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A7681674D572B7002D69BBCD1BA09 /* Example.swift */; };
@@ -43,13 +45,12 @@
 		63BBD83995BA60FA7D2E6AD4138C0D71 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354B5315AD30C24D1172D4F1524B068D /* Functional.swift */; };
 		64539BE196D1741570018FFF86F14133 /* MatcherFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971FBD63640E42D5B13E199D80A38E44 /* MatcherFunc.swift */; };
 		68527A7545342CBB4F923DC8543F7B20 /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89F15C3F95B9AD5D5608775C0DF7BD /* DSL.m */; };
-		6A6F40997D5773396FFE3C906BBE2117 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA2BFD570CD736156D66A95A51655E2 /* Foundation.framework */; };
 		6ED0409031540D9B2AD7B061B608B0C9 /* DSL+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75752235C59671F25A86BF987E354AFE /* DSL+Wait.swift */; };
 		709513C468FD46067C2A9DC085F451BC /* Pods-BetterSegmentedControl_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F38A2AD6FCDEA9C7D88BE0AD15D561 /* Pods-BetterSegmentedControl_Tests-dummy.m */; };
 		7202A0B871C57B7857341D88C2883A3A /* BeIdenticalTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020CA039BDF669709230645FC23F7C77 /* BeIdenticalTo.swift */; };
 		7734BABBECE0071CF5D4430515B938BF /* BeCloseTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE93FA4667205AEE386C8648ABDC57E /* BeCloseTo.swift */; };
 		775646739B95E828ECE349F6A39534F4 /* NimbleEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E85327D01378E8AB714335E9E7CE7F /* NimbleEnvironment.swift */; };
-		7BC973D05D6E147ECFA4CD37BD8B4DDE /* BetterSegmentedControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C63728A7A2A33E27D3C3472A93ED225 /* BetterSegmentedControl-dummy.m */; };
+		7B6CB3478434A3FDB1651CDB95A92062 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71B6C19E4D0C8A4D14A6EF1AB8728EB /* Foundation.framework */; };
 		7BE8D2086E488B5FB4D57E2BF6A5AF43 /* NSString+QCKSelectorName.h in Headers */ = {isa = PBXBuildFile; fileRef = 91EB10846A1D5A8B9A3BA28C5457DF56 /* NSString+QCKSelectorName.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7CC86ABC7F4135EE12A755B023F134CE /* AssertionDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3267C4CAF13D33F026B9104C33238 /* AssertionDispatcher.swift */; };
 		7DC9B169B5FCC3EE99F6D36EC530FE1E /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D924A98F0691CB7100035FC7C2958D3 /* Async.swift */; };
@@ -61,17 +62,16 @@
 		854D276288E9CB9F9324B9371EC33F08 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17FBDF6FF6B666A3D102EDD81DFE416 /* Filter.swift */; };
 		86FB708FCFE6121A82BB09E5ADD84554 /* NMBExceptionCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = A2ADFE64923497AA07A24FC59913A587 /* NMBExceptionCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FBC344E44326FEAD71C4ABE1BF7E2D2 /* XCTestSuite+QuickTestSuiteBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DDC9824ED21BCC218F3C3E3E907AED /* XCTestSuite+QuickTestSuiteBuilder.m */; };
-		9010722E6A6BCF3345BD85DB65598587 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5E3CD16DA34D0D08F766AB21A90FAC /* XCTest.framework */; };
 		91ED5B067FCA3CBD48E3114672941051 /* MatcherProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1FD51C6442C713FB319C1C9A49AB19 /* MatcherProtocols.swift */; };
+		93EEF295D77AFE53F316151B2CBC1CC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71B6C19E4D0C8A4D14A6EF1AB8728EB /* Foundation.framework */; };
 		96ED0CCA721955637A88FE0C9737EC56 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85564484FA6ABBE76C0B73863EFFFCDE /* SourceLocation.swift */; };
 		9B5DE58927557CE87968C051D2A1C47E /* BeLogical.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29528E2ADACEB31F5B2380DA50612C1 /* BeLogical.swift */; };
-		9C48424A9A9C2D42B75AD810132D9FC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA2BFD570CD736156D66A95A51655E2 /* Foundation.framework */; };
 		9F08F74CB8740CF0EFF26746EEB0C930 /* CurrentTestCaseTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759ABA2939945FD31FB478AE32D9E15 /* CurrentTestCaseTracker.m */; };
-		A285E515AF63B4E3C2991F1603E750AB /* BetterSegmentedControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EC21AAAB6203AF5799D9A87FFAACCF /* BetterSegmentedControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A2CABD326609AD67377700A148785E09 /* BeAnInstanceOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34071C41916A37E669FEEBA855F42C2 /* BeAnInstanceOf.swift */; };
 		A374A2729E32469085C5025EC7115EB8 /* Stringers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF762208E123E2F61AEE13E62DCA565 /* Stringers.swift */; };
 		A55EC200F57C00E9A78D8A9DA4545338 /* HaveCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1A6A09F31564DDB5769E5567558BD /* HaveCount.swift */; };
 		A6736949A49DAF8C3C76FF6FC3AC29F7 /* Pods-BetterSegmentedControl_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 22E95984FE7203958D34D91D6E235EF3 /* Pods-BetterSegmentedControl_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA4F7A2789D7BCB46DD413ECE77EA75B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71B6C19E4D0C8A4D14A6EF1AB8728EB /* Foundation.framework */; };
 		B43EDBC7DA15A429006C67B63D45ACFD /* ThrowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E904D9C3B8ED32F61307B82AF1DE02 /* ThrowError.swift */; };
 		B54E13A2AD8536577D7E864B2201785A /* QuickConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D4DEBAA391B6F9E5C9294F4DE25CA96 /* QuickConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5B2006114DFFC2CFD235FD234847529 /* QuickSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 3973F89F7C13EAD4855CFC68BCC8511E /* QuickSpec.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -79,13 +79,13 @@
 		B9D2E426B5CA226D60A78A71FA289D4C /* AsyncMatcherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341EE27FCA41AD8B88193EC0C839859 /* AsyncMatcherWrapper.swift */; };
 		C12E0930E021F1894B60BC6AFA8F2409 /* AdapterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADCB0AE00199FEACED77BDE119552F /* AdapterProtocols.swift */; };
 		C20F42C8E8F1966F61C37E076EEF2244 /* QuickConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E2353FC0C41320250E7132DE6734F885 /* QuickConfiguration.m */; };
+		C6D75760FC9F925E3AD88F1F44456ED9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E91E6A6263B0D61B049B648F6271E7 /* XCTest.framework */; };
 		C81FFEEC76399EF3C7C1EE349C810E76 /* NimbleXCTestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE7320F652DCF39EB6A1476F0C761B /* NimbleXCTestHandler.swift */; };
 		C88901DE1061C8B3F9A15A410C58AE06 /* World.h in Headers */ = {isa = PBXBuildFile; fileRef = B973D705E425F6A8CF2906380774F7EC /* World.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CD0A671D2A8DD31D50449BB358C56134 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41006CFFEC28B4197817C14B5D087239 /* Expression.swift */; };
 		CD322D87E75812707306FF1C04710EBA /* Pods-BetterSegmentedControl_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D248B3D57CCAC7ADB7D3B27B5336C /* Pods-BetterSegmentedControl_Example-dummy.m */; };
 		CE115B406BA916F36B79F80A74E67D25 /* QuickSelectedTestSuiteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03925EC2DD9F80DCD0C2E5301B52DC9C /* QuickSelectedTestSuiteBuilder.swift */; };
 		CE19F4D3F340FAFBC287A6DEBE798F5F /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414114D9FD8600FA208D6152470C2DF0 /* DSL.swift */; };
-		CE1AB6AE6BC4CF4B192B527C7D4C276B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA2BFD570CD736156D66A95A51655E2 /* Foundation.framework */; };
 		CFC49872482210ECA7029B9D9414FD2B /* QuickTestSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC862576E582DF711B25DC28CFCDBE /* QuickTestSuite.swift */; };
 		D1702887CA37A5B9E36A11C1695FFA1A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FECB7BA22714038546A0E8DD513114B /* Configuration.swift */; };
 		D2B22365DC187D05CC2A13EA2A1A2459 /* Quick-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED85DFD58F13E73CC6080D18D5C1E10 /* Quick-dummy.m */; };
@@ -97,6 +97,7 @@
 		E0A99876488322E883FA19D5DD64ADC4 /* World+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FCFFDCC88E9151397B8D50F79E36E /* World+DSL.swift */; };
 		E5ADE8D04B412DD697F750EF6E6D6765 /* World+DSL.h in Headers */ = {isa = PBXBuildFile; fileRef = DE3C8A356B44398ECE2F664B378A6443 /* World+DSL.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E6F6FF9554A6C7EABD6B92B691751DAD /* BeLessThanOrEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9CA5402AFA68BE2A5F70E09014318D /* BeLessThanOrEqual.swift */; };
+		E85DD0E898247D8EEF7E39A904888A05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008A5F43350B1984916B33BCAFD01149 /* UIKit.framework */; };
 		E909D0D33037F3C642BBB8D47FC642B3 /* Nimble-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EA1C305082DBF75710A818FFBD2714D2 /* Nimble-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E9A500611CF699885DE8A6BAB4E6B392 /* BeEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9111139F990D8CA088F1437E67693E8D /* BeEmpty.swift */; };
 		F85A9207A8601CE7F835CEC56790616F /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51465DCF8ECE9AE4DD3DECD5656849CE /* Expectation.swift */; };
@@ -124,25 +125,25 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E2E741A1E34B7F69F517CE8D57AC2970;
+			remoteGlobalIDString = 3C068A58B0DECF71FC3B64A1C1B68BBC;
 			remoteInfo = BetterSegmentedControl;
 		};
 		FD8E7F20E87EFE0942BA9DE2F51436B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E2E741A1E34B7F69F517CE8D57AC2970;
+			remoteGlobalIDString = 3C068A58B0DECF71FC3B64A1C1B68BBC;
 			remoteInfo = BetterSegmentedControl;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		008A5F43350B1984916B33BCAFD01149 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		01E904D9C3B8ED32F61307B82AF1DE02 /* ThrowError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThrowError.swift; path = Sources/Nimble/Matchers/ThrowError.swift; sourceTree = "<group>"; };
 		020CA039BDF669709230645FC23F7C77 /* BeIdenticalTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeIdenticalTo.swift; path = Sources/Nimble/Matchers/BeIdenticalTo.swift; sourceTree = "<group>"; };
 		03925EC2DD9F80DCD0C2E5301B52DC9C /* QuickSelectedTestSuiteBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuickSelectedTestSuiteBuilder.swift; path = Sources/Quick/QuickSelectedTestSuiteBuilder.swift; sourceTree = "<group>"; };
 		03AD566EC508F35AEBD09410C38B0113 /* AllPass.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AllPass.swift; path = Sources/Nimble/Matchers/AllPass.swift; sourceTree = "<group>"; };
 		0CFF847D8C75EDD1CE2BA21A60D08E00 /* Nimble-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Nimble-dummy.m"; sourceTree = "<group>"; };
-		0E5E3CD16DA34D0D08F766AB21A90FAC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0F2748FABD1661E3A75F8B07E115CF96 /* BeNil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeNil.swift; path = Sources/Nimble/Matchers/BeNil.swift; sourceTree = "<group>"; };
 		1291ED3AC6EAD98AA1CA12B24282D977 /* Pods-BetterSegmentedControl_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BetterSegmentedControl_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		12FD8C45CF9591F32C21657E578112C9 /* Quick-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Quick-prefix.pch"; sourceTree = "<group>"; };
@@ -168,12 +169,12 @@
 		3967E353C11023B5BFA469EDF600CA68 /* Nimble.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Nimble.modulemap; sourceTree = "<group>"; };
 		3973F89F7C13EAD4855CFC68BCC8511E /* QuickSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickSpec.h; path = Sources/Quick/QuickSpec.h; sourceTree = "<group>"; };
 		3C63728A7A2A33E27D3C3472A93ED225 /* BetterSegmentedControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BetterSegmentedControl-dummy.m"; sourceTree = "<group>"; };
-		3CA2BFD570CD736156D66A95A51655E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		3DF1A6A09F31564DDB5769E5567558BD /* HaveCount.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HaveCount.swift; path = Sources/Nimble/Matchers/HaveCount.swift; sourceTree = "<group>"; };
 		3F8F619D92D71FED493B6ABC720242E0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F9CA5402AFA68BE2A5F70E09014318D /* BeLessThanOrEqual.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeLessThanOrEqual.swift; path = Sources/Nimble/Matchers/BeLessThanOrEqual.swift; sourceTree = "<group>"; };
 		41006CFFEC28B4197817C14B5D087239 /* Expression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = Sources/Nimble/Expression.swift; sourceTree = "<group>"; };
 		414114D9FD8600FA208D6152470C2DF0 /* DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DSL.swift; path = Sources/Quick/DSL/DSL.swift; sourceTree = "<group>"; };
+		44E91E6A6263B0D61B049B648F6271E7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		45D3661DD977D936FA0FEA7FDE08D852 /* Equal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Equal.swift; path = Sources/Nimble/Matchers/Equal.swift; sourceTree = "<group>"; };
 		4B864160F17DFF97144820034ECDC6DC /* Pods-BetterSegmentedControl_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BetterSegmentedControl_Example.modulemap"; sourceTree = "<group>"; };
 		4C9C2F6C6A6AE0C12F2106A55A7BB871 /* Pods-BetterSegmentedControl_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BetterSegmentedControl_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -227,6 +228,7 @@
 		A2ADFE64923497AA07A24FC59913A587 /* NMBExceptionCapture.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMBExceptionCapture.h; path = Sources/Nimble/objc/NMBExceptionCapture.h; sourceTree = "<group>"; };
 		A4AE9C10DA93BFE440F17876611232E1 /* Match.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Match.swift; path = Sources/Nimble/Matchers/Match.swift; sourceTree = "<group>"; };
 		A4D34ECCB9113A10197320CD540DDA73 /* ExampleMetadata.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExampleMetadata.swift; path = Sources/Quick/ExampleMetadata.swift; sourceTree = "<group>"; };
+		A71B6C19E4D0C8A4D14A6EF1AB8728EB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A7E85327D01378E8AB714335E9E7CE7F /* NimbleEnvironment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NimbleEnvironment.swift; path = Sources/Nimble/Adapters/NimbleEnvironment.swift; sourceTree = "<group>"; };
 		AA236A0B53D3D8B3E1D50964189606F6 /* BetterSegmentedControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BetterSegmentedControl.modulemap; sourceTree = "<group>"; };
 		AAC325F77555916EE55065F37EA4C575 /* BeGreaterThanOrEqualTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeGreaterThanOrEqualTo.swift; path = Sources/Nimble/Matchers/BeGreaterThanOrEqualTo.swift; sourceTree = "<group>"; };
@@ -270,7 +272,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE1AB6AE6BC4CF4B192B527C7D4C276B /* Foundation.framework in Frameworks */,
+				AA4F7A2789D7BCB46DD413ECE77EA75B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		634979A5FD4B5223C05476E00F6E7F83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B6CB3478434A3FDB1651CDB95A92062 /* Foundation.framework in Frameworks */,
+				E85DD0E898247D8EEF7E39A904888A05 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,16 +289,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01D26AA8E38C2B82989BDE8683C07959 /* Foundation.framework in Frameworks */,
-				9010722E6A6BCF3345BD85DB65598587 /* XCTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9698B0D4F4E96A360C27EB307737BA39 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9C48424A9A9C2D42B75AD810132D9FC4 /* Foundation.framework in Frameworks */,
+				93EEF295D77AFE53F316151B2CBC1CC8 /* Foundation.framework in Frameworks */,
+				C6D75760FC9F925E3AD88F1F44456ED9 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +298,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A6F40997D5773396FFE3C906BBE2117 /* Foundation.framework in Frameworks */,
+				22C2CDE0300AF4C58BA67DBBDD1BAF4B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,19 +306,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26FF959C34446D4634FB609DFCE35203 /* Foundation.framework in Frameworks */,
+				47CBCE8837CE75AE1B7484A63CE387ED /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08EF1010060E25B5CD5BA885B03DB0EA /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A71B6C19E4D0C8A4D14A6EF1AB8728EB /* Foundation.framework */,
+				008A5F43350B1984916B33BCAFD01149 /* UIKit.framework */,
+				44E91E6A6263B0D61B049B648F6271E7 /* XCTest.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		0EC0309E1A6EC3F744131DEDA938341D /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
 				CAF939CED041D6B6FD5C826B3F6CDFA8 /* BetterSegmentedControl */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08EF1010060E25B5CD5BA885B03DB0EA /* iOS */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		1989FDEEA506BA06028B0DEB30FB3654 /* Targets Support Files */ = {
@@ -410,29 +431,12 @@
 			path = Pod;
 			sourceTree = "<group>";
 		};
-		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4D57CEDE169BB217B08007BDE209BB90 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4D57CEDE169BB217B08007BDE209BB90 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				3CA2BFD570CD736156D66A95A51655E2 /* Foundation.framework */,
-				0E5E3CD16DA34D0D08F766AB21A90FAC /* XCTest.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				0EC0309E1A6EC3F744131DEDA938341D /* Development Pods */,
-				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
 				B2F3226D3D4A34C6FDC47A7E7567F3E3 /* Pods */,
 				B54CF5B701CA5EFD61723DB759F1BD1C /* Products */,
 				1989FDEEA506BA06028B0DEB30FB3654 /* Targets Support Files */,
@@ -590,14 +594,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7A35D26D24DCC2E56255B8D2C9F7265C /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A285E515AF63B4E3C2991F1603E750AB /* BetterSegmentedControl-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		907D8E31161A5DA67B3650BFD3B944A1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -611,6 +607,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6736949A49DAF8C3C76FF6FC3AC29F7 /* Pods-BetterSegmentedControl_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C866606C5DAE2E7DA0786C5BF435E715 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				114BF6039D596D7EF0F0C2FEE9E98EF3 /* BetterSegmentedControl-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +636,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3C068A58B0DECF71FC3B64A1C1B68BBC /* BetterSegmentedControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C76A3E4E82F68789ED0233C2E2EAFCEB /* Build configuration list for PBXNativeTarget "BetterSegmentedControl" */;
+			buildPhases = (
+				A0597EFE83406B2A51F0E3F097A30AF5 /* Sources */,
+				634979A5FD4B5223C05476E00F6E7F83 /* Frameworks */,
+				C866606C5DAE2E7DA0786C5BF435E715 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BetterSegmentedControl;
+			productName = BetterSegmentedControl;
+			productReference = E6C1C01606C172AB9E28D472E90F84F0 /* BetterSegmentedControl.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		612D6837DAD3573586217D1418279455 /* Quick */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF28E88B66AAFD36685ACF5A14A9E9E7 /* Build configuration list for PBXNativeTarget "Quick" */;
@@ -665,23 +686,6 @@
 			name = "Pods-BetterSegmentedControl_Example";
 			productName = "Pods-BetterSegmentedControl_Example";
 			productReference = AE203C6233B34B667BAFEACC91246009 /* Pods_BetterSegmentedControl_Example.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		E2E741A1E34B7F69F517CE8D57AC2970 /* BetterSegmentedControl */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B59FC077963B9CA5760687C9F055A923 /* Build configuration list for PBXNativeTarget "BetterSegmentedControl" */;
-			buildPhases = (
-				3C5F3616AE52B6F66736733D4DD572ED /* Sources */,
-				9698B0D4F4E96A360C27EB307737BA39 /* Frameworks */,
-				7A35D26D24DCC2E56255B8D2C9F7265C /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BetterSegmentedControl;
-			productName = BetterSegmentedControl;
-			productReference = E6C1C01606C172AB9E28D472E90F84F0 /* BetterSegmentedControl.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F99CD7989CA44BFDE93A624D7C3BB9B3 /* Pods-BetterSegmentedControl_Tests */ = {
@@ -727,7 +731,7 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -742,7 +746,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2E741A1E34B7F69F517CE8D57AC2970 /* BetterSegmentedControl */,
+				3C068A58B0DECF71FC3B64A1C1B68BBC /* BetterSegmentedControl */,
 				FF61C7C740C1B196A3B33F37B77DBC68 /* Nimble */,
 				CA61D59A0973A80BD569EEF498CA2411 /* Pods-BetterSegmentedControl_Example */,
 				F99CD7989CA44BFDE93A624D7C3BB9B3 /* Pods-BetterSegmentedControl_Tests */,
@@ -806,20 +810,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3C5F3616AE52B6F66736733D4DD572ED /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7BC973D05D6E147ECFA4CD37BD8B4DDE /* BetterSegmentedControl-dummy.m in Sources */,
-				1EFCF898C9DE2949838F785B995569A8 /* BetterSegmentedControl.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		47101C190FA616AA84E5CDDE6B32EC81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CD322D87E75812707306FF1C04710EBA /* Pods-BetterSegmentedControl_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0597EFE83406B2A51F0E3F097A30AF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0AB79159F93EB9D390F47341F3A73820 /* BetterSegmentedControl-dummy.m in Sources */,
+				48F728806AC3C8D9D831F36CC8EBAAEB /* BetterSegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,7 +872,7 @@
 		13678B0EE1F153C2163B51F8E01997F2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BetterSegmentedControl;
-			target = E2E741A1E34B7F69F517CE8D57AC2970 /* BetterSegmentedControl */;
+			target = 3C068A58B0DECF71FC3B64A1C1B68BBC /* BetterSegmentedControl */;
 			targetProxy = A9D759C358FDE88F2832ADC5B713DF60 /* PBXContainerItemProxy */;
 		};
 		6529B21D784D5763C350FE9A91F4107A /* PBXTargetDependency */ = {
@@ -880,7 +884,7 @@
 		9E9681343DD9A087CA42A5CE4EA53D37 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BetterSegmentedControl;
-			target = E2E741A1E34B7F69F517CE8D57AC2970 /* BetterSegmentedControl */;
+			target = 3C068A58B0DECF71FC3B64A1C1B68BBC /* BetterSegmentedControl */;
 			targetProxy = FD8E7F20E87EFE0942BA9DE2F51436B4 /* PBXContainerItemProxy */;
 		};
 		F3EEA34720A8FA888FD5EF56F46CBA1A /* PBXTargetDependency */ = {
@@ -892,40 +896,11 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1F8B72498F5F8766B8A3D98DF843E959 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D90C7EF12BFF57324CAB1F99C968C0BF /* Quick.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Quick/Quick-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Quick/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Quick/Quick.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Quick;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		372FF5048FF42C3A7A18B70A30D785C1 /* Release */ = {
+		0ACDCBCB0B6796575F46FFA2F5410C6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -958,6 +933,36 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		1F8B72498F5F8766B8A3D98DF843E959 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D90C7EF12BFF57324CAB1F99C968C0BF /* Quick.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Quick/Quick-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Quick/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Quick/Quick.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Quick;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		3E93179E49DE0748B733781DBE9871EB /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -993,77 +998,6 @@
 			};
 			name = Debug;
 		};
-		5C7E74F2DE0543FDE797A71E4BEA4B8E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79BB598DF6C17B9129A1A3B588229567 /* BetterSegmentedControl.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/BetterSegmentedControl/BetterSegmentedControl-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BetterSegmentedControl/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BetterSegmentedControl/BetterSegmentedControl.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = BetterSegmentedControl;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		70F0378D63DE3D2DCC739550669BD46A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_DEBUG=1",
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				ONLY_ACTIVE_ARCH = YES;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Debug;
-		};
 		78DBEB4ABCA7B7A1EED3C97D2A0B3777 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D90C7EF12BFF57324CAB1F99C968C0BF /* Quick.xcconfig */;
@@ -1085,35 +1019,6 @@
 				MODULEMAP_FILE = "Target Support Files/Quick/Quick.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Quick;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		972D928C11A69E3C656D1D0D9D150C2E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79BB598DF6C17B9129A1A3B588229567 /* BetterSegmentedControl.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/BetterSegmentedControl/BetterSegmentedControl-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BetterSegmentedControl/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BetterSegmentedControl/BetterSegmentedControl.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = BetterSegmentedControl;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1147,6 +1052,35 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_BetterSegmentedControl_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		ADDF5184ADE3B64975C50E61736E27DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79BB598DF6C17B9129A1A3B588229567 /* BetterSegmentedControl.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BetterSegmentedControl/BetterSegmentedControl-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BetterSegmentedControl/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BetterSegmentedControl/BetterSegmentedControl.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = BetterSegmentedControl;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1218,6 +1152,78 @@
 			};
 			name = Release;
 		};
+		D3E3D092A3FF7311A98E44BBA36FFD12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		D4F95CA2C8D17456D2FA552FDF9E5137 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79BB598DF6C17B9129A1A3B588229567 /* BetterSegmentedControl.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BetterSegmentedControl/BetterSegmentedControl-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BetterSegmentedControl/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BetterSegmentedControl/BetterSegmentedControl.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = BetterSegmentedControl;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		F14745E2F2D90E33DB7401B9ED7C5F16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E124D19BC9A195791938A5946C03B103 /* Nimble.xcconfig */;
@@ -1287,8 +1293,8 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				70F0378D63DE3D2DCC739550669BD46A /* Debug */,
-				372FF5048FF42C3A7A18B70A30D785C1 /* Release */,
+				D3E3D092A3FF7311A98E44BBA36FFD12 /* Debug */,
+				0ACDCBCB0B6796575F46FFA2F5410C6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1320,20 +1326,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B59FC077963B9CA5760687C9F055A923 /* Build configuration list for PBXNativeTarget "BetterSegmentedControl" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5C7E74F2DE0543FDE797A71E4BEA4B8E /* Debug */,
-				972D928C11A69E3C656D1D0D9D150C2E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		BF28E88B66AAFD36685ACF5A14A9E9E7 /* Build configuration list for PBXNativeTarget "Quick" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1F8B72498F5F8766B8A3D98DF843E959 /* Debug */,
 				78DBEB4ABCA7B7A1EED3C97D2A0B3777 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C76A3E4E82F68789ED0233C2E2EAFCEB /* Build configuration list for PBXNativeTarget "BetterSegmentedControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4F95CA2C8D17456D2FA552FDF9E5137 /* Debug */,
+				ADDF5184ADE3B64975C50E61736E27DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
