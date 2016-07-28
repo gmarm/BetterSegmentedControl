@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oBL-AA-ynO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oBL-AA-ynO">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -90,14 +90,44 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tj5-Fj-AFE" userLabel="Control 4" customClass="BetterSegmentedControl" customModule="BetterSegmentedControl">
+                                <rect key="frame" x="20" y="312" width="560" height="44"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ejS-YI-d4N"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorViewBackgroundColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                        <color key="value" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="indicatorViewInset">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="segmentedControl4ValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="qhp-nF-51Z"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LRg-26-sIB" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="30" id="6KD-xa-PSw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="s9Z-Wc-R9b" secondAttribute="trailing" id="6Zf-us-emr"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="tj5-Fj-AFE" secondAttribute="leading" id="8E6-85-ubf"/>
                             <constraint firstItem="aBR-d5-mUa" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="AbW-vs-CEm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tj5-Fj-AFE" secondAttribute="trailing" id="Llr-rg-ak8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aBR-d5-mUa" secondAttribute="trailing" id="RWi-4E-qag"/>
                             <constraint firstItem="LRg-26-sIB" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Xdl-UN-hvc"/>
+                            <constraint firstItem="tj5-Fj-AFE" firstAttribute="top" secondItem="s9Z-Wc-R9b" secondAttribute="bottom" constant="30" id="b5T-y4-Yco"/>
                             <constraint firstItem="aBR-d5-mUa" firstAttribute="top" secondItem="LRg-26-sIB" secondAttribute="bottom" constant="30" id="b9w-W2-Wq4"/>
                             <constraint firstItem="s9Z-Wc-R9b" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="wS1-9a-S8H"/>
                             <constraint firstItem="LRg-26-sIB" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="ydl-Fy-6sB"/>
@@ -108,6 +138,7 @@
                     <connections>
                         <outlet property="control1" destination="LRg-26-sIB" id="bxZ-YG-SKf"/>
                         <outlet property="control3" destination="s9Z-Wc-R9b" id="qPZ-T2-aZb"/>
+                        <outlet property="control4" destination="tj5-Fj-AFE" id="FyO-lO-muK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

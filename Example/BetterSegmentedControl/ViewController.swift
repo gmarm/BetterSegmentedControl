@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var control1: BetterSegmentedControl!
     @IBOutlet weak var control3: BetterSegmentedControl!
+    @IBOutlet weak var control4: BetterSegmentedControl!
     
     // MARK: - Examples
     override func viewDidLoad() {
@@ -58,9 +59,15 @@ class ViewController: UIViewController {
         }
         try! control3.setIndex(2, animated: false)
         
-        // Control 4: Added as a subview
+        // Control 4: Announce .ValueChanged immediately
+        control4.titles = ["Quick","Fast","Brisk"]
+        control4.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
+        control4.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
+        control4.announceImmediately = true
+        
+        // Control 5: Added as a subview
         let viewSegmentedControl = BetterSegmentedControl(
-            frame: CGRect(x: 0.0, y: 302.0, width: view.bounds.width, height: 50.0),
+            frame: CGRect(x: 0.0, y: 376.0, width: view.bounds.width, height: 50.0),
             titles: ["Artists", "Albums"],
             index: 1,
             backgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
@@ -91,5 +98,10 @@ class ViewController: UIViewController {
     @IBAction func segmentedControl1ValueChanged(sender: BetterSegmentedControl) {
         print("The selected index is \(sender.index) and the title is \(sender.titles[Int(sender.index)])")
     }
+    
+    @IBAction func segmentedControl4ValueChanged(sender: BetterSegmentedControl) {
+        print("The selected index is \(sender.index) and the title is \(sender.titles[Int(sender.index)])")
+    }
+    
 }
 
