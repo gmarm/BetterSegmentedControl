@@ -115,11 +115,36 @@ import UIKit
     /// The control's and indicator's corner radii
     @IBInspectable public var cornerRadius: CGFloat {
         get {
-            return layer.cornerRadius
+            return borderView.layer.cornerRadius
         }
         set {
-            layer.cornerRadius = newValue
+            borderView.layer.cornerRadius = newValue
             indicatorView.cornerRadius = newValue - indicatorViewInset
+        }
+    }
+    @IBInspectable public var segmentBorderColor: UIColor? {
+        get {
+            return UIColor(CGColor: borderView.layer.borderColor!)
+        }
+        set {
+            borderView.layer.borderColor = newValue?.CGColor
+        }
+    }
+    @IBInspectable public var indicatorBorderWidth: CGFloat {
+        get {
+            return indicatorView.layer.borderWidth
+        }
+        set {
+            indicatorView.layer.borderWidth = newValue
+            borderView.layer.borderWidth = newValue
+        }
+    }
+    @IBInspectable public var indicatorBorderColor: UIColor? {
+        get {
+            return UIColor(CGColor: indicatorView.layer.borderColor!)
+        }
+        set {
+            indicatorView.layer.borderColor = newValue?.CGColor
         }
     }
     /// The indicator view's background color
@@ -176,6 +201,7 @@ import UIKit
     
     // MARK: - Private properties
     private let titleLabelsView = UIView()
+    private let borderView = UIView()
     private let selectedTitleLabelsView = UIView()
     private let indicatorView = IndicatorView()
     private var initialIndicatorViewFrame: CGRect?
@@ -251,6 +277,7 @@ import UIKit
         layer.masksToBounds = true
         
         addSubview(titleLabelsView)
+        addSubview(borderView)
         addSubview(indicatorView)
         addSubview(selectedTitleLabelsView)
         selectedTitleLabelsView.layer.mask = indicatorView.titleMaskView.layer
@@ -270,6 +297,7 @@ import UIKit
         }
         
         titleLabelsView.frame = bounds
+        borderView.frame = bounds
         selectedTitleLabelsView.frame = bounds
         
         indicatorView.frame = elementFrameForIndex(index)
