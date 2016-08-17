@@ -136,7 +136,6 @@ import UIKit
         }
         set {
             indicatorView.layer.borderWidth = newValue
-            borderView.layer.borderWidth = newValue
         }
     }
     @IBInspectable public var indicatorBorderColor: UIColor? {
@@ -178,6 +177,24 @@ import UIKit
             }
         }
     }
+    
+    /// Element Width
+    private var _margin : CGFloat = 0
+    @IBInspectable public var elementWidth: CGFloat {
+        get {
+            return (width - totalInsetSize) / CGFloat(titleLabelsCount) - _margin * 2
+        }
+        set {
+            let maxWidth = (width - totalInsetSize) / CGFloat(titleLabelsCount)
+            if(newValue > maxWidth) {
+                _margin = 0
+            }
+            else {
+                _margin = ( maxWidth - newValue ) / 2
+            }
+        }
+    }
+    
     /// The titles' font
     public var titleFont: UIFont = UILabel().font {
         didSet {
@@ -304,7 +321,12 @@ import UIKit
         
         for index in 0...titleLabelsCount-1 {
             let frame = elementFrameForIndex(UInt(index))
+            
             titleLabelsView.subviews[index].frame = frame
+            titleLabelsView.subviews[index].layer.borderWidth = indicatorBorderWidth
+            titleLabelsView.subviews[index].layer.borderColor = segmentBorderColor?.CGColor
+            titleLabelsView.subviews[index].layer.cornerRadius = cornerRadius
+            
             selectedTitleLabelsView.subviews[index].frame = frame
         }
     }
@@ -352,8 +374,8 @@ import UIKit
     
     // MARK: - Helpers
     private func elementFrameForIndex(index: UInt) -> CGRect {
-        let elementWidth = (width - totalInsetSize) / CGFloat(titleLabelsCount)
-        return CGRect(x: CGFloat(index) * elementWidth + indicatorViewInset,
+        let segmentWidth = (width - totalInsetSize) / CGFloat(titleLabelsCount)
+        return CGRect(x: CGFloat(index) * segmentWidth + _margin + indicatorViewInset,
                       y: indicatorViewInset,
                       width: elementWidth,
                       height: height - totalInsetSize)
