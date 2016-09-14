@@ -7,8 +7,6 @@
 
 BetterSegmentedControl is an easy to use, customizable replacement for UISegmentedControl and UISwitch written in Swift.
 
-_Swift 3.0 support is coming really soon_
-
 ![Demo](https://media.giphy.com/media/3oGRFxAEaoAAjqnZ6g/giphy.gif)
 
 ## Features
@@ -31,6 +29,12 @@ _Swift 3.0 support is coming really soon_
 BetterSegmentedControl is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
+_Swift 3.0_
+```ruby
+pod 'BetterSegmentedControl', '~> 0.5'
+```
+
+_Swift 2.x_
 ```ruby
 pod 'BetterSegmentedControl', '~> 0.4'
 ```
@@ -39,6 +43,12 @@ pod 'BetterSegmentedControl', '~> 0.4'
 
 If you prefer using [Carthage](https://github.com/Carthage/Carthage), simply add BetterSegmentedControl to your `Cartfile`:
 
+_Swift 3.0_
+```ruby
+github "gmarm/BetterSegmentedControl" ~> 0.5
+```
+
+_Swift 2.x_
 ```ruby
 github "gmarm/BetterSegmentedControl" ~> 0.4
 ```
@@ -55,12 +65,12 @@ let control = BetterSegmentedControl(
     titles: ["One", "Two", "Three"],
     index: 1,
     backgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
-    titleColor: .whiteColor(),
+    titleColor: UIColor.white,
     indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
-    selectedTitleColor: .blackColor())
+    selectedTitleColor: UIColor.black)
 control.titleFont = UIFont(name: "HelveticaNeue", size: 14.0)!
 control.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
-control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), forControlEvents: .ValueChanged)
+control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), for: .valueChanged)
 view.addSubview(control)
 ```
 You can find different ways of using it (such as by designing it in a Storyboard file) in the example project. To run the example project, clone the repo, and run `pod install` from the Example directory first.
