@@ -18,16 +18,16 @@ class BetterSegmentedControlSpec: QuickSpec {
                     var control: BetterSegmentedControl!
                     beforeEach({
                         control = BetterSegmentedControl(
-                            frame: CGRectMake(0, 0, 300, 44),
+                            frame: CGRect(x: 0, y: 0, width: 300, height: 44),
                             titles: ["One","Two"],
                             index: 1,
-                            backgroundColor: .redColor(),
-                            titleColor: .blueColor(),
-                            indicatorViewBackgroundColor: .greenColor(),
-                            selectedTitleColor: .purpleColor())
+                            backgroundColor: .red,
+                            titleColor: .blue,
+                            indicatorViewBackgroundColor: .green,
+                            selectedTitleColor: .purple)
                     })
                     it("has the frame passed", closure: {
-                        expect(CGRectEqualToRect(control.frame,CGRectMake(0, 0, 300, 44))).to(beTrue())
+                        expect(control.frame.equalTo(CGRect(x: 0, y: 0, width: 300, height: 44))).to(beTrue())
                     })
                     it("has the index passed", closure: {
                         expect(control.index) == 1
@@ -36,16 +36,16 @@ class BetterSegmentedControlSpec: QuickSpec {
                         expect(control.titles) == ["One","Two"]
                     })
                     it("has the background color passed", closure: {
-                        expect(control.backgroundColor).to(equal(UIColor.redColor()))
+                        expect(control.backgroundColor).to(equal(UIColor.red))
                     })
                     it("has the title color passed", closure: {
-                        expect(control.titleColor).to(equal(UIColor.blueColor()))
+                        expect(control.titleColor).to(equal(UIColor.blue))
                     })
                     it("has the indicator view background color passed", closure: {
-                        expect(control.indicatorViewBackgroundColor).to(equal(UIColor.greenColor()))
+                        expect(control.indicatorViewBackgroundColor).to(equal(UIColor.green))
                     })
                     it("has the selected title color passed", closure: {
-                        expect(control.selectedTitleColor).to(equal(UIColor.purpleColor()))
+                        expect(control.selectedTitleColor).to(equal(UIColor.purple))
                     })
                     describe("its bouncesOnChange property", closure: { 
                         it("defaults to true", closure: {
@@ -117,9 +117,9 @@ class BetterSegmentedControlSpec: QuickSpec {
                     var control: BetterSegmentedControl!
                     beforeEach({
                         let storyboard = UIStoryboard(name: "Test",
-                            bundle: NSBundle(forClass: self.dynamicType))
+                            bundle: Bundle(for: type(of: self)))
                         let viewController = storyboard.instantiateInitialViewController() as! TestViewController
-                        UIApplication.sharedApplication().keyWindow!.rootViewController = viewController
+                        UIApplication.shared.keyWindow!.rootViewController = viewController
                         expect(viewController).toNot(beNil())
                         expect(viewController.view).toNot(beNil())
                         control = viewController.control
@@ -128,7 +128,7 @@ class BetterSegmentedControlSpec: QuickSpec {
                         expect(control).toNot(beNil())
                     })
                     it("has the frame set in IB", closure: {
-                        expect(CGRectEqualToRect(control.frame,CGRectMake(10, 30, 480, 40))).to(beTrue())
+                        expect(control.frame.equalTo(CGRect(x: 10, y: 30, width: 480, height: 40))).to(beTrue())
                     })
                     it("has the default index 0", closure: {
                         expect(control.index) == 0

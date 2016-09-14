@@ -1,22 +1,36 @@
 PODS:
-  - BetterSegmentedControl (0.1)
-  - Nimble (3.2.0)
-  - Quick (0.9.1)
+  - BetterSegmentedControl (0.5)
+  - Nimble (5.0.0-alpha.30p1)
+  - Quick (0.9.3)
 
 DEPENDENCIES:
   - BetterSegmentedControl (from `../`)
-  - Nimble (~> 3.0)
-  - Quick (~> 0.8)
+  - Nimble (from `https://github.com/Quick/Nimble.git`, branch `master`)
+  - Quick (from `https://github.com/Quick/Quick.git`, branch `swift-3.0`)
 
 EXTERNAL SOURCES:
   BetterSegmentedControl:
-    :path: "../"
+    :path: ../
+  Nimble:
+    :branch: master
+    :git: https://github.com/Quick/Nimble.git
+  Quick:
+    :branch: swift-3.0
+    :git: https://github.com/Quick/Quick.git
+
+CHECKOUT OPTIONS:
+  Nimble:
+    :commit: fcc28b23f57b30382e5f182c238674694d7174cb
+    :git: https://github.com/Quick/Nimble.git
+  Quick:
+    :commit: 8f2bc636ecfa2cc20696f62548b38d4ab943e299
+    :git: https://github.com/Quick/Quick.git
 
 SPEC CHECKSUMS:
-  BetterSegmentedControl: f4b7b36fecc705fb7e7539cbb9e506137817a7a8
-  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
-  Quick: a5221fc21788b6aeda934805e68b061839bc3165
+  BetterSegmentedControl: db74c56602e418e9eca8f6340e0ed0a7215f5f7c
+  Nimble: c5b995b4cd57789ec44b0cfb79640fc00e61a8c7
+  Quick: 31fb576b6cbb6b028cc5e0016e4366accbb346f5
 
-PODFILE CHECKSUM: 8baa3b99ce3c2a0cbc13ecc878a73eeaa37f0951
+PODFILE CHECKSUM: b17ef61229a0178757aa5d49cb3cb2b5f6d4c6ed
 
-COCOAPODS: 1.0.0.beta.6
+COCOAPODS: 1.1.0.rc.2
