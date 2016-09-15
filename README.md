@@ -50,7 +50,7 @@ github "gmarm/BetterSegmentedControl" ~> 0.5
 
 _Swift 2.x_
 ```ruby
-github "gmarm/BetterSegmentedControl" ~> 0.4
+github "gmarm/BetterSegmentedControl" 0.4
 ```
 
 ### Manually
