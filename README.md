@@ -36,7 +36,7 @@ pod 'BetterSegmentedControl', '~> 0.5'
 
 _Swift 2.x_
 ```ruby
-pod 'BetterSegmentedControl', '~> 0.4'
+pod 'BetterSegmentedControl', '0.4'
 ```
 
 ### Carthage
