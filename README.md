@@ -1,5 +1,6 @@
 # BetterSegmentedControl
 
+![](https://img.shields.io/badge/Swift-3.0-blue.svg?style=flat)
 [![Version](https://img.shields.io/cocoapods/v/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
@@ -7,7 +8,7 @@
 
 BetterSegmentedControl is an easy to use, customizable replacement for UISegmentedControl and UISwitch written in Swift.
 
-![Demo](https://media.giphy.com/media/3oGRFxAEaoAAjqnZ6g/giphy.gif)
+![Demo](https://github.com/gmarm/BetterSegmentedControl/blob/master/demo.gif)
 
 ## Features
 
@@ -29,16 +30,28 @@ BetterSegmentedControl is an easy to use, customizable replacement for UISegment
 BetterSegmentedControl is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
+_Swift 3.0_
 ```ruby
-pod 'BetterSegmentedControl', '~> 0.4'
+pod 'BetterSegmentedControl', '~> 0.5'
+```
+
+_Swift 2.x_
+```ruby
+pod 'BetterSegmentedControl', '0.4'
 ```
 
 ### Carthage
 
 If you prefer using [Carthage](https://github.com/Carthage/Carthage), simply add BetterSegmentedControl to your `Cartfile`:
 
+_Swift 3.0_
 ```ruby
-github "gmarm/BetterSegmentedControl" ~> 0.4
+github "gmarm/BetterSegmentedControl" ~> 0.5
+```
+
+_Swift 2.x_
+```ruby
+github "gmarm/BetterSegmentedControl" 0.4
 ```
 
 ### Manually
@@ -53,19 +66,19 @@ let control = BetterSegmentedControl(
     titles: ["One", "Two", "Three"],
     index: 1,
     backgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
-    titleColor: .whiteColor(),
+    titleColor: .white,
     indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
-    selectedTitleColor: .blackColor())
+    selectedTitleColor: .black)
 control.titleFont = UIFont(name: "HelveticaNeue", size: 14.0)!
 control.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
-control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), forControlEvents: .ValueChanged)
+control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), for: .valueChanged)
 view.addSubview(control)
 ```
 You can find different ways of using it (such as by designing it in a Storyboard file) in the example project. To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Todos
 
-- [ ] Make initializer failable if not enough titles are passed.
+- [ ] Make initializer throwing if not enough titles are passed.
 - [ ] Set titles via method that throws.
 - [ ] Allow the control to have no selected index.
 - [ ] Allow UIViews that implement a protocol to be used as options.

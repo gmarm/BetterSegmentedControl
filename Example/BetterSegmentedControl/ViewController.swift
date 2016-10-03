@@ -23,15 +23,15 @@ class ViewController: UIViewController {
             frame: CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0),
             titles: ["Lights On", "Lights Off"],
             index: 0,
-            backgroundColor: .darkGrayColor(),
-            titleColor: .lightGrayColor(),
+            backgroundColor: .darkGray,
+            titleColor: .lightGray,
             indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
-            selectedTitleColor: .whiteColor())
+            selectedTitleColor: .white)
         navigationSegmentedControl.cornerRadius = 3.0
         navigationSegmentedControl.titleFont = UIFont(name: "Avenir", size: 13.0)!
         navigationSegmentedControl.selectedTitleFont = UIFont(name: "Avenir", size: 13.0)!
         navigationSegmentedControl.bouncesOnChange = false
-        navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), forControlEvents: .ValueChanged)
+        navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         navigationItem.titleView = navigationSegmentedControl
         
         // Control 1: Created and designed in IB that announces its value on interaction
@@ -48,15 +48,15 @@ class ViewController: UIViewController {
         control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
         control3.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
         do {
-            try control3.setIndex(10, animated: false)
+            try control3.set(index: 10, animated: false)
         }
-        catch BetterSegmentedControl.Error.IndexBeyondBounds(let invalidIndex) {
+        catch BetterSegmentedControl.IndexError.indexBeyondBounds(let invalidIndex) {
             print("Tried setting invalid index \(invalidIndex) to demonstrate error handling.")
         }
         catch {
             print("An error occured")
         }
-        try! control3.setIndex(2, animated: false)
+        try! control3.set(index: 2, animated: false)
         
         // Control 4: Added as a subview
         let viewSegmentedControl = BetterSegmentedControl(
@@ -64,10 +64,10 @@ class ViewController: UIViewController {
             titles: ["Artists", "Albums"],
             index: 1,
             backgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
-            titleColor: .whiteColor(),
+            titleColor: .white,
             indicatorViewBackgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
             selectedTitleColor: UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00))
-        viewSegmentedControl.autoresizingMask = [.FlexibleWidth]
+        viewSegmentedControl.autoresizingMask = [.flexibleWidth]
         viewSegmentedControl.cornerRadius = 0.0
         viewSegmentedControl.titleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
         viewSegmentedControl.selectedTitleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
@@ -77,18 +77,18 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Action handlers
-    func navigationSegmentedControlValueChanged(sender: BetterSegmentedControl) {
+    func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
         if sender.index == 0 {
             print("Turning lights on.")
-            view.backgroundColor = .whiteColor()
+            view.backgroundColor = .white
         }
         else {
             print("Turning lights off.")
-            view.backgroundColor = .darkGrayColor()
+            view.backgroundColor = .darkGray
         }
     }
     
-    @IBAction func segmentedControl1ValueChanged(sender: BetterSegmentedControl) {
+    @IBAction func segmentedControl1ValueChanged(_ sender: BetterSegmentedControl) {
         print("The selected index is \(sender.index) and the title is \(sender.titles[Int(sender.index)])")
     }
 }
