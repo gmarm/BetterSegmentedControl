@@ -197,18 +197,10 @@ import UIKit
     fileprivate var titleLabels: [UILabel] { return titleLabelsView.subviews as! [UILabel] }
     fileprivate var selectedTitleLabels: [UILabel] { return selectedTitleLabelsView.subviews as! [UILabel] }
     fileprivate var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
+    fileprivate var totalInteritemSize: CGFloat { return interitemsSpacing * 2.0 }
     fileprivate lazy var defaultTitles: [String] = { return ["First", "Second"] }()
-    
-    private var width: CGFloat { return bounds.width }
-    private var height: CGFloat { return bounds.height }
-    private var titleLabelsCount: Int { return titleLabelsView.subviews.count }
-    private var titleLabels: [UILabel] { return titleLabelsView.subviews as! [UILabel] }
-    private var selectedTitleLabels: [UILabel] { return selectedTitleLabelsView.subviews as! [UILabel] }
-    private var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
-    private var totalInteritemSize: CGFloat { return interitemsSpacing * 2.0 }
-    private lazy var defaultTitles: [String] = { return ["First", "Second"] }()
-    private var titlesWidth: [String: CGFloat] = [:]
-    private var titlesPosition: [String: CGFloat] = [:]
+    fileprivate var titlesWidth: [String: CGFloat] = [:]
+    fileprivate var titlesPosition: [String: CGFloat] = [:]
     
     // MARK: - Lifecycle
     required public init?(coder aDecoder: NSCoder) {
@@ -281,7 +273,7 @@ import UIKit
         panGestureRecognizer.delegate = self
         addGestureRecognizer(panGestureRecognizer)
     }
-
+    
     override open func setNeedsLayout() {
         
         titlesPosition.removeAll()
@@ -339,10 +331,10 @@ import UIKit
                            animations: {
                             () -> Void in
                             self.moveIndicatorView()
-                }, completion: { (finished) -> Void in
-                    if finished && shouldSendEvent {
-                        self.sendActions(for: .valueChanged)
-                    }
+            }, completion: { (finished) -> Void in
+                if finished && shouldSendEvent {
+                    self.sendActions(for: .valueChanged)
+                }
             })
         }
         else {
@@ -352,10 +344,10 @@ import UIKit
     }
     
     // MARK: - Helpers
-
+    
     fileprivate func elementFrame(forIndex index: UInt) -> CGRect {
-        let elementWidth = elementWidthForIndex(index)
-        let elementPosition = elementXPositionForIndex(index, elementWidth: elementWidth)
+        let elementWidth = elementWidthForIndex(index: index)
+        let elementPosition = elementXPositionForIndex(index: index, elementWidth: elementWidth)
         return CGRect(x: elementPosition,
                       y: indicatorViewInset,
                       width: elementWidth,
@@ -369,7 +361,7 @@ import UIKit
     
     fileprivate func moveIndicatorView() {
         let f = self.titleLabels[Int(self.index)].frame
-        self.indicatorView.frame = fitContentSize ? CGRectInset(f, -indicatorViewInset, 0) : f
+        self.indicatorView.frame = fitContentSize ? f.insetBy(dx: -indicatorViewInset, dy: 0) : f
         self.layoutIfNeeded()
     }
     
@@ -382,10 +374,10 @@ import UIKit
                 return cachedWidth
             }
             
-            let size = (text as NSString).boundingRectWithSize(CGSize(width: CGFloat.max, height: bounds.size.height),
-                                                               options: [.UsesLineFragmentOrigin, .UsesFontLeading],
-                                                               attributes: [NSFontAttributeName: titleFont],
-                                                               context: nil)
+            let size = (text as NSString).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: bounds.size.height),
+                                                       options: [.usesLineFragmentOrigin, .usesFontLeading],
+                                                       attributes: [NSFontAttributeName: titleFont],
+                                                       context: nil)
             titlesWidth[text] = size.width
             return size.width
             
@@ -403,8 +395,8 @@ import UIKit
                 return cachedPosition
             }
             
-            var xPosition = index > 0 ? elementXPositionForIndex(index - 1) : 0
-            xPosition += index > 0 ? elementWidthForIndex(index - 1) : 0
+            var xPosition = index > 0 ? elementXPositionForIndex(index: index - 1) : 0
+            xPosition += index > 0 ? elementWidthForIndex(index: index - 1) : 0
             xPosition += indicatorViewInset
             xPosition += interitemsSpacing
             
