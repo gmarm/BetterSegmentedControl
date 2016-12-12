@@ -346,11 +346,11 @@ import UIKit
     // MARK: - Helpers
     
     fileprivate func elementFrame(forIndex index: UInt) -> CGRect {
-        let elementWidth = elementWidthForIndex(index: index)
-        let elementPosition = elementXPositionForIndex(index: index, elementWidth: elementWidth)
+        let elementW = elementWidth(forIndex: index)
+        let elementPosition = elementXPosition(forIndex: index, elementW: elementW)
         return CGRect(x: elementPosition,
                       y: indicatorViewInset,
-                      width: elementWidth,
+                      width: elementW,
                       height: height - totalInsetSize)
     }
     
@@ -365,7 +365,7 @@ import UIKit
         self.layoutIfNeeded()
     }
     
-    private func elementWidthForIndex(index: UInt) -> CGFloat {
+    fileprivate func elementWidth(forIndex index: UInt) -> CGFloat {
         if fitContentSize {
             
             let text = titles[Int(index)]
@@ -386,7 +386,7 @@ import UIKit
         }
     }
     
-    private func elementXPositionForIndex(index: UInt, elementWidth: CGFloat = 0) -> CGFloat {
+    fileprivate func elementXPosition(forIndex index: UInt, elementW: CGFloat = 0) -> CGFloat {
         if fitContentSize {
             
             let text = titles[Int(index)]
@@ -395,8 +395,8 @@ import UIKit
                 return cachedPosition
             }
             
-            var xPosition = index > 0 ? elementXPositionForIndex(index: index - 1) : 0
-            xPosition += index > 0 ? elementWidthForIndex(index: index - 1) : 0
+            var xPosition = index > 0 ? elementXPosition(forIndex: index - 1) : 0
+            xPosition += index > 0 ? elementWidth(forIndex: index - 1) : 0
             xPosition += indicatorViewInset
             xPosition += interitemsSpacing
             
@@ -404,7 +404,7 @@ import UIKit
             return xPosition
             
         } else {
-            return CGFloat(index) * elementWidth + indicatorViewInset + interitemsSpacing
+            return CGFloat(index) * elementW + indicatorViewInset + interitemsSpacing
         }
     }
     
