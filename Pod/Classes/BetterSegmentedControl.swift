@@ -301,7 +301,7 @@ import UIKit
         selectedTitleLabelsView.frame = bounds
         
         let f = elementFrame(forIndex: index)
-        indicatorView.frame = fitContentSize ? CGRectInset(f, -indicatorViewInset, 0) : f
+        indicatorView.frame = fitContentSize ? f.insetBy(dx: -indicatorViewInset, dy: 0) : f
         
         for index in 0...titleLabelsCount-1 {
             let frame = elementFrame(forIndex: UInt(index))
