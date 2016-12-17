@@ -159,8 +159,15 @@ import UIKit
     public var titleFont: UIFont = UILabel().font {
         didSet {
             if !titleLabels.isEmpty {
-                for label in titleLabels {
-                    label.font = titleFont
+                titleLabels.forEach { $0.font = titleFont }
+            }
+        }
+    }
+    public var titleFonts: [UIFont] = [UILabel().font] {
+        didSet {
+            if !titleLabels.isEmpty && titleLabels.count == titleFonts.count {
+                for (index, font) in titleFonts.enumerate() {
+                    titleLabels[index].font = font
                 }
             }
         }
@@ -169,8 +176,15 @@ import UIKit
     public var selectedTitleFont: UIFont = UILabel().font {
         didSet {
             if !selectedTitleLabels.isEmpty {
-                for label in selectedTitleLabels {
-                    label.font = selectedTitleFont
+                selectedTitleLabels.forEach { $0.font = selectedTitleFont }
+            }
+        }
+    }
+    public var selectedTitleFonts: [UIFont] = [UILabel().font] {
+        didSet {
+            if !selectedTitleLabels.isEmpty && selectedTitleLabels.count == selectedTitleFonts.count {
+                for (index, font) in selectedTitleFonts.enumerate() {
+                    selectedTitleLabels[index].font = font
                 }
             }
         }
