@@ -38,6 +38,10 @@ import UIKit
             finishInit()
         }
         
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+        }
+        
         fileprivate func finishInit() {
             layer.masksToBounds = true
             titleMaskView.backgroundColor = UIColor.black
@@ -110,6 +114,8 @@ import UIKit
     public var bouncesOnChange = true
     /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to false.
     public var alwaysAnnouncesValue = false
+    /// Whether to announce the .ValueChanged at the moment the user taps, or after the control has slid into place. Defaults to false.
+    public var announceImmediately = false
     /// Whether the the control should ignore pan gestures. Defaults to false.
     public var panningDisabled = false
     /// The control's and indicator's corner radii
@@ -302,6 +308,9 @@ import UIKit
     // MARK: - Animations
     fileprivate func moveIndicatorViewToIndex(_ animated: Bool, shouldSendEvent: Bool) {
         if animated {
+            if shouldSendEvent && self.announceImmediately {
+                self.sendActionsForControlEvents(.ValueChanged)
+            }
             UIView.animate(withDuration: bouncesOnChange ? AnimationParameters.animationWithBounceDuration : AnimationParameters.animationNoBounceDuration,
                            delay: 0.0,
                            usingSpringWithDamping: bouncesOnChange ? AnimationParameters.animationWithBounceSpringDamping : 1.0,
@@ -311,7 +320,7 @@ import UIKit
                             () -> Void in
                             self.moveIndicatorView()
                 }, completion: { (finished) -> Void in
-                    if finished && shouldSendEvent {
+                    if finished && shouldSendEvent && !self.announceImmediately {
                         self.sendActions(for: .valueChanged)
                     }
             })
