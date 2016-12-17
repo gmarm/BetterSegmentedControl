@@ -38,10 +38,6 @@ import UIKit
             finishInit()
         }
         
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-        }
-        
         fileprivate func finishInit() {
             layer.masksToBounds = true
             titleMaskView.backgroundColor = UIColor.black
