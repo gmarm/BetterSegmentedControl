@@ -292,7 +292,7 @@ import UIKit
      
      - throws: An error of type IndexBeyondBounds(UInt) is thrown if an index beyond the available indices is passed.
      */
-    public func set(index: UInt, animated: Bool = true) throws {
+    public func setIndex(_ index: UInt, animated: Bool = true) throws {
         guard titleLabels.indices.contains(Int(index)) else {
             throw IndexError.indexBeyondBounds(index)
         }
@@ -347,7 +347,7 @@ import UIKit
     // MARK: - Action handlers
     @objc fileprivate func tapped(_ gestureRecognizer: UITapGestureRecognizer!) {
         let location = gestureRecognizer.location(in: self)
-        try! set(index: nearestIndex(toPoint: location))
+        try! setIndex(nearestIndex(toPoint: location))
     }
     @objc fileprivate func pan(_ gestureRecognizer: UIPanGestureRecognizer!) {
         guard !panningDisabled else {
@@ -363,7 +363,7 @@ import UIKit
             frame.origin.x = max(min(frame.origin.x, bounds.width - indicatorViewInset - frame.width), indicatorViewInset)
             indicatorView.frame = frame
         case .ended, .failed, .cancelled:
-            try! set(index: nearestIndex(toPoint: indicatorView.center))
+            try! setIndex(nearestIndex(toPoint: indicatorView.center))
         default: break
         }
     }

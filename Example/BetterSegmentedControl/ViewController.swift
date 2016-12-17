@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
         control3.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
         do {
-            try control3.set(index: 10, animated: false)
+            try control3.setIndex(10, animated: false)
         }
         catch BetterSegmentedControl.IndexError.indexBeyondBounds(let invalidIndex) {
             print("Tried setting invalid index \(invalidIndex) to demonstrate error handling.")
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         catch {
             print("An error occured")
         }
-        try! control3.set(index: 2, animated: false)
+        try! control3.setIndex(2, animated: false)
         
         // Control 4: Added as a subview
         let viewSegmentedControl = BetterSegmentedControl(
