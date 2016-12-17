@@ -121,11 +121,35 @@ import UIKit
     /// The control's and indicator's corner radii
     @IBInspectable public var cornerRadius: CGFloat {
         get {
-            return layer.cornerRadius
+            return borderView.layer.cornerRadius
         }
         set {
-            layer.cornerRadius = newValue
+            borderView.layer.cornerRadius = newValue
             indicatorView.cornerRadius = newValue - indicatorViewInset
+        }
+    }
+    @IBInspectable public var segmentBorderColor: UIColor? {
+        get {
+            return UIColor(cgColor: borderView.layer.borderColor!)
+        }
+        set {
+            borderView.layer.borderColor = newValue?.cgColor
+        }
+    }
+    @IBInspectable public var indicatorBorderWidth: CGFloat {
+        get {
+            return indicatorView.layer.borderWidth
+        }
+        set {
+            indicatorView.layer.borderWidth = newValue
+        }
+    }
+    @IBInspectable public var indicatorBorderColor: UIColor? {
+        get {
+            return UIColor(cgColor: indicatorView.layer.borderColor!)
+        }
+        set {
+            indicatorView.layer.borderColor = newValue?.cgColor
         }
     }
     /// The indicator view's background color
@@ -159,6 +183,24 @@ import UIKit
             }
         }
     }
+    
+    /// Element Width
+    private var _margin : CGFloat = 0
+    @IBInspectable public var elementWidth: CGFloat {
+        get {
+            return (width - totalInsetSize) / CGFloat(titleLabelsCount) - _margin * 2
+        }
+        set {
+            let maxWidth = (width - totalInsetSize) / CGFloat(titleLabelsCount)
+            if(newValue > maxWidth) {
+                _margin = 0
+            }
+            else {
+                _margin = ( maxWidth - newValue ) / 2
+            }
+        }
+    }
+    
     /// The titles' font
     public var titleFont: UIFont = UILabel().font {
         didSet {
@@ -181,7 +223,9 @@ import UIKit
     }
     
     // MARK: - Private properties
+
     fileprivate let titleLabelsView = UIView()
+    fileprivate let borderView = UIView()
     fileprivate let selectedTitleLabelsView = UIView()
     fileprivate let indicatorView = IndicatorView()
     fileprivate var initialIndicatorViewFrame: CGRect?
@@ -257,6 +301,7 @@ import UIKit
         layer.masksToBounds = true
         
         addSubview(titleLabelsView)
+        addSubview(borderView)
         addSubview(indicatorView)
         addSubview(selectedTitleLabelsView)
         selectedTitleLabelsView.layer.mask = indicatorView.titleMaskView.layer
@@ -276,13 +321,19 @@ import UIKit
         }
         
         titleLabelsView.frame = bounds
+        borderView.frame = bounds
         selectedTitleLabelsView.frame = bounds
         
         indicatorView.frame = elementFrame(forIndex: index)
         
         for index in 0...titleLabelsCount-1 {
             let frame = elementFrame(forIndex: UInt(index))
+
             titleLabelsView.subviews[index].frame = frame
+            titleLabelsView.subviews[index].layer.borderWidth = indicatorBorderWidth
+            titleLabelsView.subviews[index].layer.borderColor = segmentBorderColor?.cgColor
+            titleLabelsView.subviews[index].layer.cornerRadius = cornerRadius
+            
             selectedTitleLabelsView.subviews[index].frame = frame
         }
     }
