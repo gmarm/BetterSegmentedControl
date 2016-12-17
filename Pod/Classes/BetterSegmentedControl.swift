@@ -84,6 +84,8 @@ import UIKit
                 titleLabel.lineBreakMode = .byTruncatingTail
                 titleLabel.textAlignment = .center
                 titleLabel.font = titleFont
+                titleLabel.layer.borderWidth = titleBorderWidth
+                titleLabel.layer.borderColor = titleBorderColor
                 
                 let selectedTitleLabel = UILabel()
                 selectedTitleLabel.textColor = selectedTitleColor
@@ -91,6 +93,8 @@ import UIKit
                 selectedTitleLabel.lineBreakMode = .byTruncatingTail
                 selectedTitleLabel.textAlignment = .center
                 selectedTitleLabel.font = selectedTitleFont
+                selectedTitleLabel.layer.borderWidth = selectedTitleBorderWidth
+                selectedTitleLabel.layer.borderColor = selectedTitleBorderColor
                 
                 return (titleLabel, selectedTitleLabel)
             }
@@ -129,7 +133,9 @@ import UIKit
         get {
             return indicatorView.backgroundColor
         }
-        set { indicatorView.backgroundColor = newValue }
+        set {
+            indicatorView.backgroundColor = newValue
+        }
     }
     /// The indicator view's inset. Defaults to 2.0.
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
@@ -171,6 +177,46 @@ import UIKit
             if !selectedTitleLabels.isEmpty {
                 for label in selectedTitleLabels {
                     label.font = selectedTitleFont
+                }
+            }
+        }
+    }
+    /// The title's border width
+    public var titleBorderWidth: CGFloat = 0.0 {
+        didSet {
+            if !titleLabels.isEmpty {
+                for label in titleLabels {
+                    label.layer.borderWidth = titleBorderWidth
+                }
+            }
+        }
+    }
+    /// The title's border color
+    public var titleBorderColor: CGColor = UIColor.clear.cgColor {
+        didSet {
+            if !titleLabels.isEmpty {
+                for label in titleLabels {
+                    label.layer.borderColor = titleBorderColor
+                }
+            }
+        }
+    }
+    /// The selected title's border width
+    public var selectedTitleBorderWidth: CGFloat = 0.0 {
+        didSet {
+            if !selectedTitleLabels.isEmpty {
+                for label in selectedTitleLabels {
+                    label.layer.borderWidth = selectedTitleBorderWidth
+                }
+            }
+        }
+    }
+    /// The title's border color
+    public var selectedTitleBorderColor: CGColor = UIColor.clear.cgColor {
+        didSet {
+            if !selectedTitleLabels.isEmpty {
+                for label in selectedTitleLabels {
+                    label.layer.borderColor = titleBorderColor
                 }
             }
         }
