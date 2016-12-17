@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         navigationSegmentedControl.selectedTitleFont = UIFont(name: "Avenir", size: 13.0)!
         navigationSegmentedControl.bouncesOnChange = false
         navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
+        navigationSegmentedControl.announceImmediately = true
         navigationItem.titleView = navigationSegmentedControl
         
         // Control 1: Created and designed in IB that announces its value on interaction
