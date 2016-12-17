@@ -65,6 +65,15 @@ class BetterSegmentedControlSpec: QuickSpec {
                             expect(control.alwaysAnnouncesValue).to(beTrue())
                         })
                     })
+                    describe("its announcesValueImmediately property", closure: {
+                        it("defaults to true", closure: {
+                            expect(control.announcesValueImmediately).to(beTrue())
+                        })
+                        it("can be set", closure: {
+                            control.announcesValueImmediately = false
+                            expect(control.announcesValueImmediately).to(beFalse())
+                        })
+                    })
                     describe("its panningDisabled property", closure: {
                         it("defaults to false", closure: {
                             expect(control.panningDisabled).to(beFalse())
@@ -164,6 +173,15 @@ class BetterSegmentedControlSpec: QuickSpec {
                         it("can be set", closure: {
                             control.alwaysAnnouncesValue = true
                             expect(control.alwaysAnnouncesValue).to(beTrue())
+                        })
+                    })
+                    describe("its announcesValueImmediately property", closure: {
+                        it("defaults to true", closure: {
+                            expect(control.announcesValueImmediately).to(beTrue())
+                        })
+                        it("can be set", closure: {
+                            control.announcesValueImmediately = false
+                            expect(control.announcesValueImmediately).to(beFalse())
                         })
                     })
                     describe("its panningDisabled property", closure: {

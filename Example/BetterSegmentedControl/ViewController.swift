@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         control1.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
         control1.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
         control1.alwaysAnnouncesValue = true
-        control1.announcesImmediately = false
+        control1.announcesValueImmediately = false
         print(control1.titles)
         
         // Control 2: Exclusively defined in IB

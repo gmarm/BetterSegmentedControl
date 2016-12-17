@@ -111,7 +111,7 @@ import UIKit
     /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to false.
     public var alwaysAnnouncesValue = false
     /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to true.
-    public var announcesImmediately = true
+    public var announcesValueImmediately = true
     /// Whether the the control should ignore pan gestures. Defaults to false.
     public var panningDisabled = false
     /// The control's and indicator's corner radii
@@ -304,7 +304,7 @@ import UIKit
     // MARK: - Animations
     fileprivate func moveIndicatorViewToIndex(_ animated: Bool, shouldSendEvent: Bool) {
         if animated {
-            if shouldSendEvent && announcesImmediately {
+            if shouldSendEvent && announcesValueImmediately {
                 sendActions(for: .valueChanged)
             }
             UIView.animate(withDuration: bouncesOnChange ? AnimationParameters.animationWithBounceDuration : AnimationParameters.animationNoBounceDuration,
@@ -316,7 +316,7 @@ import UIKit
                             () -> Void in
                             self.moveIndicatorView()
                 }, completion: { (finished) -> Void in
-                    if finished && shouldSendEvent && !self.announcesImmediately {
+                    if finished && shouldSendEvent && !self.announcesValueImmediately {
                         self.sendActions(for: .valueChanged)
                     }
             })
