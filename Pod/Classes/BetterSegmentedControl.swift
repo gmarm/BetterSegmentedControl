@@ -13,7 +13,7 @@ import UIKit
     private class IndicatorView: UIView {
         // MARK: Properties
         fileprivate let titleMaskView = UIView()
-        fileprivate var cornerRadius: CGFloat! {
+        fileprivate var cornerRadius: CGFloat = 0 {
             didSet {
                 layer.cornerRadius = cornerRadius
                 titleMaskView.layer.cornerRadius = cornerRadius
@@ -161,44 +161,28 @@ import UIKit
             selectedTitleLabels.forEach { $0.font = selectedTitleFont }
         }
     }
-    /// The title's border width
+    /// The titles' border width
     public var titleBorderWidth: CGFloat = 0.0 {
         didSet {
-            if !titleLabels.isEmpty {
-                for label in titleLabels {
-                    label.layer.borderWidth = titleBorderWidth
-                }
-            }
+            titleLabels.forEach { $0.layer.borderWidth = titleBorderWidth }
         }
     }
-    /// The title's border color
+    /// The titles' border color
     public var titleBorderColor: CGColor = UIColor.clear.cgColor {
         didSet {
-            if !titleLabels.isEmpty {
-                for label in titleLabels {
-                    label.layer.borderColor = titleBorderColor
-                }
-            }
+            titleLabels.forEach { $0.layer.borderColor = titleBorderColor }
         }
     }
     /// The selected title's border width
     public var selectedTitleBorderWidth: CGFloat = 0.0 {
         didSet {
-            if !selectedTitleLabels.isEmpty {
-                for label in selectedTitleLabels {
-                    label.layer.borderWidth = selectedTitleBorderWidth
-                }
-            }
+            selectedTitleLabels.forEach { $0.layer.borderWidth = selectedTitleBorderWidth }
         }
     }
-    /// The title's border color
+    /// The selected title's border color
     public var selectedTitleBorderColor: CGColor = UIColor.clear.cgColor {
         didSet {
-            if !selectedTitleLabels.isEmpty {
-                for label in selectedTitleLabels {
-                    label.layer.borderColor = titleBorderColor
-                }
-            }
+            selectedTitleLabels.forEach { $0.layer.borderColor = titleBorderColor }
         }
     }
     
