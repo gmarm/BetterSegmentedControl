@@ -9,60 +9,56 @@ import UIKit
 
 // MARK: - BetterSegmentedControl
 @IBDesignable open class BetterSegmentedControl: UIControl {
-    // MARK: - IndicatorView
-    fileprivate class IndicatorView: UIView {
-        // MARK: - Properties
+    // MARK: IndicatorView
+    private class IndicatorView: UIView {
+        // MARK: Properties
         fileprivate let titleMaskView = UIView()
-        
         fileprivate var cornerRadius: CGFloat! {
             didSet {
                 layer.cornerRadius = cornerRadius
                 titleMaskView.layer.cornerRadius = cornerRadius
             }
         }
-        
         override open var frame: CGRect {
             didSet {
                 titleMaskView.frame = frame
             }
         }
         
-        // MARK: - Lifecycle
+        // MARK: Lifecycle
         init() {
             super.init(frame: CGRect.zero)
             finishInit()
         }
-        
         required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
             finishInit()
         }
-        
         fileprivate func finishInit() {
             layer.masksToBounds = true
             titleMaskView.backgroundColor = UIColor.black
         }
     }
     
-    // MARK: - Constants
-    fileprivate struct AnimationParameters {
-        fileprivate static let animationWithBounceDuration: TimeInterval = 0.3
-        fileprivate static let animationWithBounceSpringDamping: CGFloat = 0.75
-        fileprivate static let animationNoBounceDuration: TimeInterval = 0.2
+    // MARK: Constants
+    fileprivate struct Animation {
+        fileprivate static let withBounceDuration: TimeInterval = 0.3
+        fileprivate static let springDamping: CGFloat = 0.75
+        fileprivate static let withoutBounceDuration: TimeInterval = 0.2
     }
-    fileprivate struct DefaultColors {
-        fileprivate static let backgroundColor: UIColor = UIColor.white
-        fileprivate static let titleColor: UIColor = UIColor.black
-        fileprivate static let indicatorViewBackgroundColor: UIColor = UIColor.black
-        fileprivate static let selectedTitleColor: UIColor = UIColor.white
+    fileprivate struct Color {
+        fileprivate static let background: UIColor = UIColor.white
+        fileprivate static let title: UIColor = UIColor.black
+        fileprivate static let indicatorViewBackground: UIColor = UIColor.black
+        fileprivate static let selectedTitle: UIColor = UIColor.white
     }
     
-    // MARK: - Error handling
+    // MARK: Error handling
     public enum IndexError: Error {
         case indexBeyondBounds(UInt)
     }
     
-    // MARK: - Public properties
+    // MARK: Properties
     /// The selected index
     public fileprivate(set) var index: UInt
     /// The titles / options available for selection
@@ -138,50 +134,32 @@ import UIKit
     /// The text color of the non-selected titles / options
     @IBInspectable public var titleColor: UIColor  {
         didSet {
-            if !titleLabels.isEmpty {
-                for label in titleLabels {
-                    label.textColor = titleColor
-                }
-            }
+            titleLabels.forEach { $0.textColor = titleColor }
         }
     }
     /// The text color of the selected title / option
     @IBInspectable public var selectedTitleColor: UIColor {
         didSet {
-            if !selectedTitleLabels.isEmpty {
-                for label in selectedTitleLabels {
-                    label.textColor = selectedTitleColor
-                }
-            }
+            selectedTitleLabels.forEach { $0.textColor = selectedTitleColor }
         }
     }
     /// The titles' font
     public var titleFont: UIFont = UILabel().font {
         didSet {
-            if !titleLabels.isEmpty {
-                for label in titleLabels {
-                    label.font = titleFont
-                }
-            }
+            titleLabels.forEach { $0.font = titleFont }
         }
     }
     /// The selected title's font
     public var selectedTitleFont: UIFont = UILabel().font {
         didSet {
-            if !selectedTitleLabels.isEmpty {
-                for label in selectedTitleLabels {
-                    label.font = selectedTitleFont
-                }
-            }
+            selectedTitleLabels.forEach { $0.font = selectedTitleFont }
         }
     }
-    
-    // MARK: - Private properties
     fileprivate let titleLabelsView = UIView()
     fileprivate let selectedTitleLabelsView = UIView()
     fileprivate let indicatorView = IndicatorView()
     fileprivate var initialIndicatorViewFrame: CGRect?
-    
+
     fileprivate var tapGestureRecognizer: UITapGestureRecognizer!
     fileprivate var panGestureRecognizer: UIPanGestureRecognizer!
     
@@ -193,11 +171,11 @@ import UIKit
     fileprivate var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
     fileprivate lazy var defaultTitles: [String] = { return ["First", "Second"] }()
     
-    // MARK: - Lifecycle
+    // MARK: Lifecycle
     required public init?(coder aDecoder: NSCoder) {
-        self.index = 0
-        self.titleColor = DefaultColors.titleColor
-        self.selectedTitleColor = DefaultColors.selectedTitleColor
+        index = 0
+        titleColor = Color.title
+        selectedTitleColor = Color.selectedTitle
         super.init(coder: aDecoder)
         titles = defaultTitles
         finishInit()
@@ -218,36 +196,15 @@ import UIKit
         self.indicatorViewBackgroundColor = indicatorViewBackgroundColor
         finishInit()
     }
-    @available(*, deprecated, message: "Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
-    convenience public init(titles: [String]) {
-        self.init(frame: CGRect.zero,
-                  titles: titles,
-                  index: 0,
-                  backgroundColor: DefaultColors.backgroundColor,
-                  titleColor: DefaultColors.titleColor,
-                  indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
-                  selectedTitleColor: DefaultColors.selectedTitleColor)
-    }
-    
-    @available(*, deprecated, message: "Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
-    convenience override public init(frame: CGRect) {
-        self.init(frame: frame,
-                  titles: ["First", "Second"],
-                  index: 0,
-                  backgroundColor: DefaultColors.backgroundColor,
-                  titleColor: DefaultColors.titleColor,
-                  indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
-                  selectedTitleColor: DefaultColors.selectedTitleColor)
-    }
     @available(*, unavailable, message: "Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
     convenience init() {
         self.init(frame: CGRect.zero,
                   titles: ["First", "Second"],
                   index: 0,
-                  backgroundColor: DefaultColors.backgroundColor,
-                  titleColor: DefaultColors.titleColor,
-                  indicatorViewBackgroundColor: DefaultColors.indicatorViewBackgroundColor,
-                  selectedTitleColor: DefaultColors.selectedTitleColor)
+                  backgroundColor: Color.background,
+                  titleColor: Color.title,
+                  indicatorViewBackgroundColor: Color.indicatorViewBackground,
+                  selectedTitleColor: Color.selectedTitle)
     }
     fileprivate func finishInit() {
         layer.masksToBounds = true
@@ -260,13 +217,12 @@ import UIKit
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BetterSegmentedControl.tapped(_:)))
         addGestureRecognizer(tapGestureRecognizer)
         
-        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(BetterSegmentedControl.pan(_:)))
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(BetterSegmentedControl.panned(_:)))
         panGestureRecognizer.delegate = self
         addGestureRecognizer(panGestureRecognizer)
     }
     override open func layoutSubviews() {
         super.layoutSubviews()
-        
         guard titleLabelsCount > 1 else {
             return
         }
@@ -283,7 +239,7 @@ import UIKit
         }
     }
     
-    // MARK: - Index Setting
+    // MARK: Index Setting
     /*!
      Sets the control's index.
      
@@ -301,15 +257,15 @@ import UIKit
         moveIndicatorViewToIndex(animated, shouldSendEvent: (self.index != oldIndex || alwaysAnnouncesValue))
     }
     
-    // MARK: - Animations
+    // MARK: Animations
     fileprivate func moveIndicatorViewToIndex(_ animated: Bool, shouldSendEvent: Bool) {
         if animated {
             if shouldSendEvent && announcesValueImmediately {
                 sendActions(for: .valueChanged)
             }
-            UIView.animate(withDuration: bouncesOnChange ? AnimationParameters.animationWithBounceDuration : AnimationParameters.animationNoBounceDuration,
+            UIView.animate(withDuration: bouncesOnChange ? Animation.withBounceDuration : Animation.withoutBounceDuration,
                            delay: 0.0,
-                           usingSpringWithDamping: bouncesOnChange ? AnimationParameters.animationWithBounceSpringDamping : 1.0,
+                           usingSpringWithDamping: bouncesOnChange ? Animation.springDamping : 1.0,
                            initialSpringVelocity: 0.0,
                            options: [UIViewAnimationOptions.beginFromCurrentState, UIViewAnimationOptions.curveEaseOut],
                            animations: {
@@ -320,14 +276,13 @@ import UIKit
                         self.sendActions(for: .valueChanged)
                     }
             })
-        }
-        else {
+        } else {
             moveIndicatorView()
-            self.sendActions(for: .valueChanged)
+            sendActions(for: .valueChanged)
         }
     }
     
-    // MARK: - Helpers
+    // MARK: Helpers
     fileprivate func elementFrame(forIndex index: UInt) -> CGRect {
         let elementWidth = (width - totalInsetSize) / CGFloat(titleLabelsCount)
         return CGRect(x: CGFloat(index) * elementWidth + indicatorViewInset,
@@ -340,16 +295,16 @@ import UIKit
         return UInt(distances.index(of: distances.min()!)!)
     }
     fileprivate func moveIndicatorView() {
-        self.indicatorView.frame = self.titleLabels[Int(self.index)].frame
-        self.layoutIfNeeded()
+        indicatorView.frame = titleLabels[Int(self.index)].frame
+        layoutIfNeeded()
     }
     
-    // MARK: - Action handlers
+    // MARK: Action handlers
     @objc fileprivate func tapped(_ gestureRecognizer: UITapGestureRecognizer!) {
         let location = gestureRecognizer.location(in: self)
         try! setIndex(nearestIndex(toPoint: location))
     }
-    @objc fileprivate func pan(_ gestureRecognizer: UIPanGestureRecognizer!) {
+    @objc fileprivate func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
         guard !panningDisabled else {
             return
         }
