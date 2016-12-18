@@ -228,6 +228,17 @@ import UIKit
         self.indicatorViewBackgroundColor = indicatorViewBackgroundColor
         finishInit()
     }
+    @available(*, deprecated, message: "Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
+    convenience override public init(frame: CGRect) {
+        self.init(frame: frame,
+                  titles: ["First", "Second"],
+                  index: 0,
+                  backgroundColor: Color.background,
+                  titleColor: Color.title,
+                  indicatorViewBackgroundColor: Color.indicatorViewBackground,
+                  selectedTitleColor: Color.selectedTitle)
+    }
+
     @available(*, unavailable, message: "Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
     convenience init() {
         self.init(frame: CGRect.zero,
