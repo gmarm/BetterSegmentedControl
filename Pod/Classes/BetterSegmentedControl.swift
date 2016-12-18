@@ -82,6 +82,7 @@ import UIKit
                 titleLabel.font = titleFont
                 titleLabel.layer.borderWidth = titleBorderWidth
                 titleLabel.layer.borderColor = titleBorderColor
+                titleLabel.layer.cornerRadius = indicatorView.cornerRadius
                 
                 let selectedTitleLabel = UILabel()
                 selectedTitleLabel.textColor = selectedTitleColor
@@ -89,8 +90,6 @@ import UIKit
                 selectedTitleLabel.lineBreakMode = .byTruncatingTail
                 selectedTitleLabel.textAlignment = .center
                 selectedTitleLabel.font = selectedTitleFont
-                selectedTitleLabel.layer.borderWidth = selectedTitleBorderWidth
-                selectedTitleLabel.layer.borderColor = selectedTitleBorderColor
                 
                 return (titleLabel, selectedTitleLabel)
             }
@@ -106,13 +105,13 @@ import UIKit
             setNeedsLayout()
         }
     }
-    /// Whether the indicator should bounce when selecting a new index. Defaults to true.
+    /// Whether the indicator should bounce when selecting a new index. Defaults to true
     public var bouncesOnChange = true
-    /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to false.
+    /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to false
     public var alwaysAnnouncesValue = false
-    /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to true.
+    /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to true
     public var announcesValueImmediately = true
-    /// Whether the the control should ignore pan gestures. Defaults to false.
+    /// Whether the the control should ignore pan gestures. Defaults to false
     public var panningDisabled = false
     /// The control's and indicator's corner radii
     @IBInspectable public var cornerRadius: CGFloat {
@@ -122,6 +121,7 @@ import UIKit
         set {
             layer.cornerRadius = newValue
             indicatorView.cornerRadius = newValue - indicatorViewInset
+            titleLabels.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
         }
     }
     /// The indicator view's background color
@@ -133,9 +133,27 @@ import UIKit
             indicatorView.backgroundColor = newValue
         }
     }
-    /// The indicator view's inset. Defaults to 2.0.
+    /// The indicator view's inset. Defaults to 2.0
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
         didSet { setNeedsLayout() }
+    }
+    /// The indicator view's border width
+    public var indicatorViewBorderWidth: CGFloat {
+        get {
+            return indicatorView.layer.borderWidth
+        }
+        set {
+            indicatorView.layer.borderWidth = newValue
+        }
+    }
+    /// The indicator view's border width
+    public var indicatorViewBorderColor: CGColor? {
+        get {
+            return indicatorView.layer.borderColor
+        }
+        set {
+            indicatorView.layer.borderColor = newValue
+        }
     }
     /// The text color of the non-selected titles / options
     @IBInspectable public var titleColor: UIColor  {
@@ -171,18 +189,6 @@ import UIKit
     public var titleBorderColor: CGColor = UIColor.clear.cgColor {
         didSet {
             titleLabels.forEach { $0.layer.borderColor = titleBorderColor }
-        }
-    }
-    /// The selected title's border width
-    public var selectedTitleBorderWidth: CGFloat = 0.0 {
-        didSet {
-            selectedTitleLabels.forEach { $0.layer.borderWidth = selectedTitleBorderWidth }
-        }
-    }
-    /// The selected title's border color
-    public var selectedTitleBorderColor: CGColor = UIColor.clear.cgColor {
-        didSet {
-            selectedTitleLabels.forEach { $0.layer.borderColor = titleBorderColor }
         }
     }
     
