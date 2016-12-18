@@ -101,6 +101,21 @@ class BetterSegmentedControlSpec: QuickSpec {
                             expect(control.indicatorViewInset).to(equal(4.0))
                         })
                     })
+                    describe("its indicatorViewBorderWidth property", { 
+                        it("defaults to 0.0", closure: {
+                            expect(control.indicatorViewBorderWidth).to(equal(0.0))
+                        })
+                        it("can be set", closure: {
+                            control.indicatorViewBorderWidth = 2.0
+                            expect(control.indicatorViewBorderWidth).to(equal(2.0))
+                        })
+                    })
+                    describe("its indicatorViewBorderColor property", {
+                        it("can be set", closure: {
+                            control.indicatorViewBorderColor = UIColor.red.cgColor
+                            expect(control.indicatorViewBorderColor).to(equal(UIColor.red.cgColor))
+                        })
+                    })
                     describe("its titleFont property", closure: {
                         it("defaults to the default UILabel font", closure: {
                             expect(control.titleFont).to(equal(UILabel().font))
@@ -119,6 +134,21 @@ class BetterSegmentedControlSpec: QuickSpec {
                             let newFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
                             control.selectedTitleFont = newFont
                             expect(control.selectedTitleFont).to(equal(newFont))
+                        })
+                    })
+                    describe("its titleBorderWidth property", {
+                        it("defaults to 0.0", closure: {
+                            expect(control.titleBorderWidth).to(equal(0.0))
+                        })
+                        it("can be set", closure: {
+                            control.titleBorderWidth = 2.0
+                            expect(control.titleBorderWidth).to(equal(2.0))
+                        })
+                    })
+                    describe("its titleBorderColor property", {
+                        it("can be set", closure: {
+                            control.titleBorderColor = UIColor.red.cgColor
+                            expect(control.titleBorderColor).to(equal(UIColor.red.cgColor))
                         })
                     })
                 }
@@ -211,6 +241,21 @@ class BetterSegmentedControlSpec: QuickSpec {
                             expect(control.indicatorViewInset).to(equal(4.0))
                         })
                     })
+                    describe("its indicatorViewBorderWidth property", {
+                        it("defaults to 0.0", closure: {
+                            expect(control.indicatorViewBorderWidth).to(equal(0.0))
+                        })
+                        it("can be set", closure: {
+                            control.indicatorViewBorderWidth = 2.0
+                            expect(control.indicatorViewBorderWidth).to(equal(2.0))
+                        })
+                    })
+                    describe("its indicatorViewBorderColor property", {
+                        it("can be set", closure: {
+                            control.indicatorViewBorderColor = UIColor.red.cgColor
+                            expect(control.indicatorViewBorderColor).to(equal(UIColor.red.cgColor))
+                        })
+                    })
                     describe("its titleFont property", closure: {
                         it("defaults to the default UILabel font", closure: {
                             expect(control.titleFont).to(equal(UILabel().font))
@@ -229,6 +274,21 @@ class BetterSegmentedControlSpec: QuickSpec {
                             let newFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
                             control.selectedTitleFont = newFont
                             expect(control.selectedTitleFont).to(equal(newFont))
+                        })
+                    })
+                    describe("its titleBorderWidth property", {
+                        it("defaults to 0.0", closure: {
+                            expect(control.titleBorderWidth).to(equal(0.0))
+                        })
+                        it("can be set", closure: {
+                            control.titleBorderWidth = 2.0
+                            expect(control.titleBorderWidth).to(equal(2.0))
+                        })
+                    })
+                    describe("its titleBorderColor property", {
+                        it("can be set", closure: {
+                            control.titleBorderColor = UIColor.red.cgColor
+                            expect(control.titleBorderColor).to(equal(UIColor.red.cgColor))
                         })
                     })
                 }
