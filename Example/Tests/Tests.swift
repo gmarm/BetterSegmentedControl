@@ -151,6 +151,18 @@ class BetterSegmentedControlSpec: QuickSpec {
                             expect(control.titleBorderColor).to(equal(UIColor.red.cgColor))
                         })
                     })
+                    describe("using addSubviewToIndicator") {
+                        var underlineView: UIView!
+                        beforeEach({
+                            underlineView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+                            control.addSubviewToIndicator(underlineView)
+                        })
+                        it("successfully adds the subview", closure: {
+                            expect(underlineView.superview).toNot(beNil())
+                            // TODO: @testable import doesn't seem to correctly import private members of a pod
+                            // expect(underlineView.superview).to(be(control.indicatorView))
+                        })
+                    }
                 }
                 context("using initWithCoder") {
                     var control: BetterSegmentedControl!
