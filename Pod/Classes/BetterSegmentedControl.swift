@@ -84,15 +84,15 @@ import UIKit
                 titleLabel.layer.borderColor = titleBorderColor
                 titleLabel.layer.cornerRadius = indicatorView.cornerRadius
                 titleLabel.numberOfLines = titleNumberOfLines
-              
+                
                 let selectedTitleLabel = UILabel()
                 selectedTitleLabel.textColor = selectedTitleColor
                 selectedTitleLabel.text = string
                 selectedTitleLabel.lineBreakMode = .byTruncatingTail
                 selectedTitleLabel.textAlignment = .center
                 selectedTitleLabel.font = selectedTitleFont
-                selectedTitleLabel.numberOfLines = selectedTitleNumberOfLines
-              
+                selectedTitleLabel.numberOfLines = titleNumberOfLines
+                
                 return (titleLabel, selectedTitleLabel)
             }
             
@@ -187,17 +187,12 @@ import UIKit
             titleLabels.forEach { $0.layer.borderWidth = titleBorderWidth }
         }
     }
-    /// The selected titles's number of lines
-    public var selectedTitleNumberOfLines: Int = 1 {
-        didSet {
-          selectedTitleLabels.forEach { $0.numberOfLines = selectedTitleNumberOfLines }
-        }
-    }
     /// The titles's number of lines
     public var titleNumberOfLines: Int = 1 {
-      didSet {
-          titleLabels.forEach { $0.numberOfLines = titleNumberOfLines }
-      }
+        didSet {
+            titleLabels.forEach { $0.numberOfLines = titleNumberOfLines }
+            selectedTitleLabels.forEach { $0.numberOfLines = titleNumberOfLines }
+        }
     }
     /// The titles' border color
     public var titleBorderColor: CGColor = UIColor.clear.cgColor {
@@ -334,10 +329,10 @@ import UIKit
                            animations: {
                             () -> Void in
                             self.moveIndicatorView()
-                }, completion: { (finished) -> Void in
-                    if finished && shouldSendEvent && !self.announcesValueImmediately {
-                        self.sendActions(for: .valueChanged)
-                    }
+            }, completion: { (finished) -> Void in
+                if finished && shouldSendEvent && !self.announcesValueImmediately {
+                    self.sendActions(for: .valueChanged)
+                }
             })
         } else {
             moveIndicatorView()
