@@ -75,6 +75,26 @@ class ViewController: UIViewController {
         viewSegmentedControl.bouncesOnChange = false
         viewSegmentedControl.panningDisabled = true
         view.addSubview(viewSegmentedControl)
+
+        // Control 5: Adding custom subview to Indicator
+        let indicatorControl = BetterSegmentedControl(
+            frame: CGRect(x: 0.0, y: 360.0, width: view.bounds.width, height: 50.0),
+            titles: ["Hello", "Goodbye"],
+            index: 0,
+            backgroundColor: .lightGray,
+            titleColor: .white,
+            indicatorViewBackgroundColor: .white,
+            selectedTitleColor: .black)
+        indicatorControl.autoresizingMask = [.flexibleWidth]
+        indicatorControl.bouncesOnChange = false
+        indicatorControl.panningDisabled = false
+
+        let customSubview = UIView(frame: CGRect(x: 0, y: 40, width: 40, height: 4.0))
+        customSubview.backgroundColor = .blue
+        customSubview.layer.cornerRadius = 2.0
+        customSubview.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
+        indicatorControl.addSubviewToIndicator(customSubview)
+        view.addSubview(indicatorControl)
     }
     
     // MARK: - Action handlers

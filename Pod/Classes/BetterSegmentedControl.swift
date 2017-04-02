@@ -289,7 +289,7 @@ import UIKit
     }
     
     // MARK: Index Setting
-    /*!
+    /**
      Sets the control's index.
      
      - parameter index:    The new index
@@ -304,6 +304,19 @@ import UIKit
         let oldIndex = self.index
         self.index = index
         moveIndicatorViewToIndex(animated, shouldSendEvent: (self.index != oldIndex || alwaysAnnouncesValue))
+    }
+
+    // MARK: Indicator View Customization
+
+    /**
+     Adds the given given view to the indicator view (the view which slides across segments to indicate the current selection)
+     
+     - parameter view: The view to add to the indicator
+     
+     - note: The added view must be able to layout & size itself and will not be autoresized.
+     */
+    public func addSubviewToIndicator(_ view: UIView) {
+        indicatorView.addSubview(view)
     }
     
     // MARK: Animations
