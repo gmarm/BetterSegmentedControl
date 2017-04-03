@@ -83,6 +83,7 @@ import UIKit
                 titleLabel.layer.borderWidth = titleBorderWidth
                 titleLabel.layer.borderColor = titleBorderColor
                 titleLabel.layer.cornerRadius = indicatorView.cornerRadius
+                titleLabel.numberOfLines = titleNumberOfLines
                 
                 let selectedTitleLabel = UILabel()
                 selectedTitleLabel.textColor = selectedTitleColor
@@ -90,6 +91,7 @@ import UIKit
                 selectedTitleLabel.lineBreakMode = .byTruncatingTail
                 selectedTitleLabel.textAlignment = .center
                 selectedTitleLabel.font = selectedTitleFont
+                selectedTitleLabel.numberOfLines = titleNumberOfLines
                 
                 return (titleLabel, selectedTitleLabel)
             }
@@ -183,6 +185,13 @@ import UIKit
     public var titleBorderWidth: CGFloat = 0.0 {
         didSet {
             titleLabels.forEach { $0.layer.borderWidth = titleBorderWidth }
+        }
+    }
+    /// The titles's number of lines
+    public var titleNumberOfLines: Int = 1 {
+        didSet {
+            titleLabels.forEach { $0.numberOfLines = titleNumberOfLines }
+            selectedTitleLabels.forEach { $0.numberOfLines = titleNumberOfLines }
         }
     }
     /// The titles' border color
@@ -333,10 +342,10 @@ import UIKit
                            animations: {
                             () -> Void in
                             self.moveIndicatorView()
-                }, completion: { (finished) -> Void in
-                    if finished && shouldSendEvent && !self.announcesValueImmediately {
-                        self.sendActions(for: .valueChanged)
-                    }
+            }, completion: { (finished) -> Void in
+                if finished && shouldSendEvent && !self.announcesValueImmediately {
+                    self.sendActions(for: .valueChanged)
+                }
             })
         } else {
             moveIndicatorView()
