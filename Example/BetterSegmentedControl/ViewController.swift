@@ -78,7 +78,7 @@ class ViewController: UIViewController {
 
         // Control 5: Adding custom subview to Indicator
         let indicatorControl = BetterSegmentedControl(
-            frame: CGRect(x: 0.0, y: 360.0, width: view.bounds.width, height: 50.0),
+            frame: CGRect(x: 0.0, y: 375.0, width: view.bounds.width, height: 50.0),
             titles: ["Hello", "Goodbye"],
             index: 0,
             backgroundColor: .lightGray,

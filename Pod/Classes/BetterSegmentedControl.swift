@@ -187,7 +187,7 @@ import UIKit
             titleLabels.forEach { $0.layer.borderWidth = titleBorderWidth }
         }
     }
-    /// The titles's number of lines
+    /// The titles' number of lines
     public var titleNumberOfLines: Int = 1 {
         didSet {
             titleLabels.forEach { $0.numberOfLines = titleNumberOfLines }
@@ -318,9 +318,9 @@ import UIKit
     // MARK: Indicator View Customization
 
     /**
-     Adds the given given view to the indicator view (the view which slides across segments to indicate the current selection)
+     Adds the passed view as a subview to the indicator view
      
-     - parameter view: The view to add to the indicator
+     - parameter view: The view to be added to the indicator view
      
      - note: The added view must be able to layout & size itself and will not be autoresized.
      */

@@ -159,8 +159,6 @@ class BetterSegmentedControlSpec: QuickSpec {
                         })
                         it("successfully adds the subview", closure: {
                             expect(underlineView.superview).toNot(beNil())
-                            // TODO: @testable import doesn't seem to correctly import private members of a pod
-                            // expect(underlineView.superview).to(be(control.indicatorView))
                         })
                     }
                 }
