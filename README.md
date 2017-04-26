@@ -32,7 +32,7 @@ it, simply add the following line to your Podfile:
 
 _Swift 3.0_
 ```ruby
-pod 'BetterSegmentedControl', '~> 0.7'
+pod 'BetterSegmentedControl', '~> 0.8'
 ```
 
 _Swift 2.x_
@@ -46,7 +46,7 @@ If you prefer using [Carthage](https://github.com/Carthage/Carthage), simply add
 
 _Swift 3.0_
 ```ruby
-github "gmarm/BetterSegmentedControl" ~> 0.7
+github "gmarm/BetterSegmentedControl" ~> 0.8
 ```
 
 _Swift 2.x_
