@@ -27,20 +27,17 @@ class ViewController: UIViewController {
             titleColor: .lightGray,
             indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
             selectedTitleColor: .white)
-        navigationSegmentedControl.cornerRadius = 3.0
-        navigationSegmentedControl.titleFont = UIFont(name: "Avenir", size: 13.0)!
-        navigationSegmentedControl.selectedTitleFont = UIFont(name: "Avenir", size: 13.0)!
-        navigationSegmentedControl.bouncesOnChange = false
+        navigationSegmentedControl.options = [.cornerRadius(3.0),
+                                              .titleFont(UIFont(name: "Avenir", size: 13.0)!),
+                                              .selectedTitleFont(UIFont(name: "Avenir", size: 13.0)!),
+                                              .bouncesOnChange(false)]
         navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         navigationItem.titleView = navigationSegmentedControl
         
         // Control 1: Created and designed in IB that announces its value on interaction
-        control1.titles = ["Recent","Nearby","All"]
+        control1.titles = ["Recent", "Nearby", "All"]
         control1.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
         control1.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
-        control1.alwaysAnnouncesValue = true
-        control1.announcesValueImmediately = false
-        print(control1.titles)
         
         // Control 2: Exclusively defined in IB
         
