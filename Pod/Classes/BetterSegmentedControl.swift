@@ -137,7 +137,10 @@ import UIKit
     }
     /// The indicator view's inset. Defaults to 2.0
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
-        didSet { setNeedsLayout() }
+        didSet {
+            indicatorView.cornerRadius = cornerRadius - indicatorViewInset
+            titleLabels.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
+        }
     }
     /// The indicator view's border width
     public var indicatorViewBorderWidth: CGFloat {
