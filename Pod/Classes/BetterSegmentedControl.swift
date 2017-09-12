@@ -393,7 +393,7 @@ import UIKit
             roundedCorners = []
         }
         
-        roundedCorners = roundedCorners.intersection(selectedTitleRoundedCorners)
+        roundedCorners = roundedCorners.union(selectedTitleRoundedCorners)
         applyRoundCorners(toView: indicatorView, corners: roundedCorners, radius: cornerRadius)
     }
     
