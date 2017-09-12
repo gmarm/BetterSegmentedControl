@@ -82,7 +82,7 @@ import UIKit
                 titleLabel.font = titleFont
                 titleLabel.layer.borderWidth = titleBorderWidth
                 titleLabel.layer.borderColor = titleBorderColor
-                titleLabel.layer.cornerRadius = indicatorView.cornerRadius
+                titleLabel.layer.cornerRadius = cornerRadius - indicatorViewInset
                 titleLabel.numberOfLines = titleNumberOfLines
                 
                 let selectedTitleLabel = UILabel()
@@ -122,8 +122,8 @@ import UIKit
         }
         set {
             layer.cornerRadius = newValue
-            indicatorView.cornerRadius = newValue - indicatorViewInset
-            titleLabels.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
+            titleLabels.forEach { $0.layer.cornerRadius = newValue - indicatorViewInset }
+            updateCorners()
         }
     }
     /// The indicator view's background color
@@ -295,6 +295,7 @@ import UIKit
             titleLabelsView.subviews[index].frame = frame
             selectedTitleLabelsView.subviews[index].frame = frame
         }
+        updateCorners()
     }
     
     // MARK: Index Setting
@@ -368,6 +369,32 @@ import UIKit
     fileprivate func moveIndicatorView() {
         indicatorView.frame = titleLabels[Int(self.index)].frame
         layoutIfNeeded()
+        updateCorners()
+    }
+    public var selectedTitleRoundedCorners:UIRectCorner = .allCorners {
+        didSet {
+            updateCorners()
+        }
+    }
+    fileprivate func updateCorners() {
+        var roundedCorners:UIRectCorner = .allCorners
+        if self.index == 0 {
+            if titleLabels.count == 1 {
+                roundedCorners = [.topLeft, .topRight, .bottomRight, .bottomLeft]
+            }
+            else {
+                roundedCorners = [.topLeft, .bottomLeft]
+            }
+        }
+        else if Int(self.index) == titleLabels.count - 1 {
+            roundedCorners = [.topRight, .bottomRight]
+        }
+        else if Int(self.index) > 0 && Int(self.index) < titleLabels.count {
+            roundedCorners = []
+        }
+        
+        roundedCorners = roundedCorners.intersection(selectedTitleRoundedCorners)
+        applyRoundCorners(toView: indicatorView, corners: roundedCorners, radius: cornerRadius)
     }
     
     // MARK: Action handlers
@@ -392,6 +419,13 @@ import UIKit
             try! setIndex(nearestIndex(toPoint: indicatorView.center))
         default: break
         }
+    }
+    
+    fileprivate func applyRoundCorners(toView view:UIView, corners:UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        view.layer.mask = mask
     }
 }
 
