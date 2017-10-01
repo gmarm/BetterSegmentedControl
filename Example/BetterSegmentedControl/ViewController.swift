@@ -92,7 +92,7 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Action handlers
-    func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
+    @objc func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
         if sender.index == 0 {
             print("Turning lights on.")
             view.backgroundColor = .white
