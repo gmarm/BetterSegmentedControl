@@ -8,6 +8,6 @@ end
 target 'BetterSegmentedControl_Tests' do
   pod 'BetterSegmentedControl', :path => '../'
 
-  pod 'Quick', :git => 'https://github.com/Quick/Quick.git', :branch => 'swift-3.0'
-  pod 'Nimble', :git => 'https://github.com/Quick/Nimble.git', :branch => 'master'
+  pod 'Quick', '1.2.0'
+  pod 'Nimble', '7.0.2'
 end
