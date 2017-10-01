@@ -107,8 +107,12 @@ import UIKit
             setNeedsLayout()
         }
     }
-    public var options: [BetterSegmentedControlOption] {
-        didSet {
+    public var options: [BetterSegmentedControlOption]? {
+        get { return nil }
+        set {
+            guard let options = newValue else {
+                return
+            }
             for option in options {
                 switch option {
                 case let .titleColor(value):
@@ -129,6 +133,8 @@ import UIKit
                     indicatorViewBackgroundColor = value
                 case let .indicatorViewInset(value):
                     indicatorViewInset = value
+                case let .indicatorViewBorderWidth(value):
+                    indicatorViewBorderWidth = value
                 case let .indicatorViewBorderColor(value):
                     indicatorViewBorderColor = value
                 case let .alwaysAnnouncesValue(value):
@@ -137,6 +143,8 @@ import UIKit
                     announcesValueImmediately = value
                 case let .panningDisabled(value):
                     panningDisabled = value
+                case let .backgroundColor(value):
+                    backgroundColor = value
                 case let .cornerRadius(value):
                     cornerRadius = value
                 case let .bouncesOnChange(value):
@@ -147,15 +155,15 @@ import UIKit
     }
     
     /// Whether the indicator should bounce when selecting a new index. Defaults to true
-    @IBInspectable public var bouncesOnChange: Bool = true
+    @IBInspectable public fileprivate(set) var bouncesOnChange: Bool = true
     /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to false
-    @IBInspectable public var alwaysAnnouncesValue: Bool = false
+    @IBInspectable public fileprivate(set) var alwaysAnnouncesValue: Bool = false
     /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to true
-    @IBInspectable public var announcesValueImmediately: Bool = true
+    @IBInspectable public fileprivate(set) var announcesValueImmediately: Bool = true
     /// Whether the the control should ignore pan gestures. Defaults to false
-    @IBInspectable public var panningDisabled: Bool = false
+    @IBInspectable public fileprivate(set) var panningDisabled: Bool = false
     /// The control's and indicator's corner radii
-    @IBInspectable public var cornerRadius: CGFloat {
+    @IBInspectable public fileprivate(set) var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -166,7 +174,7 @@ import UIKit
         }
     }
     /// The indicator view's background color
-    @IBInspectable public var indicatorViewBackgroundColor: UIColor? {
+    @IBInspectable fileprivate(set) public var indicatorViewBackgroundColor: UIColor? {
         get {
             return indicatorView.backgroundColor
         }
@@ -175,11 +183,11 @@ import UIKit
         }
     }
     /// The indicator view's inset. Defaults to 2.0
-    @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
+    @IBInspectable public fileprivate(set) var indicatorViewInset: CGFloat = 2.0 {
         didSet { setNeedsLayout() }
     }
     /// The indicator view's border width
-    @IBInspectable public var indicatorViewBorderWidth: CGFloat {
+    @IBInspectable public fileprivate(set) var indicatorViewBorderWidth: CGFloat {
         get {
             return indicatorView.layer.borderWidth
         }
@@ -188,7 +196,7 @@ import UIKit
         }
     }
     /// The indicator view's border color
-    @IBInspectable public var indicatorViewBorderColor: UIColor? {
+    @IBInspectable public fileprivate(set) var indicatorViewBorderColor: UIColor? {
         get {
             guard let color = indicatorView.layer.borderColor else {
                 return nil
@@ -200,13 +208,13 @@ import UIKit
         }
     }
     /// The text color of the non-selected titles / options
-    @IBInspectable public var titleColor: UIColor  {
+    @IBInspectable public fileprivate(set) var titleColor: UIColor = Color.title  {
         didSet {
             titleLabels.forEach { $0.textColor = titleColor }
         }
     }
     /// The text color of the selected title / option
-    @IBInspectable public var selectedTitleColor: UIColor {
+    @IBInspectable public fileprivate(set) var selectedTitleColor: UIColor = Color.selectedTitle {
         didSet {
             selectedTitleLabels.forEach { $0.textColor = selectedTitleColor }
         }
@@ -224,20 +232,20 @@ import UIKit
         }
     }
     /// The titles' border width
-    @IBInspectable public var titleBorderWidth: CGFloat = 0.0 {
+    @IBInspectable public fileprivate(set) var titleBorderWidth: CGFloat = 0.0 {
         didSet {
             titleLabels.forEach { $0.layer.borderWidth = titleBorderWidth }
         }
     }
     /// The titles' number of lines
-    @IBInspectable public var titleNumberOfLines: Int = 1 {
+    @IBInspectable public fileprivate(set) var titleNumberOfLines: Int = 1 {
         didSet {
             titleLabels.forEach { $0.numberOfLines = titleNumberOfLines }
             selectedTitleLabels.forEach { $0.numberOfLines = titleNumberOfLines }
         }
     }
     /// The titles' border color
-    @IBInspectable public var titleBorderColor: UIColor = UIColor.clear {
+    @IBInspectable public fileprivate(set) var titleBorderColor: UIColor = UIColor.clear {
         didSet {
             titleLabels.forEach { $0.layer.borderColor = titleBorderColor.cgColor }
         }
@@ -262,51 +270,41 @@ import UIKit
     
     // MARK: Lifecycle
     required public init?(coder aDecoder: NSCoder) {
-        self.options = []
         self.index = 0
-        self.titleColor = Color.title
-        self.selectedTitleColor = Color.selectedTitle
         super.init(coder: aDecoder)
         self.titles = defaultTitles
         finishInit()
     }
     public init(frame: CGRect,
                 titles: [String],
-                index: UInt,
-                backgroundColor: UIColor,
-                titleColor: UIColor,
-                indicatorViewBackgroundColor: UIColor,
-                selectedTitleColor: UIColor) {
-        self.options = []
+                index: UInt = 0,
+                options: [BetterSegmentedControlOption]? = nil) {
         self.index = index
-        self.titleColor = titleColor
-        self.selectedTitleColor = selectedTitleColor
         super.init(frame: frame)
         self.titles = titles
-        self.backgroundColor = backgroundColor
-        self.indicatorViewBackgroundColor = indicatorViewBackgroundColor
+        self.options = options
         finishInit()
     }
-    @available(*, deprecated, message: "Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
+    @available(*, deprecated, message: "Use init(frame:titles:index:options:) instead.")
     convenience override public init(frame: CGRect) {
         self.init(frame: frame,
                   titles: ["First", "Second"],
                   index: 0,
-                  backgroundColor: Color.background,
-                  titleColor: Color.title,
-                  indicatorViewBackgroundColor: Color.indicatorViewBackground,
-                  selectedTitleColor: Color.selectedTitle)
+                  options: [.backgroundColor(Color.background),
+                            .titleColor(Color.title),
+                            .indicatorViewBackgroundColor(Color.indicatorViewBackground),
+                            .selectedTitleColor(Color.selectedTitle)])
     }
 
-    @available(*, unavailable, message: "Use init(frame:titles:index:backgroundColor:titleColor:indicatorViewBackgroundColor:selectedTitleColor:) instead.")
+    @available(*, unavailable, message: "Use init(frame:titles:index:options:) instead.")
     convenience init() {
         self.init(frame: CGRect.zero,
                   titles: ["First", "Second"],
                   index: 0,
-                  backgroundColor: Color.background,
-                  titleColor: Color.title,
-                  indicatorViewBackgroundColor: Color.indicatorViewBackground,
-                  selectedTitleColor: Color.selectedTitle)
+                  options: [.backgroundColor(Color.background),
+                            .titleColor(Color.title),
+                            .indicatorViewBackgroundColor(Color.indicatorViewBackground),
+                            .selectedTitleColor(Color.selectedTitle)])
     }
     fileprivate func finishInit() {
         layer.masksToBounds = true

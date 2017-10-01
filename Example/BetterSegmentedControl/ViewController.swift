@@ -23,14 +23,14 @@ class ViewController: UIViewController {
             frame: CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0),
             titles: ["Lights On", "Lights Off"],
             index: 0,
-            backgroundColor: .darkGray,
-            titleColor: .lightGray,
-            indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
-            selectedTitleColor: .white)
-        navigationSegmentedControl.options = [.cornerRadius(3.0),
-                                              .titleFont(UIFont(name: "Avenir", size: 13.0)!),
-                                              .selectedTitleFont(UIFont(name: "Avenir", size: 13.0)!),
-                                              .bouncesOnChange(false)]
+            options:[.backgroundColor(.darkGray),
+                     .titleColor(.lightGray),
+                     .indicatorViewBackgroundColor(UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00)),
+                     .selectedTitleColor(.white),
+                     .cornerRadius(3.0),
+                     .titleFont(UIFont(name: "Avenir", size: 13.0)!),
+                     .selectedTitleFont(UIFont(name: "Avenir", size: 13.0)!),
+                     .bouncesOnChange(false)])
         navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         navigationItem.titleView = navigationSegmentedControl
         
@@ -61,31 +61,28 @@ class ViewController: UIViewController {
             frame: CGRect(x: 0.0, y: 302.0, width: view.bounds.width, height: 50.0),
             titles: ["Artists", "Albums"],
             index: 1,
-            backgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
-            titleColor: .white,
-            indicatorViewBackgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
-            selectedTitleColor: UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00))
-        viewSegmentedControl.autoresizingMask = [.flexibleWidth]
-        viewSegmentedControl.cornerRadius = 0.0
-        viewSegmentedControl.titleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
-        viewSegmentedControl.selectedTitleFont = UIFont(name: "HelveticaNeue", size: 16.0)!
-        viewSegmentedControl.bouncesOnChange = false
-        viewSegmentedControl.panningDisabled = true
+            options: [.backgroundColor(UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)),
+                      .titleColor(.white),
+                      .indicatorViewBackgroundColor(UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)),
+                      .selectedTitleColor(UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00)),
+                      .cornerRadius(0.0),
+                      .titleFont(UIFont(name: "HelveticaNeue", size: 16.0)!),
+                      .selectedTitleFont(UIFont(name: "HelveticaNeue", size: 16.0)!),
+                      .bouncesOnChange(false),
+                      .panningDisabled(true)])
         view.addSubview(viewSegmentedControl)
 
         // Control 5: Adding custom subview to Indicator
         let indicatorControl = BetterSegmentedControl(
             frame: CGRect(x: 0.0, y: 375.0, width: view.bounds.width, height: 50.0),
             titles: ["Hello", "Goodbye"],
-            index: 0,
-            backgroundColor: .lightGray,
-            titleColor: .white,
-            indicatorViewBackgroundColor: .white,
-            selectedTitleColor: .black)
+            index: 0, options: [.backgroundColor(.lightGray),
+                                .titleColor(.white),
+                                .indicatorViewBorderColor(.white),
+                                .selectedTitleColor(.black),
+                                .bouncesOnChange(false),
+                                .panningDisabled(false)])
         indicatorControl.autoresizingMask = [.flexibleWidth]
-        indicatorControl.bouncesOnChange = false
-        indicatorControl.panningDisabled = false
-
         let customSubview = UIView(frame: CGRect(x: 0, y: 40, width: 40, height: 4.0))
         customSubview.backgroundColor = .blue
         customSubview.layer.cornerRadius = 2.0

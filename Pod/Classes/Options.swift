@@ -25,6 +25,7 @@ public enum BetterSegmentedControlOption {
     /* Selected segment */
     case indicatorViewBackgroundColor(UIColor)
     case indicatorViewInset(CGFloat)
+    case indicatorViewBorderWidth(CGFloat)
     case indicatorViewBorderColor(UIColor)
     
     /* Behavior */
@@ -33,6 +34,7 @@ public enum BetterSegmentedControlOption {
     case panningDisabled(Bool)
     
     /* Other */
+    case backgroundColor(UIColor)
     case cornerRadius(CGFloat)
     case bouncesOnChange(Bool)
 }
