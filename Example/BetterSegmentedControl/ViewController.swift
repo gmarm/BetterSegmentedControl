@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         
         // Control 4: Added as a subview
         let viewSegmentedControl = BetterSegmentedControl(
-            frame: CGRect(x: 0.0, y: 302.0, width: view.bounds.width, height: 50.0),
+            frame: CGRect(x: 0.0, y: 332.0, width: view.bounds.width, height: 50.0),
             titles: ["Artists", "Albums"],
             index: 1,
             options: [.backgroundColor(UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)),
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
 
         // Control 5: Adding custom subview to Indicator
         let indicatorControl = BetterSegmentedControl(
-            frame: CGRect(x: 0.0, y: 375.0, width: view.bounds.width, height: 50.0),
+            frame: CGRect(x: 0.0, y: 405.0, width: view.bounds.width, height: 50.0),
             titles: ["Hello", "Goodbye"],
             index: 0, options: [.backgroundColor(.lightGray),
                                 .titleColor(.white),
