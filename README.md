@@ -89,7 +89,7 @@ You can find different ways of using it (such as by designing it in a Storyboard
 
 ## Todos
 
-- [ ] Get rid of error unnecessary handling.
+- [ ] Get rid of unnecessary error handling.
 - [ ] Add snapshot tests.
 - [ ] Allow the control to have no selected index.
 - [ ] Allow UIViews that implement a protocol to be used as options.
