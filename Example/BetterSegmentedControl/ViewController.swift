@@ -17,23 +17,28 @@ class ViewController: UIViewController {
     // MARK: - Examples
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
-        // BetterSegmentedControl as a navigation item
+        let segments = [LabelSegment(text: "Lights On",
+                                     normalFont: UIFont(name: "Avenir", size: 13.0)!,
+                                     normalTextColor: .lightGray,
+                                     selectedFont: UIFont(name: "Avenir", size: 13.0)!,
+                                     selectedTextColor: .white),
+                        LabelSegment(text: "Lights Off",
+                                     normalFont: UIFont(name: "Avenir", size: 13.0)!,
+                                     normalTextColor: .lightGray,
+                                     selectedFont: UIFont(name: "Avenir", size: 13.0)!,
+                                     selectedTextColor: .white)]
         let navigationSegmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0),
-            titles: ["Lights On", "Lights Off"],
-            index: 0,
+            segments: segments,
             options:[.backgroundColor(.darkGray),
-                     .titleColor(.lightGray),
                      .indicatorViewBackgroundColor(UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00)),
-                     .selectedTitleColor(.white),
                      .cornerRadius(3.0),
-                     .titleFont(UIFont(name: "Avenir", size: 13.0)!),
-                     .selectedTitleFont(UIFont(name: "Avenir", size: 13.0)!),
                      .bouncesOnChange(false)])
         navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         navigationItem.titleView = navigationSegmentedControl
-        
+        /*
         // Control 1: Created and designed in IB that announces its value on interaction
         control1.titles = ["Recent", "Nearby", "All"]
         control1.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
@@ -89,6 +94,7 @@ class ViewController: UIViewController {
         customSubview.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         indicatorControl.addSubviewToIndicator(customSubview)
         view.addSubview(indicatorControl)
+         */
     }
     
     // MARK: - Action handlers
@@ -104,7 +110,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func segmentedControl1ValueChanged(_ sender: BetterSegmentedControl) {
-        print("The selected index is \(sender.index) and the title is \(sender.titles[Int(sender.index)])")
+        print("The selected index is \(sender.index)")
     }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "BetterSegmentedControl",
-  "version": "0.8",
+  "version": "0.9",
   "summary": "An easy to use, customizable replacement for UISegmentedControl & UISwitch.",
   "description": "BetterSegmentedControl is an easy to use, customizable replacement for UISegmentedControl and UISwitch written in Swift.",
   "homepage": "https://github.com/gmarm/BetterSegmentedControl",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/gmarm/BetterSegmentedControl.git",
-    "tag": "0.8"
+    "tag": "0.9"
   },
   "social_media_url": "https://twitter.com/gmarmas",
   "platforms": {

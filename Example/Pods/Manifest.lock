@@ -1,5 +1,5 @@
 PODS:
-  - BetterSegmentedControl (0.8)
+  - BetterSegmentedControl (0.9)
   - Nimble (7.0.2)
   - Quick (1.2.0)
 
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BetterSegmentedControl: 048384db0ce84e3c3e3ae0c54266541cb9c3b319
+  BetterSegmentedControl: d5b10cbcd2aca6ac68087ead581d7202658a89c3
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 
