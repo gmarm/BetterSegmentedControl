@@ -7,9 +7,7 @@
 
 import Foundation
 
-// MARK: - BetterSegmentedControl
 @IBDesignable open class BetterSegmentedControl: UIControl {
-    // MARK: IndicatorView
     fileprivate class IndicatorView: UIView {
         // MARK: Properties
         fileprivate let segmentMaskView = UIView()
@@ -159,7 +157,7 @@ import Foundation
         }
     }
     
-    // MARK: - Private properties
+    // MARK: Private properties
     fileprivate let normalSegmentsView = UIView()
     fileprivate let selectedSegmentsView = UIView()
     fileprivate let indicatorView = IndicatorView()
@@ -204,12 +202,8 @@ import Foundation
 
     @available(*, unavailable, message: "Use init(frame:titles:index:options:) instead.")
     convenience init() {
-        let firstSegment = LabelSegment()
-        firstSegment.text = "First"
-        let secondSegment = LabelSegment()
-        secondSegment.text = "Second"
         self.init(frame: .zero,
-                  segments: [firstSegment, secondSegment])
+                  segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
     }
     fileprivate func completeInit() {
         layer.masksToBounds = true

@@ -18,34 +18,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        let segments = [LabelSegment(text: "Lights On",
-                                     normalFont: UIFont(name: "Avenir", size: 13.0)!,
-                                     normalTextColor: .lightGray,
-                                     selectedFont: UIFont(name: "Avenir", size: 13.0)!,
-                                     selectedTextColor: .white),
-                        LabelSegment(text: "Lights Off",
-                                     normalFont: UIFont(name: "Avenir", size: 13.0)!,
-                                     normalTextColor: .lightGray,
-                                     selectedFont: UIFont(name: "Avenir", size: 13.0)!,
-                                     selectedTextColor: .white)]
         let navigationSegmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0),
-            segments: segments,
+            segments: LabelSegment.segments(withTitles: ["Lights On", "Lights Off"],
+                                            normalFont: UIFont(name: "Avenir", size: 13.0)!,
+                                            normalTextColor: .lightGray,
+                                            selectedFont: UIFont(name: "Avenir", size: 13.0)!,
+                                            selectedTextColor: .white),
             options:[.backgroundColor(.darkGray),
                      .indicatorViewBackgroundColor(UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00)),
                      .cornerRadius(3.0),
                      .bouncesOnChange(false)])
         navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         navigationItem.titleView = navigationSegmentedControl
-        /*
+        
         // Control 1: Created and designed in IB that announces its value on interaction
-        control1.titles = ["Recent", "Nearby", "All"]
-        control1.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
-        control1.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
-        
+        control1.segments = LabelSegment.segments(withTitles: ["Recent", "Nearby", "All"],
+                                                  normalFont: UIFont(name: "HelveticaNeue-Medium", size: 13.0)!,
+                                                  selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 13.0)!)
         // Control 2: Exclusively defined in IB
-        
+        /*
         // Control 3: Many options & error handling
         control3.titles = ["One","Two","Three","Four","Five","Six"]
         control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!

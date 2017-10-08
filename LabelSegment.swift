@@ -66,3 +66,23 @@ open class LabelSegment: BetterSegmentedControlSegment {
         return label
     }()
 }
+
+public extension LabelSegment {
+    class func segments(withTitles titles: [String],
+                               normalBackgroundColor: UIColor? = nil,
+                               normalFont: UIFont? = nil,
+                               normalTextColor: UIColor? = nil,
+                               selectedBackgroundColor: UIColor? = nil,
+                               selectedFont: UIFont? = nil,
+                               selectedTextColor: UIColor? = nil) -> [BetterSegmentedControlSegment] {
+        return titles.map {
+            LabelSegment(text: $0,
+                         normalBackgroundColor: normalBackgroundColor,
+                         normalFont: normalFont,
+                         normalTextColor: normalTextColor,
+                         selectedBackgroundColor: selectedBackgroundColor,
+                         selectedFont: selectedFont,
+                         selectedTextColor: selectedTextColor)
+        }
+    }
+}
