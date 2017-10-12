@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRg-26-sIB" userLabel="Control 1" customClass="BetterSegmentedControl" customModule="BetterSegmentedControl">
-                                <rect key="frame" x="16" y="94" width="343" height="44"/>
+                                <rect key="frame" x="16" y="114" width="343" height="44"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="knM-JV-HxM"/>
@@ -52,7 +52,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aBR-d5-mUa" userLabel="Control 2" customClass="BetterSegmentedControl" customModule="BetterSegmentedControl">
-                                <rect key="frame" x="16" y="168" width="343" height="40"/>
+                                <rect key="frame" x="16" y="188" width="343" height="40"/>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.32941176470588235" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="aCw-e2-GOD"/>
@@ -73,7 +73,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s9Z-Wc-R9b" userLabel="Control 3" customClass="BetterSegmentedControl" customModule="BetterSegmentedControl">
-                                <rect key="frame" x="16" y="238" width="343" height="44"/>
+                                <rect key="frame" x="16" y="258" width="343" height="44"/>
                                 <color key="backgroundColor" red="0.17254901960784313" green="0.68627450980392157" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="0B8-wP-Iis"/>
