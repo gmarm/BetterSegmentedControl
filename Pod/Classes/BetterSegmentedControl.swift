@@ -8,7 +8,7 @@
 import Foundation
 
 @IBDesignable open class BetterSegmentedControl: UIControl {
-    fileprivate class IndicatorView: UIView {
+    private class IndicatorView: UIView {
         // MARK: Properties
         fileprivate let segmentMaskView = UIView()
         fileprivate var cornerRadius: CGFloat = 0 {
@@ -32,17 +32,17 @@ import Foundation
             super.init(coder: aDecoder)
             finishInit()
         }
-        fileprivate func finishInit() {
+        private func finishInit() {
             layer.masksToBounds = true
             segmentMaskView.backgroundColor = .black
         }
     }
     
     // MARK: Constants
-    fileprivate struct Animation {
-        fileprivate static let withBounceDuration: TimeInterval = 0.3
-        fileprivate static let springDamping: CGFloat = 0.75
-        fileprivate static let withoutBounceDuration: TimeInterval = 0.2
+    private struct Animation {
+        static let withBounceDuration: TimeInterval = 0.3
+        static let springDamping: CGFloat = 0.75
+        static let withoutBounceDuration: TimeInterval = 0.2
     }
     
     // MARK: Error handling
@@ -52,7 +52,7 @@ import Foundation
     
     // MARK: Properties
     /// The selected index
-    public fileprivate(set) var index: UInt
+    public private(set) var index: UInt
     /// The titles / options available for selection
     public var segments: [BetterSegmentedControlSegment] {
         didSet {
@@ -104,15 +104,15 @@ import Foundation
         }
     }
     /// Whether the indicator should bounce when selecting a new index. Defaults to true
-    @IBInspectable public fileprivate(set) var bouncesOnChange: Bool = true
+    @IBInspectable public private(set) var bouncesOnChange: Bool = true
     /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to false
-    @IBInspectable public fileprivate(set) var alwaysAnnouncesValue: Bool = false
+    @IBInspectable public private(set) var alwaysAnnouncesValue: Bool = false
     /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to true
-    @IBInspectable public fileprivate(set) var announcesValueImmediately: Bool = true
+    @IBInspectable public private(set) var announcesValueImmediately: Bool = true
     /// Whether the the control should ignore pan gestures. Defaults to false
-    @IBInspectable public fileprivate(set) var panningDisabled: Bool = false
+    @IBInspectable public private(set) var panningDisabled: Bool = false
     /// The control's and indicator's corner radii
-    @IBInspectable public fileprivate(set) var cornerRadius: CGFloat {
+    @IBInspectable public private(set) var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -123,7 +123,7 @@ import Foundation
         }
     }
     /// The indicator view's background color
-    @IBInspectable fileprivate(set) public var indicatorViewBackgroundColor: UIColor? {
+    @IBInspectable private(set) public var indicatorViewBackgroundColor: UIColor? {
         get {
             return indicatorView.backgroundColor
         }
@@ -132,11 +132,11 @@ import Foundation
         }
     }
     /// The indicator view's inset. Defaults to 2.0
-    @IBInspectable public fileprivate(set) var indicatorViewInset: CGFloat = 2.0 {
+    @IBInspectable public private(set) var indicatorViewInset: CGFloat = 2.0 {
         didSet { setNeedsLayout() }
     }
     /// The indicator view's border width
-    @IBInspectable public fileprivate(set) var indicatorViewBorderWidth: CGFloat {
+    @IBInspectable public private(set) var indicatorViewBorderWidth: CGFloat {
         get {
             return indicatorView.layer.borderWidth
         }
@@ -145,7 +145,7 @@ import Foundation
         }
     }
     /// The indicator view's border color
-    @IBInspectable public fileprivate(set) var indicatorViewBorderColor: UIColor? {
+    @IBInspectable public private(set) var indicatorViewBorderColor: UIColor? {
         get {
             guard let color = indicatorView.layer.borderColor else {
                 return nil
@@ -158,22 +158,22 @@ import Foundation
     }
     
     // MARK: Private properties
-    fileprivate let normalSegmentsView = UIView()
-    fileprivate let selectedSegmentsView = UIView()
-    fileprivate let indicatorView = IndicatorView()
-    fileprivate var initialIndicatorViewFrame: CGRect?
+    private let normalSegmentsView = UIView()
+    private let selectedSegmentsView = UIView()
+    private let indicatorView = IndicatorView()
+    private var initialIndicatorViewFrame: CGRect?
 
-    fileprivate var tapGestureRecognizer: UITapGestureRecognizer!
-    fileprivate var panGestureRecognizer: UIPanGestureRecognizer!
+    private var tapGestureRecognizer: UITapGestureRecognizer!
+    private var panGestureRecognizer: UIPanGestureRecognizer!
     
-    fileprivate var width: CGFloat { return bounds.width }
-    fileprivate var height: CGFloat { return bounds.height }
-    fileprivate var normalSegmentCount: Int { return normalSegmentsView.subviews.count }
-    fileprivate var normalSegments: [UIView] { return normalSegmentsView.subviews }
-    fileprivate var selectedSegments: [UIView] { return selectedSegmentsView.subviews }
-    fileprivate var segmentViews: [UIView] { return normalSegments + selectedSegments}
-    fileprivate var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
-    fileprivate lazy var defaultSegments: [BetterSegmentedControlSegment] = {
+    private var width: CGFloat { return bounds.width }
+    private var height: CGFloat { return bounds.height }
+    private var normalSegmentCount: Int { return normalSegmentsView.subviews.count }
+    private var normalSegments: [UIView] { return normalSegmentsView.subviews }
+    private var selectedSegments: [UIView] { return selectedSegmentsView.subviews }
+    private var segmentViews: [UIView] { return normalSegments + selectedSegments}
+    private var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
+    private lazy var defaultSegments: [BetterSegmentedControlSegment] = {
         return [LabelSegment(text: "First"), LabelSegment(text: "Second")]
     }()
     
@@ -205,7 +205,7 @@ import Foundation
         self.init(frame: .zero,
                   segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
     }
-    fileprivate func completeInit() {
+    private func completeInit() {
         layer.masksToBounds = true
         
         addSubview(normalSegmentsView)
@@ -281,7 +281,7 @@ import Foundation
     }
     
     // MARK: Animations
-    fileprivate func moveIndicatorViewToIndex(_ animated: Bool, shouldSendEvent: Bool) {
+    private func moveIndicatorViewToIndex(_ animated: Bool, shouldSendEvent: Bool) {
         if animated {
             if shouldSendEvent && announcesValueImmediately {
                 sendActions(for: .valueChanged)
@@ -306,28 +306,28 @@ import Foundation
     }
     
     // MARK: Helpers
-    fileprivate func elementFrame(forIndex index: UInt) -> CGRect {
+    private func elementFrame(forIndex index: UInt) -> CGRect {
         let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentCount)
         return CGRect(x: CGFloat(index) * elementWidth + indicatorViewInset,
                       y: indicatorViewInset,
                       width: elementWidth,
                       height: height - totalInsetSize)
     }
-    fileprivate func nearestIndex(toPoint point: CGPoint) -> UInt {
+    private func nearestIndex(toPoint point: CGPoint) -> UInt {
         let distances = normalSegments.map { abs(point.x - $0.center.x) }
         return UInt(distances.index(of: distances.min()!)!)
     }
-    fileprivate func moveIndicatorView() {
+    private func moveIndicatorView() {
         indicatorView.frame = normalSegments[Int(self.index)].frame
         layoutIfNeeded()
     }
     
     // MARK: Action handlers
-    @objc fileprivate func tapped(_ gestureRecognizer: UITapGestureRecognizer!) {
+    @objc private func tapped(_ gestureRecognizer: UITapGestureRecognizer!) {
         let location = gestureRecognizer.location(in: self)
         try! setIndex(nearestIndex(toPoint: location))
     }
-    @objc fileprivate func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
+    @objc private func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
         guard !panningDisabled else {
             return
         }
