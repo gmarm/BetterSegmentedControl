@@ -71,12 +71,14 @@ import Foundation
             setNeedsLayout()
         }
     }
+    /// A list of options to configure the control with
     public var options: [BetterSegmentedControlOption]? {
         get { return nil }
         set {
             guard let options = newValue else {
                 return
             }
+            
             for option in options {
                 switch option {
                 case let .indicatorViewBackgroundColor(value):
@@ -194,13 +196,13 @@ import Foundation
         super.init(coder: aDecoder)
         completeInit()
     }
-    @available(*, deprecated, message: "Use init(frame:titles:index:options:) instead.")
+    @available(*, unavailable, message: "Use init(frame:segments:index:options:) instead.")
     convenience override public init(frame: CGRect) {
         self.init(frame: frame,
                   segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
     }
 
-    @available(*, unavailable, message: "Use init(frame:titles:index:options:) instead.")
+    @available(*, unavailable, message: "Use init(frame:segments:index:options:) instead.")
     convenience init() {
         self.init(frame: .zero,
                   segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
@@ -215,14 +217,11 @@ import Foundation
         
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BetterSegmentedControl.tapped(_:)))
         addGestureRecognizer(tapGestureRecognizer)
-        
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(BetterSegmentedControl.panned(_:)))
         panGestureRecognizer.delegate = self
         addGestureRecognizer(panGestureRecognizer)
         
-        guard segments.count > 1 else {
-            return
-        }
+        guard segments.count > 1 else { return }
         
         for segment in segments {
             normalSegmentsView.addSubview(segment.normalView)
@@ -248,16 +247,35 @@ import Foundation
             selectedSegmentsView.subviews[index].frame = frame
         }
     }
+    open override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        setDefaultLabelTextSegmentColorsFromInterfaceBuilder()
+    }
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        setDefaultLabelTextSegmentColorsFromInterfaceBuilder()
+    }
+    private func setDefaultLabelTextSegmentColorsFromInterfaceBuilder() {
+        guard let normalLabelSegments = normalSegments as? [UILabel],
+            let selectedLabelSegments = selectedSegments as? [UILabel] else {
+                return
+        }
+        
+        normalLabelSegments.forEach {
+            $0.textColor = indicatorView.backgroundColor
+        }
+        selectedLabelSegments.forEach {
+            $0.textColor = backgroundColor
+        }
+    }
     
     // MARK: Index Setting
-    /**
-     Sets the control's index.
-     
-     - parameter index:    The new index
-     - parameter animated: (Optional) Whether the change should be animated or not. Defaults to true.
-     
-     - throws: An error of type IndexBeyondBounds(UInt) is thrown if an index beyond the available indices is passed.
-     */
+    /// Sets the control's index.
+    ///
+    /// - Parameters:
+    ///   - index: The new index
+    ///   - animated: (Optional) Whether the change should be animated or not. Defaults to true.
+    /// - Throws: An error of type IndexBeyondBounds(UInt) is thrown if an index beyond the available indices is passed.
     public func setIndex(_ index: UInt, animated: Bool = true) throws {
         guard normalSegments.indices.contains(Int(index)) else {
             throw IndexError.indexBeyondBounds(index)
@@ -268,14 +286,9 @@ import Foundation
     }
 
     // MARK: Indicator View Customization
-
-    /**
-     Adds the passed view as a subview to the indicator view
-     
-     - parameter view: The view to be added to the indicator view
-     
-     - note: The added view must be able to layout & size itself and will not be autoresized.
-     */
+    /// Adds the passed view as a subview to the indicator view
+    ///
+    /// - Parameter view: The view to be added to the indicator view
     public func addSubviewToIndicator(_ view: UIView) {
         indicatorView.addSubview(view)
     }

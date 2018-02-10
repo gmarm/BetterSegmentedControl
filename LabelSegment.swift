@@ -59,7 +59,7 @@ open class LabelSegment: BetterSegmentedControlSegment {
         let label = UILabel()
         label.text = text
         label.backgroundColor = selectedBackgroundColor
-        label.font = normalFont
+        label.font = selectedFont
         label.textColor = selectedTextColor
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
