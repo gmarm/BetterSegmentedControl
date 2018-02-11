@@ -44,27 +44,32 @@ open class LabelSegment: BetterSegmentedControlSegment {
         self.selectedTextColor = selectedTextColor ?? DefaultValues.selectedTextColor
     }
     
-    // MARK:- BetterSegmentedControlSegment
+    // MARK: BetterSegmentedControlSegment
     public lazy var normalView: UIView = {
-        let label = UILabel()
-        label.text = text
-        label.backgroundColor = normalBackgroundColor
-        label.font = normalFont
-        label.textColor = normalTextColor
-        label.lineBreakMode = .byTruncatingTail
-        label.textAlignment = .center
-        return label
+        return label(withText: text,
+                     backgroundColor: normalBackgroundColor,
+                     font: normalFont,
+                     textColor: normalTextColor)
     }()
     public lazy var selectedView: UIView = {
+        return label(withText: text,
+                     backgroundColor: selectedBackgroundColor,
+                     font: selectedFont,
+                     textColor: selectedTextColor)
+    }()
+    private func label(withText text: String?,
+                       backgroundColor: UIColor,
+                       font: UIFont,
+                       textColor: UIColor) -> UILabel {
         let label = UILabel()
         label.text = text
-        label.backgroundColor = selectedBackgroundColor
-        label.font = selectedFont
-        label.textColor = selectedTextColor
+        label.backgroundColor = backgroundColor
+        label.font = font
+        label.textColor = textColor
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
         return label
-    }()
+    }
 }
 
 public extension LabelSegment {
