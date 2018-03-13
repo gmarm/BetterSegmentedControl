@@ -21,6 +21,7 @@ public enum BetterSegmentedControlOption {
     case titleBorderWidth(CGFloat)
     case titleBorderColor(UIColor)
     case titleNumberOfLines(Int)
+    case segmentHorizontalGap(CGFloat)
     
     /* Selected segment */
     case indicatorViewBackgroundColor(UIColor)
