@@ -133,6 +133,8 @@ import UIKit
                     indicatorViewBackgroundColor = value
                 case let .indicatorViewInset(value):
                     indicatorViewInset = value
+                case let .segmentHorizontalGap(value):
+                    segmentHorizontalGap = value
                 case let .indicatorViewBorderWidth(value):
                     indicatorViewBorderWidth = value
                 case let .indicatorViewBorderColor(value):
@@ -186,6 +188,12 @@ import UIKit
     @IBInspectable public fileprivate(set) var indicatorViewInset: CGFloat = 2.0 {
         didSet { setNeedsLayout() }
     }
+    
+    /// The indicator view's inset. Defaults to 0
+    @IBInspectable public fileprivate(set) var segmentHorizontalGap: CGFloat = 0 {
+        didSet { setNeedsLayout() }
+    }
+    
     /// The indicator view's border width
     @IBInspectable public fileprivate(set) var indicatorViewBorderWidth: CGFloat {
         get {
@@ -256,7 +264,7 @@ import UIKit
     fileprivate let selectedTitleLabelsView = UIView()
     fileprivate let indicatorView = IndicatorView()
     fileprivate var initialIndicatorViewFrame: CGRect?
-
+    
     fileprivate var tapGestureRecognizer: UITapGestureRecognizer!
     fileprivate var panGestureRecognizer: UIPanGestureRecognizer!
     
@@ -295,7 +303,7 @@ import UIKit
                             .indicatorViewBackgroundColor(Color.indicatorViewBackground),
                             .selectedTitleColor(Color.selectedTitle)])
     }
-
+    
     @available(*, unavailable, message: "Use init(frame:titles:index:options:) instead.")
     convenience init() {
         self.init(frame: CGRect.zero,
@@ -356,9 +364,9 @@ import UIKit
         self.index = index
         moveIndicatorViewToIndex(animated, shouldSendEvent: (self.index != oldIndex || alwaysAnnouncesValue))
     }
-
+    
     // MARK: Indicator View Customization
-
+    
     /**
      Adds the passed view as a subview to the indicator view
      
@@ -397,8 +405,9 @@ import UIKit
     
     // MARK: Helpers
     fileprivate func elementFrame(forIndex index: UInt) -> CGRect {
-        let elementWidth = (width - totalInsetSize) / CGFloat(titleLabelsCount)
-        return CGRect(x: CGFloat(index) * elementWidth + indicatorViewInset,
+        let elementWidth = (width - totalInsetSize - segmentHorizontalGap) / CGFloat(titleLabelsCount)
+        let elementGap = segmentHorizontalGap * CGFloat(index)
+        return CGRect(x: (CGFloat(index) * elementWidth) + indicatorViewInset + elementGap,
                       y: indicatorViewInset,
                       width: elementWidth,
                       height: height - totalInsetSize)
@@ -446,3 +455,4 @@ extension BetterSegmentedControl: UIGestureRecognizerDelegate {
         return super.gestureRecognizerShouldBegin(gestureRecognizer)
     }
 }
+
