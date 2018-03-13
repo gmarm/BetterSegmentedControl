@@ -405,7 +405,7 @@ import UIKit
     
     // MARK: Helpers
     fileprivate func elementFrame(forIndex index: UInt) -> CGRect {
-        let elementWidth = (width - totalInsetSize) / CGFloat(titleLabelsCount)
+        let elementWidth = (width - totalInsetSize - segmentHorizontalGap) / CGFloat(titleLabelsCount)
         let elementGap = segmentHorizontalGap * CGFloat(index)
         return CGRect(x: (CGFloat(index) * elementWidth) + indicatorViewInset + elementGap,
                       y: indicatorViewInset,
