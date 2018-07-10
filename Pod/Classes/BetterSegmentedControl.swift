@@ -307,7 +307,7 @@ import UIKit
                             .selectedTitleColor(Color.selectedTitle)])
     }
     fileprivate func finishInit() {
-        layer.masksToBounds = true
+        layer.masksToBounds = indicatorViewInset >= 0
         
         addSubview(titleLabelsView)
         addSubview(indicatorView)
