@@ -184,7 +184,10 @@ import UIKit
     }
     /// The indicator view's inset. Defaults to 2.0
     @IBInspectable public fileprivate(set) var indicatorViewInset: CGFloat = 2.0 {
-        didSet { setNeedsLayout() }
+        didSet {
+            setNeedsLayout()
+            layer.masksToBounds = indicatorViewInset >= 0
+        }
     }
     /// The indicator view's border width
     @IBInspectable public fileprivate(set) var indicatorViewBorderWidth: CGFloat {
@@ -307,7 +310,7 @@ import UIKit
                             .selectedTitleColor(Color.selectedTitle)])
     }
     fileprivate func finishInit() {
-        layer.masksToBounds = indicatorViewInset >= 0
+        layer.masksToBounds = true
         
         addSubview(titleLabelsView)
         addSubview(indicatorView)
