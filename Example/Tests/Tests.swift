@@ -8,135 +8,201 @@
 
 import Quick
 import Nimble
+import Nimble_Snapshots
 @testable import BetterSegmentedControl
 
 class BetterSegmentedControlSpec: QuickSpec {
     override func spec() {
         describe("a BetterSegmentedControl") {
-            context("after it is initialized") {
-                context("using the designated initializer") {
-                    var control: BetterSegmentedControl!
+            var control: BetterSegmentedControl!
+            
+            context("when initialized") {
+                context("as example 1") {
+                    var testViewController: TestViewController2!
+                    beforeEach({
+                        testViewController = TestViewController2()
+                        
+                        control = BetterSegmentedControl(
+                            frame: CGRect(x: 0, y: 0, width: 300, height: 44),
+                            segments: LabelSegment.segments(withTitles: ["One", "Two"],
+                                                            normalBackgroundColor: .red,
+                                                            normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
+                                                            normalTextColor: .lightGray,
+                                                            selectedBackgroundColor: .blue,
+                                                            selectedFont: UIFont(name: "HelveticaNeue-Bold", size: 14.0)!,
+                                                            selectedTextColor: .white),
+                            index: 1,
+                            options: [.backgroundColor(.purple),
+                                      .indicatorViewBackgroundColor(.green),
+                                      .indicatorViewInset(4.0),
+                                      .indicatorViewBorderWidth(2.0),
+                                      .indicatorViewBorderColor(.magenta),
+                                      .cornerRadius(15.0)])
+                        
+                        control.addTarget(testViewController, action: #selector(TestViewController2.valueChanged), for: .valueChanged)
+                    })
+                    it("renders correctly", closure: {
+                        expect(control).to(haveValidSnapshot())
+                    })
+                    it("renders corner radius updates correctly", closure: {
+                        control.options = [.cornerRadius(8)]
+                        expect(control).to(haveValidSnapshot())
+                    })
+                    it("renders indicator view inset updates correctly", closure: {
+                        control.options = [.indicatorViewInset(0)]
+                        expect(control).to(haveValidSnapshot())
+                    })
+                    it("behaves correctly when setting index", closure: {
+                        control.setIndex(0)
+                        control.setIndex(1)
+                        expect(testViewController.valueChangedCalledCount).to(equal(2))
+                    })
+                }
+                context("as example 2") {
                     beforeEach({
                         control = BetterSegmentedControl(
                             frame: CGRect(x: 0, y: 0, width: 300, height: 44),
-                            titles: ["One","Two"],
+                            segments: LabelSegment.segments(withTitles: ["One", "Two"],
+                                                            normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
+                                                            normalTextColor: .lightGray,
+                                                            selectedBackgroundColor: .blue,
+                                                            selectedFont: UIFont(name: "HelveticaNeue-Bold", size: 14.0)!,
+                                                            selectedTextColor: .white),
                             index: 1,
-                            options: [.backgroundColor(.red),
-                                      .titleColor(.blue),
+                            options: [.backgroundColor(.purple),
                                       .indicatorViewBackgroundColor(.green),
-                                      .selectedTitleColor(.purple),
-                                      .bouncesOnChange(false),
-                                      .alwaysAnnouncesValue(true),
-                                      .announcesValueImmediately(true),
-                                      .panningDisabled(true),
-                                      .cornerRadius(10.0),
                                       .indicatorViewInset(4.0),
                                       .indicatorViewBorderWidth(2.0),
-                                      .indicatorViewBorderColor(.red),.titleFont(UIFont(name: "HelveticaNeue-Light", size: 14.0)!),
-                                      .selectedTitleFont(UIFont(name: "HelveticaNeue-Light", size: 14.0)!),
-                                      .titleBorderWidth(2.0),
-                                      .titleBorderColor(UIColor.red)])
+                                      .indicatorViewBorderColor(.magenta),
+                                      .cornerRadius(15.0)])
                     })
-                    it("has the frame passed", closure: {
-                        expect(control.frame.equalTo(CGRect(x: 0, y: 0, width: 300, height: 44))).to(beTrue())
+                    it("renders correctly", closure: {
+                        expect(control).to(haveValidSnapshot())
                     })
-                    it("has the index passed", closure: {
-                        expect(control.index) == 1
-                    })
-                    it("has the titles passed", closure: {
-                        expect(control.titles) == ["One","Two"]
-                    })
-                    it("has the background color passed", closure: {
-                        expect(control.backgroundColor).to(equal(UIColor.red))
-                    })
-                    it("has the title color passed", closure: {
-                        expect(control.titleColor).to(equal(UIColor.blue))
-                    })
-                    it("has the indicator view background color passed", closure: {
-                        expect(control.indicatorViewBackgroundColor).to(equal(UIColor.green))
-                    })
-                    it("has the selected title color passed", closure: {
-                        expect(control.selectedTitleColor).to(equal(UIColor.purple))
-                    })
-                    it("doesn't bounce on change", closure: {
-                        expect(control.bouncesOnChange).to(beFalse())
-                    })
-                    it("can always announces its value on change", closure: {
-                        expect(control.alwaysAnnouncesValue).to(beTrue())
-                    })
-                    it("announces value immediately", closure: {
-                        expect(control.announcesValueImmediately).to(beTrue())
-                    })
-                    it("has panning disabled", closure: {
-                        expect(control.panningDisabled).to(beTrue())
-                    })
-                    it("has the corner radius passed in init", closure: {
-                        expect(control.cornerRadius).to(equal(10.0))
-                    })
-                    it("has the indicator view insets passed in init", closure: {
-                        expect(control.indicatorViewInset).to(equal(4.0))
-                    })
-                    it("has the indicator view border width passed in init", closure: {
-                        expect(control.indicatorViewBorderWidth).to(equal(2.0))
-                    })
-                    it("has the indicator view border color passed in init", closure: {
-                        expect(control.indicatorViewBorderColor).to(equal(UIColor.red))
-                    })
-                    it("has the custom title font passed in init", closure: {
-                        expect(control.titleFont).to(equal(UIFont(name: "HelveticaNeue-Light", size: 14.0)!))
-                    })
-                    it("has the custom selected title font passed in init", closure: {
-                        expect(control.selectedTitleFont).to(equal(UIFont(name: "HelveticaNeue-Light", size: 14.0)!))
-                    })
-                    it("has the title border width passed in init", closure: {
-                        expect(control.titleBorderWidth).to(equal(2.0))
-                    })
-                    
-                    context("when a subview is added to its indicator") {
-                        var underlineView: UIView!
-                        beforeEach({
-                            underlineView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-                            control.addSubviewToIndicator(underlineView)
-                        })
-                        it("has has a superview", closure: {
-                            expect(underlineView.superview).toNot(beNil())
-                        })
-                    }
                 }
-                context("using initWithCoder") {
-                    var control: BetterSegmentedControl!
+                context("as example 3") {
+                    beforeEach({
+                        control = BetterSegmentedControl(
+                            frame: CGRect(x: 0, y: 0, width: 300, height: 44),
+                            segments: LabelSegment.segments(withTitles: ["One", "Two"],
+                                                            normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
+                                                            normalTextColor: .lightGray,
+                                                            selectedFont: UIFont(name: "HelveticaNeue-Bold", size: 14.0)!,
+                                                            selectedTextColor: .white),
+                            index: 1,
+                            options: [.backgroundColor(.purple),
+                                      .indicatorViewBackgroundColor(.green),
+                                      .indicatorViewInset(4.0),
+                                      .indicatorViewBorderWidth(2.0),
+                                      .indicatorViewBorderColor(.magenta),
+                                      .cornerRadius(15.0)])
+                    })
+                    it("renders correctly", closure: {
+                        expect(control).to(haveValidSnapshot())
+                    })
+                }
+                context("as example 4") {
+                    beforeEach({
+                        control = BetterSegmentedControl(
+                            frame: CGRect(x: 0, y: 0, width: 300, height: 44),
+                            segments: LabelSegment.segments(withTitles: ["One", "Two"],
+                                                            normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
+                                                            normalTextColor: .lightGray,
+                                                            selectedFont: UIFont(name: "HelveticaNeue-Bold", size: 14.0)!,
+                                                            selectedTextColor: .white),
+                            index: 1,
+                            options: [.backgroundColor(.purple),
+                                      .indicatorViewBackgroundColor(.green),
+                                      .indicatorViewBorderWidth(2.0),
+                                      .indicatorViewBorderColor(.magenta),
+                                      .cornerRadius(15.0)])
+                    })
+                    it("renders correctly", closure: {
+                        expect(control).to(haveValidSnapshot())
+                    })
+                }
+                context("as example 5") {
+                    beforeEach({
+                        control = BetterSegmentedControl(
+                            frame: CGRect(x: 0, y: 0, width: 300, height: 44),
+                            segments: LabelSegment.segments(withTitles: ["One", "Two"],
+                                                            normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
+                                                            normalTextColor: .lightGray,
+                                                            selectedFont: UIFont(name: "HelveticaNeue-Bold", size: 14.0)!,
+                                                            selectedTextColor: .white),
+                            index: 1,
+                            options: [.backgroundColor(.purple),
+                                      .indicatorViewBackgroundColor(.green),
+                                      .indicatorViewBorderWidth(2.0),
+                                      .cornerRadius(15.0)])
+                    })
+                    it("renders correctly", closure: {
+                        expect(control).to(haveValidSnapshot())
+                    })
+                }
+                context("as example 6") {
+                    beforeEach({
+                        control = BetterSegmentedControl(
+                            frame: CGRect(x: 0, y: 0, width: 300, height: 44),
+                            segments: LabelSegment.segments(withTitles: ["One", "Two"],
+                                                            normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
+                                                            normalTextColor: .lightGray,
+                                                            selectedFont: UIFont(name: "HelveticaNeue-Bold", size: 14.0)!,
+                                                            selectedTextColor: .white),
+                            index: 1,
+                            options: [.backgroundColor(.purple),
+                                      .indicatorViewBackgroundColor(.green),
+                                      .cornerRadius(15.0)])
+                    })
+                    it("renders correctly", closure: {
+                        expect(control).to(haveValidSnapshot())
+                    })
+                }
+                context("as example 6") {
+                    beforeEach({
+                        control = BetterSegmentedControl(
+                            frame: CGRect(x: 0, y: 0, width: 300, height: 44),
+                            segments: LabelSegment.segments(withTitles: ["One", "Two"],
+                                                            normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
+                                                            normalTextColor: .lightGray,
+                                                            selectedFont: UIFont(name: "HelveticaNeue-Bold", size: 14.0)!,
+                                                            selectedTextColor: .white),
+                            index: 1,
+                            options: [.backgroundColor(.purple),
+                                      .indicatorViewBackgroundColor(.red)])
+                    })
+                    it("renders correctly", closure: {
+                        expect(control).to(haveValidSnapshot())
+                    })
+                }
+                context("as example 7") {
+                    beforeEach({
+                        control = BetterSegmentedControl(
+                            frame: CGRect(x: 0.0, y: 400.0, width: 300, height: 30.0),
+                            segments: IconSegment.segments(withIcons: [#imageLiteral(resourceName: "facebook"), #imageLiteral(resourceName: "twitter")],
+                                                           iconSize: CGSize(width: 20.0, height: 20.0),
+                                                           normalIconTintColor: .white,
+                                                           selectedIconTintColor: UIColor(red:0.16, green:0.64, blue:0.94, alpha:1.00)),
+                            options: [.cornerRadius(15.0),
+                                      .backgroundColor(UIColor(red:0.16, green:0.64, blue:0.94, alpha:1.00)),
+                                      .indicatorViewBackgroundColor(.white)])
+                    })
+                    it("renders correctly", closure: {
+                        expect(control).to(haveValidSnapshot())
+                    })
+                }
+                context("as example 8") {
                     beforeEach({
                         let storyboard = UIStoryboard(name: "Test",
-                            bundle: Bundle(for: type(of: self)))
+                                                      bundle: Bundle(for: type(of: self)))
                         let viewController = storyboard.instantiateInitialViewController() as! TestViewController
                         UIApplication.shared.keyWindow!.rootViewController = viewController
                         expect(viewController).toNot(beNil())
                         expect(viewController.view).toNot(beNil())
                         control = viewController.control
                     })
-                    it("is not nil", closure: {
-                        expect(control).toNot(beNil())
-                    })
-                    it("has the frame set in IB", closure: {
-                        expect(control.frame.equalTo(CGRect(x: 10, y: 30, width: 480, height: 40))).to(beTrue())
-                    })
-                    it("has the default index 0", closure: {
-                        expect(control.index) == 0
-                    })
-                    it("has the default titles 'First, Second'", closure: {
-                        expect(control.titles) == ["First", "Second"]
-                    })
-                    it("has the background color set in IB", closure: {
-                        expect(control.backgroundColor).to(equal(UIColor(red: 0, green: 0, blue: 0, alpha: 1)))
-                    })
-                    it("has the title color set in IB", closure: {
-                        expect(control.titleColor).to(equal(UIColor(red: 1, green: 1, blue: 1, alpha: 1)))
-                    })
-                    it("has the indicator view background color set in IB", closure: {
-                        expect(control.indicatorViewBackgroundColor).to(equal(UIColor(red: 1, green: 1, blue: 1, alpha: 1)))
-                    })
-                    it("has the selected title color set in IB", closure: {
-                        expect(control.selectedTitleColor).to(equal(UIColor(red: 0, green: 0, blue: 0, alpha: 1)))
+                    it("renders correctly", closure: {
+                        expect(control).to(haveValidSnapshot())
                     })
                 }
             }

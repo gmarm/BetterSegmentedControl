@@ -101,15 +101,15 @@ import Foundation
         }
     }
     /// Whether the indicator should bounce when selecting a new index. Defaults to true
-    @IBInspectable public private(set) var bouncesOnChange: Bool = true
+    @IBInspectable public var bouncesOnChange: Bool = true
     /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to false
-    @IBInspectable public private(set) var alwaysAnnouncesValue: Bool = false
+    @IBInspectable public var alwaysAnnouncesValue: Bool = false
     /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to true
-    @IBInspectable public private(set) var announcesValueImmediately: Bool = true
+    @IBInspectable public var announcesValueImmediately: Bool = true
     /// Whether the the control should ignore pan gestures. Defaults to false
-    @IBInspectable public private(set) var panningDisabled: Bool = false
+    @IBInspectable public var panningDisabled: Bool = false
     /// The control's and indicator's corner radii
-    @IBInspectable public private(set) var cornerRadius: CGFloat {
+    @IBInspectable public var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -120,7 +120,7 @@ import Foundation
         }
     }
     /// The indicator view's background color
-    @IBInspectable private(set) public var indicatorViewBackgroundColor: UIColor? {
+    @IBInspectable public var indicatorViewBackgroundColor: UIColor? {
         get {
             return indicatorView.backgroundColor
         }
@@ -129,11 +129,11 @@ import Foundation
         }
     }
     /// The indicator view's inset. Defaults to 2.0
-    @IBInspectable public private(set) var indicatorViewInset: CGFloat = 2.0 {
+    @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
         didSet { setNeedsLayout() }
     }
     /// The indicator view's border width
-    @IBInspectable public private(set) var indicatorViewBorderWidth: CGFloat {
+    @IBInspectable public var indicatorViewBorderWidth: CGFloat {
         get {
             return indicatorView.layer.borderWidth
         }
@@ -142,7 +142,7 @@ import Foundation
         }
     }
     /// The indicator view's border color
-    @IBInspectable public private(set) var indicatorViewBorderColor: UIColor? {
+    @IBInspectable public var indicatorViewBorderColor: UIColor? {
         get {
             guard let color = indicatorView.layer.borderColor else {
                 return nil
@@ -182,8 +182,8 @@ import Foundation
         self.index = index
         self.segments = segments
         super.init(frame: frame)
-        self.options = options
         completeInit()
+        self.options = options
     }
     required public init?(coder aDecoder: NSCoder) {
         self.index = 0
@@ -205,8 +205,10 @@ import Foundation
     private func completeInit() {
         layer.masksToBounds = true
         
+        normalSegmentsView.clipsToBounds = true
         addSubview(normalSegmentsView)
         addSubview(indicatorView)
+        selectedSegmentsView.clipsToBounds = true
         addSubview(selectedSegmentsView)
         selectedSegmentsView.layer.mask = indicatorView.segmentMaskView.layer
         
@@ -219,7 +221,9 @@ import Foundation
         guard segments.count > 1 else { return }
         
         for segment in segments {
+            segment.normalView.clipsToBounds = true
             normalSegmentsView.addSubview(segment.normalView)
+            segment.selectedView.clipsToBounds = true
             selectedSegmentsView.addSubview(segment.selectedView)
         }
         
