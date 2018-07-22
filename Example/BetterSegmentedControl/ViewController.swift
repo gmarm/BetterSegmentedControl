@@ -38,19 +38,12 @@ class ViewController: UIViewController {
                                                   selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 13.0)!)
         // Control 2: Exclusively defined in IB
         
-        // Control 3: Many options & error handling
+        // Control 3: Many options
         control3.segments = LabelSegment.segments(withTitles: ["One","Two","Three","Four","Five","Six"],
                                                   normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
                                                   selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 14.0)!,
                                                   selectedTextColor: UIColor(red:0.20, green:0.68, blue:0.27, alpha:1.00))
-        do {
-            try control3.setIndex(10, animated: false)
-        } catch BetterSegmentedControl.IndexError.indexBeyondBounds(let invalidIndex) {
-            print("Tried setting invalid index \(invalidIndex) to demonstrate error handling.")
-        } catch {
-            print("An error occured")
-        }
-        try! control3.setIndex(2, animated: false)
+        control3.setIndex(10, animated: false)
         
         // Control 4: Added as a subview
         let viewSegmentedControl = BetterSegmentedControl(

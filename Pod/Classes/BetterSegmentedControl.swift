@@ -44,16 +44,11 @@ import Foundation
         static let springDamping: CGFloat = 0.75
         static let withoutBounceDuration: TimeInterval = 0.2
     }
-    
-    // MARK: Error handling
-    public enum IndexError: Error {
-        case indexBeyondBounds(UInt)
-    }
-    
+        
     // MARK: Properties
     /// The selected index
     public private(set) var index: UInt
-    /// The titles / options available for selection
+    /// The segments available for selection
     public var segments: [BetterSegmentedControlSegment] {
         didSet {
             guard segments.count > 1 else {
@@ -275,10 +270,9 @@ import Foundation
     /// - Parameters:
     ///   - index: The new index
     ///   - animated: (Optional) Whether the change should be animated or not. Defaults to true.
-    /// - Throws: An error of type IndexBeyondBounds(UInt) is thrown if an index beyond the available indices is passed.
-    public func setIndex(_ index: UInt, animated: Bool = true) throws {
+    public func setIndex(_ index: UInt, animated: Bool = true) {
         guard normalSegments.indices.contains(Int(index)) else {
-            throw IndexError.indexBeyondBounds(index)
+            return
         }
         let oldIndex = self.index
         self.index = index
@@ -338,7 +332,7 @@ import Foundation
     // MARK: Action handlers
     @objc private func tapped(_ gestureRecognizer: UITapGestureRecognizer!) {
         let location = gestureRecognizer.location(in: self)
-        try! setIndex(nearestIndex(toPoint: location))
+        setIndex(nearestIndex(toPoint: location))
     }
     @objc private func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
         guard !panningDisabled else {
@@ -354,7 +348,7 @@ import Foundation
             frame.origin.x = max(min(frame.origin.x, bounds.width - indicatorViewInset - frame.width), indicatorViewInset)
             indicatorView.frame = frame
         case .ended, .failed, .cancelled:
-            try! setIndex(nearestIndex(toPoint: indicatorView.center))
+            setIndex(nearestIndex(toPoint: indicatorView.center))
         default: break
         }
     }
