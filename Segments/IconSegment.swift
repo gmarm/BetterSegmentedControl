@@ -17,10 +17,12 @@ open class IconSegment: BetterSegmentedControlSegment {
     // MARK: Properties
     public var icon: UIImage
     public var iconSize: CGSize
-    public var normalBackgroundColor: UIColor
+    
     public var normalIconTintColor: UIColor
-    public var selectedBackgroundColor: UIColor
+    public var normalBackgroundColor: UIColor
+    
     public var selectedIconTintColor: UIColor
+    public var selectedBackgroundColor: UIColor
     
     // MARK: Lifecycle
     public init(icon: UIImage,
@@ -52,7 +54,7 @@ open class IconSegment: BetterSegmentedControlSegment {
     }()
     private func view(withIcon icon: UIImage,
                       iconSize: CGSize,
-                      backgroundColor: UIColor? = nil,
+                      backgroundColor: UIColor,
                       iconTintColor: UIColor) -> UIView {
         let view = UIView()
         view.backgroundColor = backgroundColor

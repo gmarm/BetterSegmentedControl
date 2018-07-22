@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         view.addSubview(viewSegmentedControl)
         
         // Control 5: Basic Icons
-        let basicIconsSegmentedControl = BetterSegmentedControl(
+        let iconsSegmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 0.0, y: 400.0, width: view.bounds.width/3, height: 30.0),
             segments: IconSegment.segments(withIcons: [#imageLiteral(resourceName: "facebook"), #imageLiteral(resourceName: "twitter")],
                                            iconSize: CGSize(width: 20.0, height: 20.0),
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
             options: [.cornerRadius(15.0),
                       .backgroundColor(UIColor(red:0.16, green:0.64, blue:0.94, alpha:1.00)),
                       .indicatorViewBackgroundColor(.white)])
-        view.addSubview(basicIconsSegmentedControl)
+        view.addSubview(iconsSegmentedControl)
     }
     
     // MARK: - Action handlers
