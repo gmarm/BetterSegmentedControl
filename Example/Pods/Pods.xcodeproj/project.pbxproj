@@ -38,9 +38,9 @@
 		46F82D467AFF3740AA4A40CDDB4BD051 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE147446A1225BA68EA82615B1436CC1 /* Foundation.framework */; };
 		47207B54047263ACF2E5F199B3F65F0A /* BeIdenticalTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC1C9E2A3E13F0A8571072CEA11F369 /* BeIdenticalTo.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		4808408D2274C9B90676FC0EF66B9C1E /* MatcherFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717AF86437D7E7AB6B6A15A235D724B0 /* MatcherFunc.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
-		4B9D4B3F202F7E86005B97DF /* IconSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D4B3E202F7E86005B97DF /* IconSegment.swift */; };
-		4BA59F681F8A1A1F0033BB5F /* BetterSegmentedControlSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA59F671F8A1A1F0033BB5F /* BetterSegmentedControlSegment.swift */; };
-		4BA59F6A1F8A1BBD0033BB5F /* LabelSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA59F691F8A1BBD0033BB5F /* LabelSegment.swift */; };
+		4B5483B2210494DD00383FFF /* BetterSegmentedControlSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5483B1210494DC00383FFF /* BetterSegmentedControlSegment.swift */; };
+		4B5483B5210494E200383FFF /* LabelSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5483B3210494E200383FFF /* LabelSegment.swift */; };
+		4B5483B6210494E200383FFF /* IconSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5483B4210494E200383FFF /* IconSegment.swift */; };
 		4CF1E5C7CB91BF006E4E43ABAD8A7F68 /* Pods-BetterSegmentedControl_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D248B3D57CCAC7ADB7D3B27B5336C /* Pods-BetterSegmentedControl_Example-dummy.m */; };
 		4FC0AF930B1056C380A136F02FAFFB34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE147446A1225BA68EA82615B1436CC1 /* Foundation.framework */; };
 		50C21E7288D286B608CD609024456087 /* BeAnInstanceOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79461A2B4BE2BA40AB9218BCE5141216 /* BeAnInstanceOf.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -181,11 +181,11 @@
 		411F88CB970F329F501B769033423B85 /* QCKDSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QCKDSL.m; path = Sources/QuickObjectiveC/DSL/QCKDSL.m; sourceTree = "<group>"; };
 		479921768FCC63AEAF1E486B55B5922A /* QuickConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QuickConfiguration.m; path = Sources/QuickObjectiveC/Configuration/QuickConfiguration.m; sourceTree = "<group>"; };
 		4A41887AB2E869A4834911FA773EDEE3 /* BeAKindOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeAKindOf.swift; path = Sources/Nimble/Matchers/BeAKindOf.swift; sourceTree = "<group>"; };
+		4B5483B1210494DC00383FFF /* BetterSegmentedControlSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BetterSegmentedControlSegment.swift; path = Pod/Classes/BetterSegmentedControlSegment.swift; sourceTree = "<group>"; };
+		4B5483B3210494E200383FFF /* LabelSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelSegment.swift; path = ../Pod/Classes/Segments/LabelSegment.swift; sourceTree = "<group>"; };
+		4B5483B4210494E200383FFF /* IconSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconSegment.swift; path = ../Pod/Classes/Segments/IconSegment.swift; sourceTree = "<group>"; };
 		4B6AD977D83B229BF60EED48EBB102E5 /* NimbleXCTestHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NimbleXCTestHandler.swift; path = Sources/Nimble/Adapters/NimbleXCTestHandler.swift; sourceTree = "<group>"; };
 		4B864160F17DFF97144820034ECDC6DC /* Pods-BetterSegmentedControl_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BetterSegmentedControl_Example.modulemap"; sourceTree = "<group>"; };
-		4B9D4B3E202F7E86005B97DF /* IconSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSegment.swift; sourceTree = "<group>"; };
-		4BA59F671F8A1A1F0033BB5F /* BetterSegmentedControlSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSegmentedControlSegment.swift; sourceTree = "<group>"; };
-		4BA59F691F8A1BBD0033BB5F /* LabelSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSegment.swift; sourceTree = "<group>"; };
 		4C6AD5086606432680A0B2E197075B5C /* World+DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "World+DSL.swift"; path = "Sources/Quick/DSL/World+DSL.swift"; sourceTree = "<group>"; };
 		4C9C2F6C6A6AE0C12F2106A55A7BB871 /* Pods-BetterSegmentedControl_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BetterSegmentedControl_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4E6D248B3D57CCAC7ADB7D3B27B5336C /* Pods-BetterSegmentedControl_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BetterSegmentedControl_Example-dummy.m"; sourceTree = "<group>"; };
@@ -431,8 +431,8 @@
 		4B5FEA942030371600D172A4 /* Segments */ = {
 			isa = PBXGroup;
 			children = (
-				4BA59F691F8A1BBD0033BB5F /* LabelSegment.swift */,
-				4B9D4B3E202F7E86005B97DF /* IconSegment.swift */,
+				4B5483B4210494E200383FFF /* IconSegment.swift */,
+				4B5483B3210494E200383FFF /* LabelSegment.swift */,
 			);
 			path = Segments;
 			sourceTree = "<group>";
@@ -571,7 +571,7 @@
 			children = (
 				832BF90A56546EFD300196E328E27021 /* BetterSegmentedControl.swift */,
 				400E911975FE6B082A0D92E378687762 /* Options.swift */,
-				4BA59F671F8A1A1F0033BB5F /* BetterSegmentedControlSegment.swift */,
+				4B5483B1210494DC00383FFF /* BetterSegmentedControlSegment.swift */,
 				4B5FEA942030371600D172A4 /* Segments */,
 				C717997AA5950BB642C2A9A34E3A60C0 /* Support Files */,
 			);
@@ -832,11 +832,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B5483B2210494DD00383FFF /* BetterSegmentedControlSegment.swift in Sources */,
 				2A0C39AC76BC054AEEE5FE8A4FEFC887 /* BetterSegmentedControl-dummy.m in Sources */,
-				4B9D4B3F202F7E86005B97DF /* IconSegment.swift in Sources */,
-				4BA59F681F8A1A1F0033BB5F /* BetterSegmentedControlSegment.swift in Sources */,
+				4B5483B6210494E200383FFF /* IconSegment.swift in Sources */,
 				D4E4E098B39A1E2EBE5DCD87C40BF6F9 /* BetterSegmentedControl.swift in Sources */,
-				4BA59F6A1F8A1BBD0033BB5F /* LabelSegment.swift in Sources */,
+				4B5483B5210494E200383FFF /* LabelSegment.swift in Sources */,
 				790EB72887E58B75882051DE917946B9 /* Options.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
