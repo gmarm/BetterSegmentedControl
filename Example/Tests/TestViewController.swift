@@ -13,3 +13,10 @@ import BetterSegmentedControl
 class TestViewController: UIViewController {
     @IBOutlet weak var control: BetterSegmentedControl!
 }
+
+class TestViewController2: UIViewController {
+    var valueChangedCalledCount = 0
+    @objc func valueChanged() {
+        valueChangedCalledCount += 1
+    }
+}

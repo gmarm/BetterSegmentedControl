@@ -8,20 +8,7 @@
 
 import Foundation
 
-public enum BetterSegmentedControlOption {
-    /* Non-selected segments */
-    case titleColor(UIColor)
-    case titleFont(UIFont)
-    
-    /* Selected segment */
-    case selectedTitleColor(UIColor)
-    case selectedTitleFont(UIFont)
-    
-    /* Other segment options */
-    case titleBorderWidth(CGFloat)
-    case titleBorderColor(UIColor)
-    case titleNumberOfLines(Int)
-    
+public enum BetterSegmentedControlOption {        
     /* Selected segment */
     case indicatorViewBackgroundColor(UIColor)
     case indicatorViewInset(CGFloat)

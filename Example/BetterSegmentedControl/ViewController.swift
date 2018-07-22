@@ -17,78 +17,61 @@ class ViewController: UIViewController {
     // MARK: - Examples
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // BetterSegmentedControl as a navigation item
+
         let navigationSegmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0),
-            titles: ["Lights On", "Lights Off"],
-            index: 0,
+            segments: LabelSegment.segments(withTitles: ["Lights On", "Lights Off"],
+                                            normalFont: UIFont(name: "Avenir", size: 13.0)!,
+                                            normalTextColor: .lightGray,
+                                            selectedFont: UIFont(name: "Avenir", size: 13.0)!,
+                                            selectedTextColor: .white),
             options:[.backgroundColor(.darkGray),
-                     .titleColor(.lightGray),
                      .indicatorViewBackgroundColor(UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00)),
-                     .selectedTitleColor(.white),
                      .cornerRadius(3.0),
-                     .titleFont(UIFont(name: "Avenir", size: 13.0)!),
-                     .selectedTitleFont(UIFont(name: "Avenir", size: 13.0)!),
                      .bouncesOnChange(false)])
         navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         navigationItem.titleView = navigationSegmentedControl
         
         // Control 1: Created and designed in IB that announces its value on interaction
-        control1.titles = ["Recent", "Nearby", "All"]
-        control1.titleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
-        control1.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
-        
+        control1.segments = LabelSegment.segments(withTitles: ["Recent", "Nearby", "All"],
+                                                  normalFont: UIFont(name: "HelveticaNeue-Light", size: 13.0)!,
+                                                  selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 13.0)!)
         // Control 2: Exclusively defined in IB
         
-        // Control 3: Many options & error handling
-        control3.titles = ["One","Two","Three","Four","Five","Six"]
-        control3.titleFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
-        control3.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
-        do {
-            try control3.setIndex(10, animated: false)
-        }
-        catch BetterSegmentedControl.IndexError.indexBeyondBounds(let invalidIndex) {
-            print("Tried setting invalid index \(invalidIndex) to demonstrate error handling.")
-        }
-        catch {
-            print("An error occured")
-        }
-        try! control3.setIndex(2, animated: false)
+        // Control 3: Many options
+        control3.segments = LabelSegment.segments(withTitles: ["One","Two","Three","Four","Five","Six"],
+                                                  normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
+                                                  selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 14.0)!,
+                                                  selectedTextColor: UIColor(red:0.20, green:0.68, blue:0.27, alpha:1.00))
+        control3.setIndex(10, animated: false)
         
         // Control 4: Added as a subview
         let viewSegmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 0.0, y: 332.0, width: view.bounds.width, height: 50.0),
-            titles: ["Artists", "Albums"],
+            segments: LabelSegment.segments(withTitles: ["Artists", "Albums"],
+                                            normalFont: UIFont(name: "HelveticaNeue", size: 16.0)!,
+                                            normalTextColor: .white,
+                                            selectedFont: UIFont(name: "HelveticaNeue", size: 16.0)!,
+                                            selectedTextColor: UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00)),
             index: 1,
             options: [.backgroundColor(UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)),
-                      .titleColor(.white),
                       .indicatorViewBackgroundColor(UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)),
-                      .selectedTitleColor(UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00)),
                       .cornerRadius(0.0),
-                      .titleFont(UIFont(name: "HelveticaNeue", size: 16.0)!),
-                      .selectedTitleFont(UIFont(name: "HelveticaNeue", size: 16.0)!),
                       .bouncesOnChange(false),
                       .panningDisabled(true)])
         view.addSubview(viewSegmentedControl)
-
-        // Control 5: Adding custom subview to Indicator
-        let indicatorControl = BetterSegmentedControl(
-            frame: CGRect(x: 0.0, y: 405.0, width: view.bounds.width, height: 50.0),
-            titles: ["Hello", "Goodbye"],
-            index: 0, options: [.backgroundColor(.lightGray),
-                                .titleColor(.white),
-                                .indicatorViewBorderColor(.white),
-                                .selectedTitleColor(.black),
-                                .bouncesOnChange(false),
-                                .panningDisabled(false)])
-        indicatorControl.autoresizingMask = [.flexibleWidth]
-        let customSubview = UIView(frame: CGRect(x: 0, y: 40, width: 40, height: 4.0))
-        customSubview.backgroundColor = .blue
-        customSubview.layer.cornerRadius = 2.0
-        customSubview.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
-        indicatorControl.addSubviewToIndicator(customSubview)
-        view.addSubview(indicatorControl)
+        
+        // Control 5: Basic Icons
+        let iconsSegmentedControl = BetterSegmentedControl(
+            frame: CGRect(x: 0.0, y: 400.0, width: view.bounds.width/3, height: 30.0),
+            segments: IconSegment.segments(withIcons: [#imageLiteral(resourceName: "facebook"), #imageLiteral(resourceName: "twitter")],
+                                           iconSize: CGSize(width: 20.0, height: 20.0),
+                                           normalIconTintColor: .white,
+                                           selectedIconTintColor: UIColor(red:0.16, green:0.64, blue:0.94, alpha:1.00)),
+            options: [.cornerRadius(15.0),
+                      .backgroundColor(UIColor(red:0.16, green:0.64, blue:0.94, alpha:1.00)),
+                      .indicatorViewBackgroundColor(.white)])
+        view.addSubview(iconsSegmentedControl)
     }
     
     // MARK: - Action handlers
@@ -104,7 +87,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func segmentedControl1ValueChanged(_ sender: BetterSegmentedControl) {
-        print("The selected index is \(sender.index) and the title is \(sender.titles[Int(sender.index)])")
+        print("The selected index is \(sender.index)")
     }
 }
 
