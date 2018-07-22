@@ -1,6 +1,6 @@
 # BetterSegmentedControl
 
-![](https://img.shields.io/badge/Swift-4.0-blue.svg?style=flat)
+![](https://img.shields.io/badge/Swift-4.1-blue.svg?style=flat)
 [![Version](https://img.shields.io/cocoapods/v/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
@@ -16,7 +16,6 @@ BetterSegmentedControl is an easy to use, customizable replacement for UISegment
 - [x] Plethora of customizable options from colors to insets and radii
 - [x] Designable straight in Interface Builder
 - [x] Customizable behavior
-- [x] Error handling
 
 ## Requirements
 
@@ -30,38 +29,28 @@ BetterSegmentedControl is an easy to use, customizable replacement for UISegment
 BetterSegmentedControl is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-_Swift 4.0_
+_Swift 4.x_
 ```ruby
-pod 'BetterSegmentedControl', '~> 0.9'
+pod 'BetterSegmentedControl', '~> 1.0'
 ```
 
-_Swift 3.0_
+_Swift 3.x_
 ```ruby
 pod 'BetterSegmentedControl', '0.8'
-```
-
-_Swift 2.x_
-```ruby
-pod 'BetterSegmentedControl', '0.4'
 ```
 
 ### Carthage
 
 If you prefer using [Carthage](https://github.com/Carthage/Carthage), simply add BetterSegmentedControl to your `Cartfile`:
 
-_Swift 4.0_
+_Swift 4.x_
 ```ruby
-github "gmarm/BetterSegmentedControl" ~> 0.9
+github "gmarm/BetterSegmentedControl" ~> 1.0
 ```
 
-_Swift 3.0_
+_Swift 3.x_
 ```ruby
 github "gmarm/BetterSegmentedControl" 0.8
-```
-
-_Swift 2.x_
-```ruby
-github "gmarm/BetterSegmentedControl" 0.4
 ```
 
 ### Manually
@@ -72,28 +61,19 @@ If you prefer not to use CocoaPods or Carthage, you can integrate BetterSegmente
 
 ```swift
 let control = BetterSegmentedControl(
-    frame: CGRect(x: 0.0, y: 100.0, width: view.bounds.width, height: 44.0),
-    titles: ["One", "Two", "Three"],
+    frame: CGRect(x: 0, y: 500, width: 300, height: 44),
+    segments: LabelSegment.segments(withTitles: ["One", "Two", "Three"],
+    normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
+    normalTextColor: .lightGray,
+    selectedFont: UIFont(name: "HelveticaNeue-Bold", size: 14.0)!,
+    selectedTextColor: .white),
     index: 1,
-    options: [.backgroundColor(UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00)),
-              .titleColor(.white),
-              .indicatorViewBackgroundColor(UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00)),
-              .selectedTitleColor(.black),
-              .titleFont(UIFont(name: "HelveticaNeue", size: 14.0)!),
-              .selectedTitleFont(UIFont(name: "HelveticaNeue-Medium", size: 14.0)!)]
-)
+    options: [.backgroundColor(.darkGray),
+              .indicatorViewBackgroundColor(.blue)])
 control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), for: .valueChanged)
 view.addSubview(control)
 ```
 You can find different ways of using it (such as by designing it in a Storyboard file) in the example project. To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Todos
-
-- [ ] Get rid of unnecessary error handling.
-- [ ] Add snapshot tests.
-- [ ] Allow the control to have no selected index.
-- [ ] Allow UIViews that implement a protocol to be used as options.
-- [ ] ~~Try to take over the world!~~ Uh, what?
 
 ## Contribution
 
