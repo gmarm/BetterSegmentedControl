@@ -14,6 +14,7 @@ BetterSegmentedControl is an easy to use, customizable replacement for UISegment
 
 - [x] Can be used as a segmented control or switch
 - [x] Plethora of customizable options from colors to insets and radii
+- [x] Use icons as segments, or add your own custom segments
 - [x] Designable straight in Interface Builder
 - [x] Customizable behavior
 
@@ -34,7 +35,7 @@ _Swift 4.x_
 pod 'BetterSegmentedControl', '~> 1.0'
 ```
 
-_Swift 3.x_
+_Swift 3.x / Objective-C_
 ```ruby
 pod 'BetterSegmentedControl', '0.8'
 ```
@@ -48,7 +49,7 @@ _Swift 4.x_
 github "gmarm/BetterSegmentedControl" ~> 1.0
 ```
 
-_Swift 3.x_
+_Swift 3.x / Objective-C_
 ```ruby
 github "gmarm/BetterSegmentedControl" 0.8
 ```
