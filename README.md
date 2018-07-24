@@ -62,7 +62,7 @@ If you prefer not to use CocoaPods or Carthage, you can integrate BetterSegmente
 
 ```swift
 let control = BetterSegmentedControl(
-    frame: CGRect(x: 0, y: 500, width: 300, height: 44),
+    frame: CGRect(x: 0, y: 0, width: 300, height: 44),
     segments: LabelSegment.segments(withTitles: ["One", "Two", "Three"],
     normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
     normalTextColor: .lightGray,
@@ -79,6 +79,10 @@ You can find different ways of using it (such as by designing it in a Storyboard
 ## Contribution
 
 Feel free to Fork, submit Pull Requests or send me your feedback and suggestions! Please make sure that tests are passing before submitting a new Pull Request.
+
+## Known Issues
+
+- CocoaPods version 1.5+ breaks `IBDesignable` support. If you need to to `IBDesignable` stick to CocoaPods version 1.4 for now.
 
 ## Author
 
