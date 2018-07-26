@@ -82,7 +82,7 @@ Feel free to Fork, submit Pull Requests or send me your feedback and suggestions
 
 ## Known Issues
 
-- CocoaPods version 1.5+ breaks `IBDesignable` support. If you need to to `IBDesignable` stick to CocoaPods version 1.4 for now.
+- CocoaPods version 1.5+ breaks `IBDesignable` support. If you need `IBDesignable` support stick to CocoaPods version 1.4 for now.
 
 ## Author
 
