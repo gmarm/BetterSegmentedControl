@@ -7,6 +7,35 @@
 
 import Foundation
 
+private extension CALayer {
+    func addBorder(edge: UIRectEdge, color: UIColor? = .black, thickness: CGFloat? = 2.0) {
+
+        guard let color = color else { return }
+        guard let thickness = thickness else { return }
+
+        let border = CALayer();
+        switch edge {
+        case UIRectEdge.top:
+            border.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: thickness)
+            break
+        case UIRectEdge.bottom:
+            border.frame = CGRect(x:0, y:self.frame.height - thickness, width:self.frame.width, height:thickness)
+            break
+        case UIRectEdge.left:
+            border.frame = CGRect(x:0, y:0, width: thickness, height: self.frame.height)
+            break
+        case UIRectEdge.right:
+            border.frame = CGRect(x:self.frame.width - thickness, y: 0, width: thickness, height:self.frame.height)
+            break
+        default:
+            break
+        }
+
+        border.backgroundColor = color.cgColor;
+        addSublayer(border)
+    }
+}
+
 @IBDesignable open class BetterSegmentedControl: UIControl {
     private class IndicatorView: UIView {
         // MARK: Properties
@@ -80,10 +109,12 @@ import Foundation
                     indicatorViewBackgroundColor = value
                 case let .indicatorViewInset(value):
                     indicatorViewInset = value
-                case let .indicatorViewBorderWidth(value):
-                    indicatorViewBorderWidth = value
+                case let .indicatorViewBorderEdge(value):
+                    indicatorViewBorderEdge = value
                 case let .indicatorViewBorderColor(value):
                     indicatorViewBorderColor = value
+                case let .indicatorViewBorderThickness(value):
+                    indicatorViewBorderThickness = value
                 case let .alwaysAnnouncesValue(value):
                     alwaysAnnouncesValue = value
                 case let .announcesValueImmediately(value):
@@ -132,28 +163,17 @@ import Foundation
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
         didSet { setNeedsLayout() }
     }
-    /// The indicator view's border width
-    @IBInspectable public var indicatorViewBorderWidth: CGFloat {
-        get {
-            return indicatorView.layer.borderWidth
-        }
-        set {
-            indicatorView.layer.borderWidth = newValue
-        }
+
+    @IBInspectable public var indicatorViewBorderEdge: UIRectEdge = []
+    @IBInspectable public var indicatorViewBorderColor: UIColor? = nil
+    @IBInspectable public var indicatorViewBorderThickness: CGFloat = 0.0
+
+    public func setIndicatorViewBorder(edge: UIRectEdge, borderColor: UIColor?, thickness: CGFloat?) {
+
+        indicatorView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        indicatorView.layer.addBorder(edge: edge, color: borderColor, thickness: thickness)
     }
-    /// The indicator view's border color
-    @IBInspectable public var indicatorViewBorderColor: UIColor? {
-        get {
-            guard let color = indicatorView.layer.borderColor else {
-                return nil
-            }
-            return UIColor(cgColor: color)
-        }
-        set {
-            indicatorView.layer.borderColor = newValue?.cgColor
-        }
-    }
-    
+
     // MARK: Private properties
     private let normalSegmentsView = UIView()
     private let selectedSegmentsView = UIView()
@@ -239,6 +259,9 @@ import Foundation
         selectedSegmentsView.frame = bounds
         
         indicatorView.frame = elementFrame(forIndex: index)
+        setIndicatorViewBorder(edge: indicatorViewBorderEdge,
+                               borderColor: indicatorViewBorderColor,
+                               thickness: indicatorViewBorderThickness)
         
         for index in 0...normalSegmentCount-1 {
             let frame = elementFrame(forIndex: UInt(index))

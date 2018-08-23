@@ -12,8 +12,9 @@ public enum BetterSegmentedControlOption {
     /* Selected segment */
     case indicatorViewBackgroundColor(UIColor)
     case indicatorViewInset(CGFloat)
-    case indicatorViewBorderWidth(CGFloat)
+    case indicatorViewBorderEdge(UIRectEdge)
     case indicatorViewBorderColor(UIColor)
+    case indicatorViewBorderThickness(CGFloat)
     
     /* Behavior */
     case alwaysAnnouncesValue(Bool)
