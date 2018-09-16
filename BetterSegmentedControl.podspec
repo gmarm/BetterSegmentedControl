@@ -10,6 +10,7 @@ s.license          = 'MIT'
 s.author           = { "George Marmaridis" => "gmarmas@gmail.com" }
 s.source           = { :git => "https://github.com/gmarm/BetterSegmentedControl.git", :tag => "1.0" }
 s.social_media_url = 'https://twitter.com/gmarmas'
+s.swift_version = '4.0'
 s.platform     = :ios, '8.0'
 s.requires_arc = true
 s.source_files = 'Pod/Classes/**/*'
