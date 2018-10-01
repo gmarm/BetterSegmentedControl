@@ -130,7 +130,10 @@ import Foundation
     }
     /// The indicator view's inset. Defaults to 2.0
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
-        didSet { setNeedsLayout() }
+        didSet {
+            setNeedsLayout()
+            layer.masksToBounds = indicatorViewInset >= 0
+        }
     }
     /// The indicator view's border width
     @IBInspectable public var indicatorViewBorderWidth: CGFloat {
