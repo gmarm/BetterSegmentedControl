@@ -9,6 +9,6 @@ target 'BetterSegmentedControl_Tests' do
   pod 'BetterSegmentedControl', :path => '../'
 
   pod 'Quick', '~> 1.3'
-  pod 'Nimble', '~> 7.1'
-  pod 'Nimble-Snapshots', '~> 6.7'
+  pod 'Nimble', '~> 7.3'
+  pod 'Nimble-Snapshots', '~> 6.9'
 end
