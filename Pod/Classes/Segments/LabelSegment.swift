@@ -18,15 +18,17 @@ open class LabelSegment: BetterSegmentedControlSegment {
     }
     
     // MARK: Properties
-    public var text: String?
+    public let text: String?
     
-    public var normalFont: UIFont
-    public var normalTextColor: UIColor
-    public var normalBackgroundColor: UIColor
+    public let normalFont: UIFont
+    public let normalTextColor: UIColor
+    public let normalBackgroundColor: UIColor
     
-    public var selectedFont: UIFont
-    public var selectedTextColor: UIColor
-    public var selectedBackgroundColor: UIColor
+    public let selectedFont: UIFont
+    public let selectedTextColor: UIColor
+    public let selectedBackgroundColor: UIColor
+    
+    private let accessibilityIdentifier: String?
     
     // MARK: Lifecycle
     public init(text: String? = nil,
@@ -35,7 +37,8 @@ open class LabelSegment: BetterSegmentedControlSegment {
                 normalTextColor: UIColor? = nil,
                 selectedBackgroundColor: UIColor? = nil,
                 selectedFont: UIFont? = nil,
-                selectedTextColor: UIColor? = nil) {
+                selectedTextColor: UIColor? = nil,
+                accessibilityIdentifier: String? = nil) {
         self.text = text
         self.normalBackgroundColor = normalBackgroundColor ?? DefaultValues.normalBackgroundColor
         self.normalFont = normalFont ?? DefaultValues.font
@@ -43,6 +46,7 @@ open class LabelSegment: BetterSegmentedControlSegment {
         self.selectedBackgroundColor = selectedBackgroundColor ?? DefaultValues.selectedBackgroundColor
         self.selectedFont = selectedFont ?? DefaultValues.font
         self.selectedTextColor = selectedTextColor ?? DefaultValues.selectedTextColor
+        self.accessibilityIdentifier = accessibilityIdentifier
     }
     
     // MARK: BetterSegmentedControlSegment
@@ -69,6 +73,9 @@ open class LabelSegment: BetterSegmentedControlSegment {
         label.textColor = textColor
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
+        if let identifier = accessibilityIdentifier {
+            label.accessibilityIdentifier = identifier
+        }
         return label
     }
 }
@@ -89,6 +96,26 @@ public extension LabelSegment {
                          selectedBackgroundColor: selectedBackgroundColor,
                          selectedFont: selectedFont,
                          selectedTextColor: selectedTextColor)
+        }
+    }
+    
+    class func segments(withTitlesAndAccessibilityIdentifiers titlesAndAccessibilityIdentifiers: [(title: String,
+                                                                                                   accessibilityIdentifier: String?)],
+                        normalBackgroundColor: UIColor? = nil,
+                        normalFont: UIFont? = nil,
+                        normalTextColor: UIColor? = nil,
+                        selectedBackgroundColor: UIColor? = nil,
+                        selectedFont: UIFont? = nil,
+                        selectedTextColor: UIColor? = nil) -> [BetterSegmentedControlSegment] {
+        return titlesAndAccessibilityIdentifiers.map {
+            LabelSegment(text: $0.title,
+                         normalBackgroundColor: normalBackgroundColor,
+                         normalFont: normalFont,
+                         normalTextColor: normalTextColor,
+                         selectedBackgroundColor: selectedBackgroundColor,
+                         selectedFont: selectedFont,
+                         selectedTextColor: selectedTextColor,
+                         accessibilityIdentifier: $0.accessibilityIdentifier)
         }
     }
 }
