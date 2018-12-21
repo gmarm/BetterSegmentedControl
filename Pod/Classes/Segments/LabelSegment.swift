@@ -64,7 +64,7 @@ open class LabelSegment: BetterSegmentedControlSegment {
                      textColor: selectedTextColor,
                      accessibilityIdentifier: accessibilityIdentifier)
     }()
-    private func label(withText text: String?,
+    open func label(withText text: String?,
                        backgroundColor: UIColor,
                        font: UIFont,
                        textColor: UIColor,
