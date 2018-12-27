@@ -312,7 +312,10 @@ import Foundation
             })
         } else {
             moveIndicatorView()
-            sendActions(for: .valueChanged)
+
+            if shouldSendEvent {
+                sendActions(for: .valueChanged)
+            }
         }
     }
     
