@@ -1,6 +1,6 @@
 # BetterSegmentedControl
 
-![](https://img.shields.io/badge/Swift-4.1-blue.svg?style=flat)
+![](https://img.shields.io/badge/Swift-5-blue.svg?style=flat)
 [![Version](https://img.shields.io/cocoapods/v/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
@@ -30,13 +30,14 @@ BetterSegmentedControl is an easy to use, customizable replacement for UISegment
 BetterSegmentedControl is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-_Swift 4.x_
 ```ruby
-pod 'BetterSegmentedControl', '~> 1.0'
-```
+# Swift 5
+pod 'BetterSegmentedControl', '~> 1.1'
 
-_Swift 3.x / Objective-C_
-```ruby
+# Swift 4
+pod 'BetterSegmentedControl', '1.0'
+
+# Swift 3 / Objective-C
 pod 'BetterSegmentedControl', '0.8'
 ```
 
@@ -44,13 +45,14 @@ pod 'BetterSegmentedControl', '0.8'
 
 If you prefer using [Carthage](https://github.com/Carthage/Carthage), simply add BetterSegmentedControl to your `Cartfile`:
 
-_Swift 4.x_
 ```ruby
-github "gmarm/BetterSegmentedControl" ~> 1.0
-```
+# Swift 5
+github "gmarm/BetterSegmentedControl" ~> 1.1
 
-_Swift 3.x / Objective-C_
-```ruby
+# Swift 4
+github "gmarm/BetterSegmentedControl" 1.0
+
+# Swift 3 / Objective-C
 github "gmarm/BetterSegmentedControl" 0.8
 ```
 
@@ -96,5 +98,3 @@ George Marmaridis
 ## License
 
 BetterSegmentedControl is available under the MIT license. See the LICENSE file for more info.
-
-I'd greatly appreciate it if you [drop me a line](https://twitter.com/gmarmas) if you decide using it in one of your apps.
