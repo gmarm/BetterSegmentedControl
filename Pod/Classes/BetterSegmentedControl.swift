@@ -329,7 +329,7 @@ import Foundation
     }
     private func nearestIndex(toPoint point: CGPoint) -> UInt {
         let distances = normalSegments.map { abs(point.x - $0.center.x) }
-        return UInt(distances.index(of: distances.min()!)!)
+        return UInt(distances.firstIndex(of: distances.min()!)!)
     }
     private func moveIndicatorView() {
         indicatorView.frame = normalSegments[Int(self.index)].frame
