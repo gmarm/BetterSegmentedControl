@@ -1,6 +1,6 @@
 {
   "name": "BetterSegmentedControl",
-  "version": "1.1",
+  "version": "1.2",
   "swift_versions": "5.0",
   "summary": "An easy to use, customizable replacement for UISegmentedControl & UISwitch.",
   "description": "BetterSegmentedControl is an easy to use, customizable replacement for UISegmentedControl and UISwitch written in Swift.",
@@ -11,11 +11,11 @@
   },
   "source": {
     "git": "https://github.com/gmarm/BetterSegmentedControl.git",
-    "tag": "1.1"
+    "tag": "1.2"
   },
   "social_media_url": "https://twitter.com/gmarmas",
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "requires_arc": true,
   "source_files": "Pod/Classes/**/*",

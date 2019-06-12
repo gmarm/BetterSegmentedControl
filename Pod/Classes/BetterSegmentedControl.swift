@@ -46,9 +46,9 @@ import Foundation
     }
         
     // MARK: Properties
-    /// The selected index
+    /// The selected index.
     public private(set) var index: UInt
-    /// The segments available for selection
+    /// The segments available for selection.
     public var segments: [BetterSegmentedControlSegment] {
         didSet {
             guard segments.count > 1 else {
@@ -66,7 +66,7 @@ import Foundation
             setNeedsLayout()
         }
     }
-    /// A list of options to configure the control with
+    /// A list of options to configure the control with.
     public var options: [BetterSegmentedControlOption]? {
         get { return nil }
         set {
@@ -100,15 +100,15 @@ import Foundation
             }
         }
     }
-    /// Whether the indicator should bounce when selecting a new index. Defaults to true
+    /// Whether the indicator should bounce when selecting a new index. Defaults to true.
     @IBInspectable public var bouncesOnChange: Bool = true
-    /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to false
+    /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to `false`.
     @IBInspectable public var alwaysAnnouncesValue: Bool = false
-    /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to true
+    /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to `true`.
     @IBInspectable public var announcesValueImmediately: Bool = true
-    /// Whether the the control should ignore pan gestures. Defaults to false
+    /// Whether the the control should ignore pan gestures. Defaults to `false`.
     @IBInspectable public var panningDisabled: Bool = false
-    /// The control's and indicator's corner radii
+    /// The control's and indicator's corner radii.
     @IBInspectable public var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
@@ -119,7 +119,7 @@ import Foundation
             segmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
         }
     }
-    /// The indicator view's background color
+    /// The indicator view's background color.
     @IBInspectable public var indicatorViewBackgroundColor: UIColor? {
         get {
             return indicatorView.backgroundColor
@@ -128,11 +128,11 @@ import Foundation
             indicatorView.backgroundColor = newValue
         }
     }
-    /// The indicator view's inset. Defaults to 2.0
+    /// The indicator view's inset. Defaults to `2.0`.
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
         didSet { setNeedsLayout() }
     }
-    /// The indicator view's border width
+    /// The indicator view's border width.
     @IBInspectable public var indicatorViewBorderWidth: CGFloat {
         get {
             return indicatorView.layer.borderWidth
@@ -141,7 +141,7 @@ import Foundation
             indicatorView.layer.borderWidth = newValue
         }
     }
-    /// The indicator view's border color
+    /// The indicator view's border color.
     @IBInspectable public var indicatorViewBorderColor: UIColor? {
         get {
             guard let color = indicatorView.layer.borderColor else {
@@ -168,13 +168,24 @@ import Foundation
     private var normalSegmentCount: Int { return normalSegmentsView.subviews.count }
     private var normalSegments: [UIView] { return normalSegmentsView.subviews }
     private var selectedSegments: [UIView] { return selectedSegmentsView.subviews }
-    private var segmentViews: [UIView] { return normalSegments + selectedSegments}
+    private var segmentViews: [UIView] { return normalSegments + selectedSegments }
     private var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
     private lazy var defaultSegments: [BetterSegmentedControlSegment] = {
         return [LabelSegment(text: "First"), LabelSegment(text: "Second")]
     }()
+    private var isLayoutDirectionRightToLeft: Bool {
+        let layoutDirection = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute)
+        return layoutDirection == .rightToLeft
+    }
     
     // MARK: Lifecycle
+    /// Initializes a new `BetterSegmentedControl` with the parameters passed.
+    ///
+    /// - Parameters:
+    ///   - frame: The frame of the control.
+    ///   - segments: The segments to configure the control with.
+    ///   - index: The initially selected index.
+    ///   - options: An array of customization options to style and change the behavior of the control.
     public init(frame: CGRect,
                 segments: [BetterSegmentedControlSegment],
                 index: UInt = 0,
@@ -196,7 +207,6 @@ import Foundation
         self.init(frame: frame,
                   segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
     }
-
     @available(*, unavailable, message: "Use init(frame:segments:index:options:) instead.")
     convenience init() {
         self.init(frame: .zero,
@@ -272,8 +282,8 @@ import Foundation
     /// Sets the control's index.
     ///
     /// - Parameters:
-    ///   - index: The new index
-    ///   - animated: (Optional) Whether the change should be animated or not. Defaults to true.
+    ///   - index: The new index.
+    ///   - animated: (Optional) Whether the change should be animated or not. Defaults to `true`.
     public func setIndex(_ index: UInt, animated: Bool = true) {
         guard normalSegments.indices.contains(Int(index)) else {
             return
@@ -284,9 +294,9 @@ import Foundation
     }
 
     // MARK: Indicator View Customization
-    /// Adds the passed view as a subview to the indicator view
+    /// Adds the passed view as a subview to the indicator view.
     ///
-    /// - Parameter view: The view to be added to the indicator view
+    /// - Parameter view: The view to be added to the indicator view.
     public func addSubviewToIndicator(_ view: UIView) {
         indicatorView.addSubview(view)
     }
@@ -302,10 +312,9 @@ import Foundation
                            usingSpringWithDamping: bouncesOnChange ? Animation.springDamping : 1.0,
                            initialSpringVelocity: 0.0,
                            options: [UIView.AnimationOptions.beginFromCurrentState, UIView.AnimationOptions.curveEaseOut],
-                           animations: {
-                            () -> Void in
+                           animations: { () -> Void in
                             self.moveIndicatorView()
-            }, completion: { (finished) -> Void in
+            }, completion: { finished -> Void in
                 if finished && shouldSendEvent && !self.announcesValueImmediately {
                     self.sendActions(for: .valueChanged)
                 }
@@ -342,9 +351,7 @@ import Foundation
         setIndex(nearestIndex(toPoint: location))
     }
     @objc private func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
-        guard !panningDisabled else {
-            return
-        }
+        guard !panningDisabled else { return }
         
         switch gestureRecognizer.state {
         case .began:
