@@ -1,5 +1,5 @@
 PODS:
-  - BetterSegmentedControl (1.2)
+  - BetterSegmentedControl (1.2.1)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
@@ -32,7 +32,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BetterSegmentedControl: 3b8434faf91b1ea150ed7ff47d878068b2decade
+  BetterSegmentedControl: b27bddbdff29b6cae988678d6cd106858986cd03
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2

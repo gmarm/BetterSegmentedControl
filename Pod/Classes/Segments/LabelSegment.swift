@@ -57,18 +57,21 @@ open class LabelSegment: BetterSegmentedControlSegment {
         return label(withText: text,
                      backgroundColor: normalBackgroundColor,
                      font: normalFont,
-                     textColor: normalTextColor)
+                     textColor: normalTextColor,
+                     accessibilityIdentifier: nil)
     }()
     public lazy var selectedView: UIView = {
         return label(withText: text,
                      backgroundColor: selectedBackgroundColor,
                      font: selectedFont,
-                     textColor: selectedTextColor)
+                     textColor: selectedTextColor,
+                     accessibilityIdentifier: accessibilityIdentifier)
     }()
-    private func label(withText text: String?,
+    open func label(withText text: String?,
                        backgroundColor: UIColor,
                        font: UIFont,
-                       textColor: UIColor) -> UILabel {
+                       textColor: UIColor,
+                       accessibilityIdentifier: String?) -> UILabel {
         let label = UILabel()
         label.text = text
         label.numberOfLines = numberOfLines
@@ -77,9 +80,7 @@ open class LabelSegment: BetterSegmentedControlSegment {
         label.textColor = textColor
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
-        if let identifier = accessibilityIdentifier {
-            label.accessibilityIdentifier = identifier
-        }
+        label.accessibilityIdentifier = accessibilityIdentifier
         return label
     }
 }
