@@ -28,10 +28,12 @@ open class LabelSegment: BetterSegmentedControlSegment {
     public let selectedTextColor: UIColor
     public let selectedBackgroundColor: UIColor
     
+    private let numberOfLines: Int
     private let accessibilityIdentifier: String?
     
     // MARK: Lifecycle
     public init(text: String? = nil,
+                numberOfLines: Int = 1,
                 normalBackgroundColor: UIColor? = nil,
                 normalFont: UIFont? = nil,
                 normalTextColor: UIColor? = nil,
@@ -40,6 +42,7 @@ open class LabelSegment: BetterSegmentedControlSegment {
                 selectedTextColor: UIColor? = nil,
                 accessibilityIdentifier: String? = nil) {
         self.text = text
+        self.numberOfLines = numberOfLines
         self.normalBackgroundColor = normalBackgroundColor ?? DefaultValues.normalBackgroundColor
         self.normalFont = normalFont ?? DefaultValues.font
         self.normalTextColor = normalTextColor ?? DefaultValues.normalTextColor
@@ -68,6 +71,7 @@ open class LabelSegment: BetterSegmentedControlSegment {
                        textColor: UIColor) -> UILabel {
         let label = UILabel()
         label.text = text
+        label.numberOfLines = numberOfLines
         label.backgroundColor = backgroundColor
         label.font = font
         label.textColor = textColor
@@ -82,6 +86,7 @@ open class LabelSegment: BetterSegmentedControlSegment {
 
 public extension LabelSegment {
     class func segments(withTitles titles: [String],
+                        numberOfLines: Int = 1,
                         normalBackgroundColor: UIColor? = nil,
                         normalFont: UIFont? = nil,
                         normalTextColor: UIColor? = nil,
@@ -90,6 +95,7 @@ public extension LabelSegment {
                         selectedTextColor: UIColor? = nil) -> [BetterSegmentedControlSegment] {
         return titles.map {
             LabelSegment(text: $0,
+                         numberOfLines: numberOfLines,
                          normalBackgroundColor: normalBackgroundColor,
                          normalFont: normalFont,
                          normalTextColor: normalTextColor,
@@ -101,6 +107,7 @@ public extension LabelSegment {
     
     class func segments(withTitlesAndAccessibilityIdentifiers titlesAndAccessibilityIdentifiers: [(title: String,
                                                                                                    accessibilityIdentifier: String?)],
+                        numberOfLines: Int = 1,
                         normalBackgroundColor: UIColor? = nil,
                         normalFont: UIFont? = nil,
                         normalTextColor: UIColor? = nil,
@@ -109,6 +116,7 @@ public extension LabelSegment {
                         selectedTextColor: UIColor? = nil) -> [BetterSegmentedControlSegment] {
         return titlesAndAccessibilityIdentifiers.map {
             LabelSegment(text: $0.title,
+                         numberOfLines: numberOfLines,
                          normalBackgroundColor: normalBackgroundColor,
                          normalFont: normalFont,
                          normalTextColor: normalTextColor,

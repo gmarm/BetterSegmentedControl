@@ -20,8 +20,8 @@ BetterSegmentedControl is an easy to use, customizable replacement for UISegment
 
 ## Requirements
 
-- iOS 8.0+
-- Xcode 7.3+
+- iOS 9.0+
+- Xcode 8+
 
 ## Installation
 
@@ -32,7 +32,7 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 # Swift 5
-pod 'BetterSegmentedControl', '~> 1.1'
+pod 'BetterSegmentedControl', '~> 1.2'
 
 # Swift 4
 pod 'BetterSegmentedControl', '1.0'
@@ -47,7 +47,7 @@ If you prefer using [Carthage](https://github.com/Carthage/Carthage), simply add
 
 ```ruby
 # Swift 5
-github "gmarm/BetterSegmentedControl" ~> 1.1
+github "gmarm/BetterSegmentedControl" ~> 1.2
 
 # Swift 4
 github "gmarm/BetterSegmentedControl" 1.0
