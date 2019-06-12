@@ -158,7 +158,7 @@ class BetterSegmentedControlSpec: QuickSpec {
                         expect(control).to(haveValidSnapshot())
                     })
                 }
-                context("as example 6") {
+                context("as example 7") {
                     beforeEach({
                         control = BetterSegmentedControl(
                             frame: CGRect(x: 0, y: 0, width: 300, height: 44),
@@ -175,7 +175,7 @@ class BetterSegmentedControlSpec: QuickSpec {
                         expect(control).to(haveValidSnapshot())
                     })
                 }
-                context("as example 7") {
+                context("as example 8") {
                     beforeEach({
                         control = BetterSegmentedControl(
                             frame: CGRect(x: 0.0, y: 400.0, width: 300, height: 30.0),
@@ -191,7 +191,7 @@ class BetterSegmentedControlSpec: QuickSpec {
                         expect(control).to(haveValidSnapshot())
                     })
                 }
-                context("as example 8") {
+                context("as example 9") {
                     beforeEach({
                         let storyboard = UIStoryboard(name: "Test",
                                                       bundle: Bundle(for: type(of: self)))

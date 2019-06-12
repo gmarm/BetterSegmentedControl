@@ -47,7 +47,7 @@ import Foundation
         
     // MARK: Properties
     /// The selected index.
-    public private(set) var index: UInt
+    public private(set) var index: Int
     /// The segments available for selection.
     public var segments: [BetterSegmentedControlSegment] {
         didSet {
@@ -177,6 +177,9 @@ import Foundation
         let layoutDirection = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute)
         return layoutDirection == .rightToLeft
     }
+    private var lastIndex: Int {
+        return segments.endIndex - 1
+    }
     
     // MARK: Lifecycle
     /// Initializes a new `BetterSegmentedControl` with the parameters passed.
@@ -188,7 +191,7 @@ import Foundation
     ///   - options: An array of customization options to style and change the behavior of the control.
     public init(frame: CGRect,
                 segments: [BetterSegmentedControlSegment],
-                index: UInt = 0,
+                index: Int = 0,
                 options: [BetterSegmentedControlOption]? = nil) {
         self.index = index
         self.segments = segments
@@ -251,7 +254,7 @@ import Foundation
         indicatorView.frame = elementFrame(forIndex: index)
         
         for index in 0...normalSegmentCount-1 {
-            let frame = elementFrame(forIndex: UInt(index))
+            let frame = elementFrame(forIndex: index)
             normalSegmentsView.subviews[index].frame = frame
             selectedSegmentsView.subviews[index].frame = frame
         }
@@ -284,10 +287,9 @@ import Foundation
     /// - Parameters:
     ///   - index: The new index.
     ///   - animated: (Optional) Whether the change should be animated or not. Defaults to `true`.
-    public func setIndex(_ index: UInt, animated: Bool = true) {
-        guard normalSegments.indices.contains(Int(index)) else {
-            return
-        }
+    public func setIndex(_ index: Int, animated: Bool = true) {
+        guard normalSegments.indices.contains(index) else { return }
+        
         let oldIndex = self.index
         self.index = index
         moveIndicatorViewToIndex(animated, shouldSendEvent: (self.index != oldIndex || alwaysAnnouncesValue))
@@ -311,7 +313,7 @@ import Foundation
                            delay: 0.0,
                            usingSpringWithDamping: bouncesOnChange ? Animation.springDamping : 1.0,
                            initialSpringVelocity: 0.0,
-                           options: [UIView.AnimationOptions.beginFromCurrentState, UIView.AnimationOptions.curveEaseOut],
+                           options: [.beginFromCurrentState, .curveEaseOut],
                            animations: { () -> Void in
                             self.moveIndicatorView()
             }, completion: { finished -> Void in
@@ -329,19 +331,20 @@ import Foundation
     }
     
     // MARK: Helpers
-    private func elementFrame(forIndex index: UInt) -> CGRect {
+    private func elementFrame(forIndex index: Int) -> CGRect {
         let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentCount)
-        return CGRect(x: CGFloat(index) * elementWidth + indicatorViewInset,
+        let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth
+        return CGRect(x: x + indicatorViewInset,
                       y: indicatorViewInset,
                       width: elementWidth,
                       height: height - totalInsetSize)
     }
-    private func nearestIndex(toPoint point: CGPoint) -> UInt {
+    private func nearestIndex(toPoint point: CGPoint) -> Int {
         let distances = normalSegments.map { abs(point.x - $0.center.x) }
-        return UInt(distances.firstIndex(of: distances.min()!)!)
+        return Int(distances.firstIndex(of: distances.min()!)!)
     }
     private func moveIndicatorView() {
-        indicatorView.frame = normalSegments[Int(self.index)].frame
+        indicatorView.frame = normalSegments[self.index].frame
         layoutIfNeeded()
     }
     
