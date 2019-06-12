@@ -8,7 +8,7 @@
 import Foundation
 
 @IBDesignable open class BetterSegmentedControl: UIControl {
-    private class IndicatorView: UIView {
+    open class IndicatorView: UIView {
         // MARK: Properties
         fileprivate let segmentMaskView = UIView()
         fileprivate var cornerRadius: CGFloat = 0 {
@@ -28,7 +28,7 @@ import Foundation
             super.init(frame: CGRect.zero)
             finishInit()
         }
-        required init?(coder aDecoder: NSCoder) {
+        required public init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
             finishInit()
         }
@@ -66,6 +66,10 @@ import Foundation
             setNeedsLayout()
         }
     }
+    
+    /// The currently selected index indicator view.
+    public let indicatorView = IndicatorView()
+    
     /// A list of options to configure the control with.
     public var options: [BetterSegmentedControlOption]? {
         get { return nil }
@@ -157,7 +161,6 @@ import Foundation
     // MARK: Private properties
     private let normalSegmentsView = UIView()
     private let selectedSegmentsView = UIView()
-    private let indicatorView = IndicatorView()
     private var initialIndicatorViewFrame: CGRect?
 
     private var tapGestureRecognizer: UITapGestureRecognizer!
@@ -293,14 +296,6 @@ import Foundation
         let oldIndex = self.index
         self.index = index
         moveIndicatorViewToIndex(animated, shouldSendEvent: (self.index != oldIndex || alwaysAnnouncesValue))
-    }
-
-    // MARK: Indicator View Customization
-    /// Adds the passed view as a subview to the indicator view.
-    ///
-    /// - Parameter view: The view to be added to the indicator view.
-    public func addSubviewToIndicator(_ view: UIView) {
-        indicatorView.addSubview(view)
     }
     
     // MARK: Animations
