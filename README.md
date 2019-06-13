@@ -17,6 +17,7 @@ BetterSegmentedControl is an easy to use, customizable replacement for UISegment
 - [x] Use icons as segments, or add your own custom segments
 - [x] Designable straight in Interface Builder
 - [x] Customizable behavior
+- [x] Right to left languages support
 
 ## Requirements
 
