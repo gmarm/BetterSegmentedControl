@@ -5,7 +5,7 @@
 //  Created by George Marmaridis on 10/02/2018.
 //
 
-import Foundation
+import UIKit
 
 open class IconSegment: BetterSegmentedControlSegment {
     // MARK: Constants

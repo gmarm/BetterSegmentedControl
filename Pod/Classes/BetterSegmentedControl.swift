@@ -5,7 +5,7 @@
 //  Copyright © 2016 George Marmaridis. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 @IBDesignable open class BetterSegmentedControl: UIControl {
     open class IndicatorView: UIView {
@@ -131,9 +131,7 @@ import Foundation
             return layer.cornerRadius
         }
         set {
-            layer.cornerRadius = newValue
             indicatorView.cornerRadius = newValue - indicatorViewInset
-            selectedSegments.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
         }
     }
     /// The indicator view's background color.
