@@ -98,6 +98,8 @@ import Foundation
                     backgroundColor = value
                 case let .cornerRadius(value):
                     cornerRadius = value
+                case let .selectedCornerRadius(value):
+                    selectedCornerRadius = value
                 case let .bouncesOnChange(value):
                     bouncesOnChange = value
                 }
@@ -121,6 +123,17 @@ import Foundation
             layer.cornerRadius = newValue
             indicatorView.cornerRadius = newValue - indicatorViewInset
             segmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
+        }
+    }
+    /// The control's and selected indicator's corner radii.
+    @IBInspectable public var selectedCornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            indicatorView.cornerRadius = newValue - indicatorViewInset
+            selectedSegments.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
         }
     }
     /// The indicator view's background color.

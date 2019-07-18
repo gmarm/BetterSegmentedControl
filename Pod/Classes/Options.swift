@@ -23,5 +23,6 @@ public enum BetterSegmentedControlOption {
     /* Other */
     case backgroundColor(UIColor)
     case cornerRadius(CGFloat)
+    case selectedCornerRadius(CGFloat)
     case bouncesOnChange(Bool)
 }
