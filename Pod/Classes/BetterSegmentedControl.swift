@@ -273,6 +273,13 @@ import UIKit
             selectedSegmentsView.subviews[index].frame = frame
         }
     }
+
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        var maxWidth = size.width
+        maxWidth -= maxWidth.remainder(dividingBy: CGFloat(segments.count))
+        return CGSize(width: maxWidth, height: size.height)
+    }
+
     open override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setDefaultLabelTextSegmentColorsFromInterfaceBuilder()
