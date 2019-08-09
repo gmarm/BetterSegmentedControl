@@ -5,7 +5,7 @@
 //  Copyright © 2016 George Marmaridis. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 @IBDesignable open class BetterSegmentedControl: UIControl {
     open class IndicatorView: UIView {
