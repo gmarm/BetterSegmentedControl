@@ -159,6 +159,10 @@ import Foundation
             indicatorView.layer.borderColor = newValue?.cgColor
         }
     }
+    /// The horizontal spacing between segments.
+    @IBInspectable public var segmentSpacing: CGFloat = 0 {
+        didSet { setNeedsLayout() }
+    }
     
     // MARK: Private properties
     private let normalSegmentsView = UIView()
@@ -175,7 +179,7 @@ import Foundation
     private var selectedSegments: [UIView] { return selectedSegmentsView.subviews }
     private var segmentViews: [UIView] { return normalSegments + selectedSegments }
     private var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
-    private var totalSpacings: CGFloat { return segmentSpacing * CGFloat(normalSegmentCount - 1)  }
+    private var totalSpacings: CGFloat { return segmentSpacing * CGFloat(normalSegmentCount - 1) }
     private lazy var defaultSegments: [BetterSegmentedControlSegment] = {
         return [LabelSegment(text: "First"), LabelSegment(text: "Second")]
     }()
