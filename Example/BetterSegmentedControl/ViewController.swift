@@ -36,6 +36,7 @@ class ViewController: UIViewController {
         control1.segments = LabelSegment.segments(withTitles: ["Recent", "Nearby", "All"],
                                                   normalFont: UIFont(name: "HelveticaNeue-Light", size: 13.0)!,
                                                   selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 13.0)!)
+        control1.segmentSpacing = 50
         // Control 2: Exclusively defined in IB
         
         // Control 3: Many options

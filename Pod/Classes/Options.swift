@@ -24,4 +24,5 @@ public enum BetterSegmentedControlOption {
     case backgroundColor(UIColor)
     case cornerRadius(CGFloat)
     case bouncesOnChange(Bool)
+    case segmentSpacing(CGFloat)
 }

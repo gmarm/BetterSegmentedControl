@@ -100,6 +100,8 @@ import Foundation
                     cornerRadius = value
                 case let .bouncesOnChange(value):
                     bouncesOnChange = value
+                case let .segmentSpacing(value):
+                    segmentSpacing = value
                 }
             }
         }
@@ -157,6 +159,10 @@ import Foundation
             indicatorView.layer.borderColor = newValue?.cgColor
         }
     }
+    /// The horizontal spacing between segments.
+    @IBInspectable public var segmentSpacing: CGFloat = 0 {
+        didSet { setNeedsLayout() }
+    }
     
     // MARK: Private properties
     private let normalSegmentsView = UIView()
@@ -173,6 +179,7 @@ import Foundation
     private var selectedSegments: [UIView] { return selectedSegmentsView.subviews }
     private var segmentViews: [UIView] { return normalSegments + selectedSegments }
     private var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
+    private var totalSpacings: CGFloat { return segmentSpacing * CGFloat(normalSegmentCount - 1) }
     private lazy var defaultSegments: [BetterSegmentedControlSegment] = {
         return [LabelSegment(text: "First"), LabelSegment(text: "Second")]
     }()
@@ -327,8 +334,9 @@ import Foundation
     
     // MARK: Helpers
     private func elementFrame(forIndex index: Int) -> CGRect {
-        let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentCount)
-        let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth
+        let elementWidth = (width - totalInsetSize - totalSpacings) / CGFloat(normalSegmentCount)
+        let spacingOffset =  CGFloat(index) * segmentSpacing
+        let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth + spacingOffset
         return CGRect(x: x + indicatorViewInset,
                       y: indicatorViewInset,
                       width: elementWidth,
