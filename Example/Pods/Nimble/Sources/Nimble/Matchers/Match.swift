@@ -15,7 +15,7 @@ public func match(_ expectedValue: String?) -> Predicate<String> {
     }
 }
 
-#if canImport(Darwin)
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 
 extension NMBObjCMatcher {
     @objc public class func matchMatcher(_ expected: NSString) -> NMBMatcher {

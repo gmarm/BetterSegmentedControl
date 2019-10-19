@@ -13,11 +13,6 @@ public func beGreaterThanOrEqualTo<T: Comparable>(_ expectedValue: T?) -> Predic
     }
 }
 
-public func >=<T: Comparable>(lhs: Expectation<T>, rhs: T) {
-    lhs.to(beGreaterThanOrEqualTo(rhs))
-}
-
-#if canImport(Darwin) || !compiler(>=5.1)
 /// A Nimble matcher that succeeds when the actual value is greater than
 /// or equal to the expected value.
 public func beGreaterThanOrEqualTo<T: NMBComparable>(_ expectedValue: T?) -> Predicate<T> {
@@ -29,17 +24,20 @@ public func beGreaterThanOrEqualTo<T: NMBComparable>(_ expectedValue: T?) -> Pre
     }
 }
 
+public func >=<T: Comparable>(lhs: Expectation<T>, rhs: T) {
+    lhs.to(beGreaterThanOrEqualTo(rhs))
+}
+
 public func >=<T: NMBComparable>(lhs: Expectation<T>, rhs: T) {
     lhs.to(beGreaterThanOrEqualTo(rhs))
 }
-#endif
 
-#if canImport(Darwin)
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 extension NMBObjCMatcher {
-    @objc public class func beGreaterThanOrEqualToMatcher(_ expected: NMBComparable?) -> NMBMatcher {
-        return NMBPredicate { actualExpression in
+    @objc public class func beGreaterThanOrEqualToMatcher(_ expected: NMBComparable?) -> NMBObjCMatcher {
+        return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
             let expr = actualExpression.cast { $0 as? NMBComparable }
-            return try beGreaterThanOrEqualTo(expected).satisfies(expr).toObjectiveC()
+            return try beGreaterThanOrEqualTo(expected).matches(expr, failureMessage: failureMessage)
         }
     }
 }
