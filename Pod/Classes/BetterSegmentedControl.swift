@@ -26,14 +26,13 @@ import Foundation
         // MARK: Lifecycle
         init() {
             super.init(frame: CGRect.zero)
-            finishInit()
+            completeInit()
         }
         required public init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
-            finishInit()
+            completeInit()
         }
-        private func finishInit() {
-            layer.masksToBounds = true
+        private func completeInit() {
             segmentMaskView.backgroundColor = .black
         }
     }
@@ -119,8 +118,7 @@ import Foundation
         }
         set {
             layer.cornerRadius = newValue
-            indicatorView.cornerRadius = newValue - indicatorViewInset
-            segmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
+            updateCornerRadii()
         }
     }
     /// The indicator view's background color.
@@ -134,7 +132,10 @@ import Foundation
     }
     /// The indicator view's inset. Defaults to `2.0`.
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
-        didSet { setNeedsLayout() }
+        didSet {
+            updateCornerRadii()
+            setNeedsLayout()
+        }
     }
     /// The indicator view's border width.
     @IBInspectable public var indicatorViewBorderWidth: CGFloat {
@@ -329,6 +330,7 @@ import Foundation
     private func elementFrame(forIndex index: Int) -> CGRect {
         let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentCount)
         let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth
+        
         return CGRect(x: x + indicatorViewInset,
                       y: indicatorViewInset,
                       width: elementWidth,
@@ -339,8 +341,12 @@ import Foundation
         return Int(distances.firstIndex(of: distances.min()!)!)
     }
     private func moveIndicatorView() {
-        indicatorView.frame = normalSegments[self.index].frame
+        indicatorView.frame = normalSegments[index].frame
         layoutIfNeeded()
+    }
+    private func updateCornerRadii() {
+        indicatorView.cornerRadius = cornerRadius - indicatorViewInset
+        segmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
     }
     
     // MARK: Action handlers
