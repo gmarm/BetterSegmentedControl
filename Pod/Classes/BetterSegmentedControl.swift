@@ -381,3 +381,29 @@ extension BetterSegmentedControl: UIGestureRecognizerDelegate {
         return super.gestureRecognizerShouldBegin(gestureRecognizer)
     }
 }
+
+extension BetterSegmentedControl {
+    public class func appleStyled(frame: CGRect, titles: [String]) -> BetterSegmentedControl {
+        let control = BetterSegmentedControl(
+            frame: frame,
+            segments: LabelSegment.segments(withTitles: titles,
+                                            normalFont: .systemFont(ofSize: 13.0),
+                                            normalTextColor: .black,
+                                            selectedFont: .systemFont(ofSize: 13.0, weight: .medium),
+                                            selectedTextColor: .black),
+            index: 0,
+            options: [.backgroundColor(UIColor(red: 238.0/255.0,
+                                               green: 238.0/255.0,
+                                               blue: 238.0/255.0,
+                                               alpha: 1.0)),
+                      .indicatorViewBackgroundColor(.white),
+                      .cornerRadius(8),
+                      .indicatorViewInset(2)])
+        control.indicatorView.layer.shadowColor = UIColor.black.cgColor
+        control.indicatorView.layer.shadowOpacity = 0.1
+        control.indicatorView.layer.shadowOffset = CGSize(width: 1, height: 1)
+        control.indicatorView.layer.shadowRadius = 2
+        
+        return control
+    }
+}
