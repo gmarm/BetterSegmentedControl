@@ -5,7 +5,7 @@
 //  Created by George Marmaridis on 08/10/2017.
 //
 
-import Foundation
+import UIKit
 
 open class LabelSegment: BetterSegmentedControlSegment {
     // MARK: Constants

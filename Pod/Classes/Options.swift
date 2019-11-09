@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 public enum BetterSegmentedControlOption {        
     /* Selected segment */
