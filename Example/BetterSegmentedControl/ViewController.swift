@@ -29,21 +29,23 @@ class ViewController: UIViewController {
                      .indicatorViewBackgroundColor(UIColor(red: 0.55, green: 0.26, blue: 0.86, alpha: 1.00)),
                      .cornerRadius(3.0),
                      .animationSpringDamping(1.0)])
-        navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
+        navigationSegmentedControl.addTarget(self,
+                                             action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)),
+                                             for: .valueChanged)
         navigationItem.titleView = navigationSegmentedControl
         
-        // Control 1: Created and designed in IB that announces its value on interaction
+        // Control 1: Created and designed in IB
         control1.segments = LabelSegment.segments(withTitles: ["Recent", "Nearby", "All"],
                                                   normalFont: UIFont(name: "HelveticaNeue-Light", size: 13.0)!,
                                                   selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 13.0)!)
+        
         // Control 2: Exclusively defined in IB
         
         // Control 3: Many options
-        control3.segments = LabelSegment.segments(withTitles: ["One","Two","Three","Four","Five","Six"],
+        control3.segments = LabelSegment.segments(withTitles: ["One", "Two", "Three", "Four", "Five", "Six"],
                                                   normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
                                                   selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 14.0)!,
                                                   selectedTextColor: UIColor(red: 0.20, green: 0.68, blue: 0.27, alpha: 1.00))
-        control3.setIndex(10, animated: false)
         
         // Control 4: Added as a subview
         let viewSegmentedControl = BetterSegmentedControl(
@@ -52,7 +54,7 @@ class ViewController: UIViewController {
                                             normalFont: UIFont(name: "HelveticaNeue", size: 16.0)!,
                                             normalTextColor: .white,
                                             selectedFont: UIFont(name: "HelveticaNeue", size: 16.0)!,
-                                            selectedTextColor: UIColor(red:0.97, green:0.00, blue:0.24, alpha:1.00)),
+                                            selectedTextColor: UIColor(red: 0.97, green: 0.00, blue: 0.24, alpha: 1.00)),
             index: 1,
             options: [.backgroundColor(UIColor(red: 0.11, green: 0.12, blue: 0.13, alpha: 1.00)),
                       .indicatorViewBackgroundColor(UIColor(red: 0.11, green: 0.12, blue: 0.13, alpha: 1.00)),
@@ -63,7 +65,7 @@ class ViewController: UIViewController {
         
         // Control 5: Basic Icons
         let iconsSegmentedControl = BetterSegmentedControl(
-            frame: CGRect(x: 0.0, y: 400.0, width: view.bounds.width/3, height: 30.0),
+            frame: CGRect(x: 0.0, y: 400.0, width: view.bounds.width / 3, height: 30.0),
             segments: IconSegment.segments(withIcons: [#imageLiteral(resourceName: "facebook"),
                                                        #imageLiteral(resourceName: "twitter")],
                                            iconSize: CGSize(width: 20.0, height: 20.0),
@@ -98,4 +100,3 @@ class ViewController: UIViewController {
         print("The selected index is \(sender.index)")
     }
 }
-
