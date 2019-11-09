@@ -9,7 +9,6 @@ import Foundation
 
 @IBDesignable open class BetterSegmentedControl: UIControl {
     open class IndicatorView: UIView {
-        // MARK: Properties
         fileprivate let segmentMaskView = UIView()
         fileprivate var cornerRadius: CGFloat = 0 {
             didSet {
@@ -23,7 +22,6 @@ import Foundation
             }
         }
         
-        // MARK: Lifecycle
         init() {
             super.init(frame: CGRect.zero)
             completeInit()
@@ -36,15 +34,9 @@ import Foundation
             segmentMaskView.backgroundColor = .black
         }
     }
-    
-    // MARK: Constants
-    private struct Animation {
-        static let withBounceDuration: TimeInterval = 0.3
-        static let springDamping: CGFloat = 0.75
-        static let withoutBounceDuration: TimeInterval = 0.2
-    }
         
     // MARK: Properties
+    // Public
     /// The selected index.
     public private(set) var index: Int
     /// The segments available for selection.
@@ -97,14 +89,14 @@ import Foundation
                     backgroundColor = value
                 case let .cornerRadius(value):
                     cornerRadius = value
-                case let .bouncesOnChange(value):
-                    bouncesOnChange = value
+                case let .animationDuration(value):
+                    animationDuration = value
+                case let .animationSpringDamping(value):
+                    animationSpringDamping = value
                 }
             }
         }
     }
-    /// Whether the indicator should bounce when selecting a new index. Defaults to true.
-    @IBInspectable public var bouncesOnChange: Bool = true
     /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to `false`.
     @IBInspectable public var alwaysAnnouncesValue: Bool = false
     /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to `true`.
@@ -158,8 +150,12 @@ import Foundation
             indicatorView.layer.borderColor = newValue?.cgColor
         }
     }
+    /// The duration of the animation of an index change. Defaults to `0.3`.
+    @IBInspectable public var animationDuration: TimeInterval = 0.3
+    /// The spring damping ratio of the animation of an index change. Defaults to `0.75`. Set to `1.0` for a no bounce effect.
+    @IBInspectable public var animationSpringDamping: CGFloat = 0.75
     
-    // MARK: Private properties
+    // Private
     private let normalSegmentsView = UIView()
     private let selectedSegmentsView = UIView()
     private var initialIndicatorViewFrame: CGRect?
@@ -305,9 +301,9 @@ import Foundation
             if shouldSendEvent && announcesValueImmediately {
                 sendActions(for: .valueChanged)
             }
-            UIView.animate(withDuration: bouncesOnChange ? Animation.withBounceDuration : Animation.withoutBounceDuration,
+            UIView.animate(withDuration: animationDuration,
                            delay: 0.0,
-                           usingSpringWithDamping: bouncesOnChange ? Animation.springDamping : 1.0,
+                           usingSpringWithDamping: animationSpringDamping,
                            initialSpringVelocity: 0.0,
                            options: [.beginFromCurrentState, .curveEaseOut],
                            animations: { () -> Void in

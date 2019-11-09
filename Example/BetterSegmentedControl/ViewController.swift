@@ -28,7 +28,7 @@ class ViewController: UIViewController {
             options:[.backgroundColor(.darkGray),
                      .indicatorViewBackgroundColor(UIColor(red: 0.55, green: 0.26, blue: 0.86, alpha: 1.00)),
                      .cornerRadius(3.0),
-                     .bouncesOnChange(false)])
+                     .animationSpringDamping(1.0)])
         navigationSegmentedControl.addTarget(self, action: #selector(ViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         navigationItem.titleView = navigationSegmentedControl
         
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
             options: [.backgroundColor(UIColor(red: 0.11, green: 0.12, blue: 0.13, alpha: 1.00)),
                       .indicatorViewBackgroundColor(UIColor(red: 0.11, green: 0.12, blue: 0.13, alpha: 1.00)),
                       .cornerRadius(0.0),
-                      .bouncesOnChange(false),
+                      .animationSpringDamping(1.0),
                       .panningDisabled(true)])
         view.addSubview(viewSegmentedControl)
         
