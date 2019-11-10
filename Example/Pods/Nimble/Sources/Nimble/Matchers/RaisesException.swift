@@ -1,7 +1,7 @@
 import Foundation
 
 // This matcher requires the Objective-C, and being built by Xcode rather than the Swift Package Manager 
-#if canImport(Darwin) && !SWIFT_PACKAGE
+#if (os(macOS) || os(iOS) || os(tvOS) || os(watchOS)) && !SWIFT_PACKAGE
 
 /// A Nimble matcher that succeeds when the actual expression raises an
 /// exception with the specified name, reason, and/or userInfo.
@@ -23,12 +23,8 @@ public func raiseException(
                 exception = e
             }), finally: nil)
 
-            do {
-                try capture.tryBlockThrows {
-                    _ = try actualExpression.evaluate()
-                }
-            } catch {
-                return PredicateResult(status: .fail, message: .fail("unexpected error thrown: <\(error)>"))
+            capture.tryBlock {
+                _ = try! actualExpression.evaluate()
             }
 
             let failureMessage = FailureMessage()
@@ -122,12 +118,10 @@ internal func exceptionMatchesNonNilFieldsOrClosure(
 }
 
 public class NMBObjCRaiseExceptionMatcher: NSObject, NMBMatcher {
-    // swiftlint:disable identifier_name
     internal var _name: String?
     internal var _reason: String?
     internal var _userInfo: NSDictionary?
     internal var _block: ((NSException) -> Void)?
-    // swiftlint:enable identifier_name
 
     internal init(name: String?, reason: String?, userInfo: NSDictionary?, block: ((NSException) -> Void)?) {
         _name = name
@@ -141,15 +135,12 @@ public class NMBObjCRaiseExceptionMatcher: NSObject, NMBMatcher {
         let expr = Expression(expression: block, location: location)
 
         do {
-            let predicate = raiseException(
+            return try raiseException(
                 named: _name,
                 reason: _reason,
                 userInfo: _userInfo,
                 closure: _block
-            )
-            let result = try predicate.satisfies(expr)
-            result.message.update(failureMessage: failureMessage)
-            return result.toBoolean(expectation: .toMatch)
+            ).matches(expr, failureMessage: failureMessage)
         } catch let error {
             failureMessage.stringValue = "unexpected error thrown: <\(error)>"
             return false
@@ -161,47 +152,47 @@ public class NMBObjCRaiseExceptionMatcher: NSObject, NMBMatcher {
     }
 
     @objc public var named: (_ name: String) -> NMBObjCRaiseExceptionMatcher {
-        return { name in
+        return ({ name in
             return NMBObjCRaiseExceptionMatcher(
                 name: name,
                 reason: self._reason,
                 userInfo: self._userInfo,
                 block: self._block
             )
-        }
+        })
     }
 
     @objc public var reason: (_ reason: String?) -> NMBObjCRaiseExceptionMatcher {
-        return { reason in
+        return ({ reason in
             return NMBObjCRaiseExceptionMatcher(
                 name: self._name,
                 reason: reason,
                 userInfo: self._userInfo,
                 block: self._block
             )
-        }
+        })
     }
 
     @objc public var userInfo: (_ userInfo: NSDictionary?) -> NMBObjCRaiseExceptionMatcher {
-        return { userInfo in
+        return ({ userInfo in
             return NMBObjCRaiseExceptionMatcher(
                 name: self._name,
                 reason: self._reason,
                 userInfo: userInfo,
                 block: self._block
             )
-        }
+        })
     }
 
     @objc public var satisfyingBlock: (_ block: ((NSException) -> Void)?) -> NMBObjCRaiseExceptionMatcher {
-        return { block in
+        return ({ block in
             return NMBObjCRaiseExceptionMatcher(
                 name: self._name,
                 reason: self._reason,
                 userInfo: self._userInfo,
                 block: block
             )
-        }
+        })
     }
 }
 

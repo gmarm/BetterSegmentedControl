@@ -63,7 +63,7 @@ private func createPredicate<S>(_ elementMatcher: Predicate<S.Iterator.Element>)
         }
 }
 
-#if canImport(Darwin)
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 extension NMBObjCMatcher {
     @objc public class func allPassMatcher(_ matcher: NMBMatcher) -> NMBPredicate {
         return NMBPredicate { actualExpression in
@@ -103,7 +103,6 @@ extension NMBObjCMatcher {
                 } else {
                     let failureMessage = FailureMessage()
                     let result = matcher.matches(
-                        // swiftlint:disable:next force_try
                         ({ try! expr.evaluate() }),
                         failureMessage: failureMessage,
                         location: expr.location

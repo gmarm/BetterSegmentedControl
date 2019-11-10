@@ -1,6 +1,6 @@
 # BetterSegmentedControl
 
-![](https://img.shields.io/badge/Swift-5-blue.svg?style=flat)
+![](https://img.shields.io/badge/Swift-5.1-blue.svg?style=flat)
 [![Version](https://img.shields.io/cocoapods/v/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
@@ -13,11 +13,11 @@ BetterSegmentedControl is an easy to use, customizable replacement for UISegment
 ## Features
 
 - [x] Can be used as a segmented control or switch
-- [x] Plethora of customizable options from colors to insets and radii
-- [x] Use icons as segments, or add your own custom segments
+- [x] Plethora of customizable options from colors to insets, radii, animations
+- [x] Use text or icons as segments, or add your own custom segments
 - [x] Designable straight in Interface Builder
 - [x] Customizable behavior
-- [x] Right to left languages support
+- [x] Right-to-left languages support
 
 ## Requirements
 
@@ -26,14 +26,19 @@ BetterSegmentedControl is an easy to use, customizable replacement for UISegment
 
 ## Installation
 
+### Swift Package Manager
+
+BetterSegmentedControl is available through Swift Package Manager. To install
+it, simply go to Xcode under `File > Swift Packages > Add Package Dependency...`
+
 ### CocoaPods
 
 BetterSegmentedControl is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-# Swift 5
-pod 'BetterSegmentedControl', '~> 1.2'
+# Swift 5.1
+pod 'BetterSegmentedControl', '~> 1.3'
 
 # Swift 4
 pod 'BetterSegmentedControl', '1.0'
@@ -47,8 +52,8 @@ pod 'BetterSegmentedControl', '0.8'
 If you prefer using [Carthage](https://github.com/Carthage/Carthage), simply add BetterSegmentedControl to your `Cartfile`:
 
 ```ruby
-# Swift 5
-github "gmarm/BetterSegmentedControl" ~> 1.2
+# Swift 5.1
+github "gmarm/BetterSegmentedControl" ~> 1.3
 
 # Swift 4
 github "gmarm/BetterSegmentedControl" 1.0
@@ -82,10 +87,6 @@ You can find different ways of using it (such as by designing it in a Storyboard
 ## Contribution
 
 Feel free to Fork, submit Pull Requests or send me your feedback and suggestions! Please make sure that tests are passing before submitting a new Pull Request.
-
-## Known Issues
-
-- CocoaPods version 1.5+ breaks `IBDesignable` support. If you need `IBDesignable` support stick to CocoaPods version 1.4 for now.
 
 ## Author
 

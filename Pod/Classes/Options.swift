@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 public enum BetterSegmentedControlOption {        
     /* Selected segment */
@@ -20,8 +20,11 @@ public enum BetterSegmentedControlOption {
     case announcesValueImmediately(Bool)
     case panningDisabled(Bool)
     
+    /* Animation */
+    case animationDuration(TimeInterval)
+    case animationSpringDamping(CGFloat)
+    
     /* Other */
     case backgroundColor(UIColor)
     case cornerRadius(CGFloat)
-    case bouncesOnChange(Bool)
 }

@@ -5,11 +5,10 @@
 //  Copyright © 2016 George Marmaridis. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 @IBDesignable open class BetterSegmentedControl: UIControl {
     open class IndicatorView: UIView {
-        // MARK: Properties
         fileprivate let segmentMaskView = UIView()
         fileprivate var cornerRadius: CGFloat = 0 {
             didSet {
@@ -23,29 +22,21 @@ import Foundation
             }
         }
         
-        // MARK: Lifecycle
         init() {
             super.init(frame: CGRect.zero)
-            finishInit()
+            completeInit()
         }
         required public init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
-            finishInit()
+            completeInit()
         }
-        private func finishInit() {
-            layer.masksToBounds = true
+        private func completeInit() {
             segmentMaskView.backgroundColor = .black
         }
     }
-    
-    // MARK: Constants
-    private struct Animation {
-        static let withBounceDuration: TimeInterval = 0.3
-        static let springDamping: CGFloat = 0.75
-        static let withoutBounceDuration: TimeInterval = 0.2
-    }
         
     // MARK: Properties
+    // Public
     /// The selected index.
     public private(set) var index: Int
     /// The segments available for selection.
@@ -98,14 +89,14 @@ import Foundation
                     backgroundColor = value
                 case let .cornerRadius(value):
                     cornerRadius = value
-                case let .bouncesOnChange(value):
-                    bouncesOnChange = value
+                case let .animationDuration(value):
+                    animationDuration = value
+                case let .animationSpringDamping(value):
+                    animationSpringDamping = value
                 }
             }
         }
     }
-    /// Whether the indicator should bounce when selecting a new index. Defaults to true.
-    @IBInspectable public var bouncesOnChange: Bool = true
     /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to `false`.
     @IBInspectable public var alwaysAnnouncesValue: Bool = false
     /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to `true`.
@@ -119,8 +110,7 @@ import Foundation
         }
         set {
             layer.cornerRadius = newValue
-            indicatorView.cornerRadius = newValue - indicatorViewInset
-            segmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
+            updateCornerRadii()
         }
     }
     /// The indicator view's background color.
@@ -134,7 +124,10 @@ import Foundation
     }
     /// The indicator view's inset. Defaults to `2.0`.
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
-        didSet { setNeedsLayout() }
+        didSet {
+            updateCornerRadii()
+            setNeedsLayout()
+        }
     }
     /// The indicator view's border width.
     @IBInspectable public var indicatorViewBorderWidth: CGFloat {
@@ -157,8 +150,12 @@ import Foundation
             indicatorView.layer.borderColor = newValue?.cgColor
         }
     }
+    /// The duration of the animation of an index change. Defaults to `0.3`.
+    @IBInspectable public var animationDuration: TimeInterval = 0.3
+    /// The spring damping ratio of the animation of an index change. Defaults to `0.75`. Set to `1.0` for a no bounce effect.
+    @IBInspectable public var animationSpringDamping: CGFloat = 0.75
     
-    // MARK: Private properties
+    // Private
     private let normalSegmentsView = UIView()
     private let selectedSegmentsView = UIView()
     private var initialIndicatorViewFrame: CGRect?
@@ -304,9 +301,9 @@ import Foundation
             if shouldSendEvent && announcesValueImmediately {
                 sendActions(for: .valueChanged)
             }
-            UIView.animate(withDuration: bouncesOnChange ? Animation.withBounceDuration : Animation.withoutBounceDuration,
+            UIView.animate(withDuration: animationDuration,
                            delay: 0.0,
-                           usingSpringWithDamping: bouncesOnChange ? Animation.springDamping : 1.0,
+                           usingSpringWithDamping: animationSpringDamping,
                            initialSpringVelocity: 0.0,
                            options: [.beginFromCurrentState, .curveEaseOut],
                            animations: { () -> Void in
@@ -329,6 +326,7 @@ import Foundation
     private func elementFrame(forIndex index: Int) -> CGRect {
         let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentCount)
         let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth
+        
         return CGRect(x: x + indicatorViewInset,
                       y: indicatorViewInset,
                       width: elementWidth,
@@ -339,8 +337,12 @@ import Foundation
         return Int(distances.firstIndex(of: distances.min()!)!)
     }
     private func moveIndicatorView() {
-        indicatorView.frame = normalSegments[self.index].frame
+        indicatorView.frame = normalSegments[index].frame
         layoutIfNeeded()
+    }
+    private func updateCornerRadii() {
+        indicatorView.cornerRadius = cornerRadius - indicatorViewInset
+        segmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
     }
     
     // MARK: Action handlers
@@ -373,5 +375,31 @@ extension BetterSegmentedControl: UIGestureRecognizerDelegate {
             return indicatorView.frame.contains(gestureRecognizer.location(in: self))
         }
         return super.gestureRecognizerShouldBegin(gestureRecognizer)
+    }
+}
+
+extension BetterSegmentedControl {
+    public class func appleStyled(frame: CGRect, titles: [String]) -> BetterSegmentedControl {
+        let control = BetterSegmentedControl(
+            frame: frame,
+            segments: LabelSegment.segments(withTitles: titles,
+                                            normalFont: .systemFont(ofSize: 13.0),
+                                            normalTextColor: .black,
+                                            selectedFont: .systemFont(ofSize: 13.0, weight: .medium),
+                                            selectedTextColor: .black),
+            index: 0,
+            options: [.backgroundColor(UIColor(red: 238.0/255.0,
+                                               green: 238.0/255.0,
+                                               blue: 238.0/255.0,
+                                               alpha: 1.0)),
+                      .indicatorViewBackgroundColor(.white),
+                      .cornerRadius(8),
+                      .indicatorViewInset(2)])
+        control.indicatorView.layer.shadowColor = UIColor.black.cgColor
+        control.indicatorView.layer.shadowOpacity = 0.1
+        control.indicatorView.layer.shadowOffset = CGSize(width: 1, height: 1)
+        control.indicatorView.layer.shadowRadius = 2
+        
+        return control
     }
 }

@@ -5,7 +5,7 @@
 //  Created by George Marmaridis on 10/02/2018.
 //
 
-import Foundation
+import UIKit
 
 open class IconSegment: BetterSegmentedControlSegment {
     // MARK: Constants
@@ -41,21 +41,21 @@ open class IconSegment: BetterSegmentedControlSegment {
     
     // MARK: BetterSegmentedControlSegment
     public lazy var normalView: UIView = {
-        return view(withIcon: icon,
-                    iconSize: iconSize,
-                    backgroundColor: normalBackgroundColor,
-                    iconTintColor: normalIconTintColor)
+        return createView(withIcon: icon,
+                          iconSize: iconSize,
+                          backgroundColor: normalBackgroundColor,
+                          iconTintColor: normalIconTintColor)
     }()
     public lazy var selectedView: UIView = {
-        return view(withIcon: icon,
-                    iconSize: iconSize,
-                    backgroundColor: selectedBackgroundColor,
-                    iconTintColor: selectedIconTintColor)
+       return createView(withIcon: icon,
+                         iconSize: iconSize,
+                         backgroundColor: selectedBackgroundColor,
+                         iconTintColor: selectedIconTintColor)
     }()
-    private func view(withIcon icon: UIImage,
-                      iconSize: CGSize,
-                      backgroundColor: UIColor,
-                      iconTintColor: UIColor) -> UIView {
+    private func createView(withIcon icon: UIImage,
+                            iconSize: CGSize,
+                            backgroundColor: UIColor,
+                            iconTintColor: UIColor) -> UIView {
         let view = UIView()
         view.backgroundColor = backgroundColor
         let imageView = UIImageView(image: icon)
