@@ -1,6 +1,0 @@
-framework module BetterSegmentedControl {
-  umbrella header "BetterSegmentedControl-umbrella.h"
-
-  export *
-  module * { export * }
-}
