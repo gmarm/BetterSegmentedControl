@@ -1,5 +1,5 @@
 PODS:
-  - BetterSegmentedControl (1.2.1)
+  - BetterSegmentedControl (1.3.0)
   - iOSSnapshotTestCase (5.0.2):
     - iOSSnapshotTestCase/SwiftSupport (= 5.0.2)
   - iOSSnapshotTestCase/Core (5.0.2)
@@ -15,9 +15,9 @@ PODS:
 
 DEPENDENCIES:
   - BetterSegmentedControl (from `../`)
-  - Nimble
-  - Nimble-Snapshots
-  - Quick
+  - Nimble (~> 7.3)
+  - Nimble-Snapshots (~> 6.9)
+  - Quick (~> 2.2)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -31,12 +31,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BetterSegmentedControl: b27bddbdff29b6cae988678d6cd106858986cd03
+  BetterSegmentedControl: 85d1b0343a09603b098884d527f550dfc8e6cdd9
   iOSSnapshotTestCase: 2d51aa06775e95cecb0a1fb9c5c159ccd1dd4596
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   Nimble-Snapshots: bbd1ab264bacc24a9ce24a8363bc05aac783aeb0
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
 
-PODFILE CHECKSUM: 6c92bc46ca5296ae9803e1be9382886656d860cc
+PODFILE CHECKSUM: a84635a977f3d0e6850e7888935f489adb8fd939
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
