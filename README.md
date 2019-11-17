@@ -18,6 +18,7 @@ BetterSegmentedControl is an easy to use, customizable replacement for UISegment
 - [x] Designable straight in Interface Builder
 - [x] Customizable behavior
 - [x] Right-to-left languages support
+- [x] Bitrise support!
 
 ## Requirements
 
