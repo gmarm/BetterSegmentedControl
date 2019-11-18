@@ -1,6 +1,7 @@
 # BetterSegmentedControl
 
 ![](https://img.shields.io/badge/Swift-5.1-blue.svg?style=flat)
+![](https://app.bitrise.io/app/1d06a34a06589be2/status.svg?token=i0xHqYqUAjHGkzToH5FVOg&branch=master)
 [![Version](https://img.shields.io/cocoapods/v/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/BetterSegmentedControl.svg?style=flat)](http://cocoapods.org/pods/BetterSegmentedControl)
