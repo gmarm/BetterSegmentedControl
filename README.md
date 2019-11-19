@@ -87,7 +87,7 @@ You can find different ways of using it (such as by designing it in a Storyboard
 
 ## Contribution
 
-Feel free to Fork, submit Pull Requests or send me your feedback and suggestions! Please make sure that tests are passing before submitting a new Pull Request.
+Feel free to submit Pull Requests or send me your feedback and suggestions!
 
 ## Author
 
