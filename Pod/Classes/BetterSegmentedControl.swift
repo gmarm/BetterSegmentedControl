@@ -351,8 +351,6 @@ import UIKit
         setIndex(nearestIndex(toPoint: location))
     }
     @objc private func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
-        guard !panningDisabled else { return }
-        
         switch gestureRecognizer.state {
         case .began:
             initialIndicatorViewFrame = indicatorView.frame
@@ -372,7 +370,7 @@ import UIKit
 extension BetterSegmentedControl: UIGestureRecognizerDelegate {
     override open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer == panGestureRecognizer {
-            return indicatorView.frame.contains(gestureRecognizer.location(in: self))
+            return indicatorView.frame.contains(gestureRecognizer.location(in: self)) && !panningDisabled
         }
         return super.gestureRecognizerShouldBegin(gestureRecognizer)
     }
