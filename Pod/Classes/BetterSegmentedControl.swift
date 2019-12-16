@@ -250,9 +250,12 @@ import UIKit
         
         normalSegmentsView.frame = bounds
         selectedSegmentsView.frame = bounds
-        
-        indicatorView.frame = elementFrame(forIndex: index)
-        
+
+        if index != UISegmentedControl.noSegment {
+            indicatorView.frame = elementFrame(forIndex: index)
+        }
+        indicatorView.isHidden = index == UISegmentedControl.noSegment
+
         for index in 0...normalSegmentCount-1 {
             let frame = elementFrame(forIndex: index)
             normalSegmentsView.subviews[index].frame = frame
@@ -288,11 +291,16 @@ import UIKit
     ///   - index: The new index.
     ///   - animated: (Optional) Whether the change should be animated or not. Defaults to `true`.
     public func setIndex(_ index: Int, animated: Bool = true) {
-        guard normalSegments.indices.contains(index) else { return }
+        guard index == UISegmentedControl.noSegment || normalSegments.indices.contains(index) else { return }
         
         let oldIndex = self.index
         self.index = index
-        moveIndicatorViewToIndex(animated, shouldSendEvent: (self.index != oldIndex || alwaysAnnouncesValue))
+
+        let shouldAnimate = animated
+            && oldIndex != UISegmentedControl.noSegment
+            && index != UISegmentedControl.noSegment
+
+        moveIndicatorViewToIndex(shouldAnimate, shouldSendEvent: (self.index != oldIndex || alwaysAnnouncesValue))
     }
     
     // MARK: Animations
@@ -337,7 +345,11 @@ import UIKit
         return Int(distances.firstIndex(of: distances.min()!)!)
     }
     private func moveIndicatorView() {
-        indicatorView.frame = normalSegments[index].frame
+        if index == UISegmentedControl.noSegment {
+            indicatorView.frame = .zero
+        } else {
+            indicatorView.frame = normalSegments[index].frame
+        }
         layoutIfNeeded()
     }
     private func updateCornerRadii() {
