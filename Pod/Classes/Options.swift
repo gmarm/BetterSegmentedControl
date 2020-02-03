@@ -26,5 +26,7 @@ public enum BetterSegmentedControlOption {
     
     /* Other */
     case backgroundColor(UIColor)
+    case backgroundBorderColor(UIColor)
+    case backgroundBorderWidth(CGFloat)
     case cornerRadius(CGFloat)
 }
