@@ -87,6 +87,10 @@ import UIKit
                     panningDisabled = value
                 case let .backgroundColor(value):
                     backgroundColor = value
+                case let .backgroundBorderColor(value):
+                    backgroundBorderColor = value
+                case let .backgroundBorderWidth(value):
+                    backgroundBorderWidth = value
                 case let .cornerRadius(value):
                     cornerRadius = value
                 case let .animationDuration(value):
@@ -150,6 +154,30 @@ import UIKit
             indicatorView.layer.borderColor = newValue?.cgColor
         }
     }
+    
+    /// The background view's border color.
+    @IBInspectable public var backgroundBorderColor: UIColor? {
+        get {
+            guard let color = normalSegmentsView.layer.borderColor else {
+                return nil
+            }
+            return UIColor(cgColor: color)
+        }
+        set {
+            normalSegmentsView.layer.borderColor = newValue?.cgColor
+        }
+    }
+    
+    /// The background view's border width.
+    @IBInspectable public var backgroundBorderWidth: CGFloat {
+        get {
+            return normalSegmentsView.layer.borderWidth
+        }
+        set {
+            normalSegmentsView.layer.borderWidth = newValue
+        }
+    }
+    
     /// The duration of the animation of an index change. Defaults to `0.3`.
     @IBInspectable public var animationDuration: TimeInterval = 0.3
     /// The spring damping ratio of the animation of an index change. Defaults to `0.75`. Set to `1.0` for a no bounce effect.

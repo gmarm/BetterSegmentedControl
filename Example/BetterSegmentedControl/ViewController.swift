@@ -83,6 +83,28 @@ class ViewController: UIViewController {
                                                                                     height: 32.0),
                                                                       titles: ["First", "Second", "Third"])
         view.addSubview(appleStyledControl)
+        
+        // Control 7: Added as a line button
+        let borderSegmentedControl = BetterSegmentedControl(
+            frame: CGRect(x: 0.0, y: 332.0, width: view.bounds.width , height: 50.0),
+            segments: LabelSegment.segments(withTitles: ["Artists", "Albums"],
+                                            normalFont: UIFont(name: "HelveticaNeue", size: 16.0)!,
+                                            normalTextColor: .gray,
+                                            selectedFont: UIFont(name: "HelveticaNeue", size: 16.0)!,
+                                            selectedTextColor: UIColor(red: 0.97, green: 0.00, blue: 0.24, alpha: 1.00)),
+            index: 1,
+            options: [.backgroundColor(UIColor.white),
+                      .backgroundBorderColor(UIColor.green),
+                      .backgroundBorderWidth(1.0),
+                      .indicatorViewBackgroundColor(UIColor.white),
+                      .indicatorViewBorderWidth(1.0),
+                      .indicatorViewBorderColor(UIColor.red),
+                      .indicatorViewInset(0.0),
+                      .cornerRadius(0.0),
+                      .animationSpringDamping(1.0),
+                      .panningDisabled(true)])
+ 
+        view.addSubview(borderSegmentedControl)
     }
     
     // MARK: - Action handlers
