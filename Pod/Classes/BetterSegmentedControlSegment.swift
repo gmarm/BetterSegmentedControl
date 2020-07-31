@@ -10,4 +10,5 @@ import UIKit
 public protocol BetterSegmentedControlSegment {
     var normalView: UIView { get }
     var selectedView: UIView { get }
+    var text: String? { get }
 }

@@ -14,5 +14,6 @@ s.social_media_url = 'https://twitter.com/gmarmas'
 s.platform         = :ios, '9.0'
 s.requires_arc     = true
 s.source_files     = 'Pod/Classes/**/*'
+s.resource         = 'Pod/Assets/Localizations/*.lproj'
 s.frameworks       = 'UIKit'
 end

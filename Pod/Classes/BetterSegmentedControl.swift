@@ -46,12 +46,15 @@ import UIKit
                 return
             }
             
-            normalSegmentsView.subviews.forEach({ $0.removeFromSuperview() })
-            selectedSegmentsView.subviews.forEach({ $0.removeFromSuperview() })
+            normalSegmentsView.subviews.forEach { $0.removeFromSuperview() }
+            selectedSegmentsView.subviews.forEach { $0.removeFromSuperview() }
             
             for segment in segments {
                 normalSegmentsView.addSubview(segment.normalView)
                 selectedSegmentsView.addSubview(segment.selectedView)
+
+                segment.selectedView.isAccessibilityElement = false
+                segment.normalView.accessibilityTraits = .button
             }
             
             setNeedsLayout()
@@ -293,6 +296,7 @@ import UIKit
         let oldIndex = self.index
         self.index = index
         moveIndicatorViewToIndex(animated, shouldSendEvent: (self.index != oldIndex || alwaysAnnouncesValue))
+        updateAccessibilityLabels()
     }
     
     // MARK: Animations
@@ -343,6 +347,19 @@ import UIKit
     private func updateCornerRadii() {
         indicatorView.cornerRadius = cornerRadius - indicatorViewInset
         segmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
+    }
+    private func updateAccessibilityLabels() {
+        let selectedText = NSLocalizedString("Selected",
+                                             tableName: "BetterSegmentedControlLocalizable",
+                                             bundle: Bundle(for: BetterSegmentedControl.self),
+                                             value: "",
+                                             comment: "")
+
+        for (segmentIndex, normalSegment) in normalSegments.enumerated() {
+            if let segmentText = segments[segmentIndex].text {
+                normalSegment.accessibilityLabel = segmentText + (segmentIndex == index ? " \(selectedText)" : "")
+            }
+        }
     }
     
     // MARK: Action handlers

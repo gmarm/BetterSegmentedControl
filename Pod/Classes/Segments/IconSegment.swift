@@ -15,6 +15,7 @@ open class IconSegment: BetterSegmentedControlSegment {
     }
     
     // MARK: Properties
+    public let text: String? = nil
     public var icon: UIImage
     public var iconSize: CGSize
     
