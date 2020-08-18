@@ -42,7 +42,7 @@ import UIKit
     /// The segments available for selection.
     public var segments: [BetterSegmentedControlSegment] {
         didSet {
-            guard segments.count > 1 else {
+            guard segments.count > 0 else {
                 return
             }
             
@@ -231,7 +231,7 @@ import UIKit
         panGestureRecognizer.delegate = self
         addGestureRecognizer(panGestureRecognizer)
         
-        guard segments.count > 1 else { return }
+        guard segments.count > 0 else { return }
         
         for segment in segments {
             segment.normalView.clipsToBounds = true
@@ -244,7 +244,7 @@ import UIKit
     }
     override open func layoutSubviews() {
         super.layoutSubviews()
-        guard normalSegmentCount > 1 else {
+        guard normalSegmentCount > 0 else {
             return
         }
         
