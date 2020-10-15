@@ -1,12 +1,18 @@
 source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
 use_frameworks!
+inhibit_all_warnings!
+
+def betterSegmentedControl
+  pod 'BetterSegmentedControl', :path => '../', :inhibit_warnings => false
+end
 
 target 'BetterSegmentedControl_Example' do
-  pod 'BetterSegmentedControl', :path => '../'
+  betterSegmentedControl
 end
 
 target 'BetterSegmentedControl_Tests' do
-  pod 'BetterSegmentedControl', :path => '../'
+  betterSegmentedControl
 
   pod 'Quick', '~> 2.2'
   pod 'Nimble', '~> 7.3'
