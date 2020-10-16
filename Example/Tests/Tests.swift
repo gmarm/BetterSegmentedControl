@@ -139,6 +139,35 @@ class BetterSegmentedControlSpec: QuickSpec {
                 }
             }
             
+            // added for https://github.com/gmarm/BetterSegmentedControl/issues/83
+            context("when setting cornerRadius and indicatorViewInset") {
+                context("first cornerRadius then indicatorViewInset") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree, options: [.cornerRadius(10.0),
+                                                                                                  .indicatorViewInset(4.0)])
+                        control.backgroundColor = .black
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("first indicatorViewInset then cornerRadius") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree, options: [.indicatorViewInset(4.0),
+                                                                                                  .cornerRadius(10.0)])
+                        control.backgroundColor = .black
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+            }
+            
             describe("its indicator view border related properties") {
                 context("when they are set during initialization") {
                     beforeEach {
