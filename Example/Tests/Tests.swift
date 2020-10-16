@@ -139,6 +139,62 @@ class BetterSegmentedControlSpec: QuickSpec {
                 }
             }
             
+            describe("its indicator view border related properties") {
+                context("when they are set during initialization") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree, options: [.indicatorViewBorderWidth(2.0),
+                                                                                                  .indicatorViewBorderColor(.green)])
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating border width to 0") {
+                        control.indicatorViewBorderWidth = 0
+
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+
+                    it("renders correctly after updating border width to 4") {
+                        control.indicatorViewBorderWidth = 4
+
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+
+                    it("renders correctly after updating border color to blue") {
+                        control.indicatorViewBorderColor = .blue
+
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+
+                    it("renders correctly after updating border color to clear") {
+                        control.indicatorViewBorderColor = .clear
+
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when they are set after initialization") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree)
+                    }
+                    
+                    it("renders correctly after updating border width to 2 and color to green") {
+                        control.indicatorViewBorderWidth = 2
+                        control.indicatorViewBorderColor = .green
+
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+            }
+            
             context("when initialized") {
                 context("as example 1") {
                     var testViewController: TestViewController!
