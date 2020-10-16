@@ -14,13 +14,87 @@ import Nimble_Snapshots
 class BetterSegmentedControlSpec: QuickSpec {
     override func spec() {
         describe("a BetterSegmentedControl") {
+            let testFrame = CGRect(x: 0, y: 0, width: 300, height: 44)
+            let basicSegmentOne: [LabelSegment] = [.init(text: "One")]
+            let basicSegmentsTwo: [LabelSegment] = [.init(text: "One"), .init(text: "Two")]
+            let basicSegmentsThree: [LabelSegment] = [.init(text: "One"), .init(text: "Two"), .init(text: "Three")]
+            let basicSegmentsFour: [LabelSegment] = [.init(text: "One"), .init(text: "Two"), .init(text: "Three"), .init(text: "Four")]
+            
             var control: BetterSegmentedControl!
+            
+            context("with most basic initialization") {
+                context("with two segments") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsTwo)
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("with three segments") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree)
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("with four segments") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsFour)
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+            }
+            
+            describe("its indicatorViewBackgroundColor property") {
+                context("when it is set during initialization") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree, options: [.indicatorViewBackgroundColor(.green)])
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating it") {
+                        control.indicatorViewBackgroundColor = .blue
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when it is set after initialization") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree)
+                    }
+                    
+                    it("renders correctly after updating it") {
+                        control.indicatorViewBackgroundColor = .green
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+            }
             
             context("when initialized") {
                 context("as example 1") {
-                    var testViewController: TestViewController2!
+                    var testViewController: TestViewController!
                     beforeEach({
-                        testViewController = TestViewController2()
+                        testViewController = TestViewController()
                         
                         control = BetterSegmentedControl(
                             frame: CGRect(x: 0, y: 0, width: 300, height: 44),
@@ -39,17 +113,17 @@ class BetterSegmentedControlSpec: QuickSpec {
                                       .indicatorViewBorderColor(.magenta),
                                       .cornerRadius(15.0)])
                         
-                        control.addTarget(testViewController, action: #selector(TestViewController2.valueChanged), for: .valueChanged)
+                        control.addTarget(testViewController, action: #selector(TestViewController.valueChanged), for: .valueChanged)
                     })
                     it("renders correctly", closure: {
                         expect(control).to(haveValidSnapshot())
                     })
                     it("renders corner radius updates correctly", closure: {
-                        control.options = [.cornerRadius(8)]
+                        control.setOptions([.cornerRadius(8)])
                         expect(control).to(haveValidSnapshot())
                     })
                     it("renders indicator view inset updates correctly", closure: {
-                        control.options = [.indicatorViewInset(0)]
+                        control.setOptions([.indicatorViewInset(0)])
                         expect(control).to(haveValidSnapshot())
                     })
                     it("behaves correctly when setting index", closure: {
@@ -195,13 +269,14 @@ class BetterSegmentedControlSpec: QuickSpec {
                     beforeEach({
                         let storyboard = UIStoryboard(name: "Test",
                                                       bundle: Bundle(for: type(of: self)))
-                        let viewController = storyboard.instantiateInitialViewController() as! TestViewController
+                        let viewController = storyboard.instantiateInitialViewController() as! StoryboardTestViewController
                         UIApplication.shared.keyWindow!.rootViewController = viewController
                         expect(viewController).toNot(beNil())
                         expect(viewController.view).toNot(beNil())
                         control = viewController.control
                     })
                     it("renders correctly", closure: {
+                        //📷(control)
                         expect(control).to(haveValidSnapshot())
                     })
                 }

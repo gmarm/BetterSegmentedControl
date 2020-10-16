@@ -61,42 +61,6 @@ import UIKit
     /// The currently selected index indicator view.
     public let indicatorView = IndicatorView()
     
-    /// A list of options to configure the control with.
-    public var options: [BetterSegmentedControlOption]? {
-        get { return nil }
-        set {
-            guard let options = newValue else {
-                return
-            }
-            
-            for option in options {
-                switch option {
-                case let .indicatorViewBackgroundColor(value):
-                    indicatorViewBackgroundColor = value
-                case let .indicatorViewInset(value):
-                    indicatorViewInset = value
-                case let .indicatorViewBorderWidth(value):
-                    indicatorViewBorderWidth = value
-                case let .indicatorViewBorderColor(value):
-                    indicatorViewBorderColor = value
-                case let .alwaysAnnouncesValue(value):
-                    alwaysAnnouncesValue = value
-                case let .announcesValueImmediately(value):
-                    announcesValueImmediately = value
-                case let .panningDisabled(value):
-                    panningDisabled = value
-                case let .backgroundColor(value):
-                    backgroundColor = value
-                case let .cornerRadius(value):
-                    cornerRadius = value
-                case let .animationDuration(value):
-                    animationDuration = value
-                case let .animationSpringDamping(value):
-                    animationSpringDamping = value
-                }
-            }
-        }
-    }
     /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to `false`.
     @IBInspectable public var alwaysAnnouncesValue: Bool = false
     /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to `true`.
@@ -113,6 +77,7 @@ import UIKit
             updateCornerRadii()
         }
     }
+    
     /// The indicator view's background color.
     @IBInspectable public var indicatorViewBackgroundColor: UIColor? {
         get {
@@ -170,6 +135,8 @@ import UIKit
     private var selectedSegments: [UIView] { return selectedSegmentsView.subviews }
     private var segmentViews: [UIView] { return normalSegments + selectedSegments }
     private var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
+    private static var defaultOptions: [Option] = [.backgroundColor(.appleSegmentedControlDefaultControlBackground),
+                                                                         .indicatorViewBackgroundColor(.appleSegmentedControlDefaultIndicatorBackground)]
     private lazy var defaultSegments: [BetterSegmentedControlSegment] = {
         return [LabelSegment(text: "First"), LabelSegment(text: "Second")]
     }()
@@ -192,17 +159,25 @@ import UIKit
     public init(frame: CGRect,
                 segments: [BetterSegmentedControlSegment],
                 index: Int = 0,
-                options: [BetterSegmentedControlOption]? = nil) {
+                options: [Option]? = nil) {
         self.index = index
         self.segments = segments
+        
         super.init(frame: frame)
+        
         completeInit()
-        self.options = options
+        
+        setOptions(BetterSegmentedControl.defaultOptions)
+        if let options = options {
+            setOptions(options)
+        }
     }
     required public init?(coder aDecoder: NSCoder) {
         self.index = 0
         self.segments = [LabelSegment(text: "First"), LabelSegment(text: "Second")]
+        
         super.init(coder: aDecoder)
+        
         completeInit()
     }
     @available(*, unavailable, message: "Use init(frame:segments:index:options:) instead.")
@@ -294,6 +269,35 @@ import UIKit
         self.index = index
         moveIndicatorViewToIndex(animated, shouldSendEvent: (self.index != oldIndex || alwaysAnnouncesValue))
     }
+    /// A list of options to configure the control with.
+    public func setOptions(_ options: [Option]) {
+        for option in options {
+            switch option {
+            case let .indicatorViewBackgroundColor(value):
+                indicatorViewBackgroundColor = value
+            case let .indicatorViewInset(value):
+                indicatorViewInset = value
+            case let .indicatorViewBorderWidth(value):
+                indicatorViewBorderWidth = value
+            case let .indicatorViewBorderColor(value):
+                indicatorViewBorderColor = value
+            case let .alwaysAnnouncesValue(value):
+                alwaysAnnouncesValue = value
+            case let .announcesValueImmediately(value):
+                announcesValueImmediately = value
+            case let .panningDisabled(value):
+                panningDisabled = value
+            case let .backgroundColor(value):
+                backgroundColor = value
+            case let .cornerRadius(value):
+                cornerRadius = value
+            case let .animationDuration(value):
+                animationDuration = value
+            case let .animationSpringDamping(value):
+                animationSpringDamping = value
+            }
+        }
+    }
     
     // MARK: Animations
     private func moveIndicatorViewToIndex(_ animated: Bool, shouldSendEvent: Bool) {
@@ -382,15 +386,12 @@ extension BetterSegmentedControl {
             frame: frame,
             segments: LabelSegment.segments(withTitles: titles,
                                             normalFont: .systemFont(ofSize: 13.0),
-                                            normalTextColor: .black,
+                                            normalTextColor: .appleSegmentedControlDefaultSegmentText,
                                             selectedFont: .systemFont(ofSize: 13.0, weight: .medium),
-                                            selectedTextColor: .black),
+                                            selectedTextColor: .appleSegmentedControlDefaultSegmentText),
             index: 0,
-            options: [.backgroundColor(UIColor(red: 238.0/255.0,
-                                               green: 238.0/255.0,
-                                               blue: 238.0/255.0,
-                                               alpha: 1.0)),
-                      .indicatorViewBackgroundColor(.white),
+            options: [.backgroundColor(.appleSegmentedControlDefaultControlBackground),
+                      .indicatorViewBackgroundColor(.appleSegmentedControlDefaultIndicatorBackground),
                       .cornerRadius(8),
                       .indicatorViewInset(2)])
         control.indicatorView.layer.shadowColor = UIColor.black.cgColor

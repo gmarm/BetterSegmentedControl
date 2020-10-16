@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 import BetterSegmentedControl
 
-class TestViewController: UIViewController {
+final class StoryboardTestViewController: UIViewController {
     @IBOutlet weak var control: BetterSegmentedControl!
 }
 
-class TestViewController2: UIViewController {
+final class TestViewController: UIViewController {
     var valueChangedCalledCount = 0
     @objc func valueChanged() {
         valueChangedCalledCount += 1

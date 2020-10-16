@@ -11,10 +11,11 @@ open class LabelSegment: BetterSegmentedControlSegment {
     // MARK: Constants
     private struct DefaultValues {
         static let normalBackgroundColor: UIColor = .clear
-        static let normalTextColor: UIColor = .white
+        static let normalTextColor: UIColor = .black
+        static let normalFont: UIFont = .systemFont(ofSize: 13)
         static let selectedBackgroundColor: UIColor = .clear
         static let selectedTextColor: UIColor = .black
-        static let font: UIFont = UILabel().font
+        static let selectedFont: UIFont = .systemFont(ofSize: 13, weight: .medium)
     }
     
     // MARK: Properties
@@ -44,10 +45,10 @@ open class LabelSegment: BetterSegmentedControlSegment {
         self.text = text
         self.numberOfLines = numberOfLines
         self.normalBackgroundColor = normalBackgroundColor ?? DefaultValues.normalBackgroundColor
-        self.normalFont = normalFont ?? DefaultValues.font
+        self.normalFont = normalFont ?? DefaultValues.normalFont
         self.normalTextColor = normalTextColor ?? DefaultValues.normalTextColor
         self.selectedBackgroundColor = selectedBackgroundColor ?? DefaultValues.selectedBackgroundColor
-        self.selectedFont = selectedFont ?? DefaultValues.font
+        self.selectedFont = selectedFont ?? DefaultValues.selectedFont
         self.selectedTextColor = selectedTextColor ?? DefaultValues.selectedTextColor
         self.accessibilityIdentifier = accessibilityIdentifier
     }
