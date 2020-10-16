@@ -90,6 +90,55 @@ class BetterSegmentedControlSpec: QuickSpec {
                 }
             }
             
+            describe("its indicatorViewInset property") {
+                context("when it is set during initialization") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree, options: [.indicatorViewInset(2.0)])
+                        control.backgroundColor = .black
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating it to 0") {
+                        control.indicatorViewInset = 0
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating it to 4") {
+                        control.indicatorViewInset = 4
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when it is set after initialization") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree)
+                        control.backgroundColor = .black
+                    }
+                    
+                    it("renders correctly after updating it to 0") {
+                        control.indicatorViewInset = 0
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating it to 4") {
+                        control.indicatorViewInset = 4
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+            }
+            
             context("when initialized") {
                 context("as example 1") {
                     var testViewController: TestViewController!
