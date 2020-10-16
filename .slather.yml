@@ -1,0 +1,5 @@
+xcodeproj: Example/BetterSegmentedControl.xcodeproj
+scheme: BetterSegmentedControl_Example
+workspace: Example/BetterSegmentedControl.xcworkspace
+source_directory: Pod/Classes
+binary_basename: BetterSegmentedControl
