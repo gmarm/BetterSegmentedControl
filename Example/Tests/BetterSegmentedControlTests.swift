@@ -172,6 +172,70 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                 }
             }
             
+            describe("its segments property") {
+                context("when initialized with 0 segments") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: [])
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after setting segments to two") {
+                        control.segments = basicSegmentsTwo
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when initialized with 1 segment") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentOne)
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after setting segments to two") {
+                        control.segments = basicSegmentsTwo
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when initialized with 3 segments") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree)
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after setting segments to two") {
+                        control.segments = basicSegmentsTwo
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after setting segments to two then four") {
+                        control.segments = basicSegmentsTwo
+                        control.segments = basicSegmentsFour
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+            }
+            
             describe("its cornerRadius property") {
                 context("when it is set during initialization") {
                     beforeEach {

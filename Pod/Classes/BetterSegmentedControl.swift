@@ -42,19 +42,7 @@ import UIKit
     /// The segments available for selection.
     public var segments: [BetterSegmentedControlSegment] {
         didSet {
-            guard segments.count > 1 else {
-                return
-            }
-            
-            normalSegmentsView.subviews.forEach({ $0.removeFromSuperview() })
-            selectedSegmentsView.subviews.forEach({ $0.removeFromSuperview() })
-            
-            for segment in segments {
-                normalSegmentsView.addSubview(segment.normalView)
-                selectedSegmentsView.addSubview(segment.selectedView)
-            }
-            
-            setNeedsLayout()
+            applySegments()
         }
     }
     
@@ -137,9 +125,6 @@ import UIKit
     private var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
     private static var defaultOptions: [Option] = [.backgroundColor(.appleSegmentedControlDefaultControlBackground),
                                                                          .indicatorViewBackgroundColor(.appleSegmentedControlDefaultIndicatorBackground)]
-    private lazy var defaultSegments: [BetterSegmentedControlSegment] = {
-        return [LabelSegment(text: "First"), LabelSegment(text: "Second")]
-    }()
     private var isLayoutDirectionRightToLeft: Bool {
         let layoutDirection = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute)
         return layoutDirection == .rightToLeft
@@ -205,20 +190,13 @@ import UIKit
         addSubview(selectedSegmentsView)
         selectedSegmentsView.layer.mask = indicatorView.segmentMaskView.layer
         
-        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BetterSegmentedControl.tapped(_:)))
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
         addGestureRecognizer(tapGestureRecognizer)
-        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(BetterSegmentedControl.panned(_:)))
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panned(_:)))
         panGestureRecognizer.delegate = self
         addGestureRecognizer(panGestureRecognizer)
         
-        guard segments.count > 1 else { return }
-        
-        for segment in segments {
-            segment.normalView.clipsToBounds = true
-            normalSegmentsView.addSubview(segment.normalView)
-            segment.selectedView.clipsToBounds = true
-            selectedSegmentsView.addSubview(segment.selectedView)
-        }
+        applySegments()
         
         setNeedsLayout()
     }
@@ -332,6 +310,20 @@ import UIKit
     }
     
     // MARK: Helpers
+    private func applySegments() {
+        normalSegmentsView.subviews.forEach({ $0.removeFromSuperview() })
+        selectedSegmentsView.subviews.forEach({ $0.removeFromSuperview() })
+        
+        for segment in segments {
+            segment.normalView.clipsToBounds = true
+            segment.selectedView.clipsToBounds = true
+            
+            normalSegmentsView.addSubview(segment.normalView)
+            selectedSegmentsView.addSubview(segment.selectedView)
+        }
+        
+        setNeedsLayout()
+    }
     private func elementFrame(forIndex index: Int) -> CGRect {
         let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentCount)
         let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth
