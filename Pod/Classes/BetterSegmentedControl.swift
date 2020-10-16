@@ -10,7 +10,7 @@ import UIKit
 @IBDesignable open class BetterSegmentedControl: UIControl {
     open class IndicatorView: UIView {
         fileprivate let segmentMaskView = UIView()
-        fileprivate var cornerRadius: CGFloat = 0 {
+        fileprivate var cornerRadius: CGFloat = 0.0 {
             didSet {
                 layer.cornerRadius = cornerRadius
                 segmentMaskView.layer.cornerRadius = cornerRadius
@@ -154,13 +154,18 @@ import UIKit
     /// - Parameters:
     ///   - frame: The frame of the control.
     ///   - segments: The segments to configure the control with.
-    ///   - index: The initially selected index.
+    ///   - index: The initially selected index. Passing an index outside the segment indices will set the index to `0`.
     ///   - options: An array of customization options to style and change the behavior of the control.
     public init(frame: CGRect,
                 segments: [BetterSegmentedControlSegment],
                 index: Int = 0,
                 options: [Option]? = nil) {
-        self.index = index
+        if segments.indices.contains(index) {
+            self.index = index
+        } else {
+            self.index = 0
+        }
+        
         self.segments = segments
         
         super.init(frame: frame)
@@ -257,13 +262,13 @@ import UIKit
     }
     
     // MARK: Index Setting
-    /// Sets the control's index.
+    /// Sets the control's index. Setting an index outside the existing indices will not have any effect.
     ///
     /// - Parameters:
     ///   - index: The new index.
     ///   - animated: (Optional) Whether the change should be animated or not. Defaults to `true`.
     public func setIndex(_ index: Int, animated: Bool = true) {
-        guard normalSegments.indices.contains(index) else { return }
+        guard segments.indices.contains(index) else { return }
         
         let oldIndex = self.index
         self.index = index

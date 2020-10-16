@@ -57,6 +57,121 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                 }
             }
             
+            describe("its index setting method") {
+                context("when index is not set during initialization") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsFour)
+                    }
+                    
+                    it("renders correctly after updating the index to 1") {
+                        control.setIndex(1)
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating the index to 2") {
+                        control.setIndex(2)
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating the index to 3") {
+                        control.setIndex(3)
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating the index to 3 and then 1") {
+                        control.setIndex(3)
+                        control.setIndex(1)
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating the index to minus 1") {
+                        control.setIndex(-1)
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating the index to minus 2") {
+                        control.setIndex(-2)
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating the index to 10") {
+                        control.setIndex(10)
+                        
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when index is set during initialization") {
+                    context("to 0") {
+                        beforeEach {
+                            control = .init(frame: testFrame, segments: basicSegmentsFour, index: 0)
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
+                    }
+                    
+                    context("to 1") {
+                        beforeEach {
+                            control = .init(frame: testFrame, segments: basicSegmentsFour, index: 1)
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
+                    }
+                    
+                    context("to minus 1") {
+                        beforeEach {
+                            control = .init(frame: testFrame, segments: basicSegmentsFour, index: -1)
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
+                    }
+                    
+                    context("to minus 2") {
+                        beforeEach {
+                            control = .init(frame: testFrame, segments: basicSegmentsFour, index: -2)
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
+                    }
+                    
+                    context("to 10") {
+                        beforeEach {
+                            control = .init(frame: testFrame, segments: basicSegmentsFour, index: -2)
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
+                    }
+                }
+            }
+            
             describe("its cornerRadius property") {
                 context("when it is set during initialization") {
                     beforeEach {
@@ -71,14 +186,14 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                     
                     it("renders correctly after updating it to 0") {
                         control.cornerRadius = 0
-
+                        
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
-
+                    
                     it("renders correctly after updating it to 5") {
                         control.cornerRadius = 5
-
+                        
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
@@ -92,14 +207,14 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                     
                     it("renders correctly after updating it to 0") {
                         control.cornerRadius = 0
-
+                        
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
-
+                    
                     it("renders correctly after updating it to 10") {
                         control.cornerRadius = 10
-
+                        
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
@@ -231,28 +346,28 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                     
                     it("renders correctly after updating border width to 0") {
                         control.indicatorViewBorderWidth = 0
-
+                        
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
-
+                    
                     it("renders correctly after updating border width to 4") {
                         control.indicatorViewBorderWidth = 4
-
+                        
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
-
+                    
                     it("renders correctly after updating border color to blue") {
                         control.indicatorViewBorderColor = .blue
-
+                        
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
-
+                    
                     it("renders correctly after updating border color to clear") {
                         control.indicatorViewBorderColor = .clear
-
+                        
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
@@ -266,7 +381,7 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                     it("renders correctly after updating border width to 2 and color to green") {
                         control.indicatorViewBorderWidth = 2
                         control.indicatorViewBorderColor = .green
-
+                        
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
