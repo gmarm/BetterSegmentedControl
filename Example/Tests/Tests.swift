@@ -57,6 +57,55 @@ class BetterSegmentedControlSpec: QuickSpec {
                 }
             }
             
+            describe("its cornerRadius property") {
+                context("when it is set during initialization") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree, options: [.cornerRadius(10.0)])
+                        control.backgroundColor = .black
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("renders correctly after updating it to 0") {
+                        control.cornerRadius = 0
+
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+
+                    it("renders correctly after updating it to 5") {
+                        control.cornerRadius = 5
+
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when it is set after initialization") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsThree)
+                        control.backgroundColor = .black
+                    }
+                    
+                    it("renders correctly after updating it to 0") {
+                        control.cornerRadius = 0
+
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+
+                    it("renders correctly after updating it to 10") {
+                        control.cornerRadius = 10
+
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+            }
+            
             describe("its indicatorViewBackgroundColor property") {
                 context("when it is set during initialization") {
                     beforeEach {
