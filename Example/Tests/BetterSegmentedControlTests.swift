@@ -303,6 +303,57 @@ final class BetterSegmentedControlSpec: QuickSpec {
                 }
             }
             
+            // MARK: alwaysAnnouncesValue
+            describe("its alwaysAnnouncesValue property") {
+                var testViewController: TestViewController!
+                
+                beforeEach {
+                    testViewController = TestViewController()
+                    control = .init(frame: testFrame, segments: basicSegmentsThree)
+                    control.addTarget(testViewController, action: #selector(TestViewController.valueChanged), for: .valueChanged)
+                }
+                
+                context("when it is false") {
+                    beforeEach {
+                        control.alwaysAnnouncesValue = false
+                    }
+                    
+                    it("does send the expected events when setting the index") {
+                        control.setIndex(0)
+                        expect(testViewController.valueChangedCalledCount).to(equal(0))
+                        
+                        control.setIndex(1)
+                        expect(testViewController.valueChangedCalledCount).to(equal(1))
+                        
+                        control.setIndex(0)
+                        expect(testViewController.valueChangedCalledCount).to(equal(2))
+                        
+                        control.setIndex(0)
+                        expect(testViewController.valueChangedCalledCount).to(equal(2))
+                    }
+                }
+                
+                context("when it is true") {
+                    beforeEach {
+                        control.alwaysAnnouncesValue = true
+                    }
+                    
+                    it("does send the expected events when setting the index") {
+                        control.setIndex(0)
+                        expect(testViewController.valueChangedCalledCount).to(equal(1))
+                        
+                        control.setIndex(1)
+                        expect(testViewController.valueChangedCalledCount).to(equal(2))
+                        
+                        control.setIndex(0)
+                        expect(testViewController.valueChangedCalledCount).to(equal(3))
+                        
+                        control.setIndex(0)
+                        expect(testViewController.valueChangedCalledCount).to(equal(4))
+                    }
+                }
+            }
+            
             // MARK: segments
             describe("its segments property") {
                 context("when initialized with 0 segments") {
@@ -588,6 +639,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                 }
             }
             
+            // MARK: setOptions()
             describe("its setOptions() method") {
                 beforeEach {
                     control = .init(frame: testFrame, segments: basicSegmentsThree)
