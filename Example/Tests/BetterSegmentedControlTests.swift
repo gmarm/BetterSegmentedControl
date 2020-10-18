@@ -33,6 +33,14 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
+                    
+                    it("has the expected property values") {
+                        expect(control.alwaysAnnouncesValue).to(beFalse())
+                        expect(control.announcesValueImmediately).to(beTrue())
+                        expect(control.panningDisabled).to(beFalse())
+                        expect(control.animationDuration).to(equal(0.3))
+                        expect(control.animationSpringDamping).to(equal(0.75))
+                    }
                 }
                 
                 context("with three segments") {
@@ -574,6 +582,150 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         control.indicatorViewBorderWidth = 2
                         control.indicatorViewBorderColor = .green
                         
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+            }
+            
+            describe("its setOptions() method") {
+                beforeEach {
+                    control = .init(frame: testFrame, segments: basicSegmentsThree)
+                }
+                
+                context("when setting indicatorViewBackgroundColor") {
+                    beforeEach {
+                        control.setOptions([.indicatorViewBackgroundColor(.green)])
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when setting indicatorViewInset") {
+                    beforeEach {
+                        control.setOptions([.indicatorViewInset(8)])
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when setting indicatorViewBorderWidth and indicatorViewBorderColor") {
+                    beforeEach {
+                        control.setOptions([.indicatorViewBorderWidth(4), .indicatorViewBorderColor(.green)])
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when setting alwaysAnnouncesValue") {
+                    context("to true") {
+                        beforeEach {
+                            control.setOptions([.alwaysAnnouncesValue(true)])
+                        }
+                        
+                        it("returns the expected property value") {
+                            expect(control.alwaysAnnouncesValue).to(beTrue())
+                        }
+                    }
+                    context("to false") {
+                        beforeEach {
+                            control.setOptions([.alwaysAnnouncesValue(false)])
+                        }
+                        
+                        it("returns the expected property value") {
+                            expect(control.alwaysAnnouncesValue).to(beFalse())
+                        }
+                    }
+                }
+                
+                context("when setting announcesValueImmediately") {
+                    context("to true") {
+                        beforeEach {
+                            control.setOptions([.announcesValueImmediately(true)])
+                        }
+                        
+                        it("returns the expected property value") {
+                            expect(control.announcesValueImmediately).to(beTrue())
+                        }
+                    }
+                    context("to false") {
+                        beforeEach {
+                            control.setOptions([.announcesValueImmediately(false)])
+                        }
+                        
+                        it("returns the expected property value") {
+                            expect(control.announcesValueImmediately).to(beFalse())
+                        }
+                    }
+                }
+                
+                context("when setting panningDisabled") {
+                    context("to true") {
+                        beforeEach {
+                            control.setOptions([.panningDisabled(true)])
+                        }
+                        
+                        it("returns the expected property value") {
+                            expect(control.panningDisabled).to(beTrue())
+                        }
+                    }
+                    context("to false") {
+                        beforeEach {
+                            control.setOptions([.panningDisabled(false)])
+                        }
+                        
+                        it("returns the expected property value") {
+                            expect(control.panningDisabled).to(beFalse())
+                        }
+                    }
+                }
+                
+                context("when setting animationDuration") {
+                    beforeEach {
+                        control.setOptions([.animationDuration(10.0)])
+                    }
+                    
+                    it("returns the expected property value") {
+                        expect(control.animationDuration).to(equal(10.0))
+                    }
+                }
+                
+                context("when setting animationSpringDamping") {
+                    beforeEach {
+                        control.setOptions([.animationSpringDamping(0.1)])
+                    }
+                    
+                    it("returns the expected property value") {
+                        expect(control.animationSpringDamping).to(equal(0.1))
+                    }
+                }
+                
+                context("when setting backgroundColor") {
+                    beforeEach {
+                        control.setOptions([.backgroundColor(.green)])
+                    }
+                    
+                    it("renders correctly") {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshot())
+                    }
+                }
+                
+                context("when setting cornerRadius") {
+                    beforeEach {
+                        control.setOptions([.cornerRadius(10.0)])
+                    }
+                    
+                    it("renders correctly") {
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
