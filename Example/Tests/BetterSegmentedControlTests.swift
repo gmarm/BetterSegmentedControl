@@ -74,6 +74,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
                         }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(1))
+                        }
                     }
                     
                     context("when setting the index to 2") {
@@ -85,6 +89,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
                         }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(2))
+                        }
                     }
                     
                     context("when setting the index to 3") {
@@ -95,6 +103,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         it("renders correctly") {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
+                        }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(3))
                         }
                     }
                     
@@ -108,6 +120,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
                         }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(1))
+                        }
                     }
                     
                     context("when setting the index to minus 1") {
@@ -118,6 +134,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         it("renders correctly") {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
+                        }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(0))
                         }
                     }
                     
@@ -130,6 +150,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
                         }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(0))
+                        }
                     }
                     
                     context("when setting the index to an index higher than the valid ones") {
@@ -140,6 +164,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         it("renders correctly") {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
+                        }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(0))
                         }
                     }
                 }
@@ -154,6 +182,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
                         }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(0))
+                        }
                     }
                     
                     context("to 1") {
@@ -164,6 +196,55 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         it("renders correctly") {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
+                        }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(1))
+                        }
+                        
+                        context("when setting the index to minus 1") {
+                            beforeEach {
+                                control.setIndex(-1)
+                            }
+                            
+                            it("renders correctly") {
+                                //📷(control)
+                                expect(control).to(haveValidSnapshot())
+                            }
+                            
+                            it("returns the expected index property value") {
+                                expect(control.index).to(equal(1))
+                            }
+                        }
+                        
+                        context("when setting the index to minus 2") {
+                            beforeEach {
+                                control.setIndex(-2)
+                            }
+                            
+                            it("renders correctly") {
+                                //📷(control)
+                                expect(control).to(haveValidSnapshot())
+                            }
+                            
+                            it("returns the expected index property value") {
+                                expect(control.index).to(equal(1))
+                            }
+                        }
+                        
+                        context("when setting the index to an index higher than the valid ones") {
+                            beforeEach {
+                                control.setIndex(10)
+                            }
+                            
+                            it("renders correctly") {
+                                //📷(control)
+                                expect(control).to(haveValidSnapshot())
+                            }
+                            
+                            it("returns the expected index property value") {
+                                expect(control.index).to(equal(1))
+                            }
                         }
                     }
                     
@@ -176,6 +257,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
                         }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(0))
+                        }
                     }
                     
                     context("to minus 2") {
@@ -187,6 +272,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
                         }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(0))
+                        }
                     }
                     
                     context("to 10") {
@@ -197,6 +286,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         it("renders correctly") {
                             //📷(control)
                             expect(control).to(haveValidSnapshot())
+                        }
+                        
+                        it("returns the expected index property value") {
+                            expect(control.index).to(equal(0))
                         }
                     }
                 }
