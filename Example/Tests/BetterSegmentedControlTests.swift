@@ -11,7 +11,7 @@ import Nimble
 import Nimble_Snapshots
 @testable import BetterSegmentedControl
 
-final class BetterSegmentedControlSnapshotSpec: QuickSpec {
+final class BetterSegmentedControlSpec: QuickSpec {
     override func spec() {
         describe("a BetterSegmentedControl") {
             let testFrame = CGRect(x: 0, y: 0, width: 300, height: 44)
@@ -22,6 +22,7 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
             
             var control: BetterSegmentedControl!
             
+            // MARK: Basic init
             context("with most basic initialization") {
                 context("with two segments") {
                     beforeEach {
@@ -57,60 +58,89 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                 }
             }
             
-            describe("its index setting method") {
+            // MARK: setIndex() / index
+            describe("its index related methods and properties") {
                 context("when index is not set during initialization") {
                     beforeEach {
                         control = .init(frame: testFrame, segments: basicSegmentsFour)
                     }
                     
-                    it("renders correctly after updating the index to 1") {
-                        control.setIndex(1)
+                    context("when setting the index to 1") {
+                        beforeEach {
+                            control.setIndex(1)
+                        }
                         
-                        //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
                     }
                     
-                    it("renders correctly after updating the index to 2") {
-                        control.setIndex(2)
+                    context("when setting the index to 2") {
+                        beforeEach {
+                            control.setIndex(2)
+                        }
                         
-                        //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
                     }
                     
-                    it("renders correctly after updating the index to 3") {
-                        control.setIndex(3)
+                    context("when setting the index to 3") {
+                        beforeEach {
+                            control.setIndex(3)
+                        }
                         
-                        //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
                     }
                     
-                    it("renders correctly after updating the index to 3 and then 1") {
-                        control.setIndex(3)
-                        control.setIndex(1)
+                    context("when setting the index to 3 and then 1") {
+                        beforeEach {
+                            control.setIndex(3)
+                            control.setIndex(1)
+                        }
                         
-                        //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
                     }
                     
-                    it("renders correctly after updating the index to minus 1") {
-                        control.setIndex(-1)
+                    context("when setting the index to minus 1") {
+                        beforeEach {
+                            control.setIndex(-1)
+                        }
                         
-                        //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
                     }
                     
-                    it("renders correctly after updating the index to minus 2") {
-                        control.setIndex(-2)
+                    context("when setting the index to minus 2") {
+                        beforeEach {
+                            control.setIndex(-2)
+                        }
                         
-                        //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
                     }
                     
-                    it("renders correctly after updating the index to 10") {
-                        control.setIndex(10)
+                    context("when setting the index to an index higher than the valid ones") {
+                        beforeEach {
+                            control.setIndex(10)
+                        }
                         
-                        //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshot())
+                        }
                     }
                 }
                 
@@ -172,6 +202,7 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                 }
             }
             
+            // MARK: segments
             describe("its segments property") {
                 context("when initialized with 0 segments") {
                     beforeEach {
@@ -236,6 +267,7 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                 }
             }
             
+            // MARK: cornerRadius
             describe("its cornerRadius property") {
                 context("when it is set during initialization") {
                     beforeEach {
@@ -285,6 +317,7 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                 }
             }
             
+            // MARK: indicatorViewBackgroundColor
             describe("its indicatorViewBackgroundColor property") {
                 context("when it is set during initialization") {
                     beforeEach {
@@ -318,6 +351,7 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                 }
             }
             
+            // MARK: indicatorViewInset
             describe("its indicatorViewInset property") {
                 context("when it is set during initialization") {
                     beforeEach {
@@ -396,6 +430,7 @@ final class BetterSegmentedControlSnapshotSpec: QuickSpec {
                 }
             }
             
+            // MARK: indicatorViewBorderWidth / indicatorViewBorderColor
             describe("its indicator view border related properties") {
                 context("when they are set during initialization") {
                     beforeEach {
