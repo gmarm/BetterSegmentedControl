@@ -34,7 +34,7 @@ import UIKit
             segmentMaskView.backgroundColor = .black
         }
     }
-        
+    
     // MARK: Properties
     // Public
     
@@ -129,6 +129,7 @@ import UIKit
     private var height: CGFloat { bounds.height }
     private var normalSegmentCount: Int { normalSegmentsView.subviews.count }
     private var normalSegments: [UIView] { normalSegmentsView.subviews }
+    /// Views in `selectedSegments` also provide accessibility traits.
     private var selectedSegments: [UIView] { selectedSegmentsView.subviews }
     private var segmentViews: [UIView] { normalSegments + selectedSegments }
     private var lastIndex: Int { segments.endIndex - 1 }
@@ -275,6 +276,7 @@ import UIKit
         let shouldSendEvent = (index != oldIndex || alwaysAnnouncesValue)
         if announcesValueImmediately && shouldSendEvent {
             sendActions(for: .valueChanged)
+            updateAccessibilityTraits()
         }
         
         moveIndicatorViewToIndex(animated: animated, completion: { [weak self] in
@@ -282,6 +284,7 @@ import UIKit
             
             if !weakSelf.announcesValueImmediately && shouldSendEvent {
                 weakSelf.sendActions(for: .valueChanged)
+                weakSelf.updateAccessibilityTraits()
             }
         })
     }
@@ -340,9 +343,9 @@ import UIKit
             selectedSegmentsView.subviews.forEach { $0.removeFromSuperview() }
             
             for segment in segments {
+                segment.normalView.clipsToBounds = true
                 segment.normalView.isAccessibilityElement = false
                 
-                segment.normalView.clipsToBounds = true
                 segment.selectedView.clipsToBounds = true
                 
                 normalSegmentsView.addSubview(segment.normalView)
@@ -355,9 +358,17 @@ import UIKit
         }
         
         updateSegments()
+        updateAccessibilityTraits()
         updateCornerRadii()
         
         setNeedsLayout()
+    }
+    private func updateAccessibilityTraits() {
+        accessibilityElements = selectedSegments
+        
+        for (index, view) in selectedSegments.enumerated() {
+            view.accessibilityTraits = (index == self.index ? [.button, .selected] : [.button])
+        }
     }
     
     private func frameForElement(atIndex index: Int) -> CGRect {

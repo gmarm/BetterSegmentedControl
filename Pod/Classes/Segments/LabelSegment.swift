@@ -59,7 +59,7 @@ open class LabelSegment: BetterSegmentedControlSegment {
                                backgroundColor: normalBackgroundColor,
                                font: normalFont,
                                textColor: normalTextColor,
-                               accessibilityIdentifier: nil)
+                               accessibilityIdentifier: accessibilityIdentifier)
         }()
         public lazy var selectedView: UIView = {
             return createLabel(withText: text,
@@ -104,28 +104,6 @@ public extension LabelSegment {
                          selectedBackgroundColor: selectedBackgroundColor,
                          selectedFont: selectedFont,
                          selectedTextColor: selectedTextColor)
-        }
-    }
-    
-    class func segments(withTitlesAndAccessibilityIdentifiers titlesAndAccessibilityIdentifiers: [(title: String,
-                                                                                                   accessibilityIdentifier: String?)],
-                        numberOfLines: Int = 1,
-                        normalBackgroundColor: UIColor? = nil,
-                        normalFont: UIFont? = nil,
-                        normalTextColor: UIColor? = nil,
-                        selectedBackgroundColor: UIColor? = nil,
-                        selectedFont: UIFont? = nil,
-                        selectedTextColor: UIColor? = nil) -> [BetterSegmentedControlSegment] {
-        return titlesAndAccessibilityIdentifiers.map {
-            LabelSegment(text: $0.title,
-                         numberOfLines: numberOfLines,
-                         normalBackgroundColor: normalBackgroundColor,
-                         normalFont: normalFont,
-                         normalTextColor: normalTextColor,
-                         selectedBackgroundColor: selectedBackgroundColor,
-                         selectedFont: selectedFont,
-                         selectedTextColor: selectedTextColor,
-                         accessibilityIdentifier: $0.accessibilityIdentifier)
         }
     }
 }
