@@ -37,7 +37,7 @@ import UIKit
         
     // MARK: Properties
     // Public
-    /// The selected index.
+    /// The selected index. Use `setIndex()` for setting the index.
     public private(set) var index: Int
     /// The segments available for selection.
     public var segments: [BetterSegmentedControlSegment] {

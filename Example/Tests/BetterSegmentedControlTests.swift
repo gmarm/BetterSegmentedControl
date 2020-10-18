@@ -31,7 +31,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("has the expected property values") {
@@ -50,7 +50,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
                 
@@ -61,7 +61,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
             }
@@ -78,7 +78,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                 })
                 it("renders correctly", closure: {
                     //📷(control)
-                    expect(control).to(haveValidSnapshot())
+                    expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                 })
             }
             
@@ -96,7 +96,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -111,7 +111,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -126,7 +126,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -142,7 +142,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -157,7 +157,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -172,7 +172,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -187,7 +187,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -204,7 +204,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -219,7 +219,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -233,7 +233,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             
                             it("renders correctly") {
                                 //📷(control)
-                                expect(control).to(haveValidSnapshot())
+                                expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                             }
                             
                             it("returns the expected index property value") {
@@ -248,7 +248,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             
                             it("renders correctly") {
                                 //📷(control)
-                                expect(control).to(haveValidSnapshot())
+                                expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                             }
                             
                             it("returns the expected index property value") {
@@ -263,7 +263,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             
                             it("renders correctly") {
                                 //📷(control)
-                                expect(control).to(haveValidSnapshot())
+                                expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                             }
                             
                             it("returns the expected index property value") {
@@ -279,7 +279,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -294,7 +294,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -309,7 +309,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         
                         it("renders correctly") {
                             //📷(control)
-                            expect(control).to(haveValidSnapshot())
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                         }
                         
                         it("returns the expected index property value") {
@@ -379,14 +379,14 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after setting segments to two") {
                         control.segments = basicSegmentsTwo
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
                 
@@ -397,14 +397,14 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after setting segments to two") {
                         control.segments = basicSegmentsTwo
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
                 
@@ -415,14 +415,14 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after setting segments to two") {
                         control.segments = basicSegmentsTwo
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after setting segments to two then four") {
@@ -430,7 +430,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         control.segments = basicSegmentsFour
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
             }
@@ -445,21 +445,21 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating it to 0") {
                         control.cornerRadius = 0
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating it to 5") {
                         control.cornerRadius = 5
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
                 
@@ -473,14 +473,14 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         control.cornerRadius = 0
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating it to 10") {
                         control.cornerRadius = 10
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
             }
@@ -494,14 +494,14 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating it") {
                         control.indicatorViewBackgroundColor = .blue
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
                 
@@ -514,7 +514,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         control.indicatorViewBackgroundColor = .green
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
             }
@@ -529,21 +529,21 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating it to 0") {
                         control.indicatorViewInset = 0
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating it to 4") {
                         control.indicatorViewInset = 4
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
                 
@@ -557,14 +557,14 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         control.indicatorViewInset = 0
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating it to 4") {
                         control.indicatorViewInset = 4
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
             }
@@ -580,7 +580,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
                 
@@ -593,7 +593,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
             }
@@ -608,35 +608,35 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating border width to 0") {
                         control.indicatorViewBorderWidth = 0
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating border width to 4") {
                         control.indicatorViewBorderWidth = 4
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating border color to blue") {
                         control.indicatorViewBorderColor = .blue
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("renders correctly after updating border color to clear") {
                         control.indicatorViewBorderColor = .clear
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
                 
@@ -650,7 +650,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         control.indicatorViewBorderColor = .green
                         
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
             }
@@ -668,7 +668,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
                 
@@ -679,7 +679,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("has the expected value") {
@@ -694,7 +694,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("has the expected values") {
@@ -793,7 +793,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                     
                     it("has the expected value") {
@@ -808,7 +808,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     it("renders correctly") {
                         //📷(control)
-                        expect(control).to(haveValidSnapshot())
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                     }
                 }
             }
@@ -825,7 +825,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                 
                 it("renders correctly") {
                     //📷(control)
-                    expect(control).to(haveValidSnapshot())
+                    expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                 }
             }
             
@@ -837,7 +837,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                 
                 it("renders correctly") {
                     //📷(control)
-                    expect(control).to(haveValidSnapshot())
+                    expect(control).to(haveValidSnapshotWithAcceptableTolerance())
                 }
             }
         }
