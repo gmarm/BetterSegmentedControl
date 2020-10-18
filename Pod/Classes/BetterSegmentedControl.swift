@@ -172,13 +172,11 @@ import UIKit
     }
     @available(*, unavailable, message: "Use init(frame:segments:index:options:) instead.")
     convenience override public init(frame: CGRect) {
-        self.init(frame: frame,
-                  segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
+        self.init(frame: frame, segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
     }
     @available(*, unavailable, message: "Use init(frame:segments:index:options:) instead.")
     convenience init() {
-        self.init(frame: .zero,
-                  segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
+        self.init(frame: .zero, segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
     }
     private func completeInit() {
         layer.masksToBounds = true

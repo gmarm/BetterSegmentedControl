@@ -27,4 +27,3 @@ public extension BetterSegmentedControl {
         return control
     }
 }
-

@@ -66,6 +66,22 @@ final class BetterSegmentedControlSpec: QuickSpec {
                 }
             }
             
+            // MARK: Storyboard init
+            context("when initialized in a storyboard") {
+                beforeEach({
+                    let storyboard = UIStoryboard(name: "Test", bundle: Bundle(for: type(of: self)))
+                    let viewController = storyboard.instantiateInitialViewController() as! StoryboardTestViewController
+                    UIApplication.shared.keyWindow!.rootViewController = viewController
+                    _ = viewController.view
+                    
+                    control = viewController.control
+                })
+                it("renders correctly", closure: {
+                    //📷(control)
+                    expect(control).to(haveValidSnapshot())
+                })
+            }
+            
             // MARK: setIndex() / index
             describe("its index related methods and properties") {
                 context("when index is not set during initialization") {
@@ -665,6 +681,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
                     }
+                    
+                    it("has the expected value") {
+                        expect(control.indicatorViewInset).to(equal(8))
+                    }
                 }
                 
                 context("when setting indicatorViewBorderWidth and indicatorViewBorderColor") {
@@ -675,6 +695,11 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     it("renders correctly") {
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("has the expected values") {
+                        expect(control.indicatorViewBorderWidth).to(equal(4))
+                        expect(control.indicatorViewBorderColor).to(equal(.green))
                     }
                 }
                 
@@ -769,6 +794,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     it("renders correctly") {
                         //📷(control)
                         expect(control).to(haveValidSnapshot())
+                    }
+                    
+                    it("has the expected value") {
+                        expect(control.backgroundColor).to(equal(.green))
                     }
                 }
                 
