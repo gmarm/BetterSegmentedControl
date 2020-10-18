@@ -336,10 +336,12 @@ import UIKit
     /// Updates the control and triggers a layout refresh.
     private func update() {
         func updateSegments() {
-            normalSegmentsView.subviews.forEach({ $0.removeFromSuperview() })
-            selectedSegmentsView.subviews.forEach({ $0.removeFromSuperview() })
+            normalSegmentsView.subviews.forEach { $0.removeFromSuperview() }
+            selectedSegmentsView.subviews.forEach { $0.removeFromSuperview() }
             
             for segment in segments {
+                segment.normalView.isAccessibilityElement = false
+                
                 segment.normalView.clipsToBounds = true
                 segment.selectedView.clipsToBounds = true
                 
