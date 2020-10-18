@@ -783,6 +783,34 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     }
                 }
             }
+            
+            // MARK: Indicator view shadow
+            context("when adding a shadow to the indicator view") {
+                beforeEach {
+                    control = .init(frame: testFrame, segments: basicSegmentsThree)
+                    control.indicatorView.layer.shadowColor = UIColor.black.cgColor
+                    control.indicatorView.layer.shadowOpacity = 0.1
+                    control.indicatorView.layer.shadowOffset = CGSize(width: 1, height: 1)
+                    control.indicatorView.layer.shadowRadius = 2
+                }
+                
+                it("renders correctly") {
+                    //📷(control)
+                    expect(control).to(haveValidSnapshot())
+                }
+            }
+            
+            // MARK: appleStyled() extension
+            describe("its appleStyled extension") {
+                beforeEach {
+                    control = .appleStyled(frame: testFrame, titles: ["One", "Two", "Three"])
+                }
+                
+                it("renders correctly") {
+                    //📷(control)
+                    expect(control).to(haveValidSnapshot())
+                }
+            }
         }
     }
 }
