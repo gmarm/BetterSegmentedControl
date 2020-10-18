@@ -49,9 +49,9 @@ import UIKit
     /// The currently selected index indicator view.
     public let indicatorView = IndicatorView()
     
-    /// Whether the the control should always send the .ValueChanged event, regardless of the index remaining unchanged after interaction. Defaults to `false`.
+    /// Whether the the control should always send the .valueChanged event, regardless of the index remaining unchanged after interaction. Defaults to `false`.
     @IBInspectable public var alwaysAnnouncesValue: Bool = false
-    /// Whether to send the .ValueChanged event immediately or wait for animations to complete. Defaults to `true`.
+    /// Whether to send the .valueChanged event immediately or wait for animations to complete. Defaults to `true`.
     @IBInspectable public var announcesValueImmediately: Bool = true
     /// Whether the the control should ignore pan gestures. Defaults to `false`.
     @IBInspectable public var panningDisabled: Bool = false

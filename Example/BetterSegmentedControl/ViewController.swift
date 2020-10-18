@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         // Control 1: Created and designed in IB
         control1.segments = LabelSegment.segments(withTitles: ["Recent", "Nearby", "All"],
                                                   normalFont: UIFont(name: "HelveticaNeue-Light", size: 13.0)!,
+                                                  normalTextColor: .white,
                                                   selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 13.0)!)
         
         // Control 2: Exclusively defined in IB
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         // Control 3: Many options
         control3.segments = LabelSegment.segments(withTitles: ["One", "Two", "Three", "Four", "Five", "Six"],
                                                   normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
+                                                  normalTextColor: .white,
                                                   selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 14.0)!,
                                                   selectedTextColor: UIColor(red: 0.20, green: 0.68, blue: 0.27, alpha: 1.00))
         
