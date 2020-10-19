@@ -9,6 +9,7 @@ import UIKit
 
 @IBDesignable open class BetterSegmentedControl: UIControl {
     open class IndicatorView: UIView {
+        // MARK: Properties
         fileprivate let segmentMaskView = UIView()
         fileprivate var cornerRadius: CGFloat = 0.0 {
             didSet {
@@ -22,6 +23,7 @@ import UIKit
             }
         }
         
+        // MARK: Initialization
         init() {
             super.init(frame: CGRect.zero)
             completeInit()
@@ -125,8 +127,9 @@ import UIKit
         index >= 0 ? index : 0
     }
     
-    private let normalSegmentsView = UIView()
-    private let selectedSegmentsView = UIView()
+    private let normalSegmentViewsContainerView = UIView()
+    private let selectedSegmentViewsContainerView = UIView()
+    
     private var initialIndicatorViewFrame: CGRect?
 
     private var tapGestureRecognizer: UITapGestureRecognizer!
@@ -134,17 +137,25 @@ import UIKit
     
     private var width: CGFloat { bounds.width }
     private var height: CGFloat { bounds.height }
-    private var normalSegmentCount: Int { normalSegmentsView.subviews.count }
-    private var normalSegments: [UIView] { normalSegmentsView.subviews }
-    /// Views in `selectedSegments` also provide accessibility traits.
-    private var selectedSegments: [UIView] { selectedSegmentsView.subviews }
-    private var segmentViews: [UIView] { normalSegments + selectedSegments }
+    
+    private var normalSegmentViews: [UIView] { normalSegmentViewsContainerView.subviews }
+    private var normalSegmentViewCount: Int { normalSegmentViews.count }
+    
+    /// `selectedSegmentViews` provide accessibility traits.
+    private var selectedSegmentViews: [UIView] { selectedSegmentViewsContainerView.subviews }
+    
+    /// Contains normal segment views and selected segment views.
+    private var allSegmentViews: [UIView] { normalSegmentViews + selectedSegmentViews }
+    
     private var lastIndex: Int { segments.endIndex - 1 }
+    
     private var totalInsetSize: CGFloat { indicatorViewInset * 2.0 }
+    
     private var isLayoutDirectionRightToLeft: Bool {
         let layoutDirection = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute)
         return layoutDirection == .rightToLeft
     }
+    
     private static var defaultOptions: [Option] = [.backgroundColor(.appleSegmentedControlDefaultControlBackground),
                                                    .indicatorViewBackgroundColor(.appleSegmentedControlDefaultIndicatorBackground)]
     
@@ -204,17 +215,14 @@ import UIKit
     private func completeInit() {
         layer.masksToBounds = true
         
-        // 1. add normalSegmentsView
-        normalSegmentsView.clipsToBounds = true
-        addSubview(normalSegmentsView)
+        normalSegmentViewsContainerView.clipsToBounds = true
+        addSubview(normalSegmentViewsContainerView)
         
-        // 2. add indicatorView
         addSubview(indicatorView)
-        selectedSegmentsView.clipsToBounds = true
+        selectedSegmentViewsContainerView.clipsToBounds = true
         
-        // 3. add selectedSegmentsView
-        addSubview(selectedSegmentsView)
-        selectedSegmentsView.layer.mask = indicatorView.segmentMaskView.layer
+        addSubview(selectedSegmentViewsContainerView)
+        selectedSegmentViewsContainerView.layer.mask = indicatorView.segmentMaskView.layer
         
         // configure gestures
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
@@ -230,19 +238,19 @@ import UIKit
     // MARK: View lifecycle
     override open func layoutSubviews() {
         super.layoutSubviews()
-        guard normalSegmentCount >= 1 else {
+        guard normalSegmentViewCount >= 1 else {
             return
         }
         
-        normalSegmentsView.frame = bounds
-        selectedSegmentsView.frame = bounds
+        normalSegmentViewsContainerView.frame = bounds
+        selectedSegmentViewsContainerView.frame = bounds
         
         indicatorView.frame = frameForElement(atIndex: safeIndex)
         
-        for (index, _) in normalSegments.enumerated() {
+        for (index, _) in normalSegmentViews.enumerated() {
             let frame = frameForElement(atIndex: index)
-            normalSegmentsView.subviews[index].frame = frame
-            selectedSegmentsView.subviews[index].frame = frame
+            normalSegmentViews[index].frame = frame
+            selectedSegmentViews[index].frame = frame
         }
     }
     open override func prepareForInterfaceBuilder() {
@@ -288,9 +296,9 @@ import UIKit
         let previousIndex = self.index
         self.index = index
         
-        let shouldUpdateAccessibilityTraits = (index != previousIndex)
-        let shouldUpdateAccessibilityTraitsBeforeAnimations = announcesValueImmediately && shouldUpdateAccessibilityTraits
-        let shouldUpdateAccessibilityTraitsAfterAnimations = !announcesValueImmediately && shouldUpdateAccessibilityTraits
+        let shouldUpdateSegmentViewTraits = (index != previousIndex)
+        let shouldUpdateSegmentViewTraitsBeforeAnimations = announcesValueImmediately && shouldUpdateSegmentViewTraits
+        let shouldUpdateSegmentViewTraitsAfterAnimations = !announcesValueImmediately && shouldUpdateSegmentViewTraits
         
         let shouldSendEvent = (index != previousIndex || alwaysAnnouncesValue) && !shouldSkipValueChangedEvent
         let shouldSendEventBeforeAnimations = announcesValueImmediately && shouldSendEvent
@@ -299,8 +307,8 @@ import UIKit
         if shouldSendEventBeforeAnimations {
             sendActions(for: .valueChanged)
         }
-        if shouldUpdateAccessibilityTraitsBeforeAnimations {
-            updateAccessibilityTraits()
+        if shouldUpdateSegmentViewTraitsBeforeAnimations {
+            updateSegmentViewTraits()
         }
         performIndexChange(fromPreviousIndex: previousIndex, toNewIndex: index, animated: animated, completion: { [weak self] in
             guard let weakSelf = self else { return }
@@ -308,8 +316,8 @@ import UIKit
             if shouldSendEventAfterAnimations {
                 weakSelf.sendActions(for: .valueChanged)
             }
-            if shouldUpdateAccessibilityTraitsAfterAnimations {
-                weakSelf.updateAccessibilityTraits()
+            if shouldUpdateSegmentViewTraitsAfterAnimations {
+                weakSelf.updateSegmentViewTraits()
             }
         })
     }
@@ -352,7 +360,7 @@ import UIKit
                        delay: 0.0,
                        options: [.beginFromCurrentState, .curveEaseIn],
                        animations: { () -> Void in
-                        self.selectedSegmentsView.alpha = isVisible ? 1.0 : 0.0
+                        self.selectedSegmentViewsContainerView.alpha = isVisible ? 1.0 : 0.0
                         self.indicatorView.alpha = isVisible ? 1.0 : 0.0
         }, completion: { finished -> Void in
             completion?()
@@ -371,7 +379,7 @@ import UIKit
                            initialSpringVelocity: 0.0,
                            options: [.beginFromCurrentState, .curveEaseOut],
                            animations: { () -> Void in
-                            self.indicatorView.frame = self.normalSegments[self.index].frame
+                            self.indicatorView.frame = self.normalSegmentViews[self.index].frame
                             self.layoutIfNeeded()
             }, completion: { finished -> Void in
                 completion()
@@ -399,8 +407,8 @@ import UIKit
     /// Updates the control and triggers a layout refresh.
     private func update() {
         func updateSegments() {
-            normalSegmentsView.subviews.forEach { $0.removeFromSuperview() }
-            selectedSegmentsView.subviews.forEach { $0.removeFromSuperview() }
+            normalSegmentViews.forEach { $0.removeFromSuperview() }
+            selectedSegmentViews.forEach { $0.removeFromSuperview() }
             
             for segment in segments {
                 segment.normalView.clipsToBounds = true
@@ -408,30 +416,30 @@ import UIKit
                 
                 segment.selectedView.clipsToBounds = true
                 
-                normalSegmentsView.addSubview(segment.normalView)
-                selectedSegmentsView.addSubview(segment.selectedView)
+                normalSegmentViewsContainerView.addSubview(segment.normalView)
+                selectedSegmentViewsContainerView.addSubview(segment.selectedView)
             }
         }
         func updateCornerRadii() {
             indicatorView.cornerRadius = cornerRadius - indicatorViewInset
-            segmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
+            allSegmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
         }
         
         updateSegments()
-        updateAccessibilityTraits()
+        updateSegmentViewTraits()
         updateCornerRadii()
         
         setNeedsLayout()
     }
-    private func updateAccessibilityTraits() {
-        accessibilityElements = selectedSegments
+    private func updateSegmentViewTraits() {
+        accessibilityElements = selectedSegmentViews
         
-        for (index, view) in selectedSegments.enumerated() {
-            view.accessibilityTraits = (index == self.index ? [.button, .selected] : [.button])
+        for (index, _) in selectedSegmentViews.enumerated() {
+            selectedSegmentViews[index].accessibilityTraits = (index == self.index ? [.button, .selected] : [.button])
         }
     }
     private func frameForElement(atIndex index: Int) -> CGRect {
-        let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentCount)
+        let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentViewCount)
         let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth
         
         return CGRect(x: x + indicatorViewInset,
@@ -439,8 +447,8 @@ import UIKit
                       width: elementWidth,
                       height: height - totalInsetSize)
     }
-    private func nearestIndex(toPoint point: CGPoint) -> Int {
-        let distances = normalSegments.map { abs(point.x - $0.center.x) }
+    private func closestIndex(toPoint point: CGPoint) -> Int {
+        let distances = normalSegmentViews.map { abs(point.x - $0.center.x) }
         return Int(distances.firstIndex(of: distances.min()!)!)
     }
     private static func generateDefaultSegments() -> [LabelSegment] {
@@ -450,7 +458,7 @@ import UIKit
     // MARK: Action handlers
     @objc private func tapped(_ gestureRecognizer: UITapGestureRecognizer!) {
         let location = gestureRecognizer.location(in: self)
-        setIndex(nearestIndex(toPoint: location))
+        setIndex(closestIndex(toPoint: location))
     }
     @objc private func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
         switch gestureRecognizer.state {
@@ -462,7 +470,7 @@ import UIKit
             frame.origin.x = max(min(frame.origin.x, bounds.width - indicatorViewInset - frame.width), indicatorViewInset)
             indicatorView.frame = frame
         case .ended, .failed, .cancelled:
-            setIndex(nearestIndex(toPoint: indicatorView.center))
+            setIndex(closestIndex(toPoint: indicatorView.center))
         default: break
         }
     }
