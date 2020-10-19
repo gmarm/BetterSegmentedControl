@@ -161,7 +161,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         }
                         
                         it("returns the expected index property value") {
-                            expect(control.index).to(equal(0))
+                            expect(control.index).to(equal(-1))
                         }
                     }
                     
@@ -237,7 +237,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                             }
                             
                             it("returns the expected index property value") {
-                                expect(control.index).to(equal(1))
+                                expect(control.index).to(equal(-1))
                             }
                         }
                         
@@ -283,7 +283,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         }
                         
                         it("returns the expected index property value") {
-                            expect(control.index).to(equal(0))
+                            expect(control.index).to(equal(-1))
                         }
                     }
                     

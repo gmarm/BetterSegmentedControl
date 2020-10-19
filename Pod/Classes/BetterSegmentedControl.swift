@@ -36,7 +36,10 @@ import UIKit
     }
     
     // MARK: Properties
+    
     // Public
+    /// Indicates a no-segment-selected state.
+    public static let noSegment = -1
     
     /// The selected index. Use `setIndex()` for setting the index.
     public private(set) var index: Int
@@ -118,6 +121,10 @@ import UIKit
     @IBInspectable public var animationSpringDamping: CGFloat = 0.75
     
     // Private
+    private var safeIndex: Int {
+        index >= 0 ? index : 0
+    }
+    
     private let normalSegmentsView = UIView()
     private let selectedSegmentsView = UIView()
     private var initialIndicatorViewFrame: CGRect?
@@ -142,19 +149,19 @@ import UIKit
                                                    .indicatorViewBackgroundColor(.appleSegmentedControlDefaultIndicatorBackground)]
     
     // MARK: Initialization
-    
     /// Initializes a new `BetterSegmentedControl` with the parameters passed.
     ///
     /// - Parameters:
     ///   - frame: The frame of the control.
     ///   - segments: The segments to configure the control with.
-    ///   - index: The initially selected index. Passing an index outside the segment indices will set the index to `0`.
+    ///   - index: The initially selected index. Passing `BetterSegmentedControl.noSegment` sets the index to `-1` and hides the
+    ///   indicator view. Passing an index beyond the segment indices will set the index to `0`.
     ///   - options: An array of customization options to style and change the behavior of the control.
     public init(frame: CGRect,
                 segments: [BetterSegmentedControlSegment],
                 index: Int = 0,
                 options: [Option]? = nil) {
-        if segments.indices.contains(index) {
+        if segments.indices.contains(index) || index == Self.noSegment {
             self.index = index
         } else {
             self.index = 0
@@ -165,6 +172,10 @@ import UIKit
         super.init(frame: frame)
         
         completeInit()
+        
+        if index == -1 {
+            setIndicatorViewVisible(false, animated: false, completion: nil)
+        }
         
         setOptions(BetterSegmentedControl.defaultOptions)
         if let options = options {
@@ -218,7 +229,6 @@ import UIKit
     }
     
     // MARK: View lifecycle
-    
     override open func layoutSubviews() {
         super.layoutSubviews()
         guard normalSegmentCount >= 1 else {
@@ -228,9 +238,9 @@ import UIKit
         normalSegmentsView.frame = bounds
         selectedSegmentsView.frame = bounds
         
-        indicatorView.frame = frameForElement(atIndex: index)
+        indicatorView.frame = frameForElement(atIndex: safeIndex)
         
-        for index in 0...normalSegmentCount-1 {
+        for (index, _) in normalSegments.enumerated() {
             let frame = frameForElement(atIndex: index)
             normalSegmentsView.subviews[index].frame = frame
             selectedSegmentsView.subviews[index].frame = frame
@@ -262,27 +272,30 @@ import UIKit
     }
     
     // MARK: Index Setting
-    /// Sets the control's index. Setting an index outside the existing indices will not have any effect.
+    /// Sets the control's index.
     ///
     /// - Parameters:
-    ///   - index: The new index.
+    ///   - index: The new index. Passing `BetterSegmentedControl.noSegment` sets the index to `-1` and hides the indicator view.
+    ///   Passing an index beyond the segment indices will have no effect.
     ///   - animated: (Optional) Whether the change should be animated or not. Defaults to `true`.
     public func setIndex(_ index: Int, animated: Bool = true) {
-        guard segments.indices.contains(index) else { return }
+        guard segments.indices.contains(index) || index == Self.noSegment else { return }
         
-        let oldIndex = self.index
+        let previousIndex = self.index
         self.index = index
         
-        let shouldSendEvent = (index != oldIndex || alwaysAnnouncesValue)
-        if announcesValueImmediately && shouldSendEvent {
+        let shouldSendEvent = (index != previousIndex || alwaysAnnouncesValue)
+        let shouldSendEventBeforeAnimations = announcesValueImmediately && shouldSendEvent
+        let shouldSendEventAfterAnimations = !announcesValueImmediately && shouldSendEvent
+        
+        if shouldSendEventBeforeAnimations {
             sendActions(for: .valueChanged)
             updateAccessibilityTraits()
         }
-        
-        moveIndicatorViewToIndex(animated: animated, completion: { [weak self] in
+        performIndexChange(fromPreviousIndex: previousIndex, toNewIndex: index, animated: animated, completion: { [weak self] in
             guard let weakSelf = self else { return }
             
-            if !weakSelf.announcesValueImmediately && shouldSendEvent {
+            if shouldSendEventAfterAnimations {
                 weakSelf.sendActions(for: .valueChanged)
                 weakSelf.updateAccessibilityTraits()
             }
@@ -321,18 +334,53 @@ import UIKit
     }
     
     // MARK: Animations
-    private func moveIndicatorViewToIndex(animated: Bool, completion: @escaping () -> Void) {
-        UIView.animate(withDuration: animated ? animationDuration : 0.0,
+    /// Hides the indicator and selected segments view.
+    private func setIndicatorViewVisible(_ isVisible: Bool, animated: Bool, completion: (() -> Void)?) {
+        UIView.animate(withDuration: (animated ? 0.1 : 0.0),
                        delay: 0.0,
-                       usingSpringWithDamping: animationSpringDamping,
-                       initialSpringVelocity: 0.0,
-                       options: [.beginFromCurrentState, .curveEaseOut],
+                       options: [.beginFromCurrentState, .curveEaseIn],
                        animations: { () -> Void in
-                        self.indicatorView.frame = self.normalSegments[self.index].frame
-                        self.layoutIfNeeded()
+                        self.selectedSegmentsView.alpha = isVisible ? 1.0 : 0.0
+                        self.indicatorView.alpha = isVisible ? 1.0 : 0.0
         }, completion: { finished -> Void in
-            completion()
+            completion?()
         })
+    }
+    private func performIndexChange(fromPreviousIndex previousIndex: Int,
+                                    toNewIndex newIndex: Int,
+                                    animated: Bool,
+                                    completion: @escaping () -> Void) {
+        func moveIndicatorViewToIndex(animated: Bool, completion: @escaping () -> Void) {
+            guard index >= 0 else { return }
+            
+            UIView.animate(withDuration: animated ? animationDuration : 0.0,
+                           delay: 0.0,
+                           usingSpringWithDamping: animationSpringDamping,
+                           initialSpringVelocity: 0.0,
+                           options: [.beginFromCurrentState, .curveEaseOut],
+                           animations: { () -> Void in
+                            self.indicatorView.frame = self.normalSegments[self.index].frame
+                            self.layoutIfNeeded()
+            }, completion: { finished -> Void in
+                completion()
+            })
+        }
+        
+        if index == Self.noSegment {
+            setIndicatorViewVisible(false, animated: animated) {
+                completion()
+            }
+        } else if previousIndex == Self.noSegment {
+            moveIndicatorViewToIndex(animated: false, completion: { [weak self] in
+                self?.setIndicatorViewVisible(true, animated: animated) {
+                    completion()
+                }
+            })
+        } else {
+            moveIndicatorViewToIndex(animated: animated, completion: {
+                completion()
+            })
+        }
     }
     
     // MARK: Helpers
