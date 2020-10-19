@@ -129,6 +129,9 @@ import UIKit
     
     private let normalSegmentViewsContainerView = UIView()
     private let selectedSegmentViewsContainerView = UIView()
+    private let pointerInteractionViewsContainerView = UIView()
+    /// Used for iPad Pointer Interaction support. Holds the reference to the view that should be highlighted, if any.
+    private weak var pointerInteractionView: UIView?
     
     private var initialIndicatorViewFrame: CGRect?
 
@@ -144,8 +147,10 @@ import UIKit
     /// `selectedSegmentViews` provide accessibility traits.
     private var selectedSegmentViews: [UIView] = []
     
-    /// Contains normal segment views and selected segment views.
-    private var allSegmentViews: [UIView] { normalSegmentViews + selectedSegmentViews }
+    private var pointerInteractionViews: [UIView] = []
+    
+    /// Contains normal segment views, selected segment views and pointer interaction views.
+    private var allSegmentViews: [UIView] { normalSegmentViews + selectedSegmentViews + pointerInteractionViews }
     
     private var lastIndex: Int { segments.endIndex - 1 }
     
@@ -215,14 +220,23 @@ import UIKit
     private func completeInit() {
         layer.masksToBounds = true
         
+        if #available(iOS 13.4, *) {
+            let interaction = UIPointerInteraction(delegate: self)
+            addInteraction(interaction)
+        }
+        
+        // set up view hierarchy
         normalSegmentViewsContainerView.clipsToBounds = true
         addSubview(normalSegmentViewsContainerView)
         
         addSubview(indicatorView)
-        selectedSegmentViewsContainerView.clipsToBounds = true
         
+        selectedSegmentViewsContainerView.clipsToBounds = true
         addSubview(selectedSegmentViewsContainerView)
         selectedSegmentViewsContainerView.layer.mask = indicatorView.segmentMaskView.layer
+        
+        pointerInteractionViewsContainerView.clipsToBounds = true
+        addSubview(pointerInteractionViewsContainerView)
         
         // configure gestures
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
@@ -244,6 +258,7 @@ import UIKit
         
         normalSegmentViewsContainerView.frame = bounds
         selectedSegmentViewsContainerView.frame = bounds
+        pointerInteractionViewsContainerView.frame = bounds
         
         indicatorView.frame = frameForElement(atIndex: safeIndex)
         
@@ -251,6 +266,7 @@ import UIKit
             let frame = frameForElement(atIndex: index)
             normalSegmentViews[index].frame = frame
             selectedSegmentViews[index].frame = frame
+            pointerInteractionViews[index].frame = frame
         }
     }
     open override func prepareForInterfaceBuilder() {
@@ -413,6 +429,9 @@ import UIKit
             selectedSegmentViews.forEach { $0.removeFromSuperview() }
             selectedSegmentViews.removeAll()
             
+            pointerInteractionViews.forEach { $0.removeFromSuperview() }
+            pointerInteractionViews.removeAll()
+            
             for segment in segments {
                 segment.normalView.clipsToBounds = true
                 segment.normalView.isAccessibilityElement = false
@@ -424,6 +443,10 @@ import UIKit
                 
                 selectedSegmentViewsContainerView.addSubview(segment.selectedView)
                 selectedSegmentViews.append(segment.selectedView)
+                
+                let pointerInteractionView = UIView()
+                pointerInteractionViewsContainerView.addSubview(pointerInteractionView)
+                pointerInteractionViews.append(pointerInteractionView)
             }
         }
         func updateCornerRadii() {
@@ -489,5 +512,31 @@ extension BetterSegmentedControl: UIGestureRecognizerDelegate {
             return indicatorView.frame.contains(gestureRecognizer.location(in: self)) && !panningDisabled
         }
         return super.gestureRecognizerShouldBegin(gestureRecognizer)
+    }
+}
+
+@available(iOS 13.4, *)
+extension BetterSegmentedControl: UIPointerInteractionDelegate {
+    public func pointerInteraction(_ interaction: UIPointerInteraction,
+                                   regionFor request: UIPointerRegionRequest,
+                                   defaultRegion: UIPointerRegion) -> UIPointerRegion? {
+        let closestIndexToRequestRegion = closestIndex(toPoint: request.location)
+        
+        let view = (closestIndexToRequestRegion == index) ? indicatorView : pointerInteractionViews[closestIndexToRequestRegion]
+        pointerInteractionView = view
+        
+        return .init(rect: view.frame)
+    }
+
+    public func pointerInteraction(_ interaction: UIPointerInteraction,
+                                   styleFor region: UIPointerRegion) -> UIPointerStyle? {
+        guard let view = pointerInteractionView else {
+            return nil
+        }
+
+        if view === indicatorView {
+            return .init(effect: .lift(.init(view: view)))
+        }
+        return .init(effect: .highlight(.init(view: view)))
     }
 }
