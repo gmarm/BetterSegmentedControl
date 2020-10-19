@@ -138,11 +138,11 @@ import UIKit
     private var width: CGFloat { bounds.width }
     private var height: CGFloat { bounds.height }
     
-    private var normalSegmentViews: [UIView] { normalSegmentViewsContainerView.subviews }
+    private var normalSegmentViews: [UIView] = []
     private var normalSegmentViewCount: Int { normalSegmentViews.count }
     
     /// `selectedSegmentViews` provide accessibility traits.
-    private var selectedSegmentViews: [UIView] { selectedSegmentViewsContainerView.subviews }
+    private var selectedSegmentViews: [UIView] = []
     
     /// Contains normal segment views and selected segment views.
     private var allSegmentViews: [UIView] { normalSegmentViews + selectedSegmentViews }
@@ -408,7 +408,10 @@ import UIKit
     private func update() {
         func updateSegments() {
             normalSegmentViews.forEach { $0.removeFromSuperview() }
+            normalSegmentViews.removeAll()
+            
             selectedSegmentViews.forEach { $0.removeFromSuperview() }
+            selectedSegmentViews.removeAll()
             
             for segment in segments {
                 segment.normalView.clipsToBounds = true
@@ -417,7 +420,10 @@ import UIKit
                 segment.selectedView.clipsToBounds = true
                 
                 normalSegmentViewsContainerView.addSubview(segment.normalView)
+                normalSegmentViews.append(segment.normalView)
+                
                 selectedSegmentViewsContainerView.addSubview(segment.selectedView)
+                selectedSegmentViews.append(segment.selectedView)
             }
         }
         func updateCornerRadii() {
