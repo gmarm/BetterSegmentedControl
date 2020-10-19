@@ -279,19 +279,27 @@ import UIKit
     /// - Parameters:
     ///   - index: The new index. Passing `BetterSegmentedControl.noSegment` sets the index to `-1` and hides the indicator view.
     ///   Passing an index beyond the segment indices will have no effect.
-    ///   - animated: (Optional) Whether the change should be animated or not. Defaults to `true`.
-    public func setIndex(_ index: Int, animated: Bool = true) {
+    ///   - animated: Whether the change should be animated or not. Defaults to `true`.
+    ///   - shouldSkipValueChangedEvent: Whether the change should not trigger a `.valueChanged` event. Defaults to `false`.
+    ///   (Passing `true` will take precedence over `alwaysAnnouncesValue`)
+    public func setIndex(_ index: Int, animated: Bool = true, shouldSkipValueChangedEvent: Bool = false) {
         guard segments.indices.contains(index) || index == Self.noSegment else { return }
         
         let previousIndex = self.index
         self.index = index
         
-        let shouldSendEvent = (index != previousIndex || alwaysAnnouncesValue)
+        let shouldUpdateAccessibilityTraits = (index != previousIndex)
+        let shouldUpdateAccessibilityTraitsBeforeAnimations = announcesValueImmediately && shouldUpdateAccessibilityTraits
+        let shouldUpdateAccessibilityTraitsAfterAnimations = !announcesValueImmediately && shouldUpdateAccessibilityTraits
+        
+        let shouldSendEvent = (index != previousIndex || alwaysAnnouncesValue) && !shouldSkipValueChangedEvent
         let shouldSendEventBeforeAnimations = announcesValueImmediately && shouldSendEvent
         let shouldSendEventAfterAnimations = !announcesValueImmediately && shouldSendEvent
         
         if shouldSendEventBeforeAnimations {
             sendActions(for: .valueChanged)
+        }
+        if shouldUpdateAccessibilityTraitsBeforeAnimations {
             updateAccessibilityTraits()
         }
         performIndexChange(fromPreviousIndex: previousIndex, toNewIndex: index, animated: animated, completion: { [weak self] in
@@ -299,6 +307,8 @@ import UIKit
             
             if shouldSendEventAfterAnimations {
                 weakSelf.sendActions(for: .valueChanged)
+            }
+            if shouldUpdateAccessibilityTraitsAfterAnimations {
                 weakSelf.updateAccessibilityTraits()
             }
         })

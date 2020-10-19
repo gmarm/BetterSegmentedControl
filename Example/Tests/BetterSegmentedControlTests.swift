@@ -317,6 +317,39 @@ final class BetterSegmentedControlSpec: QuickSpec {
                         }
                     }
                 }
+                
+                // MARK: shouldSkipValueChangedEvent
+                describe("its setIndex() shouldSkipValueChangedEvent parameter") {
+                    var testViewController: TestViewController!
+                    
+                    beforeEach {
+                        testViewController = TestViewController()
+                        control = .init(frame: testFrame, segments: basicSegmentsThree)
+                        control.addTarget(testViewController, action: #selector(TestViewController.valueChanged), for: .valueChanged)
+                    }
+                    
+                    context("when false is passed to it") {
+                        beforeEach {
+                            control.setIndex(1, shouldSkipValueChangedEvent: false)
+                            control.setIndex(2, shouldSkipValueChangedEvent: false)
+                        }
+                        
+                        it("sends a valueChanged event") {
+                            expect(testViewController.valueChangedCalledCount).to(equal(2))
+                        }
+                    }
+                    
+                    context("when false is passed to it") {
+                        beforeEach {
+                            control.setIndex(1, shouldSkipValueChangedEvent: true)
+                            control.setIndex(2, shouldSkipValueChangedEvent: true)
+                        }
+                        
+                        it("sends a valueChanged event") {
+                            expect(testViewController.valueChangedCalledCount).to(equal(0))
+                        }
+                    }
+                }
             }
             
             // MARK: alwaysAnnouncesValue
