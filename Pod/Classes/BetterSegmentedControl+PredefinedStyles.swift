@@ -1,9 +1,11 @@
 //
-//  BetterSegmentedControl+Extensions.swift
+//  BetterSegmentedControl+PredefinedStyles.swift
 //  BetterSegmentedControl
 //
 //  Created by George Marmaridis on 18.10.20.
 //
+
+import UIKit
 
 public extension BetterSegmentedControl {
      class func appleStyled(frame: CGRect, titles: [String]) -> BetterSegmentedControl {

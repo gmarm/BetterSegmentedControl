@@ -7,36 +7,7 @@
 
 import UIKit
 
-@IBDesignable open class BetterSegmentedControl: UIControl {
-    open class IndicatorView: UIView {
-        // MARK: Properties
-        fileprivate let segmentMaskView = UIView()
-        fileprivate var cornerRadius: CGFloat = 0.0 {
-            didSet {
-                layer.cornerRadius = cornerRadius
-                segmentMaskView.layer.cornerRadius = cornerRadius
-            }
-        }
-        override open var frame: CGRect {
-            didSet {
-                segmentMaskView.frame = frame
-            }
-        }
-        
-        // MARK: Initialization
-        init() {
-            super.init(frame: CGRect.zero)
-            completeInit()
-        }
-        required public init?(coder aDecoder: NSCoder) {
-            super.init(coder: aDecoder)
-            completeInit()
-        }
-        private func completeInit() {
-            segmentMaskView.backgroundColor = .black
-        }
-    }
-    
+@IBDesignable open class BetterSegmentedControl: UIControl {    
     // MARK: Properties
     
     // Public
@@ -130,16 +101,11 @@ import UIKit
     private let normalSegmentViewsContainerView = UIView()
     private let selectedSegmentViewsContainerView = UIView()
     private let pointerInteractionViewsContainerView = UIView()
-    /// Used for iPad Pointer Interaction support. Holds the reference to the view that should be highlighted, if any.
-    private weak var pointerInteractionView: UIView?
     
     private var initialIndicatorViewFrame: CGRect?
 
     private var tapGestureRecognizer: UITapGestureRecognizer!
     private var panGestureRecognizer: UIPanGestureRecognizer!
-    
-    private var width: CGFloat { bounds.width }
-    private var height: CGFloat { bounds.height }
     
     private var normalSegmentViews: [UIView] = []
     private var normalSegmentViewCount: Int { normalSegmentViews.count }
@@ -147,7 +113,9 @@ import UIKit
     /// `selectedSegmentViews` provide accessibility traits.
     private var selectedSegmentViews: [UIView] = []
     
-    private var pointerInteractionViews: [UIView] = []
+    var pointerInteractionViews: [UIView] = []
+    /// Used for iPad Pointer Interaction support. Holds the reference to the view that should be highlighted, if any.
+    weak var pointerInteractionView: UIView?
     
     /// Contains normal segment views, selected segment views and pointer interaction views.
     private var allSegmentViews: [UIView] { normalSegmentViews + selectedSegmentViews + pointerInteractionViews }
@@ -267,33 +235,6 @@ import UIKit
             normalSegmentViews[index].frame = frame
             selectedSegmentViews[index].frame = frame
             pointerInteractionViews[index].frame = frame
-        }
-    }
-    open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        
-        setDefaultColorsIfNeeded()
-    }
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        setDefaultColorsIfNeeded()
-    }
-    private func setDefaultColorsIfNeeded() {
-        if #available(iOS 13.0, *) {
-            if backgroundColor == UIColor.systemBackground || backgroundColor == nil {
-                backgroundColor = .appleSegmentedControlDefaultControlBackground
-            }
-            if indicatorViewBackgroundColor == UIColor.systemBackground || indicatorViewBackgroundColor == nil {
-                indicatorViewBackgroundColor = .appleSegmentedControlDefaultIndicatorBackground
-            }
-        } else {
-            if backgroundColor == nil {
-                backgroundColor = .appleSegmentedControlDefaultControlBackground
-            }
-            if indicatorViewBackgroundColor == nil {
-                indicatorViewBackgroundColor = .appleSegmentedControlDefaultIndicatorBackground
-            }
         }
     }
 
@@ -476,7 +417,7 @@ import UIKit
                       width: elementWidth,
                       height: height - totalInsetSize)
     }
-    private func closestIndex(toPoint point: CGPoint) -> Int {
+    func closestIndex(toPoint point: CGPoint) -> Int {
         let distances = normalSegmentViews.map { abs(point.x - $0.center.x) }
         return Int(distances.firstIndex(of: distances.min()!)!)
     }
@@ -512,31 +453,5 @@ extension BetterSegmentedControl: UIGestureRecognizerDelegate {
             return indicatorView.frame.contains(gestureRecognizer.location(in: self)) && !panningDisabled
         }
         return super.gestureRecognizerShouldBegin(gestureRecognizer)
-    }
-}
-
-@available(iOS 13.4, *)
-extension BetterSegmentedControl: UIPointerInteractionDelegate {
-    public func pointerInteraction(_ interaction: UIPointerInteraction,
-                                   regionFor request: UIPointerRegionRequest,
-                                   defaultRegion: UIPointerRegion) -> UIPointerRegion? {
-        let closestIndexToRequestRegion = closestIndex(toPoint: request.location)
-        
-        let view = (closestIndexToRequestRegion == index) ? indicatorView : pointerInteractionViews[closestIndexToRequestRegion]
-        pointerInteractionView = view
-        
-        return .init(rect: view.frame)
-    }
-
-    public func pointerInteraction(_ interaction: UIPointerInteraction,
-                                   styleFor region: UIPointerRegion) -> UIPointerStyle? {
-        guard let view = pointerInteractionView else {
-            return nil
-        }
-
-        if view === indicatorView {
-            return .init(effect: .lift(.init(view: view)))
-        }
-        return .init(effect: .highlight(.init(view: view)))
     }
 }
