@@ -185,21 +185,20 @@ import UIKit
     
     required public init?(coder aDecoder: NSCoder) {
         self.index = 0
-        self.segments = [LabelSegment(text: "First"), LabelSegment(text: "Second")]
+        self.segments = Self.generateDefaultSegments()
         
         super.init(coder: aDecoder)
         
         completeInit()
     }
     
-    @available(*, unavailable, message: "Use init(frame:segments:index:options:) instead.")
     convenience override public init(frame: CGRect) {
-        self.init(frame: frame, segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
+        self.init(frame: frame, segments: Self.generateDefaultSegments())
     }
     
     @available(*, unavailable, message: "Use init(frame:segments:index:options:) instead.")
     convenience init() {
-        self.init(frame: .zero, segments: [LabelSegment(text: "First"), LabelSegment(text: "Second")])
+        self.init(frame: .zero, segments: Self.generateDefaultSegments())
     }
     
     private func completeInit() {
@@ -246,31 +245,34 @@ import UIKit
             selectedSegmentsView.subviews[index].frame = frame
         }
     }
-    
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-        setDefaultLabelTextSegmentColorsFromInterfaceBuilder()
-    }
-    
     open override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        setDefaultLabelTextSegmentColorsFromInterfaceBuilder()
-    }
-    
-    private func setDefaultLabelTextSegmentColorsFromInterfaceBuilder() {
-        guard let normalLabelSegments = normalSegments as? [UILabel],
-            let selectedLabelSegments = selectedSegments as? [UILabel] else {
-                return
-        }
         
-        normalLabelSegments.forEach {
-            $0.textColor = indicatorView.backgroundColor
-        }
-        selectedLabelSegments.forEach {
-            $0.textColor = backgroundColor
+        setDefaultColorsIfNeeded()
+    }
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setDefaultColorsIfNeeded()
+    }
+    private func setDefaultColorsIfNeeded() {
+        if #available(iOS 13.0, *) {
+            if backgroundColor == UIColor.systemBackground || backgroundColor == nil {
+                backgroundColor = .appleSegmentedControlDefaultControlBackground
+            }
+            if indicatorViewBackgroundColor == UIColor.systemBackground || indicatorViewBackgroundColor == nil {
+                indicatorViewBackgroundColor = .appleSegmentedControlDefaultIndicatorBackground
+            }
+        } else {
+            if backgroundColor == nil {
+                backgroundColor = .appleSegmentedControlDefaultControlBackground
+            }
+            if indicatorViewBackgroundColor == nil {
+                indicatorViewBackgroundColor = .appleSegmentedControlDefaultIndicatorBackground
+            }
         }
     }
-    
+
     // MARK: Index Setting
     /// Sets the control's index.
     ///
@@ -418,7 +420,6 @@ import UIKit
             view.accessibilityTraits = (index == self.index ? [.button, .selected] : [.button])
         }
     }
-    
     private func frameForElement(atIndex index: Int) -> CGRect {
         let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentCount)
         let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth
@@ -431,6 +432,9 @@ import UIKit
     private func nearestIndex(toPoint point: CGPoint) -> Int {
         let distances = normalSegments.map { abs(point.x - $0.center.x) }
         return Int(distances.firstIndex(of: distances.min()!)!)
+    }
+    private static func generateDefaultSegments() -> [LabelSegment] {
+        [.init(text: "First"), .init(text: "Second"), .init(text: "Third")]
     }
     
     // MARK: Action handlers

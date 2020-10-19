@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bOm-2z-0WK">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,40 +17,26 @@
                         <viewControllerLayoutGuide type="bottom" id="aSL-eZ-re5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pUU-Rd-BY1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgq-8X-Wao" customClass="BetterSegmentedControl" customModule="BetterSegmentedControl">
-                                <rect key="frame" x="10" y="10" width="580" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVc-tp-sX2" customClass="BetterSegmentedControl" customModule="BetterSegmentedControl">
+                                <rect key="frame" x="30" y="44" width="354" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="818-LJ-uHi"/>
+                                    <constraint firstAttribute="height" constant="44" id="Au6-9O-D8u"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorViewBackgroundColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xgq-8X-Wao" firstAttribute="top" secondItem="dC2-FF-5oh" secondAttribute="bottom" constant="10" id="60Y-cq-Yty"/>
-                            <constraint firstItem="xgq-8X-Wao" firstAttribute="leading" secondItem="pUU-Rd-BY1" secondAttribute="leading" constant="10" id="eRD-xO-alF"/>
-                            <constraint firstAttribute="trailing" secondItem="xgq-8X-Wao" secondAttribute="trailing" constant="10" id="eUc-CS-nmc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LVc-tp-sX2" secondAttribute="trailing" constant="10" id="Fam-Hq-l6w"/>
+                            <constraint firstItem="LVc-tp-sX2" firstAttribute="top" secondItem="dC2-FF-5oh" secondAttribute="bottom" id="PQO-QQ-g0R"/>
+                            <constraint firstItem="LVc-tp-sX2" firstAttribute="leading" secondItem="pUU-Rd-BY1" secondAttribute="leadingMargin" constant="10" id="Qbj-R3-5hd"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="control" destination="xgq-8X-Wao" id="7Ql-GS-Yji"/>
+                        <outlet property="control" destination="LVc-tp-sX2" id="wRr-4h-ixg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogx-qe-t6F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -55,4 +44,9 @@
             <point key="canvasLocation" x="210" y="548"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
