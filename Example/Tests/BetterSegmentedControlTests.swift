@@ -925,56 +925,56 @@ final class BetterSegmentedControlSpec: QuickSpec {
                 // alwaysAnnouncesValue
                 context("when called with a alwaysAnnouncesValue parameter") {
                     var testViewController: TestViewController!
-
+                    
                     beforeEach {
                         testViewController = TestViewController()
                         control = .init(frame: testFrame, segments: basicSegmentsThree)
                         control.addTarget(testViewController, action: #selector(TestViewController.valueChanged), for: .valueChanged)
                     }
-
+                    
                     context("when it is false") {
                         beforeEach {
                             control.alwaysAnnouncesValue = false
                         }
-
+                        
                         it("the control sends the expected events") {
-                            control.setIndex(0)
+                            control.setIndex(0, shouldSendValueChangedEvent: true)
                             expect(testViewController.valueChangedCalledCount).to(equal(0))
-
-                            control.setIndex(1)
+                            
+                            control.setIndex(1, shouldSendValueChangedEvent: true)
                             expect(testViewController.valueChangedCalledCount).to(equal(1))
-
-                            control.setIndex(0)
+                            
+                            control.setIndex(0, shouldSendValueChangedEvent: true)
                             expect(testViewController.valueChangedCalledCount).to(equal(2))
-
-                            control.setIndex(0)
+                            
+                            control.setIndex(0, shouldSendValueChangedEvent: true)
                             expect(testViewController.valueChangedCalledCount).to(equal(2))
                         }
                     }
-
+                    
                     context("when it is true") {
                         beforeEach {
                             control.alwaysAnnouncesValue = true
                         }
-
+                        
                         it("the control sends the expected events") {
-                            control.setIndex(0)
+                            control.setIndex(0, shouldSendValueChangedEvent: true)
                             expect(testViewController.valueChangedCalledCount).to(equal(1))
-
-                            control.setIndex(1)
+                            
+                            control.setIndex(1, shouldSendValueChangedEvent: true)
                             expect(testViewController.valueChangedCalledCount).to(equal(2))
-
-                            control.setIndex(0)
+                            
+                            control.setIndex(0, shouldSendValueChangedEvent: true)
                             expect(testViewController.valueChangedCalledCount).to(equal(3))
-
-                            control.setIndex(0)
+                            
+                            control.setIndex(0, shouldSendValueChangedEvent: true)
                             expect(testViewController.valueChangedCalledCount).to(equal(4))
                         }
                     }
                 }
                 
-                // shouldSkipValueChangedEvent
-                context("when called with a shouldSkipValueChangedEvent parameter") {
+                // shouldSendValueChangedEvent
+                context("when called with a shouldSendValueChangedEvent parameter") {
                     var testViewController: TestViewController!
                     
                     beforeEach {
@@ -985,23 +985,23 @@ final class BetterSegmentedControlSpec: QuickSpec {
                     
                     context("when it is false") {
                         beforeEach {
-                            control.setIndex(1, shouldSkipValueChangedEvent: false)
-                            control.setIndex(2, shouldSkipValueChangedEvent: false)
+                            control.setIndex(1, shouldSendValueChangedEvent: false)
+                            control.setIndex(2, shouldSendValueChangedEvent: false)
                         }
                         
-                        it("the control sends a valueChanged event") {
-                            expect(testViewController.valueChangedCalledCount).to(equal(2))
+                        it("the control does not send a valueChanged event") {
+                            expect(testViewController.valueChangedCalledCount).to(equal(0))
                         }
                     }
                     
                     context("when it is true") {
                         beforeEach {
-                            control.setIndex(1, shouldSkipValueChangedEvent: true)
-                            control.setIndex(2, shouldSkipValueChangedEvent: true)
+                            control.setIndex(1, shouldSendValueChangedEvent: true)
+                            control.setIndex(2, shouldSendValueChangedEvent: true)
                         }
                         
-                        it("the control does not send a valueChanged event") {
-                            expect(testViewController.valueChangedCalledCount).to(equal(0))
+                        it("the control does send valueChanged events") {
+                            expect(testViewController.valueChangedCalledCount).to(equal(2))
                         }
                     }
                 }

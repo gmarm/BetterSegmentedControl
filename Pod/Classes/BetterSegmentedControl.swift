@@ -276,9 +276,9 @@ import UIKit
     ///   - index: The new index. Passing `BetterSegmentedControl.noSegment` sets the index to `-1` and hides the indicator view.
     ///   Passing an index beyond the segment indices will have no effect.
     ///   - animated: Whether the change should be animated or not. Defaults to `true`.
-    ///   - shouldSkipValueChangedEvent: Whether the change should not trigger a `.valueChanged` event. Defaults to `false`.
-    ///   (Passing `true` will take precedence over `alwaysAnnouncesValue`)
-    public func setIndex(_ index: Int, animated: Bool = true, shouldSkipValueChangedEvent: Bool = false) {
+    ///   - shouldSendValueChangedEvent: Whether the index change should trigger a `.valueChanged` event or not. Defaults to
+    ///   `false`. This takes precedence over `alwaysAnnouncesValue`.
+    public func setIndex(_ index: Int, animated: Bool = true, shouldSendValueChangedEvent: Bool = false) {
         guard segments.indices.contains(index) || index == Self.noSegment else { return }
         
         let previousIndex = self.index
@@ -288,7 +288,7 @@ import UIKit
         let shouldUpdateSegmentViewTraitsBeforeAnimations = announcesValueImmediately && shouldUpdateSegmentViewTraits
         let shouldUpdateSegmentViewTraitsAfterAnimations = !announcesValueImmediately && shouldUpdateSegmentViewTraits
         
-        let shouldSendEvent = (index != previousIndex || alwaysAnnouncesValue) && !shouldSkipValueChangedEvent
+        let shouldSendEvent = (index != previousIndex || alwaysAnnouncesValue) && shouldSendValueChangedEvent
         let shouldSendEventBeforeAnimations = announcesValueImmediately && shouldSendEvent
         let shouldSendEventAfterAnimations = !announcesValueImmediately && shouldSendEvent
         
@@ -456,7 +456,7 @@ import UIKit
     
     private func resetIndex() {
         let newIndex = (segments.count > 0 ? 0 : -1)
-        setIndex(newIndex, animated: false, shouldSkipValueChangedEvent: true)
+        setIndex(newIndex, animated: false, shouldSendValueChangedEvent: false)
     }
     
     func closestIndex(toPoint point: CGPoint) -> Int {
@@ -471,7 +471,7 @@ import UIKit
     // MARK: Action handlers
     @objc private func tapped(_ gestureRecognizer: UITapGestureRecognizer!) {
         let location = gestureRecognizer.location(in: self)
-        setIndex(closestIndex(toPoint: location))
+        setIndex(closestIndex(toPoint: location), shouldSendValueChangedEvent: true)
     }
     
     @objc private func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
@@ -484,7 +484,7 @@ import UIKit
             frame.origin.x = max(min(frame.origin.x, bounds.width - indicatorViewInset - frame.width), indicatorViewInset)
             indicatorView.frame = frame
         case .ended, .failed, .cancelled:
-            setIndex(closestIndex(toPoint: indicatorView.center))
+            setIndex(closestIndex(toPoint: indicatorView.center), shouldSendValueChangedEvent: true)
         default: break
         }
     }
