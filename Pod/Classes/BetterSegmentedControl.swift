@@ -212,7 +212,6 @@ import UIKit
         self.init(frame: frame, segments: Self.generateDefaultSegments())
     }
     
-    @available(*, unavailable, message: "Use init(frame:segments:index:options:) instead.")
     convenience init() {
         self.init(frame: .zero, segments: Self.generateDefaultSegments())
     }

@@ -12,6 +12,7 @@ import BetterSegmentedControl
 class ViewController: UIViewController {
     
     @IBOutlet weak var control1: BetterSegmentedControl!
+    @IBOutlet weak var control2: BetterSegmentedControl!
     @IBOutlet weak var control3: BetterSegmentedControl!
     
     // MARK: - Examples
@@ -19,14 +20,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         let navigationSegmentedControl = BetterSegmentedControl(
-            frame: CGRect(x: 35.0, y: 40.0, width: 200.0, height: 30.0),
+            frame: CGRect(x: 0, y: 0, width: 200.0, height: 30.0),
             segments: LabelSegment.segments(withTitles: ["Lights On", "Lights Off"],
-                                            normalFont: UIFont(name: "Avenir", size: 13.0)!,
                                             normalTextColor: .lightGray,
-                                            selectedFont: UIFont(name: "Avenir", size: 13.0)!,
                                             selectedTextColor: .white),
             options:[.backgroundColor(.darkGray),
-                     .indicatorViewBackgroundColor(UIColor(red: 0.55, green: 0.26, blue: 0.86, alpha: 1.00)),
+                     .indicatorViewBackgroundColor(UIColor(red: 0.36, green: 0.38, blue: 0.87, alpha: 1.00)),
                      .cornerRadius(3.0),
                      .animationSpringDamping(1.0)])
         navigationSegmentedControl.addTarget(self,
@@ -36,62 +35,64 @@ class ViewController: UIViewController {
         
         // Control 1: Created and designed in IB
         control1.segments = LabelSegment.segments(withTitles: ["Recent", "Nearby", "All"],
-                                                  normalFont: UIFont(name: "HelveticaNeue-Light", size: 13.0)!,
-                                                  normalTextColor: .white,
-                                                  selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 13.0)!)
+                                                  normalTextColor: UIColor(red: 0.48, green: 0.48, blue: 0.51, alpha: 1.00))
         
-        // Control 2: Exclusively defined in IB
+        // Control 2: Created and designed in IB
+        control2.segments = LabelSegment.segments(withTitles: ["Music", "Movies", "Apps"],
+                                                  normalTextColor: .white,
+                                                  selectedTextColor: UIColor(red: 0.92, green: 0.29, blue: 0.15, alpha: 1.00))
         
         // Control 3: Many options
-        control3.segments = LabelSegment.segments(withTitles: ["One", "Two", "Three", "Four", "Five", "Six"],
-                                                  normalFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!,
-                                                  normalTextColor: .white,
-                                                  selectedFont: UIFont(name: "HelveticaNeue-Medium", size: 14.0)!,
-                                                  selectedTextColor: UIColor(red: 0.20, green: 0.68, blue: 0.27, alpha: 1.00))
+        control3.segments = LabelSegment.segments(withTitles: ["One", "Two", "Three", "Four", "Five"],
+                                                  normalFont: .systemFont(ofSize: 14.0),
+                                                  normalTextColor: UIColor(red: 0.15, green: 0.39, blue: 0.96, alpha: 0.9),
+                                                  selectedFont: .systemFont(ofSize: 14.0),
+                                                  selectedTextColor: UIColor(red: 0.16, green: 0.40, blue: 0.96, alpha: 1.00))
         
-        // Control 4: Added as a subview
-        let viewSegmentedControl = BetterSegmentedControl(
-            frame: CGRect(x: 0.0, y: 332.0, width: view.bounds.width, height: 50.0),
-            segments: LabelSegment.segments(withTitles: ["Artists", "Albums"],
-                                            normalFont: UIFont(name: "HelveticaNeue", size: 16.0)!,
-                                            normalTextColor: .white,
-                                            selectedFont: UIFont(name: "HelveticaNeue", size: 16.0)!,
-                                            selectedTextColor: UIColor(red: 0.97, green: 0.00, blue: 0.24, alpha: 1.00)),
-            index: 1,
-            options: [.backgroundColor(UIColor(red: 0.11, green: 0.12, blue: 0.13, alpha: 1.00)),
-                      .indicatorViewBackgroundColor(UIColor(red: 0.11, green: 0.12, blue: 0.13, alpha: 1.00)),
-                      .cornerRadius(0.0),
-                      .animationSpringDamping(1.0),
-                      .panningDisabled(true)])
-        view.addSubview(viewSegmentedControl)
+        // Control 4: Created and designed in IB, self-sizing
         
         // Control 5: Basic Icons
         let iconsSegmentedControl = BetterSegmentedControl(
-            frame: CGRect(x: 0.0, y: 400.0, width: view.bounds.width / 3, height: 30.0),
-            segments: IconSegment.segments(withIcons: [#imageLiteral(resourceName: "facebook"),
-                                                       #imageLiteral(resourceName: "twitter")],
+            frame: CGRect(x: 0.0, y: 380.0, width: 160, height: 30.0),
+            segments: IconSegment.segments(withIcons: [UIImage(named: "facebook")!, UIImage(named: "twitter")!],
                                            iconSize: CGSize(width: 20.0, height: 20.0),
                                            normalIconTintColor: .white,
                                            selectedIconTintColor: UIColor(red: 0.16, green: 0.64, blue: 0.94, alpha: 1.00)),
             options: [.cornerRadius(15.0),
                       .backgroundColor(UIColor(red: 0.16, green: 0.64, blue: 0.94, alpha: 1.00)),
                       .indicatorViewBackgroundColor(.white)])
+        iconsSegmentedControl.center.x = view.center.x
         view.addSubview(iconsSegmentedControl)
         
         // Control 6: Apple style
         let appleStyledControl: BetterSegmentedControl = .appleStyled(frame: CGRect(x: 16.0,
-                                                                                    y: 450,
+                                                                                    y: 435,
                                                                                     width: view.bounds.width - 32.0,
                                                                                     height: 32.0),
                                                                       titles: ["First", "Second", "Third"])
         view.addSubview(appleStyledControl)
+        
+        // Control 7: No initially selected segment
+        let testControl = BetterSegmentedControl(
+            frame: CGRect(x: 16.0, y: 490, width: view.bounds.width-32, height: 44),
+            segments: LabelSegment.segments(withTitles: ["One", "Two", "Three", "Four"]),
+            index: -1,
+            options: nil)
+        testControl.announcesValueImmediately = true
+        testControl.alwaysAnnouncesValue = true
+        testControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
+        view.addSubview(testControl)
     }
     
     // MARK: - Action handlers
     @objc func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
         if sender.index == 0 {
             print("Turning lights on.")
-            view.backgroundColor = .white
+            if #available(iOS 13.0, *) {
+                view.backgroundColor = .systemGray5
+            } else {
+                view.backgroundColor = .white
+            }
         } else {
             print("Turning lights off.")
             view.backgroundColor = .darkGray
