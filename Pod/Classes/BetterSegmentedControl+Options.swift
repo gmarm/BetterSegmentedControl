@@ -6,6 +6,8 @@
 //
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension BetterSegmentedControl {
@@ -30,3 +32,5 @@ public extension BetterSegmentedControl {
         case cornerRadius(CGFloat)
     }
 }
+
+#endif

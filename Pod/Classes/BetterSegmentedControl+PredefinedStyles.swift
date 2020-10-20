@@ -5,6 +5,8 @@
 //  Created by George Marmaridis on 18.10.20.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension BetterSegmentedControl {
@@ -21,3 +23,5 @@ public extension BetterSegmentedControl {
         return control
     }
 }
+
+#endif

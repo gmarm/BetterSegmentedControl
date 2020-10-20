@@ -5,6 +5,8 @@
 //  Created by George Marmaridis on 19.10.20.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 @available(iOS 13.4, *)
@@ -32,3 +34,5 @@ extension BetterSegmentedControl: UIPointerInteractionDelegate {
         return .init(effect: .highlight(.init(view: view)))
     }
 }
+
+#endif
