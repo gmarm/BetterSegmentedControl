@@ -25,7 +25,7 @@ import UIKit
     /// The segments available for selection.
     public var segments: [BetterSegmentedControlSegment] {
         didSet {
-            update()
+            applySegments()
         }
     }
     
@@ -48,7 +48,7 @@ import UIKit
         }
         set {
             layer.cornerRadius = newValue
-            update()
+            updateCornerRadii()
         }
     }
     
@@ -65,7 +65,7 @@ import UIKit
     /// The indicator view's inset. Defaults to `2.0`.
     @IBInspectable public var indicatorViewInset: CGFloat = 2.0 {
         didSet {
-            update()
+            updateCornerRadii()
         }
     }
     
@@ -245,7 +245,7 @@ import UIKit
         panGestureRecognizer.delegate = self
         addGestureRecognizer(panGestureRecognizer)
         
-        update()
+        applySegments(shouldResetIndex: false)
     }
     
     // MARK: View lifecycle
@@ -393,47 +393,47 @@ import UIKit
     }
     
     // MARK: Helpers
-    /// Updates the control and triggers a layout refresh.
-    private func update() {
-        func updateSegments() {
-            normalSegmentViews.forEach { $0.removeFromSuperview() }
-            normalSegmentViews.removeAll()
+    /// Updates the segments and triggers a layout refresh. Resets the index if needed.
+    private func applySegments(shouldResetIndex: Bool = true) {
+        normalSegmentViews.forEach { $0.removeFromSuperview() }
+        normalSegmentViews.removeAll()
+        
+        selectedSegmentViews.forEach { $0.removeFromSuperview() }
+        selectedSegmentViews.removeAll()
+        
+        pointerInteractionViews.forEach { $0.removeFromSuperview() }
+        pointerInteractionViews.removeAll()
+        
+        for segment in segments {
+            segment.normalView.clipsToBounds = true
+            segment.normalView.isAccessibilityElement = false
             
-            selectedSegmentViews.forEach { $0.removeFromSuperview() }
-            selectedSegmentViews.removeAll()
+            segment.selectedView.clipsToBounds = true
             
-            pointerInteractionViews.forEach { $0.removeFromSuperview() }
-            pointerInteractionViews.removeAll()
+            normalSegmentViewsContainerView.addSubview(segment.normalView)
+            normalSegmentViews.append(segment.normalView)
             
-            for segment in segments {
-                segment.normalView.clipsToBounds = true
-                segment.normalView.isAccessibilityElement = false
-                
-                segment.selectedView.clipsToBounds = true
-                
-                normalSegmentViewsContainerView.addSubview(segment.normalView)
-                normalSegmentViews.append(segment.normalView)
-                
-                selectedSegmentViewsContainerView.addSubview(segment.selectedView)
-                selectedSegmentViews.append(segment.selectedView)
-                
-                let pointerInteractionView = UIView()
-                pointerInteractionViewsContainerView.addSubview(pointerInteractionView)
-                pointerInteractionViews.append(pointerInteractionView)
-            }
+            selectedSegmentViewsContainerView.addSubview(segment.selectedView)
+            selectedSegmentViews.append(segment.selectedView)
             
-            invalidateIntrinsicContentSize()
-        }
-        func updateCornerRadii() {
-            indicatorView.cornerRadius = cornerRadius - indicatorViewInset
-            allSegmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
+            let pointerInteractionView = UIView()
+            pointerInteractionViewsContainerView.addSubview(pointerInteractionView)
+            pointerInteractionViews.append(pointerInteractionView)
         }
         
-        updateSegments()
         updateSegmentViewTraits()
         updateCornerRadii()
+        if shouldResetIndex {
+            resetIndex()
+        }
         
+        invalidateIntrinsicContentSize()
         setNeedsLayout()
+    }
+    
+    private func updateCornerRadii() {
+        indicatorView.cornerRadius = cornerRadius - indicatorViewInset
+        allSegmentViews.forEach { $0.layer.cornerRadius = indicatorView.cornerRadius }
     }
     
     private func updateSegmentViewTraits() {
@@ -452,6 +452,11 @@ import UIKit
                       y: indicatorViewInset,
                       width: elementWidth,
                       height: height - totalInsetSize)
+    }
+    
+    private func resetIndex() {
+        let newIndex = (segments.count > 0 ? 0 : -1)
+        setIndex(newIndex, animated: false, shouldSkipValueChangedEvent: true)
     }
     
     func closestIndex(toPoint point: CGPoint) -> Int {

@@ -22,6 +22,258 @@ final class BetterSegmentedControlSpec: QuickSpec {
             
             var control: BetterSegmentedControl!
             
+            // MARK: segments
+            describe("its segments property") {
+                context("when the control is initialized with zero segments") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: [])
+                    }
+                    
+                    context("when setting segments to zero") {
+                        beforeEach {
+                            control.segments = []
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(-1))
+                        }
+                    }
+                    
+                    context("when setting segments to one") {
+                        beforeEach {
+                            control.segments = basicSegmentOne
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                    
+                    context("when setting segments to two") {
+                        beforeEach {
+                            control.segments = basicSegmentsTwo
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                    
+                    context("when setting segments to two and then three") {
+                        beforeEach {
+                            control.segments = basicSegmentsTwo
+                            control.segments = basicSegmentsThree
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                    
+                    context("when setting segments to three and then two") {
+                        beforeEach {
+                            control.segments = basicSegmentsThree
+                            control.segments = basicSegmentsTwo
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                }
+                
+                context("when the control is initialized with one segment") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentOne)
+                    }
+                    
+                    context("when setting segments to zero") {
+                        beforeEach {
+                            control.segments = []
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(-1))
+                        }
+                    }
+                    
+                    context("when setting segments to one") {
+                        beforeEach {
+                            control.segments = basicSegmentOne
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                    
+                    context("when setting segments to two") {
+                        beforeEach {
+                            control.segments = basicSegmentsTwo
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                    
+                    context("when setting segments to two and then three") {
+                        beforeEach {
+                            control.segments = basicSegmentsTwo
+                            control.segments = basicSegmentsThree
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                    
+                    context("when setting segments to three and then two") {
+                        beforeEach {
+                            control.segments = basicSegmentsThree
+                            control.segments = basicSegmentsTwo
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                }
+                
+                context("when the control is initialized with two segments") {
+                    beforeEach {
+                        control = .init(frame: testFrame, segments: basicSegmentsTwo)
+                    }
+                    
+                    context("when setting segments to zero") {
+                        beforeEach {
+                            control.segments = []
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(-1))
+                        }
+                    }
+                    
+                    context("when setting segments to one") {
+                        beforeEach {
+                            control.segments = basicSegmentOne
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                    
+                    context("when setting segments to two") {
+                        beforeEach {
+                            control.segments = basicSegmentsTwo
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                    
+                    context("when setting segments to two and then three") {
+                        beforeEach {
+                            control.segments = basicSegmentsTwo
+                            control.segments = basicSegmentsThree
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                    
+                    context("when setting segments to three and then two") {
+                        beforeEach {
+                            control.segments = basicSegmentsThree
+                            control.segments = basicSegmentsTwo
+                        }
+                        
+                        it("renders correctly") {
+                            //📷(control)
+                            expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                        }
+                        
+                        it("has the expected index property") {
+                            expect(control.index).to(equal(0))
+                        }
+                    }
+                }
+            }
+            
             // MARK: Basic init
             context("with most basic initialization") {
                 context("with two segments") {
@@ -423,70 +675,7 @@ final class BetterSegmentedControlSpec: QuickSpec {
                 }
             }
             
-            // MARK: segments
-            describe("its segments property") {
-                context("when initialized with 0 segments") {
-                    beforeEach {
-                        control = .init(frame: testFrame, segments: [])
-                    }
-                    
-                    it("renders correctly") {
-                        //📷(control)
-                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
-                    }
-                    
-                    it("renders correctly after setting segments to two") {
-                        control.segments = basicSegmentsTwo
-                        
-                        //📷(control)
-                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
-                    }
-                }
-                
-                context("when initialized with 1 segment") {
-                    beforeEach {
-                        control = .init(frame: testFrame, segments: basicSegmentOne)
-                    }
-                    
-                    it("renders correctly") {
-                        //📷(control)
-                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
-                    }
-                    
-                    it("renders correctly after setting segments to two") {
-                        control.segments = basicSegmentsTwo
-                        
-                        //📷(control)
-                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
-                    }
-                }
-                
-                context("when initialized with 3 segments") {
-                    beforeEach {
-                        control = .init(frame: testFrame, segments: basicSegmentsThree)
-                    }
-                    
-                    it("renders correctly") {
-                        //📷(control)
-                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
-                    }
-                    
-                    it("renders correctly after setting segments to two") {
-                        control.segments = basicSegmentsTwo
-                        
-                        //📷(control)
-                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
-                    }
-                    
-                    it("renders correctly after setting segments to two then four") {
-                        control.segments = basicSegmentsTwo
-                        control.segments = basicSegmentsFour
-                        
-                        //📷(control)
-                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
-                    }
-                }
-            }
+            
             
             // MARK: cornerRadius
             describe("its cornerRadius property") {
