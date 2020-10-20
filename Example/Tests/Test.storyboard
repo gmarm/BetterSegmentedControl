@@ -25,25 +25,40 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Au6-9O-D8u"/>
+                                    <constraint firstAttribute="width" constant="354" id="lwf-8Q-uBa"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnn-Vk-usv" customClass="BetterSegmentedControl" customModule="BetterSegmentedControl">
+                                <rect key="frame" x="109.5" y="100" width="195" height="32"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="LVc-tp-sX2" secondAttribute="trailing" constant="10" id="Fam-Hq-l6w"/>
+                            <constraint firstItem="LVc-tp-sX2" firstAttribute="centerX" secondItem="pUU-Rd-BY1" secondAttribute="centerX" id="1p6-2S-Ved"/>
+                            <constraint firstItem="mnn-Vk-usv" firstAttribute="centerX" secondItem="pUU-Rd-BY1" secondAttribute="centerX" id="GL9-xl-0Qz"/>
                             <constraint firstItem="LVc-tp-sX2" firstAttribute="top" secondItem="dC2-FF-5oh" secondAttribute="bottom" id="PQO-QQ-g0R"/>
-                            <constraint firstItem="LVc-tp-sX2" firstAttribute="leading" secondItem="pUU-Rd-BY1" secondAttribute="leadingMargin" constant="10" id="Qbj-R3-5hd"/>
+                            <constraint firstItem="mnn-Vk-usv" firstAttribute="top" secondItem="LVc-tp-sX2" secondAttribute="bottom" constant="12" id="oAH-tn-3Je"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="control" destination="LVc-tp-sX2" id="wRr-4h-ixg"/>
+                        <outlet property="control2" destination="mnn-Vk-usv" id="4ea-hB-2n0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogx-qe-t6F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="210" y="548"/>
+            <point key="canvasLocation" x="208.69565217391306" y="547.76785714285711"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="LVc-tp-sX2">
+            <size key="intrinsicContentSize" width="195" height="32"/>
+        </designable>
+        <designable name="mnn-Vk-usv">
+            <size key="intrinsicContentSize" width="195" height="32"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

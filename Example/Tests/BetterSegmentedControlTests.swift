@@ -68,18 +68,38 @@ final class BetterSegmentedControlSpec: QuickSpec {
             
             // MARK: Storyboard init
             context("when initialized in a storyboard") {
+                var viewController: StoryboardTestViewController!
+                
                 beforeEach({
                     let storyboard = UIStoryboard(name: "Test", bundle: Bundle(for: type(of: self)))
-                    let viewController = storyboard.instantiateInitialViewController() as! StoryboardTestViewController
+                    viewController = storyboard.instantiateInitialViewController() as? StoryboardTestViewController
                     UIApplication.shared.keyWindow!.rootViewController = viewController
                     _ = viewController.view
                     
                     control = viewController.control
                 })
-                it("renders correctly", closure: {
-                    //📷(control)
-                    expect(control).to(haveValidSnapshotWithAcceptableTolerance())
-                })
+                
+                context("when an expicit size is set in Auto Layout") {
+                    beforeEach {
+                        control = viewController.control
+                    }
+                    
+                    it("renders correctly", closure: {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                    })
+                }
+                
+                context("when the control auto sizes itself in Auto Layout") {
+                    beforeEach {
+                        control = viewController.control2
+                    }
+                    
+                    it("renders correctly", closure: {
+                        //📷(control)
+                        expect(control).to(haveValidSnapshotWithAcceptableTolerance())
+                    })
+                }
             }
             
             // MARK: setIndex() / index

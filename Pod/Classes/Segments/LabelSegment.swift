@@ -52,39 +52,43 @@ open class LabelSegment: BetterSegmentedControlSegment {
         self.selectedTextColor = selectedTextColor ?? DefaultValues.selectedTextColor
         self.accessibilityIdentifier = accessibilityIdentifier
     }
-        
-        // MARK: BetterSegmentedControlSegment
-        public lazy var normalView: UIView = {
-            return createLabel(withText: text,
-                               backgroundColor: normalBackgroundColor,
-                               font: normalFont,
-                               textColor: normalTextColor,
-                               accessibilityIdentifier: accessibilityIdentifier)
-        }()
-        public lazy var selectedView: UIView = {
-            return createLabel(withText: text,
-                               backgroundColor: selectedBackgroundColor,
-                               font: selectedFont,
-                               textColor: selectedTextColor,
-                               accessibilityIdentifier: accessibilityIdentifier)
-        }()
-        open func createLabel(withText text: String?,
-                              backgroundColor: UIColor,
-                              font: UIFont,
-                              textColor: UIColor,
-                              accessibilityIdentifier: String?) -> UILabel {
-            let label = UILabel()
-            label.text = text
-            label.numberOfLines = numberOfLines
-            label.backgroundColor = backgroundColor
-            label.font = font
-            label.textColor = textColor
-            label.lineBreakMode = .byTruncatingTail
-            label.textAlignment = .center
-            label.accessibilityIdentifier = accessibilityIdentifier
-            return label
-        }
+    
+    // MARK: BetterSegmentedControlSegment
+    public var intrinsicContentSize: CGSize? {
+        selectedView.intrinsicContentSize
     }
+    
+    public lazy var normalView: UIView = {
+        createLabel(withText: text,
+                    backgroundColor: normalBackgroundColor,
+                    font: normalFont,
+                    textColor: normalTextColor,
+                    accessibilityIdentifier: accessibilityIdentifier)
+    }()
+    public lazy var selectedView: UIView = {
+        createLabel(withText: text,
+                    backgroundColor: selectedBackgroundColor,
+                    font: selectedFont,
+                    textColor: selectedTextColor,
+                    accessibilityIdentifier: accessibilityIdentifier)
+    }()
+    open func createLabel(withText text: String?,
+                          backgroundColor: UIColor,
+                          font: UIFont,
+                          textColor: UIColor,
+                          accessibilityIdentifier: String?) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.numberOfLines = numberOfLines
+        label.backgroundColor = backgroundColor
+        label.font = font
+        label.textColor = textColor
+        label.lineBreakMode = .byTruncatingTail
+        label.textAlignment = .center
+        label.accessibilityIdentifier = accessibilityIdentifier
+        return label
+    }
+}
 
 public extension LabelSegment {
     class func segments(withTitles titles: [String],
@@ -95,7 +99,7 @@ public extension LabelSegment {
                         selectedBackgroundColor: UIColor? = nil,
                         selectedFont: UIFont? = nil,
                         selectedTextColor: UIColor? = nil) -> [BetterSegmentedControlSegment] {
-        return titles.map {
+        titles.map {
             LabelSegment(text: $0,
                          numberOfLines: numberOfLines,
                          normalBackgroundColor: normalBackgroundColor,

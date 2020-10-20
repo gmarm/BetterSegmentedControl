@@ -12,6 +12,7 @@ import BetterSegmentedControl
 
 final class StoryboardTestViewController: UIViewController {
     @IBOutlet weak var control: BetterSegmentedControl!
+    @IBOutlet weak var control2: BetterSegmentedControl!
 }
 
 final class TestViewController: UIViewController {

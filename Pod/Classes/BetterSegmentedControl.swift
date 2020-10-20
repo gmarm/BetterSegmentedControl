@@ -7,7 +7,12 @@
 
 import UIKit
 
-@IBDesignable open class BetterSegmentedControl: UIControl {    
+@IBDesignable open class BetterSegmentedControl: UIControl {
+    private struct Constants {
+        static let minimumIntrinsicContentSizeHeight: CGFloat = 32.0
+        static let minimumSegmentIntrinsicContentSizeWidth: CGFloat = 20.0
+    }
+    
     // MARK: Properties
     
     // Public
@@ -93,11 +98,35 @@ import UIKit
     /// The spring damping ratio of the animation of an index change. Defaults to `0.75`. Set to `1.0` for a no bounce effect.
     @IBInspectable public var animationSpringDamping: CGFloat = 0.75
     
-    // Private
-    private var safeIndex: Int {
-        index >= 0 ? index : 0
+    /// When the control auto-sizes itself, this controls the additional side padding between the segments.
+    @IBInspectable public var segmentPadding: CGFloat = 14.0 {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
     }
     
+    open override var intrinsicContentSize: CGSize {
+        let segmentIntrinsicContentSizes = segments.map {
+            $0.intrinsicContentSize ?? .zero
+        }
+        
+        let maxSegmentIntrinsicContentSizeWidth = segmentIntrinsicContentSizes.max(by: { (a, b) in
+            return a.width < b.width
+        })?.width ?? 0.0
+        
+        let maxSegmentIntrinsicContentSizeHeight = segmentIntrinsicContentSizes.max(by: { (a, b) in
+            return a.height < b.height
+        })?.height ?? 0.0
+        
+        let singleSegmentWidth = totalInsetSize + max(maxSegmentIntrinsicContentSizeWidth, Constants.minimumSegmentIntrinsicContentSizeWidth) + segmentPadding
+        
+        let width = ceil(CGFloat(segments.count) * singleSegmentWidth)
+        let height = ceil(max(maxSegmentIntrinsicContentSizeHeight + totalInsetSize, Constants.minimumIntrinsicContentSizeHeight))
+        
+        return .init(width: width, height: height)
+    }
+    
+    // Private
     private let normalSegmentViewsContainerView = UIView()
     private let selectedSegmentViewsContainerView = UIView()
     private let pointerInteractionViewsContainerView = UIView()
@@ -120,6 +149,9 @@ import UIKit
     /// Contains normal segment views, selected segment views and pointer interaction views.
     private var allSegmentViews: [UIView] { normalSegmentViews + selectedSegmentViews + pointerInteractionViews }
     
+    private var safeIndex: Int {
+        index >= 0 ? index : 0
+    }
     private var lastIndex: Int { segments.endIndex - 1 }
     
     private var totalInsetSize: CGFloat { indicatorViewInset * 2.0 }
@@ -323,6 +355,7 @@ import UIKit
             completion?()
         })
     }
+    
     private func performIndexChange(fromPreviousIndex previousIndex: Int,
                                     toNewIndex newIndex: Int,
                                     animated: Bool,
@@ -389,6 +422,8 @@ import UIKit
                 pointerInteractionViewsContainerView.addSubview(pointerInteractionView)
                 pointerInteractionViews.append(pointerInteractionView)
             }
+            
+            invalidateIntrinsicContentSize()
         }
         func updateCornerRadii() {
             indicatorView.cornerRadius = cornerRadius - indicatorViewInset
@@ -401,6 +436,7 @@ import UIKit
         
         setNeedsLayout()
     }
+    
     private func updateSegmentViewTraits() {
         accessibilityElements = selectedSegmentViews
         
@@ -408,6 +444,7 @@ import UIKit
             selectedSegmentViews[index].accessibilityTraits = (index == self.index ? [.button, .selected] : [.button])
         }
     }
+    
     private func frameForElement(atIndex index: Int) -> CGRect {
         let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentViewCount)
         let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth
@@ -417,10 +454,12 @@ import UIKit
                       width: elementWidth,
                       height: height - totalInsetSize)
     }
+    
     func closestIndex(toPoint point: CGPoint) -> Int {
         let distances = normalSegmentViews.map { abs(point.x - $0.center.x) }
         return Int(distances.firstIndex(of: distances.min()!)!)
     }
+    
     private static func generateDefaultSegments() -> [LabelSegment] {
         [.init(text: "First"), .init(text: "Second"), .init(text: "Third")]
     }
@@ -430,6 +469,7 @@ import UIKit
         let location = gestureRecognizer.location(in: self)
         setIndex(closestIndex(toPoint: location))
     }
+    
     @objc private func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
         switch gestureRecognizer.state {
         case .began:

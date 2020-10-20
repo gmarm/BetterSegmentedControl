@@ -40,6 +40,8 @@ open class IconSegment: BetterSegmentedControlSegment {
     }
     
     // MARK: BetterSegmentedControlSegment
+    public var intrinsicContentSize: CGSize? { nil }
+    
     public lazy var normalView: UIView = {
         return createView(withIcon: icon,
                           iconSize: iconSize,
