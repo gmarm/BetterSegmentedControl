@@ -42,8 +42,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="control" destination="LVc-tp-sX2" id="wRr-4h-ixg"/>
-                        <outlet property="control2" destination="mnn-Vk-usv" id="4ea-hB-2n0"/>
+                        <outlet property="explicitSizeControl" destination="LVc-tp-sX2" id="wRr-4h-ixg"/>
+                        <outlet property="selfSizingControl" destination="mnn-Vk-usv" id="4ea-hB-2n0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogx-qe-t6F" userLabel="First Responder" sceneMemberID="firstResponder"/>

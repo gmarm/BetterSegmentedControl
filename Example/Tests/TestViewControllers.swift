@@ -11,8 +11,8 @@ import UIKit
 import BetterSegmentedControl
 
 final class StoryboardTestViewController: UIViewController {
-    @IBOutlet weak var control: BetterSegmentedControl!
-    @IBOutlet weak var control2: BetterSegmentedControl!
+    @IBOutlet weak var explicitSizeControl: BetterSegmentedControl!
+    @IBOutlet weak var selfSizingControl: BetterSegmentedControl!
 }
 
 final class TestViewController: UIViewController {
