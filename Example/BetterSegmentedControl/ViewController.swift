@@ -73,15 +73,12 @@ class ViewController: UIViewController {
         view.addSubview(appleStyledControl)
         
         // Control 7: No initially selected segment
-        let testControl = BetterSegmentedControl(
-            frame: CGRect(x: 16.0, y: 490, width: view.bounds.width-32, height: 44),
+        let noSelectedSegmentControl = BetterSegmentedControl(
+            frame: CGRect(x: 16.0, y: 490, width: view.bounds.width - 32.0, height: 44.0),
             segments: LabelSegment.segments(withTitles: ["One", "Two", "Three", "Four"]),
-            index: -1,
-            options: nil)
-        testControl.announcesValueImmediately = true
-        testControl.alwaysAnnouncesValue = true
-        testControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
-        view.addSubview(testControl)
+            index: -1)
+        noSelectedSegmentControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
+        view.addSubview(noSelectedSegmentControl)
     }
     
     // MARK: - Action handlers
