@@ -1,62 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bOm-2z-0WK">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bOm-2z-0WK">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Test View Controller-->
+        <!--Storyboard Test View Controller-->
         <scene sceneID="jHq-yj-D1Z">
             <objects>
-                <viewController id="bOm-2z-0WK" customClass="TestViewController" customModule="BetterSegmentedControl_Tests" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bOm-2z-0WK" customClass="StoryboardTestViewController" customModule="BetterSegmentedControl_Tests" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dC2-FF-5oh"/>
                         <viewControllerLayoutGuide type="bottom" id="aSL-eZ-re5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pUU-Rd-BY1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgq-8X-Wao" customClass="BetterSegmentedControl" customModule="BetterSegmentedControl">
-                                <rect key="frame" x="10" y="54" width="355" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVc-tp-sX2" customClass="BetterSegmentedControl" customModule="BetterSegmentedControl">
+                                <rect key="frame" x="30" y="44" width="354" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="818-LJ-uHi"/>
+                                    <constraint firstAttribute="height" constant="44" id="Au6-9O-D8u"/>
+                                    <constraint firstAttribute="width" constant="354" id="lwf-8Q-uBa"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorViewBackgroundColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnn-Vk-usv" customClass="BetterSegmentedControl" customModule="BetterSegmentedControl">
+                                <rect key="frame" x="109.5" y="100" width="195" height="32"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xgq-8X-Wao" firstAttribute="top" secondItem="dC2-FF-5oh" secondAttribute="bottom" constant="10" id="60Y-cq-Yty"/>
-                            <constraint firstItem="xgq-8X-Wao" firstAttribute="leading" secondItem="pUU-Rd-BY1" secondAttribute="leading" constant="10" id="eRD-xO-alF"/>
-                            <constraint firstAttribute="trailing" secondItem="xgq-8X-Wao" secondAttribute="trailing" constant="10" id="eUc-CS-nmc"/>
+                            <constraint firstItem="LVc-tp-sX2" firstAttribute="centerX" secondItem="pUU-Rd-BY1" secondAttribute="centerX" id="1p6-2S-Ved"/>
+                            <constraint firstItem="mnn-Vk-usv" firstAttribute="centerX" secondItem="pUU-Rd-BY1" secondAttribute="centerX" id="GL9-xl-0Qz"/>
+                            <constraint firstItem="LVc-tp-sX2" firstAttribute="top" secondItem="dC2-FF-5oh" secondAttribute="bottom" id="PQO-QQ-g0R"/>
+                            <constraint firstItem="mnn-Vk-usv" firstAttribute="top" secondItem="LVc-tp-sX2" secondAttribute="bottom" constant="12" id="oAH-tn-3Je"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="control" destination="xgq-8X-Wao" id="7Ql-GS-Yji"/>
+                        <outlet property="explicitSizeControl" destination="LVc-tp-sX2" id="wRr-4h-ixg"/>
+                        <outlet property="selfSizingControl" destination="mnn-Vk-usv" id="4ea-hB-2n0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogx-qe-t6F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="210" y="548"/>
+            <point key="canvasLocation" x="208.69565217391306" y="547.76785714285711"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="LVc-tp-sX2">
+            <size key="intrinsicContentSize" width="195" height="32"/>
+        </designable>
+        <designable name="mnn-Vk-usv">
+            <size key="intrinsicContentSize" width="195" height="32"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

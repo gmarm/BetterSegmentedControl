@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4BC57C101CCB8D0700A85349 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC57C0F1CCB8D0700A85349 /* Test.storyboard */; };
-		4BC57C121CCB8EDD00A85349 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC57C111CCB8EDD00A85349 /* TestViewController.swift */; };
+		4BC57C121CCB8EDD00A85349 /* TestViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC57C111CCB8EDD00A85349 /* TestViewControllers.swift */; };
+		5E3D40EA253C486400FCF131 /* SnapshotHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D40E9253C486400FCF131 /* SnapshotHelpers.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		607FACEC1AFB9204008FA782 /* BetterSegmentedControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* BetterSegmentedControlTests.swift */; };
 		90FFFDFEEFCF420B32DC095F /* Pods_BetterSegmentedControl_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FAF265B133EF9D144E4D6FB /* Pods_BetterSegmentedControl_Tests.framework */; };
 		D36BA20F2BF5FBB03233C68B /* Pods_BetterSegmentedControl_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D9FAAAFFAE7994D65963C2 /* Pods_BetterSegmentedControl_Example.framework */; };
 /* End PBXBuildFile section */
@@ -34,7 +35,8 @@
 		12CB0D1475C52C17775132BF /* Pods-BetterSegmentedControl_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterSegmentedControl_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BetterSegmentedControl_Example/Pods-BetterSegmentedControl_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2FAF265B133EF9D144E4D6FB /* Pods_BetterSegmentedControl_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BetterSegmentedControl_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC57C0F1CCB8D0700A85349 /* Test.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
-		4BC57C111CCB8EDD00A85349 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		4BC57C111CCB8EDD00A85349 /* TestViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewControllers.swift; sourceTree = "<group>"; };
+		5E3D40E9253C486400FCF131 /* SnapshotHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelpers.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* BetterSegmentedControl_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterSegmentedControl_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,9 +46,9 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* BetterSegmentedControl_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterSegmentedControl_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* BetterSegmentedControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSegmentedControlTests.swift; sourceTree = "<group>"; };
 		61D9FAAAFFAE7994D65963C2 /* Pods_BetterSegmentedControl_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BetterSegmentedControl_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		82FBC36B5CC2D9017CEACA5B /* BetterSegmentedControl.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BetterSegmentedControl.podspec; path = ../BetterSegmentedControl.podspec; sourceTree = "<group>"; };
+		82FBC36B5CC2D9017CEACA5B /* BetterSegmentedControl.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BetterSegmentedControl.podspec; path = ../BetterSegmentedControl.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BA399992832E9047B3FF6F8B /* Pods-BetterSegmentedControl_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterSegmentedControl_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BetterSegmentedControl_Tests/Pods-BetterSegmentedControl_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E35EF8EE3A68B8AA955DE5DE /* Pods-BetterSegmentedControl_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterSegmentedControl_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BetterSegmentedControl_Example/Pods-BetterSegmentedControl_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F6F6B8A01C1E078308A9EB93 /* Pods-BetterSegmentedControl_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterSegmentedControl_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BetterSegmentedControl_Tests/Pods-BetterSegmentedControl_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -82,6 +84,16 @@
 				BA399992832E9047B3FF6F8B /* Pods-BetterSegmentedControl_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5EA6C5B32539E65400776C82 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4BC57C0F1CCB8D0700A85349 /* Test.storyboard */,
+				4BC57C111CCB8EDD00A85349 /* TestViewControllers.swift */,
+				5E3D40E9253C486400FCF131 /* SnapshotHelpers.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -130,9 +142,8 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4BC57C0F1CCB8D0700A85349 /* Test.storyboard */,
-				4BC57C111CCB8EDD00A85349 /* TestViewController.swift */,
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				607FACEB1AFB9204008FA782 /* BetterSegmentedControlTests.swift */,
+				5EA6C5B32539E65400776C82 /* Helpers */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -214,7 +225,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -366,8 +377,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BC57C121CCB8EDD00A85349 /* TestViewController.swift in Sources */,
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				4BC57C121CCB8EDD00A85349 /* TestViewControllers.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* BetterSegmentedControlTests.swift in Sources */,
+				5E3D40EA253C486400FCF131 /* SnapshotHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +436,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -481,6 +494,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -518,6 +532,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -531,6 +546,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
