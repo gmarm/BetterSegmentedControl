@@ -29,6 +29,9 @@ animations
 - [x] Right-to-left languages support
 - [x] Fully tested
 
+Check the latest release notes [here][release-notes]!
+
+[release-notes]: https://github.com/gmarm/BetterSegmentedControl/releases/tag/2.0.1
 
 ## Examples
 
