@@ -5,6 +5,8 @@
 //  Created by George Marmaridis on 08/10/2017.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 open class LabelSegment: BetterSegmentedControlSegment {
@@ -111,3 +113,5 @@ public extension LabelSegment {
         }
     }
 }
+
+#endif

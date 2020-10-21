@@ -5,6 +5,8 @@
 //  Copyright © 2020 George Marmaridis. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 @IBDesignable open class BetterSegmentedControl: UIControl {
@@ -499,3 +501,5 @@ extension BetterSegmentedControl: UIGestureRecognizerDelegate {
         return super.gestureRecognizerShouldBegin(gestureRecognizer)
     }
 }
+
+#endif

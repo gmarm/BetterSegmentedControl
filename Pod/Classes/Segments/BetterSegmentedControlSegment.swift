@@ -5,6 +5,8 @@
 //  Created by George Marmaridis on 08/10/2017.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// A segment is comprised of a normal state view and a selected state view. These need to be separate view instances.
@@ -18,3 +20,5 @@ public protocol BetterSegmentedControlSegment {
     /// The view to be shown for the active or selected state.
     var selectedView: UIView { get }
 }
+
+#endif

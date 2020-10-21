@@ -5,6 +5,8 @@
 //  Created by George Marmaridis on 10/02/2018.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 open class IconSegment: BetterSegmentedControlSegment {
@@ -93,3 +95,5 @@ public extension IconSegment {
         }
     }
 }
+
+#endif

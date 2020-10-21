@@ -5,6 +5,8 @@
 //  Created by George Marmaridis on 16.10.20.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 extension UIColor {
@@ -18,3 +20,5 @@ extension UIColor {
         .black
     }
 }
+
+#endif

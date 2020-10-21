@@ -9,12 +9,14 @@ let package = Package(
     products: [
         .library(
             name: "BetterSegmentedControl",
-            targets: ["BetterSegmentedControl"])
+            targets: ["BetterSegmentedControl"]
+        )
     ],
     targets: [
         .target(
             name: "BetterSegmentedControl",
-            path: "Pod")
+            path: "Pod/Classes"
+        )
     ],
     swiftLanguageVersions: [.v5]
 )
