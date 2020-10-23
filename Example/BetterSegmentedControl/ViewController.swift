@@ -72,10 +72,10 @@ class ViewController: UIViewController {
                                                                       titles: ["First", "Second", "Third"])
         view.addSubview(appleStyledControl)
         
-        // Control 7: No initially selected segment
+        // Control 7: No initially selected segment, custom label segments
         let noSelectedSegmentControl = BetterSegmentedControl(
             frame: CGRect(x: 16.0, y: 490, width: view.bounds.width - 32.0, height: 44.0),
-            segments: LabelSegment.segments(withTitles: ["One", "Two", "Three", "Four"]),
+            segments: LabelSegment.customLabelSegments(withTitles: ["First\nSegment", "Second\nSegment", "Third\nSegment", "Fourth\nSegment"]),
             index: -1)
         noSelectedSegmentControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
         view.addSubview(noSelectedSegmentControl)
@@ -98,5 +98,27 @@ class ViewController: UIViewController {
     
     @IBAction func segmentedControl1ValueChanged(_ sender: BetterSegmentedControl) {
         print("The selected index is \(sender.index)")
+    }
+}
+
+extension LabelSegment {
+    // Custom label segment example
+    class func customLabelSegments(withTitles titles: [String]) -> [LabelSegment] {
+        titles.map { (title) -> LabelSegment in
+            let normalLabel = UILabel()
+            normalLabel.textAlignment = .center
+            normalLabel.attributedText = NSAttributedString(string: title)
+            normalLabel.numberOfLines = 2
+            normalLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 14.0)!
+
+            let selectedLabel = UILabel()
+            selectedLabel.textAlignment = .center
+            selectedLabel.attributedText = NSAttributedString(string: title,
+                                                              attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+            selectedLabel.numberOfLines = 2
+            selectedLabel.font = UIFont(name: "HelveticaNeue", size: 14.0)!
+
+            return LabelSegment(normalLabel: normalLabel, selectedLabel: selectedLabel)
+        }
     }
 }
