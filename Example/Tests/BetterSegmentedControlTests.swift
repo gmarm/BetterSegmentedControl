@@ -15,10 +15,10 @@ final class BetterSegmentedControlSpec: QuickSpec {
     override func spec() {
         describe("a BetterSegmentedControl") {
             let testFrame = CGRect(x: 0, y: 0, width: 300, height: 44)
-            let basicSegmentOne: [LabelSegment] = [.init(text: "One")]
-            let basicSegmentsTwo: [LabelSegment] = [.init(text: "One"), .init(text: "Two")]
-            let basicSegmentsThree: [LabelSegment] = [.init(text: "One"), .init(text: "Two"), .init(text: "Three")]
-            let basicSegmentsFour: [LabelSegment] = [.init(text: "One"), .init(text: "Two"), .init(text: "Three"), .init(text: "Four")]
+            let basicSegmentOne: [LabelSegment] = LabelSegment.segments(withTitles: ["One"])
+            let basicSegmentsTwo: [LabelSegment] = LabelSegment.segments(withTitles: ["One", "Two"])
+            let basicSegmentsThree: [LabelSegment] = LabelSegment.segments(withTitles: ["One", "Two", "Three"])
+            let basicSegmentsFour: [LabelSegment] = LabelSegment.segments(withTitles: ["One", "Two", "Three", "Four"])
             
             var control: BetterSegmentedControl!
             

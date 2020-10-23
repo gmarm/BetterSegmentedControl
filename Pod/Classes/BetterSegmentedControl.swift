@@ -203,7 +203,7 @@ import UIKit
     
     required public init?(coder aDecoder: NSCoder) {
         self.index = 0
-        self.segments = Self.generateDefaultSegments()
+        self.segments = LabelSegment.defaultSegments()
         
         super.init(coder: aDecoder)
         
@@ -211,11 +211,11 @@ import UIKit
     }
     
     convenience override public init(frame: CGRect) {
-        self.init(frame: frame, segments: Self.generateDefaultSegments())
+        self.init(frame: frame, segments: LabelSegment.defaultSegments())
     }
     
     convenience init() {
-        self.init(frame: .zero, segments: Self.generateDefaultSegments())
+        self.init(frame: .zero, segments: LabelSegment.defaultSegments())
     }
     
     private func completeInit() {
@@ -464,10 +464,6 @@ import UIKit
     func closestIndex(toPoint point: CGPoint) -> Int {
         let distances = normalSegmentViews.map { abs(point.x - $0.center.x) }
         return Int(distances.firstIndex(of: distances.min()!)!)
-    }
-    
-    private static func generateDefaultSegments() -> [LabelSegment] {
-        [.init(text: "First"), .init(text: "Second"), .init(text: "Third")]
     }
     
     // MARK: Action handlers
