@@ -79,6 +79,23 @@ class ViewController: UIViewController {
             index: -1)
         noSelectedSegmentControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
         view.addSubview(noSelectedSegmentControl)
+        
+        // Control 8: Icons and labels
+        let iconAndLabelSegmentControl = BetterSegmentedControl(
+            frame: CGRect(x: 0, y: 550, width: view.bounds.width - 32.0, height: 80),
+            segments: LabelSegment.segments(withTitles: ["Keyli kam", "Keyli motevaset", "Keyli ziad"],
+                                            normalFont: .systemFont(ofSize: 14.0),
+                                            normalTextColor: .cyan,
+                                            selectedBackgroundColor: .cyan,
+                                            selectedTextColor: .darkGray),
+            index: 1)
+        iconAndLabelSegmentControl.center.x = view.center.x
+        iconAndLabelSegmentControl.backgroundColor = .darkGray
+        iconAndLabelSegmentControl.layer.cornerRadius = 10
+        iconAndLabelSegmentControl.cornerRadius = 10
+        iconAndLabelSegmentControl.indicatorView.backgroundColor = .cyan
+        iconAndLabelSegmentControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
+        view.addSubview(iconAndLabelSegmentControl)
     }
     
     // MARK: - Action handlers
