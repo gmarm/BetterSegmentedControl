@@ -82,17 +82,20 @@ class ViewController: UIViewController {
         
         // Control 8: Icons and labels
         let iconWithLabelSegmentControl = BetterSegmentedControl(
-            frame: CGRect(x: 0, y: 550, width: view.bounds.width - 32.0, height: 80),
-            segments: IconWithLabelSegment.segments(withIcons: [UIImage(named: "facebook")!, UIImage(named: "twitter")!],
-                                                    iconSize: CGSize(width: 30.0, height: 30.0),
-                                                    normalIconTintColor: .cyan,
-                                                    selectedIconTintColor: .darkGray),
+            frame: CGRect(x: 0, y: 550, width: 200, height: 40),
+            segments: IconWithLabelSegment.segments(withIconsAndLabels: [IconWithLabel(icon: UIImage(named: "facebook")!, title: "Facebook"), IconWithLabel(icon: UIImage(named: "twitter")!, title: "Twitter")],
+                                                    iconSize: CGSize(width: 20.0, height: 20.0),
+                                                    normalIconTintColor: .systemTeal,
+                                                    normalFont: .systemFont(ofSize: 10),
+                                                    normalTextColor: .systemTeal,
+                                                    selectedIconTintColor: .darkGray,
+                                                    selectedFont: .systemFont(ofSize: 10)),
             index: 1)
         iconWithLabelSegmentControl.center.x = view.center.x
         iconWithLabelSegmentControl.backgroundColor = .darkGray
         iconWithLabelSegmentControl.layer.cornerRadius = 10
         iconWithLabelSegmentControl.cornerRadius = 10
-        iconWithLabelSegmentControl.indicatorView.backgroundColor = .cyan
+        iconWithLabelSegmentControl.indicatorView.backgroundColor = .systemTeal
         iconWithLabelSegmentControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
         view.addSubview(iconWithLabelSegmentControl)
     }

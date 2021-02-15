@@ -48,13 +48,13 @@ class IconWithLabelView: UIView {
     
     // MARK: Label
     //config
-    func labelConfig(text: String, numberOfLines: Int, font: UIFont, textColor: UIColor, lineBreakMode: NSLineBreakMode, textAlignment: NSTextAlignment, accessibilityIdentifier: String) {
+    func labelConfig(text: String?, numberOfLines: Int?, font: UIFont?, textColor: UIColor?, lineBreakMode: NSLineBreakMode, textAlignment: NSTextAlignment, accessibilityIdentifier: String?) {
         self.label = UILabel()
         self.addSubview(self.label!)
         self.labelConstraints()
         self.label?.sizeToFit()
         self.label?.text = text
-        self.label?.numberOfLines = numberOfLines
+        self.label?.numberOfLines = numberOfLines ?? 1
         self.label?.font = font
         self.label?.textColor = textColor
         self.label?.lineBreakMode = lineBreakMode
@@ -64,7 +64,7 @@ class IconWithLabelView: UIView {
     //constraints
     fileprivate func labelConstraints() {
         self.label!.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: self.label!, attribute: .top, relatedBy: .equal, toItem: self.imageView, attribute: .bottom, multiplier: 1, constant: 7.5).isActive = true
+        NSLayoutConstraint(item: self.label!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.65, constant: 0).isActive = true
         NSLayoutConstraint(item: self.label!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: self.label!, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: 0).isActive = true
     }

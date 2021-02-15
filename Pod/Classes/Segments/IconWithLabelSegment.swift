@@ -31,6 +31,8 @@ open class IconWithLabelSegment: BetterSegmentedControlSegment {
     public var normalBackgroundColor: UIColor
     
     public var selectedIconTintColor: UIColor
+    public let selectedFont: UIFont
+    public let selectedTextColor: UIColor
     public var selectedBackgroundColor: UIColor
     
     private let numberOfLines: Int
@@ -38,17 +40,31 @@ open class IconWithLabelSegment: BetterSegmentedControlSegment {
     
     // MARK: Lifecycle
     public init(icon: UIImage,
+                text: String? = nil,
                 iconSize: CGSize,
+                numberOfLines: Int = 1,
                 normalBackgroundColor: UIColor? = nil,
                 normalIconTintColor: UIColor,
+                normalFont: UIFont? = nil,
+                normalTextColor: UIColor? = nil,
                 selectedBackgroundColor: UIColor? = nil,
-                selectedIconTintColor: UIColor) {
+                selectedIconTintColor: UIColor,
+                selectedFont: UIFont? = nil,
+                selectedTextColor: UIColor? = nil,
+                accessibilityIdentifier: String? = nil) {
         self.icon = icon.withRenderingMode(.alwaysTemplate)
+        self.text = text
         self.iconSize = iconSize
+        self.numberOfLines = numberOfLines
         self.normalBackgroundColor = normalBackgroundColor ?? DefaultValues.normalBackgroundColor
         self.normalIconTintColor = normalIconTintColor
+        self.normalFont = normalFont ?? DefaultValues.normalFont
+        self.normalTextColor = normalTextColor ?? DefaultValues.normalTextColor
         self.selectedBackgroundColor = selectedBackgroundColor ?? DefaultValues.selectedBackgroundColor
+        self.selectedFont = selectedFont ?? DefaultValues.selectedFont
+        self.selectedTextColor = selectedTextColor ?? DefaultValues.selectedTextColor
         self.selectedIconTintColor = selectedIconTintColor
+        self.accessibilityIdentifier = accessibilityIdentifier
     }
     
     // MARK: BetterSegmentedControlSegment
@@ -58,23 +74,31 @@ open class IconWithLabelSegment: BetterSegmentedControlSegment {
         return createView(withIcon: icon,
                           iconSize: iconSize,
                           backgroundColor: normalBackgroundColor,
-                          iconTintColor: normalIconTintColor)
+                          iconTintColor: normalIconTintColor,
+                          withText: text,
+                          font: normalFont,
+                          textColor: normalTextColor,
+                          accessibilityIdentifier: accessibilityIdentifier)
     }()
     public lazy var selectedView: UIView = {
        return createView(withIcon: icon,
                          iconSize: iconSize,
                          backgroundColor: selectedBackgroundColor,
-                         iconTintColor: selectedIconTintColor)
+                         iconTintColor: selectedIconTintColor,
+                         withText: text,
+                         font: selectedFont,
+                         textColor: selectedTextColor,
+                         accessibilityIdentifier: accessibilityIdentifier)
     }()
     #warning("here")
     private func createView(withIcon icon: UIImage,
                             iconSize: CGSize,
                             backgroundColor: UIColor,
                             iconTintColor: UIColor,
-                            withText text: text,
-                            font: selectedFont,
-                            textColor: selectedTextColor,
-                            accessibilityIdentifier: accessibilityIdentifier) -> UIView {
+                            withText text: String?,
+                            font: UIFont?,
+                            textColor: UIColor?,
+                            accessibilityIdentifier: String?) -> UIView {
         let view = IconWithLabelView()
         view.backgroundColor = backgroundColor
         view.imageViewConfig(icon: icon,
@@ -85,6 +109,7 @@ open class IconWithLabelSegment: BetterSegmentedControlSegment {
         view.labelConfig(text: text,
                          numberOfLines: numberOfLines,
                          font: font,
+                         textColor: textColor,
                          lineBreakMode: .byTruncatingTail,
                          textAlignment: .center,
                          accessibilityIdentifier: accessibilityIdentifier)
@@ -93,20 +118,40 @@ open class IconWithLabelSegment: BetterSegmentedControlSegment {
     #warning("and here")
 }
 
+public class IconWithLabel {
+    let icon: UIImage
+    let title: String
+    public init(icon: UIImage, title: String) {
+        self.icon = icon
+        self.title = title
+    }
+}
+
 public extension IconWithLabelSegment {
-    class func segments(withIcons icons: [UIImage],
+    class func segments(withIconsAndLabels iconsAndLabelS: [IconWithLabel],
                         iconSize: CGSize,
+                        numberOfLines: Int = 1,
                         normalBackgroundColor: UIColor? = nil,
                         normalIconTintColor: UIColor,
+                        normalFont: UIFont? = nil,
+                        normalTextColor: UIColor? = nil,
                         selectedBackgroundColor: UIColor? = nil,
-                        selectedIconTintColor: UIColor) -> [BetterSegmentedControlSegment] {
-        return icons.map {
-            IconWithLabelSegment(icon: $0,
+                        selectedIconTintColor: UIColor,
+                        selectedFont: UIFont? = nil,
+                        selectedTextColor: UIColor? = nil) -> [BetterSegmentedControlSegment] {
+        return iconsAndLabelS.map {
+            IconWithLabelSegment(icon: $0.icon,
+                                 text: $0.title,
                         iconSize: iconSize,
+                        numberOfLines: numberOfLines,
                         normalBackgroundColor: normalBackgroundColor,
                         normalIconTintColor: normalIconTintColor,
+                        normalFont: normalFont,
+                        normalTextColor: normalTextColor,
                         selectedBackgroundColor: selectedBackgroundColor,
-                        selectedIconTintColor: selectedIconTintColor)
+                        selectedIconTintColor: selectedIconTintColor,
+                        selectedFont: selectedFont,
+                        selectedTextColor: selectedTextColor)
         }
     }
 }
