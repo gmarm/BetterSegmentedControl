@@ -56,7 +56,6 @@ open class IconSegment: BetterSegmentedControlSegment {
                          backgroundColor: selectedBackgroundColor,
                          iconTintColor: selectedIconTintColor)
     }()
-    #warning("here")
     private func createView(withIcon icon: UIImage,
                             iconSize: CGSize,
                             backgroundColor: UIColor,
@@ -77,7 +76,6 @@ open class IconSegment: BetterSegmentedControlSegment {
         view.addSubview(imageView)
         return view
     }
-    #warning("and here")
 }
 
 public extension IconSegment {

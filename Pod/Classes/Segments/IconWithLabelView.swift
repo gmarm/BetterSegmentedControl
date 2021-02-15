@@ -15,18 +15,10 @@ class IconWithLabelView: UIView {
     // MARK: Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.createView()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
-//        self.createView()
-    }
-    
-    // MARK: Create View
-    fileprivate func createView() {
-//        self.imageViewConfig()
-//        self.labelConfig()
     }
     
     // MARK: Image View

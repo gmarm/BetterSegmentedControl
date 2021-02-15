@@ -90,7 +90,6 @@ open class IconWithLabelSegment: BetterSegmentedControlSegment {
                          textColor: selectedTextColor,
                          accessibilityIdentifier: accessibilityIdentifier)
     }()
-    #warning("here")
     private func createView(withIcon icon: UIImage,
                             iconSize: CGSize,
                             backgroundColor: UIColor,
@@ -114,16 +113,6 @@ open class IconWithLabelSegment: BetterSegmentedControlSegment {
                          textAlignment: .center,
                          accessibilityIdentifier: accessibilityIdentifier)
         return view
-    }
-    #warning("and here")
-}
-
-public class IconWithLabel {
-    let icon: UIImage
-    let title: String
-    public init(icon: UIImage, title: String) {
-        self.icon = icon
-        self.title = title
     }
 }
 

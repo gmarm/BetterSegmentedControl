@@ -88,11 +88,11 @@ class ViewController: UIViewController {
                                                     normalIconTintColor: .systemTeal,
                                                     normalFont: .systemFont(ofSize: 10),
                                                     normalTextColor: .systemTeal,
-                                                    selectedIconTintColor: .darkGray,
+                                                    selectedIconTintColor: #colorLiteral(red: 0.2117647059, green: 0.2705882353, blue: 0.3098039216, alpha: 1),
                                                     selectedFont: .systemFont(ofSize: 10)),
             index: 1)
         iconWithLabelSegmentControl.center.x = view.center.x
-        iconWithLabelSegmentControl.backgroundColor = .darkGray
+        iconWithLabelSegmentControl.backgroundColor = #colorLiteral(red: 0.2117647059, green: 0.2705882353, blue: 0.3098039216, alpha: 1)
         iconWithLabelSegmentControl.layer.cornerRadius = 10
         iconWithLabelSegmentControl.cornerRadius = 10
         iconWithLabelSegmentControl.indicatorView.backgroundColor = .systemTeal
