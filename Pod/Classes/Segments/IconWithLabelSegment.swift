@@ -1,30 +1,40 @@
 //
-//  IconSegment.swift
+//  IconWithLabelSegment.swift
 //  BetterSegmentedControl
 //
-//  Created by George Marmaridis on 10/02/2018.
+//  Created by Arman Zoghi on 2/14/21.
 //
 
 #if canImport(UIKit)
 
 import UIKit
 
-open class IconSegment: BetterSegmentedControlSegment {
+open class IconWithLabelSegment: BetterSegmentedControlSegment {
     // MARK: Constants
     private struct DefaultValues {
         static let normalBackgroundColor: UIColor = .clear
+        static let normalTextColor: UIColor = .black
+        static let normalFont: UIFont = .systemFont(ofSize: 13)
         static let selectedBackgroundColor: UIColor = .clear
+        static let selectedTextColor: UIColor = .black
+        static let selectedFont: UIFont = .systemFont(ofSize: 13, weight: .medium)
     }
     
     // MARK: Properties
     public var icon: UIImage
     public var iconSize: CGSize
+    public let text: String?
     
     public var normalIconTintColor: UIColor
+    public let normalFont: UIFont
+    public let normalTextColor: UIColor
     public var normalBackgroundColor: UIColor
     
     public var selectedIconTintColor: UIColor
     public var selectedBackgroundColor: UIColor
+    
+    private let numberOfLines: Int
+    private let accessibilityIdentifier: String?
     
     // MARK: Lifecycle
     public init(icon: UIImage,
@@ -60,27 +70,30 @@ open class IconSegment: BetterSegmentedControlSegment {
     private func createView(withIcon icon: UIImage,
                             iconSize: CGSize,
                             backgroundColor: UIColor,
-                            iconTintColor: UIColor) -> UIView {
-        let view = UIView()
+                            iconTintColor: UIColor,
+                            withText text: text,
+                            font: selectedFont,
+                            textColor: selectedTextColor,
+                            accessibilityIdentifier: accessibilityIdentifier) -> UIView {
+        let view = IconWithLabelView()
         view.backgroundColor = backgroundColor
-        let imageView = UIImageView(image: icon)
-        imageView.frame = CGRect(x: 0,
-                                 y: 0,
-                                 width: iconSize.width,
-                                 height: iconSize.height)
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = iconTintColor
-        imageView.autoresizingMask = [.flexibleTopMargin,
-                                      .flexibleLeftMargin,
-                                      .flexibleRightMargin,
-                                      .flexibleBottomMargin]
-        view.addSubview(imageView)
+        view.imageViewConfig(icon: icon,
+                             width: iconSize.width,
+                             height: iconSize.height,
+                             contentMode: .scaleAspectFit,
+                             tintColor: iconTintColor)
+        view.labelConfig(text: text,
+                         numberOfLines: numberOfLines,
+                         font: font,
+                         lineBreakMode: .byTruncatingTail,
+                         textAlignment: .center,
+                         accessibilityIdentifier: accessibilityIdentifier)
         return view
     }
     #warning("and here")
 }
 
-public extension IconSegment {
+public extension IconWithLabelSegment {
     class func segments(withIcons icons: [UIImage],
                         iconSize: CGSize,
                         normalBackgroundColor: UIColor? = nil,
@@ -88,7 +101,7 @@ public extension IconSegment {
                         selectedBackgroundColor: UIColor? = nil,
                         selectedIconTintColor: UIColor) -> [BetterSegmentedControlSegment] {
         return icons.map {
-            IconSegment(icon: $0,
+            IconWithLabelSegment(icon: $0,
                         iconSize: iconSize,
                         normalBackgroundColor: normalBackgroundColor,
                         normalIconTintColor: normalIconTintColor,

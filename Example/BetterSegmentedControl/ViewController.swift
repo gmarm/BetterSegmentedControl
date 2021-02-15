@@ -81,21 +81,20 @@ class ViewController: UIViewController {
         view.addSubview(noSelectedSegmentControl)
         
         // Control 8: Icons and labels
-        let iconAndLabelSegmentControl = BetterSegmentedControl(
+        let iconWithLabelSegmentControl = BetterSegmentedControl(
             frame: CGRect(x: 0, y: 550, width: view.bounds.width - 32.0, height: 80),
-            segments: LabelSegment.segments(withTitles: ["Keyli kam", "Keyli motevaset", "Keyli ziad"],
-                                            normalFont: .systemFont(ofSize: 14.0),
-                                            normalTextColor: .cyan,
-                                            selectedBackgroundColor: .cyan,
-                                            selectedTextColor: .darkGray),
+            segments: IconWithLabelSegment.segments(withIcons: [UIImage(named: "facebook")!, UIImage(named: "twitter")!],
+                                                    iconSize: CGSize(width: 30.0, height: 30.0),
+                                                    normalIconTintColor: .cyan,
+                                                    selectedIconTintColor: .darkGray),
             index: 1)
-        iconAndLabelSegmentControl.center.x = view.center.x
-        iconAndLabelSegmentControl.backgroundColor = .darkGray
-        iconAndLabelSegmentControl.layer.cornerRadius = 10
-        iconAndLabelSegmentControl.cornerRadius = 10
-        iconAndLabelSegmentControl.indicatorView.backgroundColor = .cyan
-        iconAndLabelSegmentControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
-        view.addSubview(iconAndLabelSegmentControl)
+        iconWithLabelSegmentControl.center.x = view.center.x
+        iconWithLabelSegmentControl.backgroundColor = .darkGray
+        iconWithLabelSegmentControl.layer.cornerRadius = 10
+        iconWithLabelSegmentControl.cornerRadius = 10
+        iconWithLabelSegmentControl.indicatorView.backgroundColor = .cyan
+        iconWithLabelSegmentControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
+        view.addSubview(iconWithLabelSegmentControl)
     }
     
     // MARK: - Action handlers
