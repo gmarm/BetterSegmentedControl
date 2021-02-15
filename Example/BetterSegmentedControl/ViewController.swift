@@ -80,9 +80,9 @@ class ViewController: UIViewController {
         noSelectedSegmentControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
         view.addSubview(noSelectedSegmentControl)
         
-        // Control 8: Icons and labels
+        // Control 8: Icons with labels
         let iconWithLabelSegmentControl = BetterSegmentedControl(
-            frame: CGRect(x: 0, y: 550, width: 200, height: 40),
+            frame: CGRect(x: 0, y: 560, width: 200, height: 40),
             segments: IconWithLabelSegment.segments(withIconsAndLabels: [IconWithLabel(icon: UIImage(named: "facebook")!, title: "Facebook"), IconWithLabel(icon: UIImage(named: "twitter")!, title: "Twitter")],
                                                     iconSize: CGSize(width: 20.0, height: 20.0),
                                                     normalIconTintColor: .systemTeal,
@@ -93,7 +93,6 @@ class ViewController: UIViewController {
             index: 1)
         iconWithLabelSegmentControl.center.x = view.center.x
         iconWithLabelSegmentControl.backgroundColor = #colorLiteral(red: 0.2117647059, green: 0.2705882353, blue: 0.3098039216, alpha: 1)
-        iconWithLabelSegmentControl.layer.cornerRadius = 10
         iconWithLabelSegmentControl.cornerRadius = 10
         iconWithLabelSegmentControl.indicatorView.backgroundColor = .systemTeal
         iconWithLabelSegmentControl.addTarget(self, action: #selector(segmentedControl1ValueChanged(_:)), for: .valueChanged)
