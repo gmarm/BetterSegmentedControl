@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1100"
+   LastUpgradeVersion = "1240"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FB06F71F26287F9C00158182"
-               BuildableName = "BetterSegmentedControl.framework"
-               BlueprintName = "BetterSegmentedControl"
+               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+               BuildableName = "BetterSegmentedControl_Example.app"
+               BlueprintName = "BetterSegmentedControl_Example"
                ReferencedContainer = "container:BetterSegmentedControl.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BuildableName = "BetterSegmentedControl_Tests.xctest"
+               BlueprintName = "BetterSegmentedControl_Tests"
+               ReferencedContainer = "container:BetterSegmentedControl.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -40,6 +50,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "BetterSegmentedControl_Example.app"
+            BlueprintName = "BetterSegmentedControl_Example"
+            ReferencedContainer = "container:BetterSegmentedControl.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -47,15 +67,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FB06F71F26287F9C00158182"
-            BuildableName = "BetterSegmentedControl.framework"
-            BlueprintName = "BetterSegmentedControl"
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "BetterSegmentedControl_Example.app"
+            BlueprintName = "BetterSegmentedControl_Example"
             ReferencedContainer = "container:BetterSegmentedControl.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
