@@ -36,6 +36,7 @@ class ViewController: UIViewController {
         // Control 1: Created and designed in IB
         control1.segments = LabelSegment.segments(withTitles: ["Recent", "Nearby", "All"],
                                                   normalTextColor: UIColor(red: 0.48, green: 0.48, blue: 0.51, alpha: 1.00))
+        control1.segmentSpacing = 50
         
         // Control 2: Created and designed in IB
         control2.segments = LabelSegment.segments(withTitles: ["Music", "Movies", "Apps"],
