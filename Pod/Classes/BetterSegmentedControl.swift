@@ -93,6 +93,10 @@ import UIKit
             indicatorView.layer.borderColor = newValue?.cgColor
         }
     }
+    /// The horizontal spacing between segments.
+    @IBInspectable public var segmentSpacing: CGFloat = 0 {
+        didSet { setNeedsLayout() }
+    }
     
     /// The duration of the animation of an index change. Defaults to `0.3`.
     @IBInspectable public var animationDuration: TimeInterval = 0.3
@@ -157,6 +161,8 @@ import UIKit
     private var lastIndex: Int { segments.endIndex - 1 }
     
     private var totalInsetSize: CGFloat { indicatorViewInset * 2.0 }
+    
+    private var totalSpacings: CGFloat { return segmentSpacing * CGFloat(normalSegmentViewCount - 1) }
     
     private var isLayoutDirectionRightToLeft: Bool {
         let layoutDirection = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute)
@@ -339,6 +345,8 @@ import UIKit
                 animationDuration = value
             case let .animationSpringDamping(value):
                 animationSpringDamping = value
+            case let .segmentSpacing(value):
+                segmentSpacing = value
             }
         }
     }
@@ -447,9 +455,10 @@ import UIKit
     }
     
     private func frameForElement(atIndex index: Int) -> CGRect {
-        let elementWidth = (width - totalInsetSize) / CGFloat(normalSegmentViewCount)
-        let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth
-        
+        let elementWidth = (width - totalInsetSize - totalSpacings) / CGFloat(normalSegmentViewCount)
+        let spacingOffset =  CGFloat(index) * segmentSpacing
+        let x = CGFloat(isLayoutDirectionRightToLeft ? lastIndex - index : index) * elementWidth + spacingOffset
+
         return CGRect(x: x + indicatorViewInset,
                       y: indicatorViewInset,
                       width: elementWidth,
