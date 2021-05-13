@@ -9,6 +9,10 @@
 
 import UIKit
 
+public protocol BetterSegmentedControlDelegate {
+    func didMoveIndicator(to percent: Double, animated: Bool)
+}
+
 @IBDesignable open class BetterSegmentedControl: UIControl {
     private struct Constants {
         static let minimumIntrinsicContentSizeHeight: CGFloat = 32.0
@@ -31,6 +35,17 @@ import UIKit
         }
     }
     
+    public var delegate: BetterSegmentedControlDelegate?
+    
+    /// Whether the control should track the position of the IndicatorView.  Cannot be enabled if panning is disabled. Defaults to `false`.
+    @IBInspectable public var trackIndicatorPosition: Bool = false {
+        didSet {
+            if panningDisabled {
+                trackIndicatorPosition = false
+            }
+        }
+    }
+    
     /// The currently selected index indicator view.
     public let indicatorView = IndicatorView()
     
@@ -41,7 +56,11 @@ import UIKit
     @IBInspectable public var announcesValueImmediately: Bool = true
     
     /// Whether the the control should ignore pan gestures. Defaults to `false`.
-    @IBInspectable public var panningDisabled: Bool = false
+    @IBInspectable public var panningDisabled: Bool = false {
+        didSet {
+            trackIndicatorPosition = !panningDisabled
+        }
+    }
     
     /// The control's and indicator's corner radii.
     @IBInspectable public var cornerRadius: CGFloat {
@@ -476,17 +495,41 @@ import UIKit
         setIndex(closestIndex(toPoint: location), shouldSendValueChangedEvent: true)
     }
     
-    @objc private func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
+   @objc private func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
+        
+        let trackingLaneFrame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: (self.bounds.width - indicatorView.frame.width) - indicatorViewInset, height: self.bounds.height)
+        
         switch gestureRecognizer.state {
         case .began:
             initialIndicatorViewFrame = indicatorView.frame
         case .changed:
-            var frame = initialIndicatorViewFrame!
-            frame.origin.x += gestureRecognizer.translation(in: self).x
-            frame.origin.x = max(min(frame.origin.x, bounds.width - indicatorViewInset - frame.width), indicatorViewInset)
-            indicatorView.frame = frame
+            var indicatorFrame = initialIndicatorViewFrame!
+            indicatorFrame.origin.x += gestureRecognizer.translation(in: self).x
+            indicatorFrame.origin.x = max(min(indicatorFrame.origin.x, bounds.width - indicatorViewInset - indicatorFrame.width), indicatorViewInset)
+            
+            if trackIndicatorPosition
+            {
+                let frameX = indicatorFrame.origin.x == 5 ? 0 : indicatorFrame.origin.x
+                let percent = frameX / trackingLaneFrame.width
+                
+                delegate?.didMoveIndicator(to: Double(percent), animated: false)
+            }
+            
+            indicatorView.frame = indicatorFrame
+            
         case .ended, .failed, .cancelled:
             setIndex(closestIndex(toPoint: indicatorView.center), shouldSendValueChangedEvent: true)
+            
+            if trackIndicatorPosition
+            {
+                let indicatorFrame = indicatorView.frame
+                
+                let frameX = indicatorFrame.origin.x == 5 ? 0 : indicatorFrame.origin.x
+                let percent = frameX / trackingLaneFrame.width
+                
+                delegate?.didMoveIndicator(to: Double(percent), animated: true)
+            }
+            
         default: break
         }
     }
