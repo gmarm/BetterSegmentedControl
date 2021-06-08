@@ -9,6 +9,11 @@
 
 import UIKit
 
+@objc public protocol BetterSegmentedControlDelegate {
+    @objc optional func tappedSegmentedControl(index: Int)
+    @objc optional func pannedSegmentedControl(index: Int)
+}
+
 @IBDesignable open class BetterSegmentedControl: UIControl {
     private struct Constants {
         static let minimumIntrinsicContentSizeHeight: CGFloat = 32.0
@@ -18,6 +23,9 @@ import UIKit
     // MARK: Properties
     
     // Public
+    /// BetterSegmentedControlDelegate
+    public var delegate: BetterSegmentedControlDelegate?
+    
     /// Indicates a no-segment-selected state.
     public static let noSegment = -1
     
@@ -473,7 +481,9 @@ import UIKit
     // MARK: Action handlers
     @objc private func tapped(_ gestureRecognizer: UITapGestureRecognizer!) {
         let location = gestureRecognizer.location(in: self)
-        setIndex(closestIndex(toPoint: location), shouldSendValueChangedEvent: true)
+        let index = closestIndex(toPoint: location)
+        delegate?.tappedSegmentedControl?(index: index)
+        setIndex(index, shouldSendValueChangedEvent: true)
     }
     
     @objc private func panned(_ gestureRecognizer: UIPanGestureRecognizer!) {
@@ -486,7 +496,9 @@ import UIKit
             frame.origin.x = max(min(frame.origin.x, bounds.width - indicatorViewInset - frame.width), indicatorViewInset)
             indicatorView.frame = frame
         case .ended, .failed, .cancelled:
-            setIndex(closestIndex(toPoint: indicatorView.center), shouldSendValueChangedEvent: true)
+            let index = closestIndex(toPoint: indicatorView.center)
+            delegate?.pannedSegmentedControl?(index: index)
+            setIndex(index, shouldSendValueChangedEvent: true)
         default: break
         }
     }
